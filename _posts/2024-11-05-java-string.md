@@ -7,6 +7,7 @@ tags: Java
 excerpt_separator: <!--more-->
 ---
 
+Java의 `String`은 불변(Immutable) 객체로
 
 # Java String의 특징
 ## String은 객체이다.
