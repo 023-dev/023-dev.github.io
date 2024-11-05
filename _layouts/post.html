@@ -24,7 +24,13 @@ layout: default
 </div>
 
 {% if page.comments %}
-  {% include disqus_comments.html %}
+<script src="https://utteranc.es/client.js"
+        repo="023-dev/023-dev.github.io"
+        issue-term="pathname"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
 {% endif %}
 
 <div class="pagination">
