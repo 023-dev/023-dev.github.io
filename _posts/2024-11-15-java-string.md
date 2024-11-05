@@ -19,8 +19,4 @@ excerpt_separator: <!--more-->
 int age = 35;
 String name = "홍길동";
 ```
-{% highlight java %}
-int age = 35;
-String name = "홍길동";
-{% endhighlight %}
 
