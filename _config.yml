@@ -5,7 +5,7 @@ baseurl: "" # GitHub Pages에서 루트에 위치할 경우 빈 문자열로 설
 url: "https://023-dev.github.io" # 블로그 URL
 
 # Google Analytics
-google_analytics: UA-XXXXXXXX-X # 자신의 Google Analytics 코드로 대체 (필요한 경우)
+google_analytics: G-LDJQ09Q3V9 # 자신의 Google Analytics 코드로 대체 (필요한 경우)
 
 # Author
 author:
