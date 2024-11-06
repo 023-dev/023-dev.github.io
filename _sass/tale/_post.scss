@@ -66,7 +66,7 @@
   position: absolute;
   right: 0px;
   width: 240px;
-  color: $default;
+  color: $default-color;
   overflow-y: auto;
   overflow-x: hidden;
   padding-left: 0.75rem;
@@ -95,7 +95,7 @@
     font-weight: bold;
     transition: all 0.125s ease-in 0s;
     font-size: 0.75rem;
-    color: #9075aa;
+    color: $default-shade;
   }
 
   ul {
@@ -108,11 +108,11 @@
   }
 
   a {
-    color: $default;
+    color: $default-color;
     text-decoration: none;
   }
 
   a:hover {
-    color:$theme-color;
+    color:$default-shade;
   }
 }
