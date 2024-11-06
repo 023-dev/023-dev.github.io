@@ -10,7 +10,7 @@ excerpt_separator: <!--more-->
 Java에서 `String`은 문자열 데이터를 다루기 위해 사용한다. 
 
 이 글에서는 `String`에 대해서 자세히 알아본다.
-# Java String의 특징
+# String의 특징
 <hr>
 
 ## String은 객체(Object)이다.
