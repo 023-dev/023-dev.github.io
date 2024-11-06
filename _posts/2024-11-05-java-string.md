@@ -59,8 +59,10 @@ System.out.println(str.hashCode()); // -862545276
 <hr>
 
 String 변수를 선언하는 방법은 대표적으로 두가지 방식이 있다.
+
 1. `String Literal`을 이용한 방식
 2. `new String("")`을 이용한 방식
+
 ```java
 String str1 = "Hello"; // String Literal
 
