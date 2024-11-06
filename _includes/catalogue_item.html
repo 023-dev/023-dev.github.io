@@ -9,7 +9,7 @@
 
     <p>
       {% if post.excerpt_separator %}
-        {{ post.excerpt | strip_html }}
+        {{ post.excerpt | strip_html | truncatewords: 30 }}
       {% else %}
         {{ post.content | strip_html | truncatewords: 30 }}
       {% endif %}
