@@ -40,7 +40,7 @@ exclude: [ Gemfile, Gemfile.lock, tale.gemspec ]
 # Comments (Utterances 설정)
 comments:
   provider: "utterances"
-  repo: "your-github-username/your-repo-name" # GitHub 댓글 저장소 (예: 023-dev/023-dev.github.io)
+  repo: "023-dev/023-dev.github.io" # GitHub 댓글 저장소 (예: 023-dev/023-dev.github.io)
   issue_term: "pathname" # 게시물 경로별로 댓글 연결
   label: "comment" # 댓글의 GitHub 라벨 (선택 사항)
   theme: "github-light" # Utterances 테마 (github-light 또는 github-dark 등)
