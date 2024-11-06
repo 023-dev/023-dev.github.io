@@ -1,15 +1,15 @@
 ---
 layout: post
-title: "Java의 String 이해하기"
+title: "Java의 String, StringBuffer, StringBuilder 차이 알아보기"
 author: "023"
 comments: true
 tags: Java
 excerpt_separator: <!--more-->
 ---
 
-Java에서 `String`은 문자열 데이터를 다루기 위해 사용한다. 
+Java에서는 `String`, `StringBuffer`, `StringBuilder`라는 3가지 클래스 자료형을 통해 문자열을 다룰 수 있다.
 
-이 글에서는 `String`에 대해서 자세히 알아본다.
+이 글에서는 어떤 상황에서 어떤 자료형을 사용하는 것이 성능적인 측면에서 좋은지 알아본다.
 # Java String의 특징
 <hr>
 
@@ -55,9 +55,7 @@ System.out.println(str.hashCode()); // -862545276
 
 예를 들어 데이터베이스 사용자 이름, 암호는 데이터베이스 연결을 수신하기 위해 문자열로 전달되는데, 만일 번지수의 문자열 값이 변경이 가능하다면 해커가 참조 값을 변경하여 애플리케이션에 보안 문제를 일으킬 수 있다.
 
-# String의 주소 할당 방식
-<hr>
-
+## String의 주소 할당 방식
 String 변수를 선언하는 방법은 대표적으로 두가지 방식이 있다.
 1. `String Literal`을 이용한 방식
 2. `new String("")`을 이용한 방식
