@@ -15,7 +15,7 @@
       font-style: $serif-secondary;
 
       .tag {
-        background-color: $default-tint;
+        background-color: $default-tint !important;
         border-radius: 3px;
         color: $default-color;
         font-style: $serif-secondary;
