@@ -97,11 +97,11 @@ excerpt_separator: <!--more-->
 - `ArrayIndexOutOfBoundsException`: 배열의 범위를 넘어선 인덱스를 참조할 때 발생한다.
 - `NumberFormatException`: 정수가 아닌 문자열을 정수로 변환할 때 발생한다.
 
-# Checked Exception와 Unchecked Exception
+# Checked Exception과 Unchecked Exception
 
 <hr>
 
-`Exception`은 예외를 처리할지 여부를 강제할지에 따라 `Checked Exception`와 `Unchecked Exception`으로 나눈다. 
+`Exception`은 예외를 처리할지 여부를 강제할지에 따라 `Checked Exception`과 `Unchecked Exception`으로 나눈다. 
 간단히 정리하자면 `Checked Exception`은 컴파일 단계에서 검출되는 예외이고, `Unchecked Exception`은 런타임 중에 발생하는 예외를 말한다.
 
 ![Exception Hierarchy](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-exception-error/java-exception-error_4.png)
