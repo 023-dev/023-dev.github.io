@@ -1,5 +1,5 @@
 # Site settings
-title: "블로그" # 블로그 제목
+title: "023" # 블로그 제목
 description: "개발과 관련된 이야기들" # 블로그 설명
 baseurl: "" # GitHub Pages에서 루트에 위치할 경우 빈 문자열로 설정
 url: "https://023-dev.github.io" # 블로그 URL
