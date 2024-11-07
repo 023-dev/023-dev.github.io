@@ -3,6 +3,7 @@ layout: post
 title: "Example Content"
 author: "Chester"
 tags: Example
+hidden: true
 excerpt_separator: <!--more-->
 ---
 

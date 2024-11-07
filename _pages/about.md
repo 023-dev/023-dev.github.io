@@ -5,11 +5,50 @@ author: "Chester"
 permalink: /about/
 ---
 
-A friend of mine writes short stories. One sunny day, I asked if he wanted a website to showcase his works and he agreed. I decided to use GitHub Pages to host his site. That way he wouldn't have to buy a domain and a server.
+# 기술 스택
+## Front
+- AXIOS
+- React
+- Zustand
 
-While doing some research up on GitHub Pages, I accidentally chanced upon this _simple, blog-aware, static site generator_ called [Jekyll](https://jekyllrb.com/) which works really well with GitHub Pages. I figured it would do just fine for my friend and I set about searching for a pretty theme. I wanted a theme with a _book-ish_ vibe. Unfortunately, most of the themes were too modern. Eventually, I caved and begun working on my own theme. With the help of [Poole](https://github.com/poole/poole), the Jekyll Butler, I was able to build **Tale**.
+## Tool
+- Github
+- IntelliJ
+- Figma
+- Slack
+- Canva
+- Notion
 
-## Contribute
-Feel free to create an issue or make a pull request on [GitHub](https://github.com/chesterhow/tale).
-
-Thanks for reading!
+## Spring
+- Spring Boot
+- Spring JPA
+  - QueryDSL
+- Spring Data
+- Spring JPA
+- Spring Cloud
+  - Spring Cloud Config
+  - Spring Cloud Gateway
+  - Spring Cloud Eureka
+- Spring Security
+- Spring OAuth Client
+  - JWT
+- Spring Validation
+## AWS
+- EC2
+- RDS
+- S3
+- ElastiCache
+## Container
+- Docker
+  - Docker Hub
+  - Docker Compose
+## Database
+- SQL
+  - MSSQL(SQLServer)
+  - MySQL
+  - Oracle
+- NoSQL
+  - MongoDB
+  - Redis
+## Testing
+- POSTMAN
