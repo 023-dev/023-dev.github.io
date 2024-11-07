@@ -1,11 +1,15 @@
 .post {
   padding: 3rem 0;
 
+  &-header {
+    margin-bottom: 2rem;
+  }
+
   &-info {
     color: $default-color;
     font-family: $serif-secondary;
     letter-spacing: 0.5px;
-    text-align: center;
+    //text-align: center;
 
     span {
       font-style: $serif-secondary;
@@ -21,10 +25,10 @@
   }
 
   &-line {
-    border-top: 0.4rem solid $default-shade;
+    border-top: 0.2rem solid $default-shade;//0.4rem solid $default-shade;
     display: block;
-    margin: 0 auto 3rem;
-    width: 4rem;
+    margin: 0 auto 1rem;//0 auto 3rem
+    width: auto; //4rem;
   }
 
   p {
