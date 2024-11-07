@@ -13,6 +13,13 @@
 
     span {
       font-style: $serif-secondary;
+
+      .tag {
+        background-color: $default-tint;
+        border-radius: 3px;
+        color: $default-color;
+        font-style: $serif-secondary;
+      }
     }
   }
 
@@ -121,11 +128,3 @@
   }
 }
 
-.tag {
-  background-color: $default-tint;
-  border-radius: 3px;
-  color: $code-color;
-  font-size: 85%;
-  padding: .25em .5em;
-  font-style: $serif-secondary;
-}
