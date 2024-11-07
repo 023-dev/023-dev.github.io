@@ -10,6 +10,7 @@ excerpt_separator: <!--more-->
 Java에서 `String`은 문자열 데이터를 다루기 위해 사용한다. 
 
 이 글에서는 `String`에 대해서 자세히 알아본다.
+
 # Java Exception
 # Exception과 Error의 차이
 - Exception: 애플리케이션 코드에서 발생할 수 있으며, 예외 처리(try-catch)로 복구가 가능합니다. 예: NullPointerException, IOException.
