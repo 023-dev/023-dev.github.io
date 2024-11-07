@@ -13,13 +13,19 @@
 
     span {
       font-style: $serif-secondary;
+    }
 
-      .tag {
-        background-color: $default-tint !important;
-        border-radius: 3px;
-        color: $default-color;
-        font-style: $serif-secondary;
-      }
+    .tag {
+      font-size: 1rem;
+      display: inline-block;
+      padding: 0.3em 0.5em;
+      margin: 0 0 0.25em 0;
+      background: $default-tint !important;
+      line-height: 1em;
+      border-radius: 5px;
+      color: $default-color;
+      font-style: $serif-secondary;
+      text-decoration: none;
     }
   }
 
