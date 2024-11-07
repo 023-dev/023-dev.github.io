@@ -1,6 +1,9 @@
 ---
 layout: default
 ---
+{% for tag in site.data.tags %}
+<span class="tag" data-tag="{{tag}}">{{ site.data.format[tag] }}</span>
+{% endfor %}
 
 <div class="catalogue">
   {% for post in site.posts %}
