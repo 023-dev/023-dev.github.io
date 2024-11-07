@@ -43,25 +43,23 @@ System.out.println(sb.toString());
 
 ## StringBuffer 내장 메소드
 `StringBuffer`클래스는 효율적인 문자열 연산을 위한 메소드를 제공하고 이 메서드를은 `StringBuilder` 클래스에서도 동일하게 제공된다.
+- `append(...)`: 문자열을 끝에 추가
+- `insert(int pos, ...)`: 지정 위치에 문자열 삽입
+- `delete(int start, int end)`: 지정 범위의 문자열 삭제
+- `deleteCharAt(int index)`: 특정 인덱스의 문자 삭제
+- `replace(int start, int end, String str)`: 지정 범위의 문자열을 다른 문자열로 대체
+- `reverse()`: 문자열을 뒤집음
+- `substring(int start)`: 시작 위치부터 끝까지의 문자열 반환
+- `substring(int start, int end)`: 지정 범위의 문자열 반환
+- `toString()`: `StringBuffer` 객체를 `String`으로 변환
+- `setCharAt(int index, char ch)`: 특정 인덱스의 문자 변경
+- `setLength(int newLength)`: 문자열의 길이를 지정된 길이로 설정
+- `capacity()`: 버퍼의 용량 반환
+- `length()`: 현재 문자열의 길이 반환
+- `charAt(int index)`: 특정 인덱스의 문자 반환
+- `ensureCapacity(int minimumCapacity)`: 버퍼의 최소 용량 설정
+- `trimToSize()`: 현재 문자열 길이에 맞게 버퍼 크기 조정
 
-|메서드|설명|
-|:---|:---|
-|append(...)|문자열을 끝에 추가|
-|insert(int pos, ...)|지정 위치에 문자열 삽입|
-|delete(int start, int end)|지정 범위의 문자열 삭제|
-|deleteCharAt(int index)|특정 인덱스의 문자 삭제|
-|replace(int start, int end, String str)|지정 범위의 문자열을 다른 문자열로 대체|
-|reverse()|문자열을 뒤집음|
-|substring(int start)|시작 위치부터 끝까지의 문자열 반환|
-|substring(int start, int end)|지정 범위의 문자열 반환|
-|toString()|StringBuffer 객체를 String으로 변환|
-|setCharAt(int index, char ch)|지정 인덱스의 문자 변경|
-|setLength(int newLength)|문자열의 길이를 지정된 길이로 설정|
-|capacity()|버퍼의 용량 반환|
-|length()|현재 문자열의 길이 반환|
-|charAt(int index)|지정 인덱스의 문자 반환|
-|ensureCapacity(int minimumCapacity)|버퍼의 최소 용량 설정|
-|trimToSize()|현재 문자열 길이에 맞게 버퍼 크기 조정|
 
 # Stinrg과 StringBuffer/StringBuilder 비교
 
@@ -294,43 +292,13 @@ public class StringBufferVsStringBuilderPerformanceTest {
 `StringBuffer`와 `StringBuilder` 차이는 `synchronized`의 키워드 유무로 인한 쓰레드 안전성인데, 이때 `StringBuffer`는 `synchronized` 키워드를 사용하면서 동기화 오버헤드가 발생하기 때문에 이러한 결과가 나온다.
 
 <img src="_post/_images/java-string-stringbuffer-stringbuilder/java-string-stringbuffer-stringbuilder_4.png">
+![img_1.png](_posts/_images/java-string-stringbuffer-stringbuilder/java-string-stringbuffer-stringbuilder_4.png)
 
 위 그래프를 보면 10만번 이상의 연산 작업 수행 시 `String`의 수행시간이 기하급수적으로 늘어나지만, `StringBuffer`와 `StringBuilder`는 1000만번까지 준수하다가, 그 후로는 `StringBuilder`가 더 좋다는 것을 볼 수 있다.
 
 그래서 멀티 쓰레드 환경이 아니고선 `StringBuilder`을 사용하는 것이 이상적이다.
 
-정리하자면 다음 표와 같다.
-<table>
-    <thead>
-        <tr>
-            <th></th>
-            <th>String</th>
-            <th>StringBuffer</th>
-            <th>StringBuilder</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>가변여부</td>
-            <td>불변</td>
-            <td colspan="2">가변</td>
-        </tr>
-        <tr>
-            <td>쓰레드 안전성</td>
-            <td colspan="2">지원</td>
-            <td>미지원</td>
-        </tr>
-        <tr>
-            <td>연산 속도</td>
-            <td>느림</td>
-            <td>빠름</td>
-            <td>매우 빠름</td>
-        </tr>
-        <tr>
-            <td>사용 시점</td>
-            <td>문자열 연산 작업이 적고,<br>쓰레드 안전성 환경</td>
-            <td>문자열 연산 작업이 많고,<br>쓰레드 안전성 환경</td>
-            <td>문자열 연산 작업이 많고,<br>단일 쓰레드 환경,<br>최대한 빠른 연산이 필요한 경우</td>
-        </tr>
-    </tbody>
-</table>
+정리하자면 `String`은 불변 객체로 문자열을 변경할 수 없으며, 문자열 연산이 적고 스레드 안전성이 중요한 경우에 적합하다. 
+반면, `StringBuffer`와 `StringBuilder`는 가변 객체로, 동일 객체 내에서 문자열을 수정할 수 있다. 
+`StringBuffer`는 모든 메서드가 `synchronized`되어 쓰레드 안전성을 보장해 멀티 쓰레드 환경에서 안전하게 사용할 수 있지만, 이로 인해 `StringBuilder`보다 약간 느리다. 
+`StringBuilder`는 쓰레드 안전성을 제공하지 않지만 가장 빠른 성능을 제공하므로, 단일 스레드 환경에서 빈번한 문자열 조작이 필요할 때 사용하기 적합하다.
