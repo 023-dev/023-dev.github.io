@@ -91,7 +91,7 @@
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   margin-right: 0px;
-  font-size: 1rem;
+  font-size: 0.75rem;
   border-left: 2px solid $default-color;
 
   display: none;
@@ -111,7 +111,7 @@
   a.toc-active {
     font-weight: bold;
     transition: all 0.125s ease-in 0s;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: $default-shade;
   }
 

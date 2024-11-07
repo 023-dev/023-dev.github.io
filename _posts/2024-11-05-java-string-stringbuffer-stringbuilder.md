@@ -67,7 +67,7 @@ System.out.println(sb.toString());
 
 ## 문자열 자료형의 불변성과 가변성
 
-### String은 불변(Immutable)
+### String은 불변
 자바에서는 `String`은 **불변(Immutable) 자료형**이다. 그래서 초기 값과 다른 값에 대한 연산에 많은 추가 자원을 사용하게 된다는 특징이 있다.
 
 실제로 String 객체의 내부 구조를 보면 다음과 같이 되어 있다.
@@ -107,7 +107,7 @@ System.out.println(str); // "abc"
 
 > `Minor GC`는 자바 메모리의 작은 영역에서 불필요한 메모리를 빠르게 정리하는 작업이며, `Full GC`는 전체 메모리를 대상으로 하는 더 큰 정리 작업이다. 이때 `Minor GC`가 빈번히 발생하면, 시스템은 `Full GC`를 시작한다. `Full GC`는 전체 메모리를 검사하고 불필요한 객체를 모두 제거하므로 시간이 오래 걸리고 CPU 자원을 많이 사용해 성능저하와 지연을 초래할 수 있다.
 
-### StringBuffer/StringBuilder는 가변(Mutable)
+### StringBuffer/StringBuilder는 가변
 `StringBuffer`와 `StringBuilder는`의 경우 문자열 데이터를 다룬다는 점에서 `String` 객체와 같지만, 객체의 공간이 부족해지는 경우 버퍼를 스케일업 해주어 가변적이라는 차이점이 있다. 
 
 실제 `StringBuffer` 객체의 내부 구조를 보면 `String`과 달리 `final`이 없다.
