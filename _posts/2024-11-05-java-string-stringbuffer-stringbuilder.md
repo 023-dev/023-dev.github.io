@@ -207,7 +207,7 @@ for(int i = 0; i < 10000; i++) {
 }
 ```
 
-![img.png](_images/java-string-stringbuffer-stringbuilder/java-string-stringbuffer-stringbuilder_3.png)
+<img src="_images/java-string-stringbuffer-stringbuilder/java-string-stringbuffer-stringbuilder_3.png">
 
 정리하자면, 문자열 연산 작업이 잦을 경우에는 `StringBuffer/StringBuilder`를, 문자열 변경 작업이 거의 없는 경우에는 `String`을 사용하는 것만 이상적이다.
 
@@ -293,7 +293,7 @@ public class StringBufferVsStringBuilderPerformanceTest {
 
 `StringBuffer`와 `StringBuilder` 차이는 `synchronized`의 키워드 유무로 인한 쓰레드 안전성인데, 이때 `StringBuffer`는 `synchronized` 키워드를 사용하면서 동기화 오버헤드가 발생하기 때문에 이러한 결과가 나온다.
 
-![img.png](img.png)
+<img src="_post/_images/java-string-stringbuffer-stringbuilder/java-string-stringbuffer-stringbuilder_4.png">
 
 위 그래프를 보면 10만번 이상의 연산 작업 수행 시 `String`의 수행시간이 기하급수적으로 늘어나지만, `StringBuffer`와 `StringBuilder`는 1000만번까지 준수하다가, 그 후로는 `StringBuilder`가 더 좋다는 것을 볼 수 있다.
 
