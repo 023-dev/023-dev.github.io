@@ -33,15 +33,18 @@ permalink: /about/
 - Spring OAuth Client
   - JWT
 - Spring Validation
+
 ## AWS
 - EC2
 - RDS
 - S3
 - ElastiCache
+
 ## Container
 - Docker
   - Docker Hub
   - Docker Compose
+
 ## Database
 - SQL
   - MSSQL(SQLServer)
@@ -50,5 +53,6 @@ permalink: /about/
 - NoSQL
   - MongoDB
   - Redis
+
 ## Testing
 - POSTMAN
