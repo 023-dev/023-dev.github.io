@@ -89,7 +89,7 @@ str += " World";
 System.out.println(str);
 ```
 
-![img.png](_images/java-string-stringbuffer-stringbuilder/java-string-stringbuffer-stringbuilder_1.png)
+![String](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-string-stringbuffer-stringbuilder/java-string-stringbuffer-stringbuilder_1.png)
 
 이외에도 문자열을 다루는데 있어 가장 많이 사용하는 `trim`이나 `toUpperCase`, `toLowerCase` 같은 메소드 사용 형태를 보면, 문자열이 변경되는 것 처럼 보일 수 있지만 해당 메소드 수행 시 새로운 `String` 객체를 생성해서 반환할 뿐이다. 
 
@@ -126,7 +126,7 @@ sb.append(" World");
 System.out.println(sb.toString());
 ```
 
-![img_1.png](_images/java-string-stringbuffer-stringbuilder/java-string-stringbuffer-stringbuilder_2.png)
+![StringBuffer](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-string-stringbuffer-stringbuilder/java-string-stringbuffer-stringbuilder_2.png)
 
 따라서 값이 변함에 따라 새로운 객체를 생성하는 불변적인 `String` 보다 메모리와 성능적인 측면에서 좋기 때문에, 문자열 연산이 빈번하게 발생하는 경우에는 `String`가 아닌 `StringBuffer/StringBuilder`를 사용하는 것이 이상적이다.
 
@@ -205,7 +205,7 @@ for(int i = 0; i < 10000; i++) {
 }
 ```
 
-<img src="_images/java-string-stringbuffer-stringbuilder/java-string-stringbuffer-stringbuilder_3.png">
+![+ 연산자 성능 비교](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-string-stringbuffer-stringbuilder/java-string-stringbuffer-stringbuilder_3.png)
 
 정리하자면, 문자열 연산 작업이 잦을 경우에는 `StringBuffer/StringBuilder`를, 문자열 변경 작업이 거의 없는 경우에는 `String`을 사용하는 것만 이상적이다.
 
@@ -291,8 +291,7 @@ public class StringBufferVsStringBuilderPerformanceTest {
 
 `StringBuffer`와 `StringBuilder` 차이는 `synchronized`의 키워드 유무로 인한 쓰레드 안전성인데, 이때 `StringBuffer`는 `synchronized` 키워드를 사용하면서 동기화 오버헤드가 발생하기 때문에 이러한 결과가 나온다.
 
-<img src="_post/_images/java-string-stringbuffer-stringbuilder/java-string-stringbuffer-stringbuilder_4.png">
-![img_1.png](https://023-dev.github.io/blog/_posts/_images/java-string-stringbuffer-stringbuilder/java-string-stringbuffer-stringbuilder_4.png)
+![String StringBuffer StringBuilder 속도 비교](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-string-stringbuffer-stringbuilder/java-string-stringbuffer-stringbuilder_4.png)
 
 위 그래프를 보면 10만번 이상의 연산 작업 수행 시 `String`의 수행시간이 기하급수적으로 늘어나지만, `StringBuffer`와 `StringBuilder`는 1000만번까지 준수하다가, 그 후로는 `StringBuilder`가 더 좋다는 것을 볼 수 있다.
 
