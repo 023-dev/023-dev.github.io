@@ -14,15 +14,6 @@
     span {
       font-style: $serif-secondary;
     }
-
-    span.tag {
-      font-style: $serif-secondary;
-      background-color: $default-tint;
-      border-radius: 3px;
-      line-height: 1.4;
-      margin: 0 0 1rem;
-      padding: 1rem;
-    }
   }
 
   &-title {
@@ -128,4 +119,13 @@
   a:hover {
     color:$default-shade;
   }
+}
+
+.tag {
+  font-style: $serif-secondary;
+  background-color: $default-tint;
+  border-radius: 3px;
+  line-height: 1.4;
+  margin: 0 0 1rem;
+  padding: 1rem;
 }
