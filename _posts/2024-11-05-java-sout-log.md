@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Java에서 성능이 좋게 출력하기"
+title: "자바에서 System.out.println 대신 로그를 사용해야 하는 이유"
 author: "023"
 comments: true
 tags: Java
