@@ -1,25 +1,25 @@
 ---
 layout: post
-title: "Java의 String 이해하기"
+title: "자바의 String 이해하기"
 author: "023"
 comments: true
 tags: Java
 excerpt_separator: <!--more-->
 ---
 
-Java에서 `String`은 문자열 데이터를 다루기 위해 사용한다. 
+자바에서 `String`은 문자열 데이터를 다루기 위해 사용한다. 
 
 이 글에서는 `String`에 대해서 자세히 알아본다.
 # String의 특징
 <hr>
 
-## String은 객체(Object)이다.
- Java에서 `String`은 `int`,`char`와 달리 기본형(Primitive Type) 변수가 아닌 참조형(Reference Type) 변수로 분류 된다.
+## String은 객체(Object)
+ 자바에서 `String`은 `int`,`char`와 달리 기본형(Primitive Type) 변수가 아닌 참조형(Reference Type) 변수로 분류 된다.
  
 즉, 스택(Stack) 영역이 아닌 힙(Heap) 영역에서 생성되고 관리된다는 말이다.
 
-## String은 불변(Immutable)이다.
-기본적으로 Java에서는 `String`의 값을 변경할 수 없다.  
+## String은 불변(Immutable)
+기본적으로 자바에서는 `String`의 값을 변경할 수 없다.  
 
 `String`으로 생성한 `str`변수가 있고, 참조하는 메모리의`"Hello"`라는 값이 있을 때, `"World"`라는 문자열을 `+`연산자를 통해 더해서 String 객체의 값을 변경시키고자 할 때 실제 메모리에서는 `"Hello World"`를 따로 만들고 변수`str`를 다시 참조하는 식으로 작동한다.
 ```java
