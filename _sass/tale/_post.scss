@@ -122,10 +122,10 @@
 }
 
 .tag {
-  font-style: $serif-secondary;
   background-color: $default-tint;
   border-radius: 3px;
-  line-height: 1.4;
-  margin: 0 0 1rem;
-  padding: 1rem;
+  color: $code-color;
+  font-size: 85%;
+  padding: .25em .5em;
+  font-style: $serif-secondary;
 }
