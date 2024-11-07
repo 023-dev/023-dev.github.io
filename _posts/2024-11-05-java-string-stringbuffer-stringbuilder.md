@@ -300,4 +300,4 @@ public class StringBufferVsStringBuilderPerformanceTest {
 정리하자면 `String`은 불변 객체로 문자열을 변경할 수 없으며, 문자열 연산이 적고 스레드 안전성이 중요한 경우에 적합하다. 
 반면, `StringBuffer`와 `StringBuilder`는 가변 객체로, 동일 객체 내에서 문자열을 수정할 수 있다. 
 `StringBuffer`는 모든 메서드가 `synchronized`되어 쓰레드 안전성을 보장해 멀티 쓰레드 환경에서 안전하게 사용할 수 있지만, 이로 인해 `StringBuilder`보다 약간 느리다. 
-`StringBuilder`는 쓰레드 안전성을 제공하지 않지만 가장 빠른 성능을 제공하므로, 단일 스레드 환경에서 빈번한 문자열 조작이 필요할 때 사용하기 적합하다.
+`StringBuilder`는 쓰레드 안전성을 제공하지 않지만 가장 빠른 성능을 제공하므로, 단일 스레드 환경에서 빈번한 문자열 조작이 필요할 때 사용하는 것이 적합하다.
