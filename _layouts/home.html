@@ -1,9 +1,11 @@
 ---
 layout: default
 ---
-{% for tag in site.data.tags %}
-<span class="tag" data-tag="{{tag}}">{{ site.data.tags }}</span>
-{% endfor %}
+<div class="tags-clouds">
+  {% for tag in site.tags %}
+  <a href="#{{ tag[0] }}">{{ tag[0] }}</a>
+  {% endfor %}
+</div>
 <span>{{ site.data.tags }}</span>
 <div class="catalogue">
   {% for post in site.posts %}
