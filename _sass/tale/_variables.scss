@@ -15,7 +15,7 @@ $code-background: #e1e4e8 !default;
 $serif-primary: 'Noto Sans KR' !default;
 $serif-secondary: 'Noto Sans KR' !default;
 $sans-serif: 'Noto Sans KR' !default;
-$monospaced: 'JetBrains Mono', Menlo, Monaco, monospace !default;
+$monospaced: 'JetBrains Mono' !default;
 
 @mixin box-sizing($type: border-box) {
   -webkit-box-sizing: $type;

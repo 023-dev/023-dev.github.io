@@ -4,6 +4,7 @@ title: "개발자 인성 면접 대비"
 author: "023"
 comments: true
 tags: Interview
+hidden: true
 excerpt_separator: <!--more-->
 ---
 # 인성 면접 준비

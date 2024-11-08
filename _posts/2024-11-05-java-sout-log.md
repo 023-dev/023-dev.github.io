@@ -33,7 +33,7 @@ excerpt_separator: <!--more-->
 `System.out.println`이 호출될 때는 메서드 내부의 `synchronized` 블록이 락을 걸기 때문에, 해당 메서드가 끝날 때까지 다른 스레드들은 기다려야 한다. 
 이로 인해 불필요한 성능 저하가 발생한다.
 
-아래 코드에서 `System.out.println("hello World")`를 사용하는 예시를 보자.
+아래 코드에서 `System.out.println("hello Wor``ld")`를 사용하는 예시를 보자.
 
 ```java
 public class Main {
@@ -41,7 +41,7 @@ public class Main {
         System.out.println("hello World");
     }
 }
-/**
+
 public void println(String x) { 
     if (getClass() == PrintStream.class) {
         writeln(String.valueOf(x));
@@ -50,9 +50,10 @@ public void println(String x) {
             print(x);
             newLine();
         }
+        s = 33
     }
  }
-**/
+
 ```
 
 위 코드에서 `println` 메서드는 `synchronized` 블록을 사용하고 있는데, 이는 여러 스레드가 동시에 접근하지 못하도록 락을 걸기 때문이다. 
