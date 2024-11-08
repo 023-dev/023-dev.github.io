@@ -43,7 +43,8 @@ layout: default
         </a>
       </div>
       <span class="reading-time">⏱ <%- symbolsTime(post.content, 4, 300, '분') %></span>
-      {% assign words = page.content | number_of_words %}
+      {% include read_time.html %}
+
     </div>
   </div>
 
