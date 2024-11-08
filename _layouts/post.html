@@ -42,6 +42,8 @@ layout: default
                   src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}{{ page.url }}&count_bg=%23000000&title_bg=%23000000&icon=github.svg&icon_color=%23E7E7E7&title=조회수&edge_flat=false"/>
         </a>
       </div>
+      <span class="reading-time">⏱ <%- symbolsTime(post.content, 4, 300, '분') %></span>
+      {% assign words = page.content | number_of_words %}
     </div>
   </div>
 

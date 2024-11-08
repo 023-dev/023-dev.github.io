@@ -1,0 +1,8 @@
+<span title="Estimated read time">
+  {% assign words = page.content | number_of_words %}
+  {% if words < 360 %}
+    1분
+  {% else %}
+    {{ words | divided_by:180 }}분 소요
+  {% endif %}
+</span>

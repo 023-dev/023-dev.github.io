@@ -47,3 +47,8 @@ comments:
 
 # Disqus 설정 (사용하지 않으므로 제거 가능)
 # disqus: "my-disqus-id"
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
