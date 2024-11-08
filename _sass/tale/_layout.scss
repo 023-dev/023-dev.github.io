@@ -17,12 +17,6 @@ footer,
   box-shadow: 0 2px 2px -2px $shadow-color;
   overflow: auto;
 
-  left: 0;
-  position: fixed;
-  right: 0;
-  z-index: 30;
-  background: #ffffff;
-
   &-container {
     margin: 1rem auto;
     position: relative;
