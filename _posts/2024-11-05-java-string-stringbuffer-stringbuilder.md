@@ -184,8 +184,7 @@ for(int i = 0; i < 10000; i++) {
     str += i;
 }
 
-/* 반복 횟수 만큼 new StringBuilder() 메모리를 생성하고 다시 변수에 대입하는 미련한 짓을 하는 것을 알 수 있다. */
-
+// 반복 횟수 만큼 new StringBuilder() 메모리를 생성하고 다시 변수에 대입하는 하는 것을 알 수 있다.
 String str = "";
 
 for(int i = 0; i < 10000; i++) {
@@ -210,7 +209,9 @@ for(int i = 0; i < 10000; i++) {
 정리하자면, 문자열 연산 작업이 잦을 경우에는 `StringBuffer/StringBuilder`를, 문자열 변경 작업이 거의 없는 경우에는 `String`을 사용하는 것만 이상적이다.
 
 # StringBuffer와 StringBuilder 차이점
+
 <hr>
+
 `StringBuffer`와 `StringBuilder`는 공통적으로 가변성을 가지고 있고, 제공하는 메서드도 같고, 사용법도 동일하다.
 
 하지만 멀티 쓰레드 환경(Tread)에서 안정성(Safety)에 대한 차이가 난다. 
@@ -222,7 +223,7 @@ for(int i = 0; i < 10000; i++) {
 `StringBuffer`는 동기화를 지원하는 반면,  `StringBuilder`는 동기화를 지원하지 않는다. 이로 인해 `StringBuffer`는 멀티 쓰레드 환경에서도 안전하게 동작할 수 있다.
 그 이유는 `StringBuffer`의 모든 메서드에 `synchronized` 키워드가 붙어 있기때문이다.
 
-> 자바에서 synchronized 키워드는 한 번에 하나의 스레드만 접근할 수 있도록 잠금을 걸어, 다른 스레드는 현재 작업이 끝날 때까지 기다리게 해서 여러 스레드가 동시에 하나의 자원에 접근할 때 발생할 수 있는 데이터 불일치 문제를 방지한다. 
+> 자바에서 `synchronized` 키워드는 한 번에 하나의 스레드만 접근할 수 있도록 잠금을 걸어, 다른 스레드는 현재 작업이 끝날 때까지 기다리게 해서 여러 스레드가 동시에 하나의 자원에 접근할 때 발생할 수 있는 데이터 불일치 문제를 방지한다. 
 
 
 아래 코드는 `StringBuffer`와 `StringBuilder`을 생성해서 멀티 쓰레드 환경에서의 `synchronized` 키워드의 유무차이와 필요성을 보여준다.
