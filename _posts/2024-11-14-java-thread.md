@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "자바의 Collection Framework 이해하기"
+title: "자바의 Thread 이해하기"
 author: "023"
 comments: true
 tags: Java
