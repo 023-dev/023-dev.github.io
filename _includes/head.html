@@ -14,11 +14,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="{{ "/assets/apple-touch-icon.png" | relative_url }}">
 
   <!-- MERMAID -->
-  {% if page.mermaid %}
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
-  </script>
-  {% endif %}
+
   <!-- RSS -->
   {% feed_meta %}
 
