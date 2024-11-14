@@ -34,6 +34,11 @@ excerpt_separator: <!--more-->
 
 ## 컬렉션 프레임워크의 계층구조
 ~~~ mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
 classDiagram
     Iterable <|-- Collection
     
