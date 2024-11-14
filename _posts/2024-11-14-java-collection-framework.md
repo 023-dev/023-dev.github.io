@@ -60,31 +60,6 @@ excerpt_separator: <!--more-->
     Map --> HashTable
     Map --> SortedMap
     SortedMap --> TreeMap
-
-</div>
-
-<div class="mermaid"> 
-    graph TD;
-    Collection <-- Iterable
-    List <-- Collection
-    Queue <-- Collection
-    Set <-- Collection
-    ArrayList <-- List
-    LinkedList <-- List
-    Vector <-- List
-    Stack <-- List
-    PriorityQueue <-- Queue
-    Deque <-- Queue
-    LinkedList <-- Deque
-    ArrayDeque <-- Deque
-    HashSet <-- Set
-    LinkedHashSet <-- Set
-    SortedSet <-- Set
-    TreeSet <-- SortedSet
-    HashMap <-- Map
-    HashTable <-- Map
-    SortedMap <-- Map
-    TreeMap <-- SortedMap
 </div>
 
 컬렉션 프레임 워크는 크게 Collection 인터페이스와 Map 인터페이스로 나뉜다.
@@ -118,6 +93,9 @@ Map 인터페이스 컬렉션들은 두 개의 데이터를묶어 한쌍으로 �
 ### Collection 인터페이스
 
 <div class="mermaid"> 
-    graph DT;
-    Collection --> Iterable
+    classDiagram;
+    Iterable <|-- Collection
+    Collection <|-- List
+    Collection <|-- Queue
+    Collection <|-- Set
 </div>
