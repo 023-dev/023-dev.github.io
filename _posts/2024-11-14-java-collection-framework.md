@@ -63,9 +63,30 @@ excerpt_separator: <!--more-->
 
 </div>
 
-<div class="mermaid">
-    classDiagram; Iterable <|-- Collection; Collection <|-- List; Collection <|-- Queue; Collection <|-- Set; List <|-- ArrayList; List <|-- LinkedList; List <|-- Vector; List <|-- Stack; Queue <|-- PriorityQueue; Queue <|-- Deque; Deque <|-- LinkedList; Deque <|-- ArrayDeque; Set <|-- HashSet; Set <|-- LinkedHashSet; Set <|-- SortedSet; SortedSet <|-- TreeSet; Map <|-- HashMap; Map <|-- HashTable; Map <|-- SortedMap; SortedMap <|-- TreeMap;
+<div class="mermaid"> 
+    graph TD;
+    Collection <-- Iterable
+    List <-- Collection
+    Queue <-- Collection
+    Set <-- Collection
+    ArrayList <-- List
+    LinkedList <-- List
+    Vector <-- List
+    Stack <-- List
+    PriorityQueue <-- Queue
+    Deque <-- Queue
+    LinkedList <-- Deque
+    ArrayDeque <-- Deque
+    HashSet <-- Set
+    LinkedHashSet <-- Set
+    SortedSet <-- Set
+    TreeSet <-- SortedSet
+    HashMap <-- Map
+    HashTable <-- Map
+    SortedMap <-- Map
+    TreeMap <-- SortedMap
 </div>
+
 
 
 컬렉션 프레임 워크는 다양한
