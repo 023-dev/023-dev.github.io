@@ -26,6 +26,8 @@ excerpt_separator: <!--more-->
 아래 코드에서는 사용자가 음수를 입력한 경우, `IllegalArgumentException` 예외가 발생하도록 설정하였다. `throw` 키워드를 통해 예외를 발생시키고, `catch`에서 이를 받아 오류 메시지를 출력한다.
 
 ```java
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         try {
@@ -147,6 +149,9 @@ public class Main {
 아래 코드는 `FileNotFountException`을 원인 예외로 감싸 `IOException`으로 던지는 방식이다.
 
 ```java
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 class FileProcessingException extends IOException {
     public FileProcessingException(String message) {
         super(message);
