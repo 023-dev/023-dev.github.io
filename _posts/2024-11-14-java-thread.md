@@ -33,7 +33,9 @@ excerpt_separator: <!--more-->
 > `null`을 컬렉션에 저장한다는 것은 아무 객체도 참조하지 않는다는 것을 의미한다.
 
 ## 컬렉션 프레임워크의 계층구조
+
 ~~~ mermaid
+
 ---
   config:
     class:
