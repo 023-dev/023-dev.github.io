@@ -34,40 +34,30 @@ excerpt_separator: <!--more-->
 
 ## 컬렉션 프레임워크의 계층구조
 
-<div class="mermaid"> 
-  graph TD; A-->B; A-->C; B-->D; C-->D; 
+
+<div class="mermaid">
+classDiagram;
+    Iterable <|-- Collection;
+    Collection <|-- List;
+    Collection <|-- Queue;
+    Collection <|-- Set;
+    List <|-- ArrayList;
+    List <|-- LinkedList;
+    List <|-- Vector;
+    List <|-- Stack;
+    Queue <|-- PriorityQueue;
+    Queue <|-- Deque;
+    Deque <|-- LinkedList;
+    Deque <|-- ArrayDeque;
+    Set <|-- HashSet;
+    Set <|-- LinkedHashSet;
+    Set <|-- SortedSet;
+    SortedSet <|-- TreeSet;
+    Map <|-- HashMap;
+    Map <|-- HashTable;
+    Map <|-- SortedMap;
+    SortedMap <|-- TreeMap;
 </div>
-
-~~~ mermaid
-classDiagram
-    Iterable <|-- Collection
-    
-    Collection <|-- List
-    Collection <|-- Queue
-    Collection <|-- Set
-    
-    List <|-- ArrayList
-    List <|-- LinkedList
-    List <|-- Vector
-    List <|-- Stack
-    
-    Queue <|-- PriorityQueue
-    Queue <|-- Deque
-    
-    Deque <|-- LinkedList
-    Deque <|-- ArrayDeque
-    
-    Set <|-- HashSet
-    Set <|-- LinkedHashSet
-    Set <|-- SortedSet
-    
-    SortedSet <|-- TreeSet
-
-    Map <|-- HashMap
-    Map <|-- HashTable
-    Map <|-- SortedMap
-    SortedMap <|-- TreeMap
-~~~
 
 컬렉션 프레임 워크는 다양한
 
