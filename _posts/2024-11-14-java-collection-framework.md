@@ -118,6 +118,6 @@ Map 인터페이스 컬렉션들은 두 개의 데이터를묶어 한쌍으로 �
 ### Collection 인터페이스
 
 <div class="mermaid"> 
-    graph TD;
-    Iterable <-- Collection
+    graph DT;
+    Collection --> Iterable
 </div>
