@@ -7,6 +7,10 @@ tags: Java
 excerpt_separator: <!--more-->
 ---
 
+## [김석진님의 블로그 글](https://honbabzone.com/java/java-thread/)
+
+<hr>
+
 Step 1 : 멀티 스레드( Multi Thread )의 개념Permalink
 운영체제(OS)에서 실행 중인 하나의 어플리케이션 즉 ctrl + alt + del창 작업 관리자에서 프로세스 탭에 올라와 있는 어플리케이션 하나를 하나의 프로세스라고 부릅니다. ( Ex) Chrome ) 만약 우리가 크롬창을 더블클릭 누른다면(실행) 운영체제로부터 필요한 메모리를 할당받아 어플리케이션의 코드를 실행하는 것이 프로세스입니다. 크롬을 2개 띄웠다면 두 개의 프로세스가 생성된 것입니다.
 
@@ -150,6 +154,7 @@ public class CustomThread extends Thread {
     }
 }
 ```
+```java
 public static void main(String args[]){
 Thread subTread1 = new CustomThread();
 
@@ -168,10 +173,10 @@ Thread subTread1 = new CustomThread();
     subTread1.start();
     subTread2.start();
 }
-
+```
 데몬 스레드Permalink
 데몬 스레드는 메인 스레드의 작업을 돕는 보조적인 역할을 수행하는 스레드로 주 스레드가 종료되면 데몬 스레드 더는 존재 의미가 없기에 강제로 종료됩니다. 워드의 자동 저장 기능을 예로 들을 수 있습니다. 데몬 스레드를 만드는 방법은 스레드를 만들고 해당 스레드에 setDaemon(true); 메소드를 세팅하는 것입니다.
-
+```java
 public static void main(String args[]){
 Thread deamon = new Thread(()->{
 while ( true ) {
@@ -195,18 +200,8 @@ e.printStackTrace();
         e.printStackTrace();
     }
 }
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
+```
+```java
 // 결과
 데몬 스레드가 실행 중입니다.
 데몬 스레드가 실행 중입니다.
@@ -219,9 +214,10 @@ e.printStackTrace();
 데몬 스레드가 실행 중입니다.
 
 // while(true) 지만 Main Thread가 종료됨에 따라 자동 종료됨
+```
 Thread 이름 생성Permalink
 기본 스레드는 thread.getName()을 통해 Thread-n이라는 이름을 가지고 올 수 있습니다. 하지만 조금 더 수월한 디버깅을 위해 thread.setName(“스레드 이름”)을 통해 스레드의 이름을 설정할 수 있습니다.
-
+```
 public static void main(String args[]){
 Thread subTread1 = new CustomThread();
 Thread subTread2 = new Thread() {
@@ -239,9 +235,8 @@ subTread2.setName("스레드 2번입니다.");
 subTread1.start();
 subTread2.start();
 }
-1
-2
-3
+```
+```
 // 출력
 스레드 1번입니다.최종 합 : 45
 스레드 2번입니다.최종 합 : 45
@@ -856,3 +851,9 @@ ExecutorService executorServiceWithCached = Executors.newFixedThreadPool(Runtime
     
     executorServiceWithCached.shutdown();
 }
+```
+<hr>
+- Java에서 스레드를 만드는 방법
+- 스레드 풀이란
+- 심화
+
