@@ -696,6 +696,11 @@ C --> D
 <div class="mermaid"> 
 graph LR
     A[ArrayList<br>Vector] -- 추가,삭제기능향상 --> B[LinkedList]
+    A -- 검색 기능 향상 --> C[HaspMap<br>HashTable]
+    A --> D[Stack]
+    B --> E[Queue]
+    B --> C
+    B -- 검색, 정렬 기능 향상 --> F[TreeMap]
 </div>
 
 아래는 상황별로 적합한 컬렉션 구현체를 정리한 내용이다.
