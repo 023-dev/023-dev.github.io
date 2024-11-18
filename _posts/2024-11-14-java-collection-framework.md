@@ -695,7 +695,7 @@ C --> D
 
 <div class="mermaid"> 
 graph LR
-    A[ArrayListVector] -- 추가,삭제기능향상 --> B[LinkedList]
+    A[`ArrayList``Vector`] -- 추가,삭제기능향상 --> B[LinkedList]
 </div>
 
 아래는 상황별로 적합한 컬렉션 구현체를 정리한 내용이다.
