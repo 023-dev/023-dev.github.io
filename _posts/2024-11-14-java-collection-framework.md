@@ -685,21 +685,19 @@ System.out.println(properties.getProperty("AppVersion")); // 1.0.0
 
 <hr>
 
-<div class="mermaid"> 
 graph LR
-    A[Square Rect] -- Link text --> B((Circle))
-    A --> C(Round Rect)
-    B --> D{Rhombus}
-    C --> D
+A[Square Rect] -- Link text --> B((Circle))
+A --> C(Round Rect)
+B --> D{Rhombus}
+C --> D
 </div>
 
-<div class="mermaid">
-pie title Pets adopted by volunteers
-    "Dogs" : 386
-    "Cats" : 85
-    "Rats" : 15
+
+<div class="mermaid"> 
+graph LR
+    A[ArrayListVector(Object[])] -- 추가,삭제기능향상 --> B[LinkedList]
+    A -- 검색 기능 향상 --> C[HaspMap<br>HashTable<br>(Object, Object)]
 </div>
-출처: https://minhan2.tistory.com/entry/Markdown-mermaid-타입-종류 [민한의 블로그:티스토리]
 
 아래는 상황별로 적합한 컬렉션 구현체를 정리한 내용이다.
 
