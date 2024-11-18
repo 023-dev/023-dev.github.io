@@ -701,6 +701,11 @@ graph LR
     B --> E[Queue]
     B --> C
     B -- 검색, 정렬 기능 향상 --> F[TreeMap]
+    F --> F[TreeSet]
+    C --> G[Properties<br>(String, String)]
+    C -- 순서 유지 기능 향상 --> H[LinkedHashMap]
+    C --> I[HashSet]
+    I -- 순서 유지 기능 향상 --> J[LinkedHashSet]
 </div>
 
 아래는 상황별로 적합한 컬렉션 구현체를 정리한 내용이다.
