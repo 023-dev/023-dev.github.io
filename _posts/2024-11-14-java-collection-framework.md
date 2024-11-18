@@ -686,28 +686,8 @@ System.out.println(properties.getProperty("AppVersion")); // 1.0.0
 <hr>
 
 <div class="mermaid"> 
-    graph TD;
+    graph LR
     ArrayListVector(Object[])--추가,삭제기능향상--> LinkedList
-
-[//]: # (    ArrayList<br>Vector<br>&#40;Object[]&#41; -- 검색 기능 향상 --> HaspMap<br>HashTable<br>&#40;Object, Object&#41;)
-
-[//]: # (    ArrayList<br>Vector<br>&#40;Object[]&#41; --> Stack)
-
-[//]: # (    LinkedList --> Queue)
-
-[//]: # (    LinkedList --> HaspMap<br>HashTable<br>&#40;Object, Object&#41;)
-
-[//]: # (    LinkedList -- 검색, 정렬 기능 향상 --> TreeMap)
-
-[//]: # (    TreeMap --> TreeSet)
-
-[//]: # (    HaspMap<br>HashTable<br>&#40;Object, Object&#41; --> Properties<br>&#40;String, String&#41;)
-
-[//]: # (    HaspMap<br>HashTable<br>&#40;Object, Object&#41; -- 순서 유지 기능 향상 --> LinkedHashMap)
-
-[//]: # (    HaspMap<br>HashTable<br>&#40;Object, Object&#41; --> HashSet)
-
-[//]: # (    HashSet -- 순서 유지 기능 향상 --> LinkedHashSet)
 </div>
 
 아래는 상황별로 적합한 컬렉션 구현체를 정리한 내용이다.
