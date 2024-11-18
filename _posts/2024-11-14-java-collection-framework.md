@@ -685,14 +685,6 @@ System.out.println(properties.getProperty("AppVersion")); // 1.0.0
 
 <hr>
 
-graph LR
-A[Square Rect] -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
-</div>
-
-
 <div class="mermaid"> 
 graph LR
     A[ArrayList<br>Vector] -- 추가,삭제기능향상 --> B[LinkedList]
