@@ -695,8 +695,7 @@ C --> D
 
 <div class="mermaid"> 
 graph LR
-    A[ArrayListVector(Object[])] -- 추가,삭제기능향상 --> B[LinkedList]
-    A -- 검색 기능 향상 --> C[HaspMap<br>HashTable<br>(Object, Object)]
+    A[ArrayListVector] -- 추가,삭제기능향상 --> B[LinkedList]
 </div>
 
 아래는 상황별로 적합한 컬렉션 구현체를 정리한 내용이다.
