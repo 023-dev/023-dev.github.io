@@ -7,6 +7,15 @@ tags: Java
 excerpt_separator: <!--more-->
 ---
 
+위글에 이어지게 ArrayList에 대해서 블로그 글을 작성하고 싶어
+- ArrayList 특징
+- ArrayList와 배열의 차이
+- ArrayList 용량 확장에 대한 내용
+-  LinkedList와 데이터 삽입 삭제 시 차이
+- Vector와 동기화 메서드 성능에서 차이
+  에 대한 주제의 글은 필수로 다뤘으면 좋겠어
+
+
 # ArrayList 컬렉션
 
 <hr>
