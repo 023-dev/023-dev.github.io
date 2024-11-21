@@ -337,3 +337,158 @@ public class ListComparison {
     }
 }
 ```
+
+아래는 **ArrayList와 Vector 비교**를 명확하고 구체적으로 설명한 글입니다. 내부 코드와 예제를 포함하여 작성했습니다.
+
+## ArrayList vs Vector 비교
+
+`ArrayList`와 `Vector`는 모두 **리스트 인터페이스**를 구현한 컬렉션으로, 내부적으로 배열을 기반으로 데이터를 관리합니다.  
+하지만, 동작 방식과 사용 목적에서 몇 가지 차이점이 있습니다.
+
+
+### 내부 구조 및 동작
+
+- **`ArrayList`**
+  - 내부적으로 **비동기적**으로 동작합니다.
+  - 멀티스레드 환경에서 동기화가 지원되지 않으므로 동시성 문제를 처리하려면 별도의 동기화 작업이 필요합니다.
+
+```java
+ArrayList<Integer> arrayList = new ArrayList<>();
+arrayList.add(10);
+arrayList.add(20);
+System.out.println(arrayList); // 출력: [10, 20]
+```
+
+- **`Vector`**
+  - 내부적으로 **동기화**된 메서드가 사용되므로 `Thread-Safe`합니다.
+  - 멀티스레드 환경에서 안전하게 사용할 수 있지만, 단일 스레드 환경에서는 불필요한 성능 오버헤드가 발생합니다.
+
+```java
+Vector<Integer> vector = new Vector<>();
+vector.add(10);
+vector.add(20);
+System.out.println(vector); // 출력: [10, 20]
+```
+
+---
+
+### 동기화 (Thread-Safety)
+
+- **`ArrayList`**
+  - 동기화를 지원하지 않으므로 단일 스레드 환경에서 사용이 적합합니다.
+  - 멀티스레드 환경에서 동기화를 적용하려면 `Collections.synchronizedList()`를 사용해야 합니다.
+
+```java
+List<Integer> synchronizedArrayList = Collections.synchronizedList(new ArrayList<>());
+synchronizedArrayList.add(10);
+synchronizedArrayList.add(20);
+System.out.println(synchronizedArrayList); // 출력: [10, 20]
+```
+
+- **`Vector`**
+  - 메서드 자체에 동기화가 적용되어 있으므로 멀티스레드 환경에서 안전하게 사용할 수 있습니다.
+  - 하지만 동기화로 인해 단일 스레드 환경에서는 성능이 떨어집니다.
+
+```java
+Vector<Integer> vector = new Vector<>();
+vector.add(10);
+vector.add(20);
+System.out.println(vector); // 출력: [10, 20]
+```
+
+### 크기 조정
+
+- **`ArrayList`**
+  - 배열의 크기가 부족할 때 **기본적으로 1.5배**로 크기를 늘립니다.
+  - 동적 크기 조정이 효율적이며 메모리 사용을 최적화합니다.
+
+```java
+private void grow(int minCapacity) {
+    int oldCapacity = elementData.length;
+    int newCapacity = oldCapacity + (oldCapacity >> 1); // 1.5배 크기 증가
+    if (newCapacity - minCapacity < 0)
+        newCapacity = minCapacity;
+    elementData = Arrays.copyOf(elementData, newCapacity);
+}
+```
+
+  - **`Vector`**
+  - 배열의 크기가 부족할 때 **기본적으로 2배**로 크기를 늘립니다.
+  - 메모리 낭비가 발생할 가능성이 높습니다.
+
+```java
+private void ensureCapacityHelper(int minCapacity) {
+    if (elementData.length - minCapacity < 0)
+        grow(minCapacity);
+}
+
+private void grow(int minCapacity) {
+    int newCapacity = elementData.length * 2; // 2배 크기 증가
+    if (newCapacity - minCapacity < 0)
+        newCapacity = minCapacity;
+    elementData = Arrays.copyOf(elementData, newCapacity);
+}
+```
+
+### 성능 비교
+
+| **기능**                | **ArrayList**                      | **Vector**                         |
+|------------------------|----------------------------------|-----------------------------------|
+| **Thread-Safe 여부**    | 비동기적 (Thread-Safe 아님)          | 동기적 (Thread-Safe 지원)           |
+| **멀티스레드 환경**      | 추가 동기화가 필요 (`synchronizedList`) | 멀티스레드 환경에 적합               |
+| **단일 스레드 환경**      | 적합 (불필요한 동기화 없음)            | 부적합 (불필요한 동기화로 성능 저하)   |
+| **동적 크기 조정**        | 1.5배씩 크기 증가                    | 2배씩 크기 증가                     |
+| **삽입/삭제 성능**        | 빠름 (단일 스레드 환경)               | 느림 (동기화 오버헤드)                |
+| **메모리 효율성**         | 메모리 사용 효율적                    | 메모리 낭비 가능성 있음                |
+
+---
+
+### 5. 사용 사례
+
+| **상황**                                   | **ArrayList** 추천                           | **Vector** 추천                           |
+|-------------------------------------------|--------------------------------------------|------------------------------------------|
+| **단일 스레드 환경**                       | 적합                                       | 부적합                                   |
+| **멀티스레드 환경**                         | `Collections.synchronizedList`로 동기화 필요 | 기본적으로 `Thread-Safe`라 적합            |
+| **메모리 효율성이 중요한 경우**              | 효율적 (1.5배 동적 증가)                     | 비효율적 (2배 동적 증가)                   |
+| **성능이 중요한 경우**                      | 성능에 민감한 작업에서 적합                  | 성능 저하가 발생하므로 비적합               |
+
+### ArrayList와 Vector의 성능 비교
+
+```java
+import java.util.ArrayList;
+import java.util.Vector;
+
+public class ListPerformanceComparison {
+    public static void main(String[] args) {
+        int n = 100000; // 데이터 개수
+
+        // ArrayList 테스트
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        long start = System.nanoTime();
+        for (int i = 0; i < n; i++) {
+            arrayList.add(i);
+        }
+        long end = System.nanoTime();
+        System.out.println("ArrayList 데이터 추가 시간: " + (end - start) + "ns");
+
+        // Vector 테스트
+        Vector<Integer> vector = new Vector<>();
+        start = System.nanoTime();
+        for (int i = 0; i < n; i++) {
+            vector.add(i);
+        }
+        end = System.nanoTime();
+        System.out.println("Vector 데이터 추가 시간: " + (end - start) + "ns");
+    }
+}
+```
+
+### 결론
+
+- **`ArrayList`**
+  - 단일 스레드 환경에서 빠른 성능과 효율적인 메모리 사용을 제공.
+  - 멀티스레드 환경에서는 동기화를 추가로 구현해야 함.
+
+- **`Vector`**
+  - 기본적으로 동기화를 지원하므로 멀티스레드 환경에서 안전하게 사용할 수 있음.
+  - 단일 스레드 환경에서는 성능 저하와 메모리 낭비 가능성이 있음.
