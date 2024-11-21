@@ -178,8 +178,6 @@ private void grow(int minCapacity) {
 }
 ```
 
-아래는 **ArrayList와 LinkedList 비교**를 명확하고 구체적으로 설명한 글입니다. 내부 코드와 예제를 포함하여 작성했습니다.
-
 ## ArrayList vs LinkedList 비교
 
 `ArrayList`와 `LinkedList`는 모두 **리스트** 인터페이스를 구현한 컬렉션으로, 데이터 저장 및 관리에 사용된다.  
@@ -338,7 +336,6 @@ public class ListComparison {
 }
 ```
 
-아래는 **ArrayList와 Vector 비교**를 명확하고 구체적으로 설명한 글입니다. 내부 코드와 예제를 포함하여 작성했습니다.
 
 ## ArrayList vs Vector 비교
 
@@ -479,13 +476,3 @@ public class ListPerformanceComparison {
     }
 }
 ```
-
-### 결론
-
-- **`ArrayList`**
-  - 단일 스레드 환경에서 빠른 성능과 효율적인 메모리 사용을 제공.
-  - 멀티스레드 환경에서는 동기화를 추가로 구현해야 함.
-
-- **`Vector`**
-  - 기본적으로 동기화를 지원하므로 멀티스레드 환경에서 안전하게 사용할 수 있음.
-  - 단일 스레드 환경에서는 성능 저하와 메모리 낭비 가능성이 있음.
