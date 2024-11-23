@@ -12,9 +12,9 @@ $code-color: #333333 !default;
 $code-background: #f2f2f2 !default;
 
 // Fonts
-$serif-primary: 'Noto Sans KR' !default;
-$serif-secondary: 'Noto Sans KR' !default;
-$sans-serif: 'Noto Sans KR' !default;
+$serif-primary: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Barun Gothic", "Nanum Gothic", Verdana, Arial, "Malgun Gothic", Dotum, sans-serif; !default;
+$serif-secondary: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Barun Gothic", "Nanum Gothic", Verdana, Arial, "Malgun Gothic", Dotum, sans-serif; !default;
+$sans-serif: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Barun Gothic", "Nanum Gothic", Verdana, Arial, "Malgun Gothic", Dotum, sans-serif; !default;
 $monospaced: 'JetBrains Mono' !default;
 
 @mixin box-sizing($type: border-box) {
