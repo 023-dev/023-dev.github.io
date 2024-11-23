@@ -448,8 +448,3 @@ new AtomicStampedReference<>(100, 0); // 초기 값 100, 초기 스탬프 0
     }
 }
 ```
-
-### Vector, Hashtable, Collections.SynchronizedXXX의 문제점
-Vector, Hashtable 같은 동기화가 모든 메서드에 적용되어 과도한 락 경쟁 발생할 수 있다.
-2. **`Collections.synchronizedXXX`**:
-    - 메서드에만 동기화 적용. 반복문에서 ConcurrentModificationException 발생 가능.
