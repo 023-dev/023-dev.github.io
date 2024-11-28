@@ -44,6 +44,21 @@
     width: auto; //4rem;
   }
 
+  table {
+    border-collapse: collapse; /* 경계선이 겹치지 않도록 설정 */
+    width: 100%; /* 테이블의 너비를 조정 */
+  }
+
+  table, th, td {
+    border: 1px solid black; /* 테이블, 헤더, 데이터 셀에 테두리 추가 */
+  }
+
+  th, td {
+    padding: 8px; /* 셀 내부 여백 추가 */
+    text-align: left; /* 텍스트 정렬 */
+  }
+
+
   p {
     margin: 0 0 1rem;
     text-align: justify;
