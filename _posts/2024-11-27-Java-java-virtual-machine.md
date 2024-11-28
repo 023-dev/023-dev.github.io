@@ -16,7 +16,7 @@ JVM(Java Virtual Machine)은 자바 프로그램이 실행되는 환경으로, �
 
 ## JVM 동작 방식
 
-<div class="mermaid"> 
+<div class="mermaid">
 graph TD
     A[JAVA Source (.java)] -->|JAVA Compiler (javac)| B[JAVA Byte Code (.class)]
     B --> C[Class Loader]
