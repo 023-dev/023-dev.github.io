@@ -1,11 +1,3 @@
----
-layout: post
-title: "자바의 ArrayList 이해하기"
-author: "023"
-comments: true
-tags: Java
-excerpt_separator: <!--more-->
----
 
 # ArrayList 컬렉션
 
