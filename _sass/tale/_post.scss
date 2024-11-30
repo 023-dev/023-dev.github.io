@@ -46,11 +46,11 @@
 
   table {
     border-collapse: collapse; /* 경계선이 겹치지 않도록 설정 */
-    width: 100%;!important; /* 테이블의 너비를 조정 */
+    width: 100%; /* 테이블의 너비를 조정 */
   }
 
   table, th, td {
-    border: 1px solid black;!important; /* 테이블, 헤더, 데이터 셀에 테두리 추가 */
+    border: 1px solid black; /* 테이블, 헤더, 데이터 셀에 테두리 추가 */
   }
 
   th, td {
