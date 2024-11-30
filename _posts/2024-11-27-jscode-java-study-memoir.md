@@ -4,6 +4,7 @@ title: "JSCODE 스터디 되돌아보기"
 author: "공희상"
 comments: true
 hidden: true
+tags: memoir
 excerpt_separator: <!--more-->
 ---
 
