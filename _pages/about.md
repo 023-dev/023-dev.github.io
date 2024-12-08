@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "About"
-author: "Chester"
+author: "023"
 permalink: /about/
 ---
 
@@ -30,7 +30,6 @@ permalink: /about/
 ## Database
 - SQL 
   - MSSQL(SQLServer)
-  - PostgreSQL
   - MySQL 
   - Oracle 
 - NoSQL 
