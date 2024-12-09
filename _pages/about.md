@@ -44,6 +44,6 @@ permalink: /about/
 - ELK를 사용하여 로그 분석 및 모니터링
 
 ## Tool
-- Github
-- IntelliJ
+- Github 
 - Figma
+
