@@ -19,21 +19,47 @@ layout: default
   {% endfor %}
 </div>
 
+<!--<div class="pagination">-->
+<!--  {% if paginator.previous_page %}-->
+<!--    <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="left arrow">&#8592;</a>-->
+<!--  {% endif %}-->
+<!--  {% if paginator.next_page %}-->
+<!--    <a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="right arrow">&#8594;</a>-->
+<!--  {% endif %}-->
+
+<!--  {% for page in paginator.total_pages %}-->
+<!--    {% if page == paginator.page %}-->
+<!--      <a href="{{ paginator.page_path | prepend: site.baseurl }}">{{ page }}</a>-->
+<!--    {% else %}-->
+<!--      <span>{{ page }}</span>-->
+<!--    {% endif %}-->
+<!--  {% endfor %}-->
+<!--  <a href="{{site.paginate_path}}" class="right">More</a>-->
+
+<!--</div>-->
+
+{% if paginator.total_pages > 1 %}
 <div class="pagination">
   {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="left arrow">&#8592;</a>
-  {% endif %}
-  {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="right arrow">&#8594;</a>
+  <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; Prev</a>
+  {% else %}
+  <span>&laquo; Prev</span>
   {% endif %}
 
-  {% for page in paginator.total_pages %}
-    {% if paginator.page %}
-      <a href="{{ paginator.page_path | prepend: site.baseurl }}">{{ page }}</a>
-    {% else %}
-      <span>{{ page }}</span>
-    {% endif %}
+  {% for page in (1..paginator.total_pages) %}
+  {% if page == paginator.page %}
+  <em>{{ page }}</em>
+  {% elsif page == 1 %}
+  <a href="{{ site.paginate_path | relative_url | replace: 'page:num/', '' }}">{{ page }}</a>
+  {% else %}
+  <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a>
+  {% endif %}
   {% endfor %}
-  <a href="{{site.paginate_path}}" class="right">More</a>
 
+  {% if paginator.next_page %}
+  <a href="{{ paginator.next_page_path | relative_url }}">Next &raquo;</a>
+  {% else %}
+  <span>Next &raquo;</span>
+  {% endif %}
 </div>
+{% endif %}
