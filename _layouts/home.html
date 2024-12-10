@@ -27,6 +27,13 @@ layout: default
     <a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="right arrow">&#8594;</a>
   {% endif %}
 
-  <span>{{ paginator.page }}</span>
-  <span>{{ paginator.total_pages }}</span>
+  {% for page in paginator.total_pages %}
+    {% if paginator.page %}
+      <a href="{{ paginator.page_path | prepend: site.baseurl }}">{{ page }}</a>
+    {% else %}
+      <span>{{ page }}</span>
+    {% endif %}
+  {% endfor %}
+  <a href="{{site.paginate_path}}" class="right">More</a>
+
 </div>
