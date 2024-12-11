@@ -64,6 +64,9 @@ footer,
     color: $default-color;
     font-family: $sans-serif;
   }
+  a:hover {
+    color: $default-color;
+  }
 }
 
 @media (min-width: 600px) {
