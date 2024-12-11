@@ -67,6 +67,18 @@ footer,
   a:hover {
     color: $default-color;
   }
+  a:active {
+    color: $default-color;
+  }
+  a:focus {
+    color: $default-color;
+  }
+  a:visited {
+    color: $default-color;
+  }
+  a:link {
+    color: $default-color;
+  }
 }
 
 @media (min-width: 600px) {
