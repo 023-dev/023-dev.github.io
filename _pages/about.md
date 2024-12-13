@@ -6,7 +6,7 @@ permalink: /about/
 ---
 
 ## Back-end
-- Spring JPA애서 조회 시 발생되는 N+1 문제를 Lazy Loading, Fetch Join, Flat DTO를 이용하여 해결
+- Spring JPA에서 조회 시 발생되는 N+1 문제를 Lazy Loading, Fetch Join, Flat DTO를 이용하여 해결
 - Spring Data Redis를 사용하여 캐싱 처리
 - Spring Security를 사용하여 권한 관리 및 인증 처리
 - JWT의 Access Token과 Refresh Token을 사용하여 Redis로  Black List 구현
