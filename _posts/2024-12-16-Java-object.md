@@ -3,7 +3,7 @@ layout: post
 title: "자바의 Object 클래스"
 author: "023"
 comments: true
-tags: [Java, Concurrent Programming]
+tags: Java
 excerpt_separator: <!--more-->
 ---
 
