@@ -46,7 +46,7 @@ layout: default
   <span>{{ page }}</span>
   {% else %}
   {% if page == 1 %}
-    <a href="{{ site.paginate_path }}" style="color: black">{{ page }}</a>
+    <a href="{{ site.baseurl }}" style="color: black">{{ page }}</a>
   {% else %}
   <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}" style="color: black">{{ page }}</a>
   {% endif %}
