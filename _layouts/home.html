@@ -37,12 +37,6 @@ layout: default
 <!--  <a href="{{site.paginate_path}}" class="right">More</a>-->
 
 <!--</div>-->
-<span>relative_url: {{ relative_url }}</span><br>
-<span>paginate_path: {{ site.paginate_path }}</span><br>
-<span>page_path: {{ paginator.page_path }}</span><br>
-<span>baseurl: {{ site.baseurl }}</span><br>
-<span>paginate_path: {{ site.paginate_path | relative_url }}</span><br>
-<span>page_path: {{ paginator.page_path | prepend: site.baseurl }}</span><br>
 {% if paginator.total_pages > 1 %}
 <div class="pagination">
 
@@ -51,7 +45,7 @@ layout: default
   <span>{{ page }}</span>
   {% else %}
   {% if page == 1 %}
-    <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}" style="color: black">{{ page }}</a>
+    <a href="{{ site.paginate_path | relative_url | replace: 'page:num', '' }}" style="color: black">{{ page }}</a>
   {% else %}
   <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}" style="color: black">{{ page }}</a>
   {% endif %}
