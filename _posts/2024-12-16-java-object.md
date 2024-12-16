@@ -23,7 +23,7 @@ Object 클래스가 속한 패키지는 `java.lang` 패키지에 포함되어 �
 자바에서 모든 클래스의 최상위 부모 클래스는 항상 `Object` 클래스이다.
 ![Java Object Class Inheritance.png](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_1.png)
 
-근데 여기서 의문이 든다. 내가 생성한 클래스에는 아무것도 `extends`을 한 것이 없는데 어떻게 `Object` 클래스를 상속받은 클래스로 알고 있는걸까 이 의문에 답은 바로  클래스들은 부모 클래스가 없으면 자바가 알아서 묵시적(`Implicit`)으로  `Object` 클래스를 상속 받기 때문이다.
+근데 여기서 의문이 든다. 내가 생성한 클래스에는 아무것도 `extends`을 한 것이 없는데 어떻게 `Object` 클래스를 상속받은 클래스로 알고 있는걸까 이 의문에 답은 바로  클래스들은 부모 클래스가 없으면 자바가 알아서 묵시적(`Implicit`)으로  `Object` 클래스를 상속 받기 때문이다.
 아래 코드로 예를 들어보겠다.
 ```java
 public class Parent {
