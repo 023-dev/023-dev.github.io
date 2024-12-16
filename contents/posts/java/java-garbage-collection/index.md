@@ -1,6 +1,6 @@
 ---
 title: "가비지 컬렉션(Garbage Collection)"
-date: 2024-11-22 00:00:00
+date: 2024-11-24 00:00:00
 tags: 
   - Java
 ---
