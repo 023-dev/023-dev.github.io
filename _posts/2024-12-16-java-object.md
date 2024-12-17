@@ -97,5 +97,53 @@ lang.object.Child@3feba861
 `Object` 클래스는 모든 클래스의 부모 클래스라는 것을 알 수 있었다. 따라서 모든 객체를 참조할 수 있다는 것을 알 수 있다. 이 말은 모든 자바 객체가 `Object` 타입으로 처리될 수 있고, `Object` 타입으로 다양한 타입의 객체를 통합적으로 처리할 수 있다는 것을 의미한다. 즉, `Object`는 모든 객체를 담을수도 있고 타입이 각각 다른 객체들을 보관할 수 있다는 것이다.
 
 # Object 다형성
-`Object`는 모든 클래스의 부모 클래스로 모든 객체를 참조할 수 있다고 언급을 했다.
-어떻게 이게 가능한지 알기 위해 먼저 `Object`의 다형성에 대해 알아야 한다.
+`Object`는 모든 클래스의 부모 클래스로 모든 객체를 참조할 수 있는 다형적 참조가 가능하다고 언급을 했다.
+하지만 `Object`가 자식들의 모든 메서드를 알 수 없기에 `Object`를 통해 전달 받은 객체를 호출하기 위해서는 각 객체에 맞는 다운캐스팅 과정이 필요하다.
+
+
+```java
+public class Car {
+	public void move() { System.out.println("car moving"); }
+}
+```
+```java
+public class Dog {
+	public void sound() { System.out.println("dog sound"); }
+}
+```
+```java
+public class Main {
+	public static void main(String[] args) {
+		Dog dog = new Dog();
+		Car car = new Car();
+
+		action(dog);
+		action(car);
+	}
+
+	private static void action(Object obj) {
+		obj.move();
+		obj.sound();
+	}
+}
+```
+만일 다운캐스팅을 하지 않는다면 `Object`타입에서 `move()`와 `sound` 메서드를 찾을 수 없고, 뿐만아니라 최상위 부모이므로 더는 올라가서 찾을 수 없다. 
+따라서 action`메서드에서 컴파일 날 것이다.
+
+![Java Object Class Poly](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_3.png)
+
+그래서 해당 상황에서 오류없이 컴파일 하기 위해서는 다운 캐스팅을 해야한다.
+```java
+private static void action(Object obj) {    
+    //객체에 맞는 다운캐스팅 필요  
+    if (obj instanceof Dog dog) {  
+        dog.sound();  
+    } else if (obj instanceof Car car) {  
+        car.move();  
+    }  
+}
+```
+
+![Java Object Class Poly Solution](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_4.png)
+
+이처럼 `Object`는 다형적 참조가 가능하지만, 메서드 오버라이딩을 활용 할 수 없기에 다형성을 활용하기에 한계가 있다.
