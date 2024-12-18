@@ -77,7 +77,7 @@ lang.object.Child@3feba861
 - 부모 타입인 `Object`에서 찾는다. `Object`에 `toString()`이 있으므로 해당 메서드를 호출한다.
 
 이해를 돕기 위해 그림을 그려봤다.
-![Java Object Class Inheritance Detail.png](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_2.png){: width="400" }
+![Java Object Class Inheritance Detail.png](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_2.png){: width="500" }
 
 ## 자바에서 Object 클래스가 최상위 부모 클래스인 이유
 모든 클래스가 `Object` 클래스를 상속받는 이유는 공통 기능 제공하는 것과 다형성의 기본 구현함에 있다.
@@ -130,7 +130,7 @@ public class Main {
 만일 다운캐스팅을 하지 않는다면 `Object`타입에서 `move()`와 `sound` 메서드를 찾을 수 없고, 뿐만아니라 최상위 부모이므로 더는 올라가서 찾을 수 없다. 
 따라서 action`메서드에서 컴파일 날 것이다.
 
-![Java Object Class Poly](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_3.png){: width="400" }
+![Java Object Class Poly](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_3.png){: width="500" }
 
 그래서 해당 상황에서 오류없이 컴파일 하기 위해서는 다운 캐스팅을 해야한다.
 ```java
@@ -144,7 +144,7 @@ private static void action(Object obj) {
 }
 ```
 
-![Java Object Class Poly Solution](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_4.png){: width="400" }
+![Java Object Class Poly Solution](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_4.png){: width="500" }
 
 이처럼 `Object`는 다형적 참조가 가능하지만, 메서드 오버라이딩을 활용 할 수 없기에 다형성을 활용하기에 한계가 있다.
 
@@ -172,7 +172,7 @@ size 메서드에서 전달된 객체의 수를 출력하는 메서드이다. �
 클래스가 추가되거나 변경되어도 메서드를 수정할 필요가 없다.
 `Object`의 메서드들은 모든 객체가 공통으로 가지고 있는 메서드들이기 때문에 이러한 다형성을 활용할 수 있다.
 
-![Java Object Array](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_5.png){: width="400" }
+![Java Object Array](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_5.png){: width="500" }
 
 ## Object가 없다면?
 만일 `Object` 클래스가 없다면 어떻게 될까? 
@@ -225,7 +225,7 @@ public static String valueOf(Object obj) {
 `Object.toString()` 메서드는 객체의 정보를 문자열로 반환하는데, 이는 객체의 메모리 주소를 반환하기 때문에 객체의 정보를 확인하기 어렵다.
 따라서 `toString()` 메서드를 오버라이딩하여 객체의 정보를 반환하도록 구현하여 사용한다.
 
-![Java Object Overriding](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_6.png){: width="200" }
+![Java Object Overriding](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_6.png){: width="150" }
 
 ```java
 public class Dog {
