@@ -3,7 +3,7 @@ layout: post
 title: "Phantom Read과 Gap Lock, Next-Key Lock"
 author: "023"
 comments: true
-tags: Java
+tags: [MySQL, Database]
 excerpt_separator: <!--more-->
 ---
 
