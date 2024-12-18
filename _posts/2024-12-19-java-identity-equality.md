@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "자바의 Object 클래스"
+title: "Identity와 Equality"
 author: "023"
 comments: true
 tags: Java
