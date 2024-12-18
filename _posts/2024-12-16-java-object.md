@@ -225,7 +225,7 @@ public static String valueOf(Object obj) {
 `Object.toString()` 메서드는 객체의 정보를 문자열로 반환하는데, 이는 객체의 메모리 주소를 반환하기 때문에 객체의 정보를 확인하기 어렵다.
 따라서 `toString()` 메서드를 오버라이딩하여 객체의 정보를 반환하도록 구현하여 사용한다.
 
-![Java Object Overriding](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_6.png)
+![Java Object Overriding](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_6.png){: width="250" }
 
 ```java
 public class Dog {
