@@ -21,7 +21,7 @@ Object 클래스가 속한 패키지는 `java.lang` 패키지에 포함되어 �
 
 # Object 클래스
 자바에서 모든 클래스의 최상위 부모 클래스는 항상 `Object` 클래스이다.
-![Java Object Class Inheritance.png](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_1.png)
+![Java Object Class Inheritance.png](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_1.png){: width="300" }
 
 근데 여기서 의문이 든다. 내가 생성한 클래스에는 아무것도 `extends`을 한 것이 없는데 어떻게 `Object` 클래스를 상속받은 클래스로 알고 있는걸까 이 의문에 답은 바로  클래스들은 부모 클래스가 없으면 자바가 알아서 묵시적(`Implicit`)으로  `Object` 클래스를 상속 받기 때문이다.
 아래 코드로 예를 들어보겠다.
@@ -77,7 +77,7 @@ lang.object.Child@3feba861
 - 부모 타입인 `Object`에서 찾는다. `Object`에 `toString()`이 있으므로 해당 메서드를 호출한다.
 
 이해를 돕기 위해 그림을 그려봤다.
-![Java Object Class Inheritance Detail.png](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_2.png)
+![Java Object Class Inheritance Detail.png](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-object/java-object_2.png){: width="200" }
 
 ## 자바에서 Object 클래스가 최상위 부모 클래스인 이유
 모든 클래스가 `Object` 클래스를 상속받는 이유는 공통 기능 제공하는 것과 다형성의 기본 구현함에 있다.
