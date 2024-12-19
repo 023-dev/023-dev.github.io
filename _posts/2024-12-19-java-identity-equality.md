@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "동일성과 동등성"
+title: "동일성(Identity)과 동등성(Equality)"
 author: "023"
 comments: true
 tags: Java
