@@ -31,7 +31,7 @@ public class Main {
 동일성을 비교하는 `==` 연산자는 두 객체의 주소값을 비교하기 때문에 `str1`과 `str2`는 서로 다른 객체를 참조하고 있기 때문에 `false`를 반환한다.
 반면에 동등성을 비교하는 `equals()` 메서드는 두 객체의 내용을 비교하기 때문에 `str1`과 `str2`는 내용이 같기 때문에 `true`를 반환한다.
 
-![In Java, Compare Identity & Equality](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-identity-equality/java-identity-equality_1.png){: width="150" }
+![In Java, Compare Identity & Equality](https://raw.githubusercontent.com/023-dev/023-dev.github.io/refs/heads/main/_posts/_images/java-identity-equality/java-identity-equality_1.png){: width="500" }
 
 ## equals() 메서드
 `equals()` 메서드는 두 객체의 내용이 같은지 비교하는 메서드이다.
