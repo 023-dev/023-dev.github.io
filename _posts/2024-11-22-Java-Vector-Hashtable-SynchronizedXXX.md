@@ -8,177 +8,110 @@ excerpt_separator: <!--more-->
 ---
 
 # Vector와 Hashtable 그리고 Collections.SynchronizedXXX
+`Vector`와 `Hashtable` 그리고 `Collections.synchronizedXXX()` 메서드의 공통점은 모두 `Thread-Safe`한 컬렉션으로 동기화된 메서드로 구성되어 있다는 것이다.
+`Thread-Safe`한 컬렉션이면 보통 멀티 스레드 환경에서 안전하게 사용할 수 있다고 생각할 수 있지만, 실제로는 성능이 저하되는 문제가 발생할 수 있다.
+그럼 `Vector`와 `Hashtable` 그리고 `Collections.synchronizedXXX()` 메서드의 문제점에 대해 알아보자.
 
-synchronized의 오해와 사실에 대해 설명하는 글이다.
+## Vector와 Hashtable 문제점
+`Vector`와 `Hashtable`은 모두 레거시한 자바 클래스로, 데이터를 저장하고 관리하는 컬렉션 클래스이다. 
+근데 왜 레거시한 자바 컬렉션인지 궁금할 수 있다. 이는 `Vector`와 `Hashtable`이 `Thread-Safe`한 컬렉션으로 `synchronized` 키워드를 사용하여 동기화된 메서드로 구성되어 있다.
+이로 인해 두 클래스 모두 메서드 단위에서 동기화를 제공하지만, 이로 인해 앞서 언급했듯이 성능이 저하되는 문제가 발생한다.
+이는 필요한 부분만 동기화를 제공하지 않고, 모든 메서드에 대해 동기화를 제공하기 때문에 과도한 락이 발생하는 문제이다.
 
-<hr>
-
-## Vector와 Hashtable의 문제점
-
----
-
-`Vector`와 `Hashtable`은 Java 1.0부터 제공된 **Thread-Safe 클래스**로, 모든 메서드에 동기화(`synchronized`)가 적용되어 있습니다. 하지만 이로 인해 다음과 같은 문제가 발생합니다:
-
-### 과도한 동기화로 인한 성능 저하
-- 모든 메서드에 동기화가 적용되므로 불필요한 락 경합이 발생.
-- 단일 작업이 동기화 필요가 없더라도 무조건 동기화를 수행.
+내부 구현이 어떻게 되어있는지 그리고 어떠한 상황에서 이러한 문제가 발생하는지 알아보겠다.
 
 ```java
-Vector<Integer> vector = new Vector<>();
-vector.add(1); // 동기화 불필요한 상황에서도 동기화 적용
+public synchronized boolean add(E e) {
+    modCount++;
+    ensureCapacityHelper(elementCount + 1);
+    elementData[elementCount++] = e;
+    return true;
+}
 ```
 
-### 스레드 안전하지만 반복 작업에서 문제 발생
-
----
-
-- 반복문(`for` 또는 `Iterator`)에서 동기화가 적용되지 않아 **ConcurrentModificationException** 발생 가능.
+위 코드 `Vector` 클래스의 `add()` 메서드는 `synchronized` 키워드를 사용하여 동기화된 메서드로 구성되어 있는 것을 볼 수 있다.
+이제 어떠한 상황에서 이러한 문제가 발생하는지 알아보겠다.
 
 ```java
-Vector<Integer> vector = new Vector<>();
-vector.add(1);
-vector.add(2);
+public class Main {
+    public static void main(String[] args) {
+        Vector<Integer> vector = new Vector<>();
 
-for (Integer num : vector) {
-    if (num == 1) {
-        vector.remove(num); // ConcurrentModificationException 가능
+        Thread thread1 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) {
+                if (!vector.contains(i)) {
+                    vector.add(i);
+                }
+            }
+        });
+
+        Thread thread2 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) {
+                if (!vector.contains(i)) {
+                    vector.add(i);
+                }
+            }
+        });
+
+        thread1.start();
+        thread2.start();
     }
 }
 ```
 
-### 해결 방법
+위 코드에서 `Vector` 클래스의 `add()` 메서드는 `synchronized` 키워드를 사용하여 동기화된 메서드로 구성되어 있기 때문에 두 스레드가 동시에 `add()` 메서드를 호출하면 한 스레드는 대기하게 된다.
+이로 인해 race condition이 발생하여 성능이 저하되는 문제가 발생한다.
 
----
+이러한 문제로 현재의 자바에서는 `Vector`와 `Hashtable` 대신 `ArrayList`와 `HashMap`을 사용하는 것을 권장하고 있다.
+`ArrayList` 클래스의 `add()` 메서드는 `synchronized` 키워드를 사용하여 동기화된 메서드로 구성되어 있지 않기에 두 스레드가 동시에 `add()` 메서드를 호출해도 서로 영향을 주지 않는다.
+그럼 동기화 메서드로 구성된 컬렉션을 사용하고 싶다면 어떻게 해야할까?
 
-반복 작업 시 외부 동기화 필요:
+## Collections.synchronizedXXX() 메서드
+`Collections.synchronizedXXX()` 메서드는 `Vector`와 `Hashtable`과 같이 동기화된 메서드로 구성된 컬렉션을 반환한다.
+이 메서드는 `synchronized` 키워드를 사용하여 동기화된 메서드로 구성된 컬렉션을 반환하기 때문에 `Thread-Safe`한 컬렉션을 사용할 수 있다.
+
+내부 구현이 어떻게 되어있는지 알아보겠다.
 
 ```java
-synchronized (vector) {
-    Iterator<Integer> iterator = vector.iterator();
-    while (iterator.hasNext()) {
-        Integer num = iterator.next();
-        if (num == 1) {
-            iterator.remove();
+public static <T> List<T> synchronizedList(List<T> list) {
+    return (list instanceof RandomAccess ?
+            new SynchronizedRandomAccessList<>(list) :
+            new SynchronizedList<>(list));
+}
+```
+
+위 코드는 `Collections.synchronizedList()` 메서드의 내부 구현이다.
+이 메서드는 `List` 인터페이스를 구현한 컬렉션을 매개변수로 받아 `SynchronizedList` 클래스를 반환한다.
+이로 인해 `ArrayList`의 모든 메서드에 대해 동기화를 제공받게 된다.
+그러면 이 메서드를 사용하면 안전할까?
+그렇지는 않다. `Collections.synchronizedXXX()` 메서드는 모든 메서드에 대해 동기화를 제공하기 때문에 과도한 락이 발생하는 문제가 발생한다.
+이 문제 또한 `Vector`와 `Hashtable`의 문제와 같은 문제이다.
+그럼 이러한 문제를 해결하기 위해 어떻게 해야할까?
+이러한 문제로 현재의 자바에서는 `Collections.synchronizedXXX()` 메서드 대신 `ConcurrentHashMap`과 같은 `Concurrent` 패키지의 컬렉션을 사용하는 것을 권장하고 있다.
+
+## Concurrent
+`Concurrent` 패키지는 멀티 스레드 환경에서 안전하게 사용할 수 있는 컬렉션을 제공한다.
+`ConcurrentHashMap`은 `Hashtable`과 같이 `Thread-Safe`한 컬렉션으로 동기화된 메서드로 구성되어 있지만, `ConcurrentHashMap`은 필요한 부분만 동기화를 제공하기 때문에 성능이 향상된다.
+
+내부 구현이 어떻게 되어있는지 알아보겠다.
+
+```java
+public class ConcurrentHashMap<K, V> {
+    public V put(K key, V value) {
+        return putVal(key, value, false);
+    }
+
+    final V putVal(K key, V value, boolean onlyIfAbsent) {
+        if (key == null || value == null) {
+            throw new NullPointerException();
         }
+        int hash = spread(key.hashCode());
+        return null;
     }
 }
 ```
 
-### 스레드 간 비효율적 공유
+위 코드는 `ConcurrentHashMap` 클래스의 `put()` 메서드의 일부분이다.
+이 메서드는 `synchronized` 키워드를 사용하여 동기화된 메서드로 구성되어 있지만, 필요한 부분만 동기화를 제공하기 때문에 성능이 향상된다.
 
----
-
-- `Vector`와 `Hashtable`은 전체 객체에 대해 락을 걸어, 병렬 처리 성능 저하.
-- 특히 읽기 작업과 쓰기 작업이 동시에 발생할 때 성능 문제가 심각.
-
-**대안**:
-- `CopyOnWriteArrayList` 또는 `ConcurrentHashMap` 사용.
-
-
-## Collections.synchronizedXXX의 문제점
-
----
-
-`Collections.synchronizedList`, `Collections.synchronizedMap` 등은 비동기화된 컬렉션을 감싸 동기화된 컬렉션을 제공합니다. 하지만 아래와 같은 한계가 있습니다:
-
-### 반복 작업에서 동기화 미적용
-
----
-
-- 동기화된 컬렉션이라도 반복 작업에서 동기화를 추가적으로 적용하지 않으면 **ConcurrentModificationException** 발생 가능.
-
-```java
-List<Integer> synchronizedList = Collections.synchronizedList(new ArrayList<>());
-synchronizedList.add(1);
-synchronizedList.add(2);
-
-// 반복 작업 중 다른 스레드가 수정 시 ConcurrentModificationException 발생 가능
-for (Integer num : synchronizedList) {
-    if (num == 1) {
-        synchronizedList.remove(num); // 문제 발생 가능
-    }
-}
-```
-
-### 해결 방법
-
----
-
-반복 작업 시 동기화 추가 필요:
-
-```java
-synchronized (synchronizedList) {
-    Iterator<Integer> iterator = synchronizedList.iterator();
-    while (iterator.hasNext()) {
-        Integer num = iterator.next();
-        if (num == 1) {
-            iterator.remove();
-        }
-    }
-}
-```
-
-### 성능 저하
-
----
-
-- 동기화가 컬렉션 전체에 적용되어, 읽기와 쓰기 작업 모두 불필요한 락 경합이 발생.
-- 대량의 읽기 작업이 필요한 경우 성능 심각.
-
-#### 대안
-
-- **읽기 작업이 많은 경우**: `CopyOnWriteArrayList`, `CopyOnWriteArraySet`.
-- **읽기와 쓰기가 혼재**: `ConcurrentHashMap`.
-
-
-## Vector, Hashtable, Collections.synchronizedXXX의 공통 문제점
-
----
-
-### 모든 메서드에 동기화 적용
-
----
-
-- 개별 메서드가 동기화되지만, 메서드 간 조합 작업은 안전하지 않음.
-
-```java
-Vector<Integer> vector = new Vector<>();
-if (!vector.isEmpty()) { // 이 시점에서 다른 스레드가 vector를 변경할 가능성 있음
-    vector.remove(0); // Thread-Safe 보장 안 됨
-}
-```
-
-**해결 방법**:
-- 동기화 블록으로 감싸야 안전:
-```java
-synchronized (vector) {
-    if (!vector.isEmpty()) {
-        vector.remove(0);
-    }
-}
-```
-
-### 대규모 동시성 작업에서 비효율**
-
----
-
-- 동기화된 컬렉션은 단일 락으로 모든 작업을 제어.
-- 멀티코어 환경에서 병렬성을 활용하지 못해 성능이 제한.
-
-### 대안: Modern Concurrent Collections
-
----
-
-| **문제**                               | **대안**                            | **설명**                                                                 |
-|----------------------------------------|-------------------------------------|--------------------------------------------------------------------------|
-| 과도한 락으로 인한 성능 저하            | **ConcurrentHashMap**               | 세그먼트 또는 버킷 단위의 락으로 병렬 처리 가능.                          |
-| 반복 작업에서의 동기화 문제             | **CopyOnWriteArrayList**            | 반복 중에는 읽기 전용, 수정 시 전체 복사.                                 |
-| 메서드 간 조합 작업의 비안전성          | **Lock-Free 데이터 구조**            | `Atomic` 클래스 또는 고수준 동기화 컬렉션 활용.                           |
-
-## 마치며
-
----
-
-1. `Vector`, `Hashtable`, `Collections.synchronizedXXX`는 **초기 Java 버전**의 동기화된 컬렉션으로, 모든 메서드에 동기화를 적용해 간단한 동시성을 제공하지만, 성능 저하 및 병렬 처리 비효율 문제를 가짐.
-2. 반복 작업에서는 외부 동기화가 필요하므로, Thread-Safe 특성을 완전히 보장하지 못함.
-3. 현대적인 대안인 `ConcurrentHashMap`, `CopyOnWriteArrayList`, `Atomic` 클래스를 사용하면 높은 성능과 안전성을 모두 확보 가능.
+이러한 `Concurrent` 패키지의 컬렉션을 사용하면 `Thread-Safe`한 컬렉션을 사용하면서 성능까지 향상시킬 수 있다.
