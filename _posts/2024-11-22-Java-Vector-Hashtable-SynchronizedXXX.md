@@ -30,36 +30,7 @@ public synchronized boolean add(E e) {
 ```
 
 위 코드 `Vector` 클래스의 `add()` 메서드는 `synchronized` 키워드를 사용하여 동기화된 메서드로 구성되어 있는 것을 볼 수 있다.
-이제 어떠한 상황에서 이러한 문제가 발생하는지 알아보겠다.
-
-```java
-public class Main {
-    public static void main(String[] args) {
-        Vector<Integer> vector = new Vector<>();
-
-        Thread thread1 = new Thread(() -> {
-            for (int i = 0; i < 1000; i++) {
-                if (!vector.contains(i)) {
-                    vector.add(i);
-                }
-            }
-        });
-
-        Thread thread2 = new Thread(() -> {
-            for (int i = 0; i < 1000; i++) {
-                if (!vector.contains(i)) {
-                    vector.add(i);
-                }
-            }
-        });
-
-        thread1.start();
-        thread2.start();
-    }
-}
-```
-
-위 코드에서 `Vector` 클래스의 `add()` 메서드는 `synchronized` 키워드를 사용하여 동기화된 메서드로 구성되어 있기 때문에 두 스레드가 동시에 `add()` 메서드를 호출하면 한 스레드는 대기하게 된다.
+`Vector` 클래스의 `add()` 메서드는 `synchronized` 키워드를 사용하여 동기화된 메서드로 구성되어 있기 때문에 두 스레드가 동시에 `add()` 메서드를 호출하면 한 스레드는 대기하게 된다.
 이로 인해 race condition이 발생하여 성능이 저하되는 문제가 발생한다.
 
 이러한 문제로 현재의 자바에서는 `Vector`와 `Hashtable` 대신 `ArrayList`와 `HashMap`을 사용하는 것을 권장하고 있다.
