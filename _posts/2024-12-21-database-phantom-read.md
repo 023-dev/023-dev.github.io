@@ -3,7 +3,7 @@ layout: post
 title: "Phantom Read와 Gap Lock, Next-Key Lock"
 author: "023"
 comments: true
-tags: [MySQL, Database]
+tags: Database
 excerpt_separator: <!--more-->
 ---
 
@@ -12,7 +12,7 @@ excerpt_separator: <!--more-->
 Phantom Read는 트랜잭션이 동일한 조건의 쿼리를 반복 실행할 때, 나중에 실행된 쿼리에서 처음에는 존재하지 않았던 새로운 행이 나타나는 현상을 말한다. 
 이는 주로 읽기 일관성(Read Consistency) 을 유지하는 과정에서 발생할 수 있는 문제로, 데이터의 삽입이나 삭제가 다른 트랜잭션에 의해 이루어질 때 발생한다.
 
-```mysql
+```sql
 -- 트랜잭션 A 시작
 START TRANSACTION;
 
@@ -41,7 +41,7 @@ SELECT * FROM orders WHERE amount > 150;
 트랜잭션이 특정 범위 내에서 데이터의 삽입을 막아 팬텀 읽기(Phantom Read) 현상을 방지한다. 
 예를 들어, 인덱스 값 10과 20 사이의 갭을 잠그면 이 범위 내에 새로운 레코드 15를 추가할 수 없다.
 
-```mysql
+```sql
 -- id 1, 3, 5가 저장된 orders 테이블
 
 -- 트랜잭션 A 시작
@@ -72,7 +72,7 @@ INSERT INTO orders (orders_id, orders_amount) VALUES (4, 200);
 |3|300|
 
 
-```mysql
+```sql
 -- 트랜잭션 A 시작
 START TRANSACTION;
 

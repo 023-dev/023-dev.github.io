@@ -8,7 +8,7 @@ excerpt_separator: <!--more-->
 ---
 
 ### ConcurrentHashMap vs SynchronizedMap
-### **ConcurrentHashMap의 동작 과정과 SynchronizedMap의 비교**
+### ConcurrentHashMap의 동작 과정과 SynchronizedMap의 비교
 
 ---
 
