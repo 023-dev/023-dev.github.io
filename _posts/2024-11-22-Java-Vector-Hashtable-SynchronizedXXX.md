@@ -83,6 +83,11 @@ public class ConcurrentHashMap<K, V> {
 ```
 
 위 코드는 `ConcurrentHashMap` 클래스의 `put()` 메서드의 일부분이다.
-이 메서드는 `synchronized` 키워드를 사용하여 동기화된 메서드로 구성되어 있지만, 필요한 부분만 동기화를 제공하기 때문에 성능이 향상된다.
+이 메서드는 `synchronized` 키워드를 사용하여 동기화된 메서드로 구성되어 있지만, 필요한 부분만 동기화를 제공하기 때문에 `Thread-Safe`한 컬렉션을 사용하면서 성능이 향상된다.
+자세한 내용은 [ConcurrentHashMap vs SynchronizedMap](https://023-dev.github.io/2024-11-22/Java-ConcurrentHashMap-SynchronizedMap)을 참고하자.
 
-이러한 `Concurrent` 패키지의 컬렉션을 사용하면 `Thread-Safe`한 컬렉션을 사용하면서 성능까지 향상시킬 수 있다.
+이렇게 주저리주저리 써봤는데 정리하자면 기존 레거시 자바 버전에서는 `Vector`와 `Hashtable`을 사용했지만 해당 컬레션들의 모든 메서드들이 `synchronized` 키워드를 사용하여 동기화된 메서드로 구성되어 있어 과도한 락이 발생하여 성능이 저하되는 문제가 발생한다.
+그래서 `Vector`와 `Hashtable` 대신 `ArrayList`와 `HashMap`을 사용하는 것을 권장하고 있다.
+근데 이 부분에서 동기화 메서드가 필요로 해져서 `Collections.synchronizedXXX()` 메서드를 사용해 해당 컬렉션을 동기화된 형태로 래핑할 수 있게 되었다.
+하지만 이 부분에서도 `Vector`와 `Hashtable`과 같은 문제가 발생하여 성능이 저하되는 문제가 발생한다.
+그래서 결과적으로 현재의 자바에서는 `ArrayList`와 `HashMap`을 `Thread-Safe`하게 사용하기 위한 방법으로 `Concurrent` 패키지의 컬렉션을 사용하는 것을 권장하고 있다.
