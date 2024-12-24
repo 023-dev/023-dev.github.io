@@ -83,4 +83,4 @@ Person person2 = new Person();
 사실 이러한 사이드 이펙트를 방지하기 위해 불변 객체(Immutable Object)를 사용하는 방법 또한 존재한다.
 불변 객체란 간단히 말해 객체의 상태가 변경되지 않는 객체를 의미한다.
 이러한 불변 객체를 사용하면 객체의 상태가 변경되지 않기 때문에 사이드 이펙트를 방지할 수 있다.
-불변 객체에 대한 자세한 내용은 [Immutable Object](https://023-dev.github.io/2024-12-23/java-immutable-object)를 참고하자.
+불변 객체에 대한 자세한 내용은 
