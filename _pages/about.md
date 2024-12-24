@@ -40,8 +40,6 @@ permalink: /about/
 - Grafana와 Prometheus를 사용하여 모니터링 경험
 - POSTMAN을 사용하여 API 테스트
 - JUnit을 사용하여 단위 테스트
-- Jenkins를 사용하여 CI/CD 구축
-- ELK를 사용하여 로그 분석 및 모니터링
 
 ## Tool
 - Github 
