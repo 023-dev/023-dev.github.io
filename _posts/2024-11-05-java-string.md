@@ -75,13 +75,22 @@ System.out.println(str3); // HelloWorld
 ## String은 불변(Immutable)
 기본적으로 자바에서는 `String`의 값을 변경할 수 없다.
 
-`String`으로 생성한 `str`변수가 있고, 참조하는 메모리의`"Hello"`라는 값이 있을 때, `"World"`라는 문자열을 `+`연산자를 통해 더해서 String 객체의 값을 변경시키고자 할 때 실제 메모리에서는 `"Hello World"`를 따로 만들고 변수`str`를 다시 참조하는 식으로 작동한다.
+`String`의 내부 구조를 위에서 보여줬듯이 `char[]` 혹은 `byte[]`를 가지고 있지만, 이 배열은 `final`로 선언되어 있어서 한 번 생성되면 변경할 수 없다.
+
+하지만 `String`의 값을 변경하는 것 처럼 보이는 연산을 할 수 있다.
+
 ```java
 String str = "Hello";
+
 str = str + " World";
 
 System.out.println(str); // Hello World
 ```
+
+위의 코드를 보면 `str` 변수에 `Hello`라는 문자열을 대입하고, `str` 변수에 `World`라는 문자열을 더해서 다시 대입했다.
+이렇게 보면 `String`의 값을 변경한 것 처럼 보이지만, 실제로는 새로운 문자열 데이터 객체를 생성하고, 이를 `str` 변수가 참조하게 된다.
+
+즉, `String`은 불변(Immutable)하다는 것은 **한 번 생성된 문자열은 변경할 수 없다는 것**을 의미한다.
 
 `hashCode()` 메소드를 이용해 실제로 변수가 가지고 있는 주소값을 찍어보면 알 수 있다.
 > `hashCode()` 메소드는 객체의 메모리 번지를 이용해서 해시코드를 만들어 리턴하는 메소드이다.
@@ -100,15 +109,24 @@ System.out.println(str.hashCode()); // -862545276
 
 ### 왜 불변으로 설계 되었는가?
 이처럼 `String`이 불변적인 특성을 가지는 이유는 크게 3가지로 꼽을 수 있다.
-
 첫번째는 JVM(자바 가싱 머신) 에서는 따로 String Constant Pool 이라는 독립적인 영역을 만들고 문자열들을 Constant 화 하여 다른 변수 혹은 객체들과 공유하게 되는데, 이 과정에서 **데이터 캐싱**이 일어나고 그 만큼 성능적 이득을 취할 수 있기 때문이다.
-
 두번째는 데이터가 불변(immutable) 하다면 Multi-Thread 환경에서 동기화 문제가 발생하지 않기 때문에 더욱 safe 한 결과를 낼 수 있기 때문이다.
-
 세번째는 보안(Security) 적인 측면을 들 수 있다.
+예를 들어 데이터베이스 사용자 이름, 암호는 데이터베이스 연결을 수신하기 위해 문자열로 전달되는데, 
+만일 번지수의 문자열 값이 변경이 가능하다면 해커가 참조 값을 변경하여 애플리케이션에 보안 문제를 일으킬 수 있다.
 
-예를 들어 데이터베이스 사용자 이름, 암호는 데이터베이스 연결을 수신하기 위해 문자열로 전달되는데, 만일 번지수의 문자열 값이 변경이 가능하다면 해커가 참조 값을 변경하여 애플리케이션에 보안 문제를 일으킬 수 있다.
+### 불변인 String 클래스의 단점
+하지만 불변(Immutable)한 `String` 클래스는 메모리 사용량이 많아지는 단점이 있다.
+불변인 `String` 클래스는 문자열을 변경할 때마다 새로운 문자열 객체를 생성해야 한다는 점이다.
+문자를 변경하는 상황이 자주 발생하는 상황이라면 `String` 객체를 만들고 GC가 빈번히 발생한다.
+결과적으로 CPU와 메모리를 많이 사용하게 되어 성능에 영향을 미칠 수 있다.
+그리고 문자열의 크기가 클수록, 문자열을 더 자주 변경할수록 이러한 단점이 더욱 부각된다.
 
+이러한 단점을 보완하기 위해 `StringBuffer`와 `StringBuilder` 클래스가 존재한다.
+`StringBuffer`와 `StringBuilder`는 `String`과 달리 가변적인 특성을 가지고 있어 문자열을 변경할 때 새로운 객체를 생성하지 않고 기존 객체를 변경한다.
+이러한 특성 때문에 문자열을 변경하는 작업이 많은 상황에서는 `StringBuffer`와 `StringBuilder`를 사용하는 것이 성능상 이점이 있다.
+
+자세한 내용은 [자바의 String, StringBuffer, StringBuilder 차이 알아보기](https://023-dev.github.io/2024-11-05/java-string-stringbuffer-stringbuilder)를 참고하자.
 
 ## String의 주소 할당 방식
 <hr>
@@ -232,5 +250,3 @@ System.out.println(str3.equals(str1)); // true
 > 참고
 > `CharSequence`는 `String`, `StringBuffer`, `StringBuilder` 클래스의 부모 인터페이스이다.
 > 문자열을 처리하는 다양한 클래스를 사용할 때, `CharSequence`를 사용하면 유연하게 문자열을 다룰 수 있다.
-
- 

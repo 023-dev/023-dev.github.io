@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "자바의 String, StringBuffer, StringBuilder 차이 알아보기"
+title: "String vs StringBuffer vs StringBuilder"
 author: "023"
 comments: true
 tags: Java
