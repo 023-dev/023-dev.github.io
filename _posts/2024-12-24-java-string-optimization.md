@@ -91,6 +91,7 @@ for (int i = 0; i < 10000; i++) {
 조건문을 통해 동적으로 문자열을 조합할 때
 복잡한 문자열의 특정 부분을 변경해야 할 때
 매우 긴 대용량 문자열을 다룰 때
+
 > 참고 - StringBuilder vs StringBuffer
 > `StringBuilder` 와 똑같은 기능을 수행하는 `StringBuffer` 클래스도 있다.
 > `StringBuffer` 는 내부에 동기화가 되어 있어서, 멀티 스레드 상황에 안전하지만 동기화 오버헤드로 인해 성능이 느리다.
