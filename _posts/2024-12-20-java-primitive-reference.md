@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "기본형(Primitive)과 참조형(Reference)"
+title: "Primitive & Reference"
 author: "023"
 comments: true
 tags: Java

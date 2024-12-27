@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "불변 객체(Immutable Object)"
+title: "Immutable Object"
 author: "023"
 comments: true
 tags: Java
