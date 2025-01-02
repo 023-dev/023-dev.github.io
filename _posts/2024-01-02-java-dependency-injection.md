@@ -7,7 +7,6 @@ tags: [Java, Effective Java]
 excerpt_separator: <!--more-->
 ---
 
-# 자원을 직접 명시하지 말고 의존 객체 주입을 사용하라
 많은 경우의 클래스들은 하나 이상의 리소스에 의존하는 양상을 띈다.
 알림을 보내는 `NotificationService` 클래스와 이메일을 보내는 `EmailSender` 클래스가 있다고 가정해보자.
 `NotificationService`는 `EmailSender`를 사용하여 이메일을 보낸다.
