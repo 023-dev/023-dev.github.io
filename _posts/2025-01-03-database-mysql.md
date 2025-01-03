@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Database Management System"
+title: "MySQL"
 author: "023"
 comments: true
 tags: Database

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Database Management System"
+title: "Relational Database Management System"
 author: "023"
 comments: true
 tags: Database
