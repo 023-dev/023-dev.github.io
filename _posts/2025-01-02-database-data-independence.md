@@ -97,3 +97,12 @@ SQL과 같은 질의어를 이용하여 이를 조작할 수 있다.
 3단계 데이터베이스 구조를 통해, 사용자와 애플리케이션을 물리적인 데이터베이스로부터 독립시켜, 
 데이터베이스의 물리적 구조나 저장 방식이 변경되더라도 사용자나 애플리케이션에 영향을 주지 않도록 한다.
 이를 통해 데이터 독립성을 보장하고, 데이터베이스의 유지보수와 확장성을 향상시킬 수 있다.
+
+## 참고
+
+- [데이터 독립성](https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0_%EB%8F%85%EB%A6%BD%EC%84%B1)
+- [데이터베이스 시스템](https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%8B%9C%EC%8A%A4%ED%85%9C)
+- [데이터베이스 스키마](https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%8A%A4%ED%82%A4%EB%A7%88)
+- [데이터베이스 구조](https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EA%B5%AC%EC%A1%B0)
+- [데이터베이스 관리 시스템](https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EA%B4%80%EB%A6%AC_%EC%8B%9C%EC%8A%A4%ED%85%9C)
+- [데이터베이스 시스템의 구조](https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%98_%EA%B5%AC%EC%A1%B0)
