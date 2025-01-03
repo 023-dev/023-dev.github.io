@@ -1,5 +1,5 @@
 ---
-title: "데이터 독립성(Data Independence)"
+title: "관계형 데이터베이스 관리 시스템(RDBMS)"
 date: 2025-01-03 00:00:00
 tags: 
   - Database
