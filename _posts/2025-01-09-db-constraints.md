@@ -175,3 +175,16 @@ CREATE TABLE table_name (
     CONSTRAINT constraint_name FOREIGN KEY (column_name) REFERENCES another_table_name (another_column_name) ON DELETE CASCADE ON UPDATE CASCADE -- 테이블 생성 시 제약 조건 추가 및 제약 이름 설정
 );
 ```
+
+## CASCADE
+`CASCADE` 제약 조건은 참조하는 테이블의 행이 삭제되거나 업데이트될 때, 참조하는 테이블의 행도 삭제되거나 업데이트 하게 하여 참조 무결성을 유지한다.
+
+```sql
+CREATE TABLE table_name (
+    column_name data_type,
+    CONSTRAINT constraint_name FOREIGN KEY (column_name) REFERENCES another_table_name (another_column_name) ON DELETE CASCADE ON UPDATE CASCADE -- 테이블 생성 시 제약 조건 추가 및 제약 이름 설정
+);
+```
+
+하지만, `CASCADE` 제약 조건은 데이터의 무결성 유지하는데 유용하지만 위협할 수 있으므로 주의해서 사용해야 한다.
+대표적인 예로, 부모 테이블의 행이 삭제되면 자식 테이블의 행도 삭제되는데, 이러한 경우 데이터 손실이 발생할 수 있다.
