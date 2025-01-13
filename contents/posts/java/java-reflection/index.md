@@ -1,6 +1,6 @@
 ---
 title: "자바 리플렉션(Reflection)"
-date: 2024-11-05 00:00:00
+date: 2024-11-05 18:00:00
 tags: 
   - Java
 ---
