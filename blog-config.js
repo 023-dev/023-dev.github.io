@@ -2,7 +2,7 @@ module.exports = {
   title: "hoodie",
   description: "Hello :) I'm Hudi who developed gatsby-starter-hoodie theme.",
   author: "Hudi",
-  siteUrl: "https://devhudi.github.io/gatsby-starter-hoodie/",
+  siteUrl: "https://023-dev.github.io/",
   links: {
     github: "https://github.com/devHudi",
     linkedIn: "https://linkedin.com",
@@ -19,10 +19,10 @@ module.exports = {
   useAbout: true,
   // See https://giscus.app/
   giscus: {
-    repo: "devHudi/gatsby-starter-hoodie",
-    repoId: "MDEwOlJlcG9zaXRvcnkzNjk4NjMzNTg=",
-    category: "Comments",
-    categoryId: "DIC_kwDOFguqvs4ChwGy",
+    repo: "023-dev/023-dev.github.io",
+    repoId: "R_kgDONKt8Yg=",
+    category: "Announcements",
+    categoryId: "DIC_kwDONKt8Ys4Cll2b",
     mapping: "pathname",
     strict: "0",
     reactionsEnabled: "1",
