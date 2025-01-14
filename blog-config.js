@@ -1,6 +1,6 @@
 module.exports = {
-  title: "기록도 록이다",
-  description: "기록도 록이다.",
+  title: "야생형 개발자",
+  description: "야생형 개발자",
   author: "023",
   siteUrl: "https://023-dev.github.io/",
   links: {
