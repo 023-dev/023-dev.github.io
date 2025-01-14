@@ -1,5 +1,5 @@
 module.exports = {
-  title: "야생형 개발자",
+  title: "023.log",
   description: "야생형 개발자",
   author: "023",
   siteUrl: "https://023-dev.github.io/",
