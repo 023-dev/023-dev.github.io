@@ -6,8 +6,6 @@ module.exports = {
   links: {
     github: "https://github.com/023-dev",
     email: "mailto:rhdgmltkd88@gmail.com",
-    resume: "https://hudi.blog",
-    link: "https://hudi.blog",
   },
   useAbout: true,
   // See https://giscus.app/
