@@ -1,55 +1,39 @@
 ---
-title: "This is about page ✋"
+title: "Hello My World"
 ---
 
-## English Guide
+## Back-end
+- Spring JPA에서 조회 시 발생되는 N+1 문제를 Lazy Loading, Fetch Join, Flat DTO를 이용하여 해결
+- Spring Data Redis를 사용하여 캐싱 처리
+- Spring Security를 사용하여 권한 관리 및 인증 처리
+- JWT의 Access Token과 Refresh Token을 사용하여 Redis로  Black List 구현
+- Spring Cloud Gateway를 사용하여 API Gateway 구현
+- Spring Cloud Config를 사용하여 설정 중앙화
+- Spring Cloud Eureka를 사용하여 서비스 디스커버리
+- Spring Cloud Gateway를 사용하여 API 게이트웨이 구현
 
-Hello! This section is dedicated to introducing your blog. Here, you can showcase various information to your visitors, such as a blog introduction, personal profile, resume, portfolio, and more.
+## Front-end
+- React에서 Zustand를 사용하여 상태관리 및 비동기 처리를 위한 Axios를 사용
+- React에서 Material-UI를 사용하여 UI 구성
 
-### Writing Guide
+## AWS
+- EC2, RDS, S3, ElastiCache 등 AWS 서비스를 사용하여 서버 구축 및 배포
 
-To edit this page, modify the `/contents/about/index.md` file. You can write it in the same way as any other post. The path to this file cannot be changed.
+## Container
+- Docker
+    - Docker Hub과 Docker Registry를 사용하여 이미지 관리 및 배포
+    - Docker Compose 사용하여 여러 컨테이너를 한번에 실행
 
-The Markdown document for the About page only contains a single frontmatter called `title`. The `title` frontmatter will be displayed as the title at the top of the About page.
+## Database
+- SQL
+    - MSSQL(SQLServer)
+    - MySQL
+    - Oracle
+- NoSQL
+    - MongoDB
+    - Redis
 
-### Disabling the About Page
-
-```json
-module.exports = {
-
-  // ...
-
-  useAbout: false, // 👈
-
-  // ...
-
-}
-```
-
-You can disable the About page by setting the `useAbout` value to false in the `blog-config.js` file. If disabled, the tab in the blog header will be hidden, and visitors will not be able to access this page via the `/about` URL.
-
-## 한국어 가이드
-
-안녕하세요. 이 곳은 블로그를 소개하기 위한 공간입니다. 블로그 또는 자신에 대한 소개부터 이력서, 포트폴리오 등 다양한 정보를 이곳에서 방문자들에게 보여줄 수 있습니다.
-
-### 작성 가이드
-
-이 페이지를 편집하려면, `/contents/about/index.md` 파일을 수정하면 됩니다. 다른 포스팅을 작성하는 것과 동일한 방식으로 작성할 수 있습니다. 이 파일의 경로는 변경할 수 없습니다.
-
-About 페이지의 마크다운 문서는 오직 `title` 이라는 하나의 frontmatter 만 가지고 있습니다. `title` frontmatter 는 About 페이지 상단 제목으로 표시됩니다.
-
-### 비활성화
-
-```json
-module.exports = {
-
-  // ...
-
-  useAbout: false, // 👈
-
-  // ...
-
-}
-```
-
-`blog-config.js` 파일의 `useAbout` 값을 `false` 로 설정하여 About 페이지를 비활성화 할 수 있습니다. 비활성화 된다면, 블로그 상단에 존재하는 탭이 숨겨지고, `/about` 경로로 이 페이지에 접속할 수도 없게 됩니다.
+## Testing
+- Grafana와 Prometheus를 사용하여 모니터링 경험
+- POSTMAN을 사용하여 API 테스트
+- JUnit을 사용하여 단위 테스트
