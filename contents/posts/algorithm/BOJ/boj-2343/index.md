@@ -42,54 +42,60 @@ tags:
 
 ## 풀이
 
-이 문제는 이분 탐색(Binary Search)을 활용하여 최적의 블루레이 크기를 찾는 방식으로 해결할 수 있었다. 
-강의는 순서를 바꿀 수 없으며, 강의 길이의 합을 기준으로 블루레이 크기를 최소화해야 한다. 
-블루레이 크기의 최소값은 가장 긴 강의의 길이이며, 최대값은 모든 강의 길이의 합으로 설정한다. 
-이분 탐색을 통해 블루레이 크기를 조정하며, 
-각 중간값(mid)을 블루레이 크기로 설정하고 M개의 블루레이에 강의를 나눌 수 있는지 확인한다. 
-현재 블루레이 크기(mid)로 강의를 순서대로 배치하다가 크기를 초과하면 새로운 블루레이를 사용하며, 
-사용된 블루레이 개수가 M개를 초과하면 더 큰 크기를 탐색하고, M개 이하로 나눌 수 있다면 크기를 줄이는 방향으로 탐색한다. 
-`findMinimumSize` 메서드는 이 과정을 통해 최소 블루레이 크기를 계산하며, 
+이 문제는 이분 탐색(Binary Search)을 활용하여 최적의 블루레이 크기를 찾는 방식으로 해결할 수 있었다.
+여기서 핵심은 강의는 순서를 바꿀 수 없으며, 강의 길이의 합을 기준으로 블루레이 크기를 최소화해야 한다는 것이다. 
+가장 긴 강의가 들어가야하므로 블루레이 크기의 최소값은 가장 긴 강의의 길이이며, 최대값은 모든 강의 길이의 합으로 설정했다. 
+그리고 이분 탐색을 통해 블루레이 크기를 조정하며, 
+각 중간값(`mid`)을 블루레이 크기로 설정하고 M개의 블루레이에 강의를 나눌 수 있는지 확인한다. 
+현재 블루레이 크기(`mid`)로 강의를 순서대로 배치하다가 크기를 초과하면 새로운 블루레이를 사용하며, 
+사용된 블루레이 개수가 M개를 초과하면 `min` 값을 `mid+1`로 하여 더 큰 크기를 탐색하고, 
+M개 이하로 나눌 수 있다면 크기를 줄이는 방향으로 탐색한다. 
+`getMinDuration` 메서드는 이 과정을 통해 최소 블루레이 크기를 계산하며, 
 `canDivide` 메서드는 특정 크기에서 M개의 블루레이로 나눌 수 있는지 여부를 판단한다.
 
 ```java
+package test.code;
+
+import java.io.*;
 import java.util.*;
 
-class BluRayManager {
+class BlueRayMaker {
     private int[] lectures;
-    private int maxLecture;
-    private int sumLectures;
+    private int maxDuration;
+    private int sumDuration;
+    private int blueRayCount;
 
-    private BluRayManager(int[] lectures) {
+    private BlueRayMaker(int[] lectures, int blueRayCount) {
         this.lectures = lectures;
-        this.maxLecture = Arrays.stream(lectures).max().orElse(0);
-        this.sumLectures = Arrays.stream(lectures).sum();
-    }
-    
-    public static BluRayManager from(int[] lectures) {
-        return new BluRayManager(lectures);
+        this.maxDuration = Arrays.stream(lectures).max().orElse(0);
+        this.sumDuration = Arrays.stream(lectures).sum();
+        this.blueRayCount = blueRayCount;
     }
 
-    public int findMinimumSize(int m) {
-        int left = maxLecture;
-        int right = sumLectures;
-        int result = right;
+    public static BlueRayMaker from(int[] lectures, int blueRayCount) {
+        return new BlueRayMaker(lectures, blueRayCount);
+    }
 
-        while (left <= right) {
-            int mid = (left + right) / 2;
+    private int getMinDuration() {
+        int min = maxDuration;
+        int max = sumDuration;
+        int result = max;
 
-            if (canDivide(mid, m)) {
+        while (min <= max) {
+            int mid = (min + max) / 2;
+
+            if (canDivide(mid)) {
                 result = mid;
-                right = mid - 1;
+                max = mid - 1;
             } else {
-                left = mid + 1;
+                min = mid + 1;
             }
         }
 
         return result;
     }
-    
-    private boolean canDivide(int size, int m) {
+
+    private boolean canDivide(int size) {
         int count = 1;
         int currentSum = 0;
 
@@ -98,37 +104,36 @@ class BluRayManager {
                 count++;
                 currentSum = lecture;
 
-                if (count > m) {
+                if (count > blueRayCount) {
                     return false;
                 }
-            } else {
+            }
+            else {
                 currentSum += lecture;
             }
         }
-
         return true;
     }
-    
-    public void printResult() {
-        System.out.println(findMinimumSize(m));
+
+    public void printMinDuration() {
+        System.out.println(getMinDuration());
     }
+
 }
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
+        int lectureCount = Integer.parseInt(tokenizer.nextToken());
+        int blueRayCount = Integer.parseInt(tokenizer.nextToken());
+        int[] lectures = new int[lectureCount];
 
-        int N = Integer.parseInt(tokenizer.nextToken());
-        int M = Integer.parseInt(tokenizer.nextToken());
-        
-        int[] lectures = new int[N];
         tokenizer = new StringTokenizer(reader.readLine());
-        for (int i = 0; i < N; i++) {
-            lectures[i] = Integer.parseInt(tokenizer.nextToken());
+        for (int index = 0; index < lectureCount; index++) {
+            lectures[index] = Integer.parseInt(tokenizer.nextToken());
         }
-
-        BluRayManager.from(lectures).printResult();
+        BlueRayMaker.from(lectures, blueRayCount).printMinDuration();
     }
 }
 ```

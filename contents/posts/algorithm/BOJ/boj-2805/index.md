@@ -62,149 +62,41 @@ package test.code;
 import java.io.*;
 import java.util.*;
 
-class Point implements Comparable<Point> {
-    private final long coordinate;
-
-    private Point(long coordinate) {
-        this.coordinate = coordinate;
-    }
-
-    public static Point of(long coordinate) {
-        return new Point(coordinate);
-    }
-
-    public long getCoordinate() {
-        return coordinate;
-    }
-
-    @Override
-    public int compareTo(Point other) {
-        return Long.compare(this.coordinate, other.coordinate);
-    }
-}
-
-class Segment {
-    private final Point startPoint;
-    private final Point endPoint;
-
-    private Segment(long startPoint, long endPoint) {
-        this.startPoint = Point.of(startPoint);
-        this.endPoint = Point.of(endPoint);
-    }
-
-    public static Segment of(long start, long end) {
-        return new Segment(start, end);
-    }
-
-    public Point getStartPoint() {
-        return startPoint;
-    }
-
-    public Point getEndPoint() {
-        return endPoint;
-    }
-}
-
-class PointCounter {
-    private final List<Point> points;
-    private final List<Segment> segments;
-
-    private PointCounter(List<Point> points, List<Segment> segments) {
-        this.points = points;
-        this.segments = segments;
-    }
-
-    public static PointCounter of(List<Point> points, List<Segment> segments) {
-        return new PointCounter(points, segments);
-    }
-
-    private List<Long> count() {
-        Collections.sort(points);
-        List<Long> result = new ArrayList<>(segments.size());
-
-        for (Segment segment : segments) {
-            Point startPoint = segment.getStartPoint();
-            Point endPoint = segment.getEndPoint();
-
-            long leftIndex = lowerBound(points, startPoint);
-            long rightIndex = upperBound(points, endPoint);;
-
-            result.add(rightIndex - leftIndex);
-        }
-
-        return result;
-    }
-
-    private int lowerBound(List<Point> points, Point startPoint) {
-        int left = 0;
-        int right = points.size();
-
-        while (left < right) {
-            int mid = (left + right) / 2;
-
-            if (points.get(mid).getCoordinate() >= startPoint.getCoordinate()) {
-                right = mid;
-            } else {
-                left = mid + 1;
-            }
-        }
-
-        return left;
-    }
-
-    private int upperBound(List<Point> points, Point endPoint) {
-        int left = 0;
-        int right = points.size();
-
-        while (left < right) {
-            int mid = (left + right) / 2;
-
-            if (points.get(mid).getCoordinate() > endPoint.getCoordinate()) {
-                right = mid;
-            } else {
-                left = mid + 1;
-            }
-        }
-
-        return left;
-    }
-
-    public void printResult() {
-        StringBuilder output = new StringBuilder();
-        List<Long> result = count();
-        for (long count : result) {
-            output.append(count).append("\n");
-        }
-        System.out.print(output);
-    }
-}
-
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
-        int N = Integer.parseInt(tokenizer.nextToken());// 점의 개수, 1 <= N <= 100,000
-        int M = Integer.parseInt(tokenizer.nextToken());// 선분의 개수, 1 <= M <= 100,000
-
+        int N = Integer.parseInt(tokenizer.nextToken());// 나무의 수 1 <= N <= 1,000,000
+        long target = Integer.parseInt(tokenizer.nextToken());// 나무의 길이 1 <= target <= 2,000,000,000
+        long[] trees = new long[N];
         tokenizer = new StringTokenizer(reader.readLine());
-        List<Point> points = new ArrayList<>();
         for (int i = 0; i < N; i++) {
-            long point = Long.parseLong(tokenizer.nextToken());
-            Point newPoint = Point.of(point);
-            points.add(newPoint);
+            trees[i] = Integer.parseInt(tokenizer.nextToken());
         }
+        Arrays.sort(trees);
+        long min = 1;
+        long max = trees[trees.length - 1];
+        long result = 0;
+        while (min < max) {
+            long mid = (min + max) / 2;
+            long height = 0;
 
-        List<Segment> segments = new ArrayList<>();
-        for (int i = 0; i < M; i++) {
-            tokenizer = new StringTokenizer(reader.readLine());
-            long start = Long.parseLong(tokenizer.nextToken());
-            long end = Long.parseLong(tokenizer.nextToken());
-            Segment newSegment = Segment.of(start, end);
-            segments.add(newSegment);
+            for (int index = 0; index < N; index++) {
+                if(trees[index] > mid) {
+                    height += trees[index] - mid;
+                }
+            }
+
+            if (height >= target) {
+                result = mid;
+                min = mid + 1;
+            } else {
+                max = mid - 1;
+            }
         }
-
-        PointCounter.of(points, segments).printResult();
+        StringBuilder output = new StringBuilder();
+        output.append(result);
+        System.out.println(output);
     }
 }
-
 ```
