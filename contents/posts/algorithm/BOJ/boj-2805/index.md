@@ -49,54 +49,128 @@ tags:
 
 ## 풀이
 
-문제의 시간 제한은 1초이다. 입력으로 주어지는 좌표의 개수는 최대 100,000개이다.
-그리고 탐색을 하여 몇개의 점이 선분위에 위치하는지 요구하는 문제인 것을 알 수 있다.
-그래서 이 문제는 이분 탐색 방식을 사용하고자 했다.
-문제 지문을 자세히 보고 생각난 풀이법은 백준 1654번 문제를 해결하기 위한 Upper Bound와 Lower Bound를 사용하는 방법을 사용하는 것을 떠올렸다.
-Upper Bound로 선분의 끝점보다 큰 점의 인덱스를 찾고, Lower Bound로 선분의 시작점보다 크거나 같은 점의 인덱스를 찾아서 두 인덱스의 차이를 구하면 된다.
-그리고 저번 문제에서 실수한 long 타입을 사용하지 않아서 발생한 오류를 방지하기 위해 long 타입을 사용했다.
+이 문제는 나무의 높이를 기준으로 이분 탐색을 수행하여 필요한 나무 길이 이상을 얻을 수 있는 절단기 높이의 최댓값을 찾는 방식으로 접근한다. 
+먼저, 입력으로 주어진 나무의 높이를 정렬하고, 절단기의 최소 높이 `0`과 최대 높이를 설정한 후, 이분 탐색을 시작한다. 
+각 중간값(`mid`)에서 나무를 절단했을 때 잘린 나무의 총 길이를 계산하고, 이 길이가 목표 길이 이상이면 절단기 높이를 더 높게 설정하여 탐색 범위를 좁힌다. 
+반대로, 목표 길이보다 작으면 절단기 높이를 낮추어 다시 탐색한다. 
+탐색이 종료되면 최적의 절단기 높이를 출력하며, 시간 복잡도는 정렬 $(O(N \log N)$과 이분 탐색 $(O(N \log H)$을 합쳐 $(O(N \log N + N \log H)$로 효율적이다.
 
 ```java
 package test.code;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
+
+class Tree implements Comparable<Tree> {
+    private long height;
+
+    private Tree(long height) {
+        this.height = height;
+    }
+
+    public static Tree of(long height) {
+        return new Tree(height);
+    }
+
+    public long getHeight() {
+        return height;
+    }
+
+    @Override
+    public int compareTo(Tree other) {
+        return Long.compare(this.height, other.height);
+    }
+
+    public long cutHeight(long other) {
+        return this.height - other;
+    }
+
+    public boolean isCuttable(long midHeight) {
+        return Long.compare(this.height, midHeight) > 0;
+    }
+}
+
+class Trees {
+    private List<Tree> trees;
+
+    private Trees(List<Tree> trees) {
+        this.trees = trees.stream().sorted().collect(Collectors.toList());
+    }
+
+    public static Trees of(List<Tree> trees) {
+        return new Trees(trees);
+    }
+
+    public List<Tree> getTrees() {
+        return trees;
+    }
+
+    public long getMaxHeight() {
+        return trees.get(trees.size() - 1).getHeight();
+    }
+
+    public int size() {
+        return trees.size();
+    }
+}
+
+class TreeCutter {
+    private Trees trees;
+    private int target;
+
+    private TreeCutter(Trees trees, int target) {
+        this.trees = trees;
+        this.target = target;
+    }
+
+    public static TreeCutter of(Trees trees, int target) {
+        return new TreeCutter(trees, target);
+    }
+
+    private long cut() {
+        long minHeight = 0;
+        long maxHeight = trees.getMaxHeight();
+        long result = 0;
+        while (minHeight <= maxHeight) {
+            long midHeight = (minHeight + maxHeight) / 2;
+            long sumHeight = 0;
+
+            for (Tree tree : trees.getTrees()) {
+                if(tree.isCuttable(midHeight)) {
+                    sumHeight += tree.cutHeight(midHeight);
+                }
+            }
+
+            if (sumHeight >= target) {
+                result = midHeight;
+                minHeight = midHeight + 1;
+            } else {
+                maxHeight = midHeight - 1;
+            }
+        }
+        return result;
+    }
+
+    public void printResult() {
+        System.out.println(cut());
+    }
+}
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
         int N = Integer.parseInt(tokenizer.nextToken());// 나무의 수 1 <= N <= 1,000,000
-        long target = Integer.parseInt(tokenizer.nextToken());// 나무의 길이 1 <= target <= 2,000,000,000
-        long[] trees = new long[N];
+        int target = Integer.parseInt(tokenizer.nextToken());// 나무의 길이 1 <= target <= 2,000,000,000
+        List<Tree> trees = new ArrayList<>();
         tokenizer = new StringTokenizer(reader.readLine());
         for (int i = 0; i < N; i++) {
-            trees[i] = Integer.parseInt(tokenizer.nextToken());
+            long height = Long.parseLong(tokenizer.nextToken());
+            Tree tree = Tree.of(height);
+            trees.add(tree);
         }
-        Arrays.sort(trees);
-        long min = 1;
-        long max = trees[trees.length - 1];
-        long result = 0;
-        while (min < max) {
-            long mid = (min + max) / 2;
-            long height = 0;
-
-            for (int index = 0; index < N; index++) {
-                if(trees[index] > mid) {
-                    height += trees[index] - mid;
-                }
-            }
-
-            if (height >= target) {
-                result = mid;
-                min = mid + 1;
-            } else {
-                max = mid - 1;
-            }
-        }
-        StringBuilder output = new StringBuilder();
-        output.append(result);
-        System.out.println(output);
+        TreeCutter.of(Trees.of(trees), target).printResult();
     }
 }
 ```
