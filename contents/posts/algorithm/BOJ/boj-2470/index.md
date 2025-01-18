@@ -149,8 +149,7 @@ public class Main {
 
         int number = Integer.parseInt(reader.readLine());
 
-        StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
-        List<Liquid> liquidList = Arrays.stream(br.readLine().split(" "))
+        List<Liquid> liquidList = Arrays.stream(reader.readLine().split(" "))
                 .map(Long::parseLong)
                 .map(Liquid::of)
                 .collect(Collectors.toList());
