@@ -1,5 +1,5 @@
 ---
-title: "입국심사"
+title: "프로그래머스 입국심사"
 date: 2025-01-20 21:00:00
 tags: 
   - Algorithm
@@ -7,8 +7,8 @@ tags:
 
 
 ## 입국심사
-[백준 2110번 공유기 설치](https://school.programmers.co.kr/learn/courses/30/lessons/43238)
 
+[프로그래머스 입국심사](https://programmers.co.kr/learn/courses/30/lessons/43238)
 
 ### 문제
 
