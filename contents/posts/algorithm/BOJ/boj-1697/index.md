@@ -67,7 +67,14 @@ class HideAndSeek {
         return new HideAndSeek(startPosition, endPosition);
     }
 
-    private record State(int position, int time) {
+    private static final class State {
+        private final int position;
+        private final int time;
+
+        private State(int position, int time) {
+            this.position = position;
+            this.time = time;
+        }
 
         public static State of(int position, int time) {
             return new State(position, time);
@@ -84,6 +91,10 @@ class HideAndSeek {
         public int doublePosition() {
             return position * 2;
         }
+
+        public int increaseTime() {
+            return time + 1;
+        }
     }
 
     private boolean canMoveTo(int position) {
@@ -99,31 +110,29 @@ class HideAndSeek {
     }
 
     private int findShortestTime() {
-        Queue<State> queue = new LinkedList<>();
-        int result = 0;
+        if (startPosition == endPosition) {
+            return 0;
+        }
 
+        Queue<State> queue = new LinkedList<>();
         queue.offer(State.of(startPosition, 0));
         visited[startPosition] = true;
 
         while (!queue.isEmpty()) {
-            int size = queue.size();
             State current = queue.poll();
 
             int[] nextPositions = {current.previousPosition(), current.nextPosition(), current.doublePosition()};
             for (int nextPosition : nextPositions) {
                 if (canMoveTo(nextPosition) && isUnvisited(nextPosition)) {
                     if (hasReached(nextPosition)) {
-                        return current.time + 1;
+                        return current.increaseTime();
                     }
-                    queue.offer(State.of(nextPosition, current.time + 1));
+                    queue.offer(State.of(nextPosition, current.increaseTime()));
                     visited[nextPosition] = true;
                 }
             }
-
-            result++;
         }
-
-        return result;
+        return -1;
     }
 
     public int getResult() {
@@ -148,5 +157,4 @@ public class Main {
         writer.close();
     }
 }
-
 ```
