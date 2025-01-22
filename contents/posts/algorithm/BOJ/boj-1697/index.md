@@ -5,7 +5,7 @@ tags:
   - Algorithm
 ---
 
-## 예산
+## 숨바꼭질
 [백준 1697번 숨바꼭질](https://www.acmicpc.net/problem/1697)
 
 | 시간 제한 | 메모리 제한 | 제출     | 정답    | 맞힌 사람 | 정답 비율   |
@@ -34,13 +34,102 @@ tags:
 ## 풀이
 
 이 문제는 BFS를 응용해서 풀 수 있는 문제로 봤다.
-`Queue`에서 `poll`한 값에 대해 `-1`, `+1`, `*2`를 해서 `K`와 같은 값이 나오면 `result`를 반환하면 된다.
+`Queue`에서 `poll`한 값에 대해 `-1`, `+1`, `*2`를 해서 `K`와 같은 값이 나오면 `result`를 반환하는 방식으로 구상을 했다.
+근데 제출할 때마다 `시간 초과`가 나와서 확인해보니 `visited` 부분에 `reverse` 처리를 해주지 않아서 그랬다.
+그래서 `queue`에 `add`하는 부분에서 `visited`를 `true`로 처리하는 방식으로 수정을 했다.
+
+위와 같이 수정 후, 제출을 했지만 이번엔 `IndexOutOfBoundsException`이 나오게 되었다.
+이 부분에 대해서는 많은 고민을 했다. 
+처음에는 그냥 `K`가 아닌가 했다가, `Integer.MAX_VALUE`로 해야하나 했다가, 
+근데 문제를 다시 읽어보니 $100000$까지 이길래 `visited`의 크기를 `100001`로 설정했더니 해결되었다.
+
+다음번에도 이런 문제가 나오면 `visited`의 크기를 잘 설정해야겠다.
 
 ```java
 package test.code;
 
 import java.io.*;
 import java.util.*;
+
+class HideAndSeek {
+    private final int maxPosition = 100_000;
+    private final boolean[] visited;
+    private final int startPosition;
+    private final int endPosition;
+
+    private HideAndSeek(int startPosition, int endPosition) {
+        this.visited = new boolean[maxPosition + 1];
+        this.startPosition = startPosition;
+        this.endPosition = endPosition;
+    }
+
+    public static HideAndSeek of (int startPosition, int endPosition) {
+        return new HideAndSeek(startPosition, endPosition);
+    }
+
+    private record State(int position, int time) {
+
+        public static State of(int position, int time) {
+            return new State(position, time);
+        }
+
+        public int previousPosition() {
+            return position - 1;
+        }
+
+        public int nextPosition() {
+            return position + 1;
+        }
+
+        public int doublePosition() {
+            return position * 2;
+        }
+    }
+
+    private boolean canMoveTo(int position) {
+        return position >= 0 && position <= maxPosition;
+    }
+
+    private boolean isUnvisited(int position) {
+        return !visited[position];
+    }
+
+    private boolean hasReached(int position) {
+        return position == endPosition;
+    }
+
+    private int findShortestTime() {
+        Queue<State> queue = new LinkedList<>();
+        int result = 0;
+
+        queue.offer(State.of(startPosition, 0));
+        visited[startPosition] = true;
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            State current = queue.poll();
+
+            int[] nextPositions = {current.previousPosition(), current.nextPosition(), current.doublePosition()};
+            for (int nextPosition : nextPositions) {
+                if (canMoveTo(nextPosition) && isUnvisited(nextPosition)) {
+                    if (hasReached(nextPosition)) {
+                        return current.time + 1;
+                    }
+                    queue.offer(State.of(nextPosition, current.time + 1));
+                    visited[nextPosition] = true;
+                }
+            }
+
+            result++;
+        }
+
+        return result;
+    }
+
+    public int getResult() {
+        return findShortestTime();
+    }
+}
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -51,51 +140,13 @@ public class Main {
 
         reader.close();
 
-        long result = bfsResult(n, k);
+        int result = HideAndSeek.of(n, k).getResult();
 
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
         writer.write(result + "\n");
         writer.flush();
         writer.close();
     }
-
-    private static long bfsResult(int n, int k) {
-        Queue<Integer> queue = new LinkedList<>();
-        boolean[] visited = new boolean[100001];
-        long result = 0;
-
-        queue.add(n);
-        visited[n] = true;
-
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-
-            for (int i = 0; i < size; i++) {
-                int current = queue.poll();
-
-                if (current == k) {
-                    return result;
-                }
-
-                if (current - 1 >= 0 && !visited[current - 1]) {
-                    queue.add(current - 1);
-                    visited[current - 1] = true;
-                }
-
-                if (current + 1 <= 100000 && !visited[current + 1]) {
-                    queue.add(current + 1);
-                    visited[current + 1] = true;
-                }
-
-                if (current * 2 <= 100000 && !visited[current * 2]) {
-                    queue.add(current * 2);
-                    visited[current * 2] = true;
-                }
-            }
-
-            result++;
-        }
-        return result;
-    }
 }
+
 ```
