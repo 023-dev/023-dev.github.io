@@ -36,12 +36,21 @@ tags:
 
 ## 풀이
 
-이 문제를 읽으면서 DFS, BFS 둘 다 이용해 풀 수 있을 것 같다고 생각했다.
-그렇지만 경험으로는 재귀 함수를 사용했을 때 메모리 제한이 걸리는 경우가 많아서 DFS 대신 BFS로 풀어보기로 했다.
-
-먼저, `Queue`에 `poll`한 값에 대해 상하좌우를 확인하고 `1`이면 `Queue`에 `add`하는 방식으로 구현했다.
-그리고 `Queue`가 비어있을 때까지 반복하면서 단지를 찾아서 `result`에 추가하는 방식으로 구현했다.
-
+이 문제는 `N x N` 크기의 지도에서 단지를 찾아내고, 각 단지에 속하는 집의 개수를 계산하는 문제였다. 
+지도는 2차원 배열로 표현하고, BFS(너비 우선 탐색)를 활용해 연결된 집을 탐색하고 단지를 구성했다. 
+탐색 과정에서는 특정 좌표에서 상하좌우로 인접한 좌표를 확인하며, 
+지도 범위를 벗어나지 않고 방문하지 않았으며 집(`1`)이 있는 경우에만 탐색을 이어간다. 
+이를 위해 `Position` 클래스를 통해 좌표를 표현하고,
+`HouseComplex` 클래스에서 탐색과 단지 크기 계산 로직을 캡슐화했다. 
+BFS를 사용한 이유는 큐(Queue)를 활용한 탐색 흐름이 DFS보다 직관적이고, 
+방문 상태를 관리하기 쉽고, 스택 오버플로우와 같은 위험을 방지할 수 있기 때문이었다. 
+탐색 중에는 중복 방문을 방지하기 위해 `visited` 배열을 활용했고, 
+모든 단지를 탐색한 뒤 단지 크기를 오름차순으로 정렬하여 출력한다. 
+해결 과정에서 발생할 수 있는 문제로는 잘못된 인접 좌표 계산, 
+방문 상태 관리 누락, 단지 크기 누적 오류 같은 실수를 방지하기 위해
+범위를 검증하는 `isInBounds` 메서드, 
+방문 상태를 확인하는 `isUnvisited` 메서드, 
+방문 처리를 위한 `markVisited` 메서드를 통해 탐색 로직에 안정성 더했다. 
 
 ```java
 package test.code;
@@ -49,110 +58,139 @@ package test.code;
 import java.io.*;
 import java.util.*;
 
-class HideAndSeek {
-    private final int maxPosition = 100_000;
-    private final boolean[] visited;
-    private final int startPosition;
-    private final int endPosition;
+class Position {
+    private final int y;
+    private final int x;
 
-    private HideAndSeek(int startPosition, int endPosition) {
-        this.visited = new boolean[maxPosition + 1];
-        this.startPosition = startPosition;
-        this.endPosition = endPosition;
+    private Position(int y, int x) {
+        this.y = y;
+        this.x = x;
     }
 
-    public static HideAndSeek of (int startPosition, int endPosition) {
-        return new HideAndSeek(startPosition, endPosition);
+    public static Position of(int y, int x) {
+        return new Position(y, x);
     }
 
-    private static final class State {
-        private final int position;
-        private final int time;
-
-        private State(int position, int time) {
-            this.position = position;
-            this.time = time;
-        }
-
-        public static State of(int position, int time) {
-            return new State(position, time);
-        }
-
-        public int previousPosition() {
-            return position - 1;
-        }
-
-        public int nextPosition() {
-            return position + 1;
-        }
-
-        public int doublePosition() {
-            return position * 2;
-        }
-
-        public int increaseTime() {
-            return time + 1;
-        }
+    public int getY() {
+        return y;
     }
 
-    private boolean canMoveTo(int position) {
-        return position >= 0 && position <= maxPosition;
+    public int getX() {
+        return x;
+    }
+}
+
+class HouseComplex {
+    private final int [][] map;
+    private final boolean [][] visited;
+    private final int size;
+    private final List<Integer> complexSizes;
+
+    private HouseComplex(int size, int [][] map) {
+        this.size = size;
+        this.map = map;
+        this.visited = new boolean[size][size];
+        this.complexSizes = new ArrayList<>();
     }
 
-    private boolean isUnvisited(int position) {
-        return !visited[position];
+    public static HouseComplex of(int size, int [][] map) {
+        return new HouseComplex(size, map);
     }
 
-    private boolean hasReached(int position) {
-        return position == endPosition;
-    }
-
-    private int findShortestTime() {
-        if (startPosition == endPosition) {
-            return 0;
-        }
-
-        Queue<State> queue = new LinkedList<>();
-        queue.offer(State.of(startPosition, 0));
-        visited[startPosition] = true;
-
-        while (!queue.isEmpty()) {
-            State current = queue.poll();
-
-            int[] nextPositions = {current.previousPosition(), current.nextPosition(), current.doublePosition()};
-            for (int nextPosition : nextPositions) {
-                if (canMoveTo(nextPosition) && isUnvisited(nextPosition)) {
-                    if (hasReached(nextPosition)) {
-                        return current.increaseTime();
-                    }
-                    queue.offer(State.of(nextPosition, current.increaseTime()));
-                    visited[nextPosition] = true;
+    public void findComplexes(){
+        for (int y = 0; y < size; y++) {
+            for (int x = 0; x < size; x++) {
+                if(map[y][x] == 1 && !visited[y][x]) {
+                    int complexSize = exploreComplex(y, x);
+                    complexSizes.add(complexSize);
                 }
             }
         }
-        return -1;
+        Collections.sort(complexSizes);
     }
 
-    public int getResult() {
-        return findShortestTime();
+    private int exploreComplex(int y, int x) {
+        Queue<Position> queue = new LinkedList<>();
+
+        queue.offer(Position.of(y, x));
+        visited[y][x] = true;
+        int size = 0;
+
+        while (!queue.isEmpty()) {
+            Position currentPosition = queue.poll();
+            size++;
+
+            for (Position position : getAdjacentPositionsFrom(currentPosition)) {
+                if (isInBounds(position) && isHouse(position) && isUnvisited(position)) {
+                    queue.offer(position);
+                    markVisited(position);
+                }
+            }
+        }
+        return size;
+    }
+
+    private boolean isHouse(Position position) {
+        return map[position.getY()][position.getX()] == 1;
+    }
+    private boolean isInBounds(Position position) {
+        return position.getX() >= 0 && position.getX() < size && position.getY() >= 0 && position.getY() < size;
+    }
+    private boolean isUnvisited(Position position) {
+        return !visited[position.getY()][position.getX()];
+    }
+    private void markVisited(Position position) {
+        visited[position.getY()][position.getX()] = true;
+    }
+
+    private List<Position> getAdjacentPositionsFrom(Position position) {
+        List<Position> positions = new ArrayList<>();
+        int y = position.getY();
+        int x = position.getX();
+        positions.add(Position.of(y + 1, x));
+        positions.add(Position.of(y - 1, x));
+        positions.add(Position.of(y, x + 1));
+        positions.add(Position.of(y, x - 1));
+        return positions;
+    }
+
+    public int getComplexCount() {
+        return complexSizes.size();
+    }
+
+    public List<Integer> getComplexSizes() {
+        return complexSizes;
     }
 }
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
-        int n = Integer.parseInt(tokenizer.nextToken());
-        int k = Integer.parseInt(tokenizer.nextToken());
+        int size = Integer.parseInt(reader.readLine());
+        int [][] map = new int[size][size];
 
-        reader.close();
+        for (int y = 0; y < size; y++) {
+            String line = reader.readLine();
+            for (int x = 0; x < size; x++) {
+                map[y][x] = parseInt(line, x);
+            }
+        }
 
-        int result = HideAndSeek.of(n, k).getResult();
+        HouseComplex complex = HouseComplex.of(size, map);
+        complex.findComplexes();
 
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-        writer.write(result + "\n");
+        writer.write(complex.getComplexCount() + "\n");
+        for (int complexSize : complex.getComplexSizes()) {
+            writer.write(complexSize + "\n");
+        }
         writer.flush();
         writer.close();
     }
+
+    private static int parseInt(String string, int index) {
+        return string.charAt(index) - '0';
+    }
 }
+
 ```
