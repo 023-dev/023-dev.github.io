@@ -1,5 +1,5 @@
 ---
-title: "데이터베이스 "
+title: "데이터베이스 정규화(Normalization)"
 date: 2025-01-22 18:00:00
 tags: 
   - Database
