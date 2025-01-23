@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[RSS Feed of 023.log]]></title><description><![CDATA[야생형 개발자]]></description><link>https://023-dev.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 23 Jan 2025 12:42:54 GMT</lastBuildDate><item><title><![CDATA[제네릭과 가변인수를 함께 쓸 때는 신중하라]]></title><description><![CDATA[가변인수와 제네릭이 함께 사용될 때의 허점 가변인수(varargs…]]></description><link>https://023-dev.github.io/item-32/</link><guid isPermaLink="false">https://023-dev.github.io/item-32/</guid><pubDate>Thu, 23 Jan 2025 01:00:00 GMT</pubDate><content:encoded>&lt;h2 id=&quot;가변인수와-제네릭이-함께-사용될-때의-허점&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B0%80%EB%B3%80%EC%9D%B8%EC%88%98%EC%99%80-%EC%A0%9C%EB%84%A4%EB%A6%AD%EC%9D%B4-%ED%95%A8%EA%BB%98-%EC%82%AC%EC%9A%A9%EB%90%A0-%EB%95%8C%EC%9D%98-%ED%97%88%EC%A0%90&quot; aria-label=&quot;가변인수와 제네릭이 함께 사용될 때의 허점 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;가변인수와 제네릭이 함께 사용될 때의 허점&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[RSS Feed of 023.log]]></title><description><![CDATA[야생형 개발자]]></description><link>https://023-dev.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 23 Jan 2025 13:41:58 GMT</lastBuildDate><item><title><![CDATA[제네릭과 가변인수를 함께 쓸 때는 신중하라]]></title><description><![CDATA[가변인수와 제네릭이 함께 사용될 때의 허점 가변인수(varargs…]]></description><link>https://023-dev.github.io/item-32/</link><guid isPermaLink="false">https://023-dev.github.io/item-32/</guid><pubDate>Thu, 23 Jan 2025 01:00:00 GMT</pubDate><content:encoded>&lt;h2 id=&quot;가변인수와-제네릭이-함께-사용될-때의-허점&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B0%80%EB%B3%80%EC%9D%B8%EC%88%98%EC%99%80-%EC%A0%9C%EB%84%A4%EB%A6%AD%EC%9D%B4-%ED%95%A8%EA%BB%98-%EC%82%AC%EC%9A%A9%EB%90%A0-%EB%95%8C%EC%9D%98-%ED%97%88%EC%A0%90&quot; aria-label=&quot;가변인수와 제네릭이 함께 사용될 때의 허점 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;가변인수와 제네릭이 함께 사용될 때의 허점&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;가변인수(varargs): 메서드에 넘기는 인수의 개수를 클라이언트가 조절할 수 있게 해준다.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -155,7 +155,325 @@
 제네릭 &lt;code class=&quot;language-text&quot;&gt;varargs&lt;/code&gt; 매개변수는 타입 안전하지는 않지만, 허용된다.
 메서드에 제네릭 (혹은 매개변수화된) &lt;code class=&quot;language-text&quot;&gt;varargs&lt;/code&gt; 매개변수를 사용하고자 한다면,
 먼저 그 메서드가 타입 안전한지 확인한 다음 &lt;code class=&quot;language-text&quot;&gt;@SafeVarargs&lt;/code&gt; 애너테이션을 달아
-사용하는데 불편함이 없게끔 하자.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[2667 단지번호붙이기]]></title><description><![CDATA[단지번호붙이기 백준 2667 단지번호붙이기 시간 제한 메모리 제한 제출 정답 맞힌 사람 정답 비율 1 초 128 MB 205711 93257 59242 43.144% 문제 <그림 1>과 같이 정사각형 모양의 지도가 있다.
+사용하는데 불편함이 없게끔 하자.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[데이터베이스 ]]></title><description><![CDATA[데이터베이스 설계의 핵심은 데이터를 효율적으로 관리하고,
+무결성을 유지하며,
+중복을 최소화하는 것이다.
+이를 위해 사용하는 방법이 정규화(Normalization…]]></description><link>https://023-dev.github.io/datavase-normalization/</link><guid isPermaLink="false">https://023-dev.github.io/datavase-normalization/</guid><pubDate>Wed, 22 Jan 2025 18:00:00 GMT</pubDate><content:encoded>&lt;p&gt;데이터베이스 설계의 핵심은 데이터를 효율적으로 관리하고,
+무결성을 유지하며,
+중복을 최소화하는 것이다.
+이를 위해 사용하는 방법이 정규화(Normalization)이다.&lt;/p&gt;
+&lt;h2 id=&quot;데이터베이스-정규화&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%A0%95%EA%B7%9C%ED%99%94&quot; aria-label=&quot;데이터베이스 정규화 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;데이터베이스 정규화&lt;/h2&gt;
+&lt;p&gt;정규화는 관계형 데이터베이스를 설계할 때 중복 데이터를 줄이고, 데이터 무결성을 유지하며, 효율적인 데이터 관리를 목표로 데이터를 구조화하는 과정이다.&lt;/p&gt;
+&lt;h2 id=&quot;데이터베이스-이상의-개념과-종류&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%9D%B4%EC%83%81%EC%9D%98-%EA%B0%9C%EB%85%90%EA%B3%BC-%EC%A2%85%EB%A5%98&quot; aria-label=&quot;데이터베이스 이상의 개념과 종류 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;데이터베이스 이상의 개념과 종류&lt;/h2&gt;
+&lt;p&gt;데이터베이스 설계가 적절하지 않을 경우, 삽입 이상, 삭제 이상, 갱신 이상과 같은 문제(이상)가 발생할 수 있다.&lt;/p&gt;
+&lt;h3 id=&quot;삽입-이상-Insertion-Anomaly&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%82%BD%EC%9E%85-%EC%9D%B4%EC%83%81-Insertion-Anomaly&quot; aria-label=&quot;삽입 이상 Insertion Anomaly permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;삽입 이상 (Insertion Anomaly)&lt;/h3&gt;
+&lt;p&gt;새로운 데이터를 삽입할 때 불필요한 정보를 함께 저장해야 하는 문제다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;학생ID&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;이름&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;학과명&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;학과장&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;1&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;홍길동&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;컴퓨터학과&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;김교수&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;문제점: 새로운 학과(예: 전기공학과)를 추가하려면, 학과장이 없는 상태에서도 &apos;학생ID&apos;와 &apos;이름&apos; 데이터를 함께 입력해야 한다.&lt;/p&gt;
+&lt;h3 id=&quot;삭제-이상-Deletion-Anomaly&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%82%AD%EC%A0%9C-%EC%9D%B4%EC%83%81-Deletion-Anomaly&quot; aria-label=&quot;삭제 이상 Deletion Anomaly permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;삭제 이상 (Deletion Anomaly)&lt;/h3&gt;
+&lt;p&gt;데이터를 삭제할 때 의도치 않게 다른 중요한 정보도 삭제되는 문제다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;학생ID&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;이름&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;학과명&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;학과장&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;1&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;홍길동&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;컴퓨터학과&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;김교수&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;문제점: &apos;홍길동&apos;의 데이터를 삭제하면, 컴퓨터학과의 학과장 정보도 함께 사라진다.&lt;/p&gt;
+&lt;h3 id=&quot;갱신-이상-Update-Anomaly&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B0%B1%EC%8B%A0-%EC%9D%B4%EC%83%81-Update-Anomaly&quot; aria-label=&quot;갱신 이상 Update Anomaly permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;갱신 이상 (Update Anomaly)&lt;/h3&gt;
+&lt;p&gt;중복된 데이터 중 일부만 수정되어 데이터 불일치가 발생하는 문제다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;학생ID&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;이름&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;학과명&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;학과장&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;1&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;홍길동&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;컴퓨터학과&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;김교수&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;2&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;김영희&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;컴퓨터학과&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;김교수&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;문제점: 학과장이 변경되었을 때(예: 이교수), 일부 데이터만 갱신하면 불일치가 발생한다.&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;정규화-단계&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%A0%95%EA%B7%9C%ED%99%94-%EB%8B%A8%EA%B3%84&quot; aria-label=&quot;정규화 단계 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;정규화 단계&lt;/h2&gt;
+&lt;p&gt;정규화는 데이터를 구조화하기 위한 여러 단계로 이루어져 있으며, 단계가 높아질수록 데이터 중복과 이상이 감소한다.&lt;/p&gt;
+&lt;h3 id=&quot;제1정규형-1NF&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%A0%9C1%EC%A0%95%EA%B7%9C%ED%98%95-1NF&quot; aria-label=&quot;제1정규형 1NF permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;제1정규형 (1NF)&lt;/h3&gt;
+&lt;p&gt;제1차 정규화는 같은 성격과 내용의 컬럼이 연속적으로 나타나는 컬럼이 존재할 때,
+해당 컬럼을 제거하고 기본테이블의 PK를 추가해 새로운 테이블을 생성하고, 기존의 테이블과 1:N 관계를 형성하는 것이다&lt;/p&gt;
+&lt;p&gt;변환 전:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;주문ID&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;고객명&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;연락처&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;상품명&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;1&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;홍길동&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;010-1234-5678&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;사과, 바나나&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;2&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;김영희&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;010-5678-1234&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;딸기, 포도, 배&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;변환 후:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;주문ID&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;고객명&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;연락처&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;상품명&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;1&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;홍길동&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;010-1234-5678&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;사과&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;1&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;홍길동&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;010-1234-5678&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;바나나&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;2&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;김영희&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;010-5678-1234&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;딸기&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;2&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;김영희&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;010-5678-1234&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;포도&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;2&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;김영희&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;010-5678-1234&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;배&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;제2정규형-2NF&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%A0%9C2%EC%A0%95%EA%B7%9C%ED%98%95-2NF&quot; aria-label=&quot;제2정규형 2NF permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;제2정규형 (2NF)&lt;/h3&gt;
+&lt;p&gt;제2정규화는 PK가 여러 키로 구성된 복합키(Composite Primary Key)로 구성된 경우가 2차 정규화의 대상이 되며,
+복합키 전체에 의존하지 않고 복합키의 일부분에만 종속되는 속성들이 존재할 경우 (즉, 부분적 함수 종속 관계) 이를 분리하는 것이다.&lt;/p&gt;
+&lt;p&gt;변환 전:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;주문ID&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;상품ID&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;상품명&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;고객명&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;1&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;101&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;사과&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;홍길동&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;1&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;102&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;바나나&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;홍길동&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;2&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;103&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;딸기&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;김영희&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;2&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;104&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;포도&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;김영희&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;변환 후:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;주문ID&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;고객명&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;1&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;홍길동&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;2&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;김영희&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;상품ID&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;상품명&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;101&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;사과&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;102&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;바나나&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;103&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;딸기&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;104&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;포도&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;제3정규형-3NF&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%A0%9C3%EC%A0%95%EA%B7%9C%ED%98%95-3NF&quot; aria-label=&quot;제3정규형 3NF permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;제3정규형 (3NF)&lt;/h3&gt;
+&lt;p&gt;테이블의 키가 아닌 컬럼들은 기본키에 의존해야 하는데 겉으로는 그런 것처럼 보이지만 실제로는 기본키가 아닌 다른 일반 컬럼에 의존하는 컬럼들이 있을 수 있다.
+이를 (이전적 함수 종속 관계)라고 한다.
+제 3정규화는 PK에 의존하지 않고 일반컬럼에 의존하는 컬럼들을 분리한다.&lt;/p&gt;
+&lt;p&gt;변환 전:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;학생ID&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;이름&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;학과ID&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;학과명&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;1&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;홍길동&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;101&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;컴퓨터학과&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;2&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;김영희&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;102&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;기계공학과&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;변환 후:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;학생ID&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;이름&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;학과ID&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;1&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;홍길동&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;101&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;2&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;김영희&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;102&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;학과ID&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;학과명&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;101&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;컴퓨터학과&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;102&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;기계공학과&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;BCNF-Boyce-Codd-Normal-Form&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#BCNF-Boyce-Codd-Normal-Form&quot; aria-label=&quot;BCNF Boyce Codd Normal Form permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;BCNF (Boyce-Codd Normal Form)&lt;/h3&gt;
+&lt;p&gt;조건: 제3정규형을 만족하며, 모든 결정자가 후보 키여야 한다.&lt;/p&gt;
+&lt;h3 id=&quot;반정규화&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%B0%98%EC%A0%95%EA%B7%9C%ED%99%94&quot; aria-label=&quot;반정규화 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;반정규화&lt;/h3&gt;
+&lt;p&gt;반정규화는 정규화로 나눠진 테이블들을 성능상의 이유로 다시 합치는 작업이다.
+정규화로 인해 테이블들이 여러개로 쪼개져서 join이 많이 발생한다면 성능 이슈가 발생한다.
+이런 경우에는 정규화에는 위배되지만 성능 향상을 위해 테이블을 합치는 방법을 선택할 수 있다.
+그렇다고 정규화를 한다고 해서 반드시 성능을 떨어뜨리는 것이 아니기 때문에 일반화 하지는 말자.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[2667 단지번호붙이기]]></title><description><![CDATA[단지번호붙이기 백준 2667 단지번호붙이기 시간 제한 메모리 제한 제출 정답 맞힌 사람 정답 비율 1 초 128 MB 205711 93257 59242 43.144% 문제 <그림 1>과 같이 정사각형 모양의 지도가 있다.
 1은 집이 있는 곳을,…]]></description><link>https://023-dev.github.io/boj-2667/</link><guid isPermaLink="false">https://023-dev.github.io/boj-2667/</guid><pubDate>Wed, 22 Jan 2025 15:00:00 GMT</pubDate><content:encoded>&lt;h2 id=&quot;단지번호붙이기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%8B%A8%EC%A7%80%EB%B2%88%ED%98%B8%EB%B6%99%EC%9D%B4%EA%B8%B0&quot; aria-label=&quot;단지번호붙이기 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;단지번호붙이기&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/2667&quot;&gt;백준 2667 단지번호붙이기&lt;/a&gt;&lt;/p&gt;
 &lt;table&gt;
@@ -4385,90 +4703,7 @@ Interface: java.lang.Comparable&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 또한 멀티 스레드 안전성을 보장한다.
 불변 객체는 여러 스레드에서 동시에 접근해도 안전하다.
 마지막으로 엔티티의 값 타입으로 사용할 수 있다.
-불변 객체는 값 타입으로 사용하기에 적합하다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Phantom Read와 Gap Lock, Next-Key Lock]]></title><description><![CDATA[Phantom Read란 무엇인가? Phantom Read는 트랜잭션이 동일한 조건의 쿼리를 반복 실행할 때, 나중에 실행된 쿼리에서 처음에는 존재하지 않았던 새로운 행이 나타나는 현상을 말한다.
-이는 주로 읽기 일관성(Read Consistency…]]></description><link>https://023-dev.github.io/database-phantom-read/</link><guid isPermaLink="false">https://023-dev.github.io/database-phantom-read/</guid><pubDate>Sat, 21 Dec 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;Phantom-Read란-무엇인가&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#Phantom-Read%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80&quot; aria-label=&quot;Phantom Read란 무엇인가 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;Phantom Read란 무엇인가?&lt;/h1&gt;
-&lt;p&gt;Phantom Read는 트랜잭션이 동일한 조건의 쿼리를 반복 실행할 때, 나중에 실행된 쿼리에서 처음에는 존재하지 않았던 새로운 행이 나타나는 현상을 말한다.
-이는 주로 읽기 일관성(Read Consistency) 을 유지하는 과정에서 발생할 수 있는 문제로, 데이터의 삽입이나 삭제가 다른 트랜잭션에 의해 이루어질 때 발생한다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 A 시작&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 A 첫 번째 조회&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; orders &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; amount &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;150&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 B 시작&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 B 새로운 행 삽입&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;INTO&lt;/span&gt; orders &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;customer_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; amount&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;VALUES&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;250&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 B 커밋&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;COMMIT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;-- 동일한 조건으로 트랜잭션 A 두 번째 조회시, 트랜잭션 A의 첫 번째 조회에는 존재하지 않던,&lt;/span&gt;
-&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 B에서 삽입된 새로운 행이 함께 조회됨&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; orders &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; amount &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;150&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h1 id=&quot;갭락Gap-Lock이란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B0%AD%EB%9D%BDGap-Lock%EC%9D%B4%EB%9E%80&quot; aria-label=&quot;갭락Gap Lock이란 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;갭락(Gap Lock)이란?&lt;/h1&gt;
-&lt;p&gt;갭 락은 특정 인덱스 값 사이의 공간을 잠그는 락을 의미한다.
-기존 레코드 간의 간격을 보호하여 새로운 레코드의 삽입을 방지한다.
-갭 락은 범위 내에 특정 레코드가 존재하지 않을 때 적용된다.
-트랜잭션이 특정 범위 내에서 데이터의 삽입을 막아 팬텀 읽기(Phantom Read) 현상을 방지한다.
-예를 들어, 인덱스 값 10과 20 사이의 갭을 잠그면 이 범위 내에 새로운 레코드 15를 추가할 수 없다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;-- id 1, 3, 5가 저장된 orders 테이블&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 A 시작&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 A 1-3과 3-5 사이의 갭과 3 레코드 락 설정(넥스트키 락)&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; orders &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; orders_id &lt;span class=&quot;token operator&quot;&gt;BETWEEN&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FOR&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;UPDATE&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 B 시작&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 B가 id 4에 데이터 삽입 시도 시, 갭락으로 인해 삽입이 차단되어 대기&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;INTO&lt;/span&gt; orders &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;orders_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; orders_amount&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;VALUES&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h1 id=&quot;넥스트키-락Next-Key-Lock이란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%84%A5%EC%8A%A4%ED%8A%B8%ED%82%A4-%EB%9D%BDNext-Key-Lock%EC%9D%B4%EB%9E%80&quot; aria-label=&quot;넥스트키 락Next Key Lock이란 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;넥스트키 락(Next-Key Lock)이란?&lt;/h1&gt;
-&lt;p&gt;넥스트키 락은 레코드 락과 갭락을 결합한 형태로, 특정 인덱스 레코드와 그 주변의 갭을 동시에 잠그는 락이다.
-이를 통해 레코드 자체의 변경과 함께 그 주변 공간의 변경도 동시에 제어할 수 있다.&lt;/p&gt;
-&lt;p&gt;넥스트키 락은 특정 레코드와 그 주변 공간을 잠그기 때문에, 다른 트랜잭션이 새로운 레코드를 삽입하여 팬텀 리드를 발생시키는 것을 방지한다.&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;orders_id&lt;/th&gt;
-&lt;th&gt;orders_amount&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;100&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;200&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;3&lt;/td&gt;
-&lt;td&gt;300&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 A 시작&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 A amount = 200인 orders_id = 2 레코드에 대한 레코드 락과 1-2, 2-3에 대한 갭락을 동시에 잠금으로써 넥스트키 락을 설정&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; orders &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; orders_amount &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FOR&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;UPDATE&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 B 시작&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 B orders_id = 4, orders_amount = 200인 레코드 삽입 시도 시, 넥스트키 락으로 인해 차단되어 대기&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;INTO&lt;/span&gt; orders &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;orders_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; order_amount&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;VALUES&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h1 id=&quot;갭락과-넥스트키-락을-통한-팬텀-리드-방지-메커니즘&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B0%AD%EB%9D%BD%EA%B3%BC-%EB%84%A5%EC%8A%A4%ED%8A%B8%ED%82%A4-%EB%9D%BD%EC%9D%84-%ED%86%B5%ED%95%9C-%ED%8C%AC%ED%85%80-%EB%A6%AC%EB%93%9C-%EB%B0%A9%EC%A7%80-%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98&quot; aria-label=&quot;갭락과 넥스트키 락을 통한 팬텀 리드 방지 메커니즘 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;갭락과 넥스트키 락을 통한 팬텀 리드 방지 메커니즘&lt;/h1&gt;
-&lt;p&gt;트랜잭션 A가 특정 범위의 데이터를 조회할 때, 해당 범위에 대해 갭락 또는 넥스트키 락을 설정한다.
-락이 설정된 범위 내에서는 트랜잭션 B가 새로운 레코드를 삽입하거나 기존 레코드를 수정하는 것이 차단된다.
-따라서, 트랜잭션 A가 다시 동일한 조건으로 조회를 수행하더라도, 트랜잭션 B에 의해 새로운 데이터가 삽입되지 않아 팬텀 리드가 발생하지 않는다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[데이터베이스 관리 시스템(DBMS)]]></title><description><![CDATA[…]]></description><link>https://023-dev.github.io/database-dbms/</link><guid isPermaLink="false">https://023-dev.github.io/database-dbms/</guid><pubDate>Sat, 21 Dec 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;여기서 가치있는 정보를 얻으려면 데이터를 많이 수집해야하지만, 무조건 많이 수집하는 것만으로는 충분하지 않다.
+불변 객체는 값 타입으로 사용하기에 적합하다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[데이터베이스 관리 시스템(DBMS)]]></title><description><![CDATA[…]]></description><link>https://023-dev.github.io/database-dbms/</link><guid isPermaLink="false">https://023-dev.github.io/database-dbms/</guid><pubDate>Sat, 21 Dec 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;여기서 가치있는 정보를 얻으려면 데이터를 많이 수집해야하지만, 무조건 많이 수집하는 것만으로는 충분하지 않다.
 수집된 데이터를 효율적으로 관리하고 언제든 필요한 정보를 빠르게 찾아낼 수 있어야 한다.
 이 글에서는 이러한 효율적인 데이터 관리를 위한 데이터베이스 관리 시스템(DBMS)에 대해 알아본다.&lt;/p&gt;
 &lt;h2 id=&quot;파일-시스템의-문제점&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%98-%EB%AC%B8%EC%A0%9C%EC%A0%90&quot; aria-label=&quot;파일 시스템의 문제점 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;파일 시스템의 문제점&lt;/h2&gt;
@@ -4559,7 +4794,91 @@ DBMS는 데이터베이스에 접근하는 사용자의 권한을 관리하여 �
 &lt;li&gt;&lt;a href=&quot;https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EA%B4%80%EB%A6%AC_%EC%8B%9C%EC%8A%A4%ED%85%9C&quot;&gt;데이터베이스 관리 시스템&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://ko.wikipedia.org/wiki/%ED%8C%8C%EC%9D%BC_%EC%8B%9C%EC%8A%A4%ED%85%9C&quot;&gt;파일 시스템&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://coding-factory.tistory.com/214&quot;&gt;데이터베이스의 정의와 특징&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[기본형(Primitive)과 참조형(Reference)]]></title><description><![CDATA[기본형(Primitive)과 참조형(Reference) 자바의 데이터 타입은 크게 기본형(Primitive)과 참조형(Reference…]]></description><link>https://023-dev.github.io/java-primitive-reference/</link><guid isPermaLink="false">https://023-dev.github.io/java-primitive-reference/</guid><pubDate>Fri, 20 Dec 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;기본형Primitive과-참조형Reference&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B8%B0%EB%B3%B8%ED%98%95Primitive%EA%B3%BC-%EC%B0%B8%EC%A1%B0%ED%98%95Reference&quot; aria-label=&quot;기본형Primitive과 참조형Reference permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;기본형(Primitive)과 참조형(Reference)&lt;/h1&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Phantom Read와 Gap Lock, Next-Key Lock]]></title><description><![CDATA[Phantom Read란 무엇인가? Phantom Read는 트랜잭션이 동일한 조건의 쿼리를 반복 실행할 때, 나중에 실행된 쿼리에서 처음에는 존재하지 않았던 새로운 행이 나타나는 현상을 말한다.
+이는 주로 읽기 일관성(Read Consistency…]]></description><link>https://023-dev.github.io/database-phantom-read/</link><guid isPermaLink="false">https://023-dev.github.io/database-phantom-read/</guid><pubDate>Sat, 21 Dec 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;Phantom-Read란-무엇인가&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#Phantom-Read%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80&quot; aria-label=&quot;Phantom Read란 무엇인가 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;Phantom Read란 무엇인가?&lt;/h1&gt;
+&lt;p&gt;Phantom Read는 트랜잭션이 동일한 조건의 쿼리를 반복 실행할 때, 나중에 실행된 쿼리에서 처음에는 존재하지 않았던 새로운 행이 나타나는 현상을 말한다.
+이는 주로 읽기 일관성(Read Consistency) 을 유지하는 과정에서 발생할 수 있는 문제로, 데이터의 삽입이나 삭제가 다른 트랜잭션에 의해 이루어질 때 발생한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 A 시작&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 A 첫 번째 조회&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; orders &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; amount &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;150&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 B 시작&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 B 새로운 행 삽입&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;INTO&lt;/span&gt; orders &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;customer_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; amount&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;VALUES&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;250&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 B 커밋&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;COMMIT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;-- 동일한 조건으로 트랜잭션 A 두 번째 조회시, 트랜잭션 A의 첫 번째 조회에는 존재하지 않던,&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 B에서 삽입된 새로운 행이 함께 조회됨&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; orders &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; amount &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;150&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1 id=&quot;갭락Gap-Lock이란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B0%AD%EB%9D%BDGap-Lock%EC%9D%B4%EB%9E%80&quot; aria-label=&quot;갭락Gap Lock이란 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;갭락(Gap Lock)이란?&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/daangn/mysql-gap-lock-%EB%8B%A4%EC%8B%9C%EB%B3%B4%EA%B8%B0-7f47ea3f68bc&quot;&gt;당근 기술 블로그&lt;/a&gt;
+갭 락은 특정 인덱스 값 사이의 공간을 잠그는 락을 의미한다.
+기존 레코드 간의 간격을 보호하여 새로운 레코드의 삽입을 방지한다.
+갭 락은 범위 내에 특정 레코드가 존재하지 않을 때 적용된다.
+트랜잭션이 특정 범위 내에서 데이터의 삽입을 막아 팬텀 읽기(Phantom Read) 현상을 방지한다.
+예를 들어, 인덱스 값 10과 20 사이의 갭을 잠그면 이 범위 내에 새로운 레코드 15를 추가할 수 없다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;-- id 1, 3, 5가 저장된 orders 테이블&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 A 시작&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 A 1-3과 3-5 사이의 갭과 3 레코드 락 설정(넥스트키 락)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; orders &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; orders_id &lt;span class=&quot;token operator&quot;&gt;BETWEEN&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FOR&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;UPDATE&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 B 시작&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 B가 id 4에 데이터 삽입 시도 시, 갭락으로 인해 삽입이 차단되어 대기&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;INTO&lt;/span&gt; orders &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;orders_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; orders_amount&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;VALUES&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1 id=&quot;넥스트키-락Next-Key-Lock이란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%84%A5%EC%8A%A4%ED%8A%B8%ED%82%A4-%EB%9D%BDNext-Key-Lock%EC%9D%B4%EB%9E%80&quot; aria-label=&quot;넥스트키 락Next Key Lock이란 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;넥스트키 락(Next-Key Lock)이란?&lt;/h1&gt;
+&lt;p&gt;넥스트키 락은 레코드 락과 갭락을 결합한 형태로, 특정 인덱스 레코드와 그 주변의 갭을 동시에 잠그는 락이다.
+이를 통해 레코드 자체의 변경과 함께 그 주변 공간의 변경도 동시에 제어할 수 있다.&lt;/p&gt;
+&lt;p&gt;넥스트키 락은 특정 레코드와 그 주변 공간을 잠그기 때문에, 다른 트랜잭션이 새로운 레코드를 삽입하여 팬텀 리드를 발생시키는 것을 방지한다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;orders_id&lt;/th&gt;
+&lt;th&gt;orders_amount&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;100&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;200&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;300&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 A 시작&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 A amount = 200인 orders_id = 2 레코드에 대한 레코드 락과 1-2, 2-3에 대한 갭락을 동시에 잠금으로써 넥스트키 락을 설정&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; orders &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; orders_amount &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FOR&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;UPDATE&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 B 시작&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;START&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;-- 트랜잭션 B orders_id = 4, orders_amount = 200인 레코드 삽입 시도 시, 넥스트키 락으로 인해 차단되어 대기&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;INTO&lt;/span&gt; orders &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;orders_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; order_amount&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;VALUES&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1 id=&quot;갭락과-넥스트키-락을-통한-팬텀-리드-방지-메커니즘&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B0%AD%EB%9D%BD%EA%B3%BC-%EB%84%A5%EC%8A%A4%ED%8A%B8%ED%82%A4-%EB%9D%BD%EC%9D%84-%ED%86%B5%ED%95%9C-%ED%8C%AC%ED%85%80-%EB%A6%AC%EB%93%9C-%EB%B0%A9%EC%A7%80-%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98&quot; aria-label=&quot;갭락과 넥스트키 락을 통한 팬텀 리드 방지 메커니즘 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;갭락과 넥스트키 락을 통한 팬텀 리드 방지 메커니즘&lt;/h1&gt;
+&lt;p&gt;트랜잭션 A가 특정 범위의 데이터를 조회할 때, 해당 범위에 대해 갭락 또는 넥스트키 락을 설정한다.
+락이 설정된 범위 내에서는 트랜잭션 B가 새로운 레코드를 삽입하거나 기존 레코드를 수정하는 것이 차단된다.
+따라서, 트랜잭션 A가 다시 동일한 조건으로 조회를 수행하더라도, 트랜잭션 B에 의해 새로운 데이터가 삽입되지 않아 팬텀 리드가 발생하지 않는다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[기본형(Primitive)과 참조형(Reference)]]></title><description><![CDATA[기본형(Primitive)과 참조형(Reference) 자바의 데이터 타입은 크게 기본형(Primitive)과 참조형(Reference…]]></description><link>https://023-dev.github.io/java-primitive-reference/</link><guid isPermaLink="false">https://023-dev.github.io/java-primitive-reference/</guid><pubDate>Fri, 20 Dec 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;기본형Primitive과-참조형Reference&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EA%B8%B0%EB%B3%B8%ED%98%95Primitive%EA%B3%BC-%EC%B0%B8%EC%A1%B0%ED%98%95Reference&quot; aria-label=&quot;기본형Primitive과 참조형Reference permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;기본형(Primitive)과 참조형(Reference)&lt;/h1&gt;
 &lt;p&gt;자바의 데이터 타입은 크게 기본형(Primitive)과 참조형(Reference)으로 나눌 수 있다.
 기본형은 정수, 실수, 문자, 논리 등의 값을 저장하는 데이터 타입이고, 참조형은 객체의 주소값을 저장하는 데이터 타입이다.
 기본형과 참조형의 차이점을 이해하고, 데이터 타입을 사용할 때 주의할 점을 살펴보자.&lt;/p&gt;
