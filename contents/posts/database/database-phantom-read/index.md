@@ -33,6 +33,7 @@ SELECT * FROM orders WHERE amount > 150;
 
 # 갭락(Gap Lock)이란?
 
+[당근 기술 블로그](https://medium.com/daangn/mysql-gap-lock-다시보기-7f47ea3f68bc)
 갭 락은 특정 인덱스 값 사이의 공간을 잠그는 락을 의미한다.
 기존 레코드 간의 간격을 보호하여 새로운 레코드의 삽입을 방지한다.
 갭 락은 범위 내에 특정 레코드가 존재하지 않을 때 적용된다.
