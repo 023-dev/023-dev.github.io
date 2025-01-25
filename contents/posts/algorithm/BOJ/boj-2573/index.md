@@ -62,144 +62,165 @@ N과 M은 3 이상 300 이하이다.
 
 ## 풀이
 
-이 문제는 BFS를 활용한 그래프 탐색과 시뮬레이션을 통해 해결했다. 
+이 문제는 BFS를 활용한 그래프 탐색과 시뮬레이션 기능 구현을 통해 해결했다. 
 먼저 입력받은 2차원 배열에서 빙산의 높이를 바닷물과 접한 칸의 개수만큼 줄이는 연산을 매년 수행하며, 
-높이가 0 이하로 떨어지면 바다로 변환한다. 
-이후 BFS를 사용하여 빙산 덩어리의 개수를 계산하고, 
-두 덩어리 이상으로 분리되는 순간을 찾았다. 
-매 반복마다 전체 빙산이 녹아 사라졌는지 확인하며, 
-빙산이 모두 녹을 때까지 분리되지 않을 경우 0을 출력한다. 
-빙산의 녹는 과정을 효율적으로 관리하기 위해 기존 배열을 복사하여 새로운 높이를 동시 업데이트하며, 
-BFS 탐색을 통해 방문 여부를 관리하여 각 덩어리를 정확히 탐색한다. 
-이러한 과정을 매년 반복하며 최초로 빙산이 분리되는 시점을 계산하는 방식으로 문제를 해결한다.
+`exploreChunks` 메서드를 통해 빙산의 덩어리 개수를 구했고, 
+빙산 덩어리가 2개 이상이면 무한루프를 탈출하고 연수를 반환하게 했다.
+이때 `exploreChunks` 메서드는 BFS 탐색을 통해 빙산 덩어리의 개수를 구하는 메서드이다.
+빙산 덩어리의 개수를 구하는 것은 `directions` 배열을 활용한 BFS 탐색을 통해 구현했다.
+`matrixs`의 크기만큼 순회하며 빙산이면 큐에 넣고, 방문처리를 했다.
+`isAllMelted` 메서드 구현을 통해 모든 빙산의 높이가 0이면 모두 녹았다고 판단하고 0을 반환하게 했다.
+
+우선 이렇게 구현을 해서 테스트 값에 대한 결과가 일치하는 것을 보고, 제출했다.
+하지만 테스트 케이스에 대한 결과는 일치했지만, 이유 모를 원인으로 인해 실패했다.
+
+그래서 다시 코드를 살펴보니, 빙산이 녹는 연산을 수행할 때, 새로운 배열에 값을 저장하고,
+이를 다시 `matrix`에 할당하는 방식으로 구현했어야 했다.
+
+이유는 참조값에 대해 동시성 문제였다.
+하나의 `matrix`에서 값을 참조하면서,
+수정을 하는 탓에 동시성 문제가 발생해서 이전 값이 변경되는 문제가 발생했다.
+
+다음엔 이런 실수를 하지 않도록 주의해야겠다.
 
 ```java
 package test.code;
 
+import java.io.*;
 import java.util.*;
 
-public class Main {
-    static int n, m; // 행, 열 크기
-    static int[][] iceberg; // 빙산의 높이 저장 배열
-    static int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}}; // 상, 하, 좌, 우 방향 벡터
+class IceBerg {
+    private int rows;
+    private int columns;
+    private int[][] matrix;
+    private final int [][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        // 입력 처리
-        n = sc.nextInt(); // 행 크기
-        m = sc.nextInt(); // 열 크기
-        iceberg = new int[n][m]; // 빙산 배열 초기화
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                iceberg[i][j] = sc.nextInt();
-            }
-        }
-
-        // 결과 출력: 빙산이 분리되는 최초 시간
-        System.out.println(simulate());
+    private IceBerg(int rows, int columns, int[][] matrix) {
+        this.rows = rows;
+        this.columns = columns;
+        this.matrix = matrix;
     }
 
-    // 빙산이 분리되는 최초의 시간을 구하는 메서드
-    static int simulate() {
+    public static IceBerg of(int rows, int columns, int[][] matrix) {
+        return new IceBerg(rows, columns, matrix);
+    }
+
+    private int simulate() {
         int years = 0;
 
         while (true) {
-            // 빙산 덩어리 확인
             int chunks = countChunks();
             if (chunks >= 2) {
-                return years; // 두 덩어리 이상으로 분리된 경우
+                return years;
             }
-            if (allMelted()) {
-                return 0; // 빙산이 모두 녹은 경우
+            if (isAllMelted()) {
+                return 0;
             }
-
-            // 빙산 녹이기
-            meltIceberg();
+            meltIceburg();
             years++;
         }
     }
 
-    // 빙산을 녹이는 메서드
-    static void meltIceberg() {
-        int[][] newIceberg = new int[n][m]; // 녹은 빙산 배열
-
-        for (int x = 1; x < n - 1; x++) {
-            for (int y = 1; y < m - 1; y++) {
-                if (iceberg[x][y] > 0) { // 빙산인 경우
-                    int waterCount = 0;
-
-                    // 동서남북 탐색
-                    for (int[] dir : directions) {
-                        int nx = x + dir[0];
-                        int ny = y + dir[1];
-                        if (iceberg[nx][ny] == 0) { // 바다인 경우
-                            waterCount++;
+    private void meltIceburg() {
+        int[][] newMatrix = new int[rows][columns];
+        for (int row = 0; row < rows; row++) {
+            for (int column = 0; column < columns; column++) {
+                if (matrix[row][column] > 0) { // 빙산일 경우
+                    int water = 0;
+                    for (int[] direction : directions) {
+                        int movedRow = row + direction[0];
+                        int movedColumn = column + direction[1];
+                        if (movedRow >= 0 && movedRow < rows && movedColumn >= 0 && movedColumn < columns && matrix[movedRow][movedColumn] == 0) {
+                            water++;// 주변 바다 수
                         }
                     }
-
-                    // 녹은 빙산 높이 계산
-                    newIceberg[x][y] = Math.max(0, iceberg[x][y] - waterCount);
+                    newMatrix[row][column] = Math.max(0, matrix[row][column] - water);
+                } else {
+                    newMatrix[row][column] = 0;
                 }
             }
         }
-
-        // 갱신된 빙산 배열을 기존 배열로 업데이트
-        iceberg = newIceberg;
+        matrix = newMatrix;
     }
 
-    // 빙산 덩어리의 개수를 세는 메서드
-    static int countChunks() {
-        boolean[][] visited = new boolean[n][m];
+    private int countChunks() {
         int chunks = 0;
-
-        for (int x = 0; x < n; x++) {
-            for (int y = 0; y < m; y++) {
-                if (iceberg[x][y] > 0 && !visited[x][y]) { // 방문하지 않은 빙산인 경우
-                    bfs(x, y, visited); // BFS로 연결된 덩어리 탐색
+        boolean[][] visited = new boolean[rows][columns];
+        for (int row = 0; row < rows; row++) {
+            for (int column = 0; column < columns; column++) {
+                if (matrix[row][column] > 0 && !visited[row][column]) {
+                    exploreChunk(row, column, visited);
                     chunks++;
                 }
             }
         }
-
         return chunks;
     }
 
-    // BFS로 연결된 빙산 덩어리를 탐색
-    static void bfs(int startX, int startY, boolean[][] visited) {
+    private void exploreChunk(int row, int column, boolean[][] visited) {
         Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[]{startX, startY});
-        visited[startX][startY] = true;
-
+        queue.offer(new int[]{row, column});
+        visited[row][column] = true;
         while (!queue.isEmpty()) {
             int[] current = queue.poll();
-            int x = current[0];
-            int y = current[1];
+            int currentRow = current[0];
+            int currentColumn = current[1];
 
-            for (int[] dir : directions) {
-                int nx = x + dir[0];
-                int ny = y + dir[1];
-
-                if (nx >= 0 && nx < n && ny >= 0 && ny < m && iceberg[nx][ny] > 0 && !visited[nx][ny]) {
-                    visited[nx][ny] = true;
-                    queue.add(new int[]{nx, ny});
+            for (int[] direction : directions) {
+                int movedRow = currentRow + direction[0];
+                int movedColumn = currentColumn + direction[1];
+                if (movedRow >= 0 && movedRow < rows && movedColumn >= 0 && movedColumn < columns && matrix[movedRow][movedColumn] > 0 && !visited[movedRow][movedColumn]) {
+                    queue.offer(new int[]{movedRow, movedColumn});
+                    visited[movedRow][movedColumn] = true;
                 }
             }
         }
     }
 
-    // 빙산이 모두 녹았는지 확인
-    static boolean allMelted() {
-        for (int x = 0; x < n; x++) {
-            for (int y = 0; y < m; y++) {
-                if (iceberg[x][y] > 0) { // 빙산이 남아 있으면
+    // 빙산이 다 녹았는 지 확인
+    private boolean isAllMelted() {
+        for (int row = 0; row < rows; row++) {
+            for (int column = 0; column < columns; column++) {
+                if (matrix[row][column] > 0) {
                     return false;
                 }
             }
         }
         return true;
     }
+
+    public int getMinimumYears() {
+        return simulate();
+    }
 }
 
+public class Main {
+    public static void main(String[] args) throws IOException {
+        // 2차원의 배열
+        // 각 빙산의 높이 -> 양의 정수로 저장
+        // 빙산 이외의 바다 -> 0
+        // 1년마다 상하좌우 방향의 0의 개수 만큼 줄어듦(0까지 줄어듦) -> bfs, 상하좌우 탐색
+        // 한 덩어리의 빙산이 주어짐 -> 두 덩어리가 되는 최소 시간 -> bfs, visited 전과 다를 떄
+        // 만일 전부 녹을때까지 두 덩어리로 분리되지 않으면 0을 출력
+        // 빙하는 10,000개 이하
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
+        int rows = Integer.parseInt(tokenizer.nextToken()); // 3 <= rows <= 300
+        int columns = Integer.parseInt(tokenizer.nextToken()); // 3 <= columns <= 300
+        int[][] matrix = new int[rows][columns];
+        for (int row = 0; row < rows; row++) {
+            tokenizer = new StringTokenizer(reader.readLine());
+            for (int column = 0; column < columns; column++) {
+                matrix[row][column] = Integer.parseInt(tokenizer.nextToken()); // 0<= matrix[row][column] <= 10
+            }
+        }
+        reader.close();
 
+        int result = IceBerg.of(rows, columns, matrix).getMinimumYears();
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+        writer.write(result + "\n");
+        writer.flush();
+        writer.close();
+    }
+}
 ```
