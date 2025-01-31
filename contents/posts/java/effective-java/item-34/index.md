@@ -54,7 +54,7 @@ public enum Orange { NAVEL, TEMPLE, BLOOD }
 
 자바 열거 타입을 뒷받침하는 아이디어는 단순하다.
 열거 타입 자체는 클래스로 하고, 상수 하나당 자신의 인스턴스를 하나씩 만들어 `public static final` 필드로 공개해둔다.
-그럼 외부에서 접근할 수 있다는 것인가? 라고 생각할 수 있다. 
+그럼 외부에서 접근할 수 있다는 것인가? 라고 생각할 수 있다.
 하지만, 열거 타입은 밖에서 접근할 수 있는 생성자를 제공하지 않으므로 사실상 `final`이라고 해도 무방하다.
 따라서 열거 타입 선은으로 만들어진 인스턴스는 하나씩만 존재하다는 것을 보장할 수 있게 된다.(인스턴스 통제)
 
@@ -63,8 +63,8 @@ public enum Orange { NAVEL, TEMPLE, BLOOD }
 
 ## 열거 타입의 장점
 
-열거 타입은 컴파일 타입 안정성을 제공한다. 
-전 예제처럼 `APPLE` 열거 타입 인수에 `ORANGE`를 넘기려 하면 컴파일 오류를 일으킨다. 
+열거 타입은 컴파일 타입 안정성을 제공한다.
+전 예제처럼 `APPLE` 열거 타입 인수에 `ORANGE`를 넘기려 하면 컴파일 오류를 일으킨다.
 
 그리고 이름 같은 상수 공간이 공존하여 열거 타입이 수정되어도 문제가 되지 않는다.
 공개 되는 것이 필드의 이름이라 정수 열거 패턴과 달리 상수 값이 클라이언트로 컴파일되어 각인되지 않는다.
@@ -116,7 +116,7 @@ public enum Planet {
 인지할 점은 열거 타입은 불변이라 모든 필드는 `final`로 선언되어야 하고,
 필드를 `private`으로 선언하고 `public` 접근자 메서드를 제공해야 한다.
 
-## 열거 타입의 배열 
+## 열거 타입의 배열
 
 ```java
 public class WeightTable {
@@ -163,7 +163,7 @@ public enum Operation {
 
 이렇게 하면 `Operation` 열거 타입을 사용하는 클라이언트 코드는 새로운 연산을 추가하거나 기존 연산을 수정하기 쉬워진다.
 그래서 이런 동작을 필요로 한다면 상수별 메서드 구현을 권장하고 있다.
-즉, 열거 타입에 추상 메서드를 선언하고, 각 상수에서 자신에 맞게 동작을 재구현하는 방법이다. 
+즉, 열거 타입에 추상 메서드를 선언하고, 각 상수에서 자신에 맞게 동작을 재구현하는 방법이다.
 이것을 상수별 메서드 구현(`constant-specific method implementation`)이라고 한다.
 
 ```java
@@ -226,4 +226,86 @@ public static Optional<Operation> fromString(String symbol) {
 }
 ```
 
-여기서 `Operation` 상수가 `stringToEnum` 맵에 추가되는 시점은 열거 타입 상수 생성 후 정적 필드가 초기화될 떄다.
+## 열거 타입 정적 필드의 생성 시점
+
+```java
+private static final Map<String, Operation> stringToEnum = 
+        Stream.of(values()).collect(
+    toMap(Object::toString, e -> e));
+```
+
+여기서 `Operation` 상수가 `stringToEnum` 맵에 추가되는 시점은 열거 타입 상수 생성 후 정적 필드가 초기화될 때다.
+스트림이 없던 자바 8이전에는 빈 해시맵에 반환된 배열(`values`)을 순회하며 맵을 추가했을 것이다.
+하지만 열거 타입 상수는 생성자에서 자신의 인스턴스틀 맵에 추가할 수 없게 컴파일 오류가 발생한다.
+만약 이 방식이 허용되었다면 런타임에 `NullPointerException`이 발생할 것이다.
+
+그 이유는 열거 타입에 접근 할 수 있는 방법은 상수 뿐인데,
+열거 타입 생성자가 실행되는 시점에는 정적 필드들이 아직 초기화되기 전이라,
+이러한 자기 자신을 추가하지 못하게 하는 제약이 꼭 필요하다.
+
+
+> 열거 타입 생성자에서 같은 열거 타입의 다른 형제 상수에도 접근할 수 없다.
+
+## 전략 열거 타입 패턴
+
+열거 타입 상수 일부가 같은 동작을 공유한다면 전략 열거 타입 패턴을 사용하면 된다.
+
+> 그렇지 않은 경우에는 `switch`문을 사용하는 것이 더 나은 선택일 수 있다.
+
+```java
+import static effectivejava.chapter6.item34.PayrollDay.PayType.*;
+
+enum PayrollDay {
+    MONDAY(WEEKDAY), TUESDAY(WEEKDAY), WEDNESDAY(WEEKDAY),
+    THURSDAY(WEEKDAY), FRIDAY(WEEKDAY),
+    SATURDAY(WEEKEND), SUNDAY(WEEKEND);
+
+    private final PayType payType;
+
+    PayrollDay(PayType payType) { this.payType = payType; }
+
+    int pay(int minutesWorked, int payRate) {
+        return payType.pay(minutesWorked, payRate);
+    }
+
+    enum PayType {
+        WEEKDAY {
+            int overtimePay(int minsWorked, int payRate) {
+                return minsWorked <= MINS_PER_SHIFT ? 0 :
+                        (minsWorked - MINS_PER_SHIFT) * payRate / 2;
+            }
+        },
+        WEEKEND {
+            int overtimePay(int minsWorked, int payRate) {
+                return minsWorked * payRate / 2;
+            }
+        };
+
+        abstract int overtimePay(int mins, int payRate);
+        private static final int MINS_PER_SHIFT = 8 * 60;
+
+        int pay(int minsWorked, int payRate) {
+            int basePay = minsWorked * payRate;
+            return basePay + overtimePay(minsWorked, payRate);
+        }
+    }
+
+    public static void main(String[] args) {
+        for (PayrollDay day : values())
+            System.out.printf("%-10s%d%n", day, day.pay(8 * 60, 1));
+    }
+}
+```
+
+## 열거 타입을 사용 시점
+
+책에서는 열거 타입의 장점을 설명하는 동시에 사용 시점을 제시한다.
+
+- 필요한 원소를 컴파일 타임에 다 알 수 있는 상수 집합이라면 항상 열거 타입을 사용하자(예: 태양계 행성, 한 주의 요일).
+- 열거 타입에 정의된 상수 개수가 영원히 고정 불변일 필요는 없다(예: 연산 코드, 플래그).
+
+## 정리
+
+열거 타입은 확실히 정수 상수 보다 읽기 쉽고, 안전하고, 강력하여 뛰어나다.
+각 상수를 특정 데이터와 연결짓거나 상수마다 다르게 동작하거나, 하나의 메서드가 상부별로 다르게 동작할 때 열거 타입을 상수별 메서드 구현을 하면 된다.
+그리고 열거 타입 상수 일부가 같은 동작을 공유한다면 전략 열거 타입 패턴을 사용하면 된다.
