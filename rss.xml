@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[RSS Feed of 023.log]]></title><description><![CDATA[야생형 개발자]]></description><link>https://023-dev.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 01 Feb 2025 13:39:48 GMT</lastBuildDate><item><title><![CDATA[JSCODE 스터디 되돌아보기]]></title><description><![CDATA[5주간의 JSCODE…]]></description><link>https://023-dev.github.io/jscode-study-memoir/</link><guid isPermaLink="false">https://023-dev.github.io/jscode-study-memoir/</guid><pubDate>Fri, 31 Jan 2025 23:20:00 GMT</pubDate><content:encoded>&lt;p&gt;5주간의 JSCODE 스터디가 끝났다. 짧다면 짧고, 길다면 길었던 이 시간 동안 나는 면접 준비라는 목표를 넘어, 개발자로서 한층 더 성장할 수 있었다.
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[RSS Feed of 023.log]]></title><description><![CDATA[야생형 개발자]]></description><link>https://023-dev.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 02 Feb 2025 05:19:17 GMT</lastBuildDate><item><title><![CDATA[JSCODE 스터디 되돌아보기]]></title><description><![CDATA[5주간의 JSCODE…]]></description><link>https://023-dev.github.io/jscode-study-memoir/</link><guid isPermaLink="false">https://023-dev.github.io/jscode-study-memoir/</guid><pubDate>Fri, 31 Jan 2025 23:20:00 GMT</pubDate><content:encoded>&lt;p&gt;5주간의 JSCODE 스터디가 끝났다. 짧다면 짧고, 길다면 길었던 이 시간 동안 나는 면접 준비라는 목표를 넘어, 개발자로서 한층 더 성장할 수 있었다.
 처음에는 막연한 두려움과 기대를 안고 시작했지만, 스터디를 통해 스스로의 부족한 점을 파악하고 이를 보완할 기회를 가질 수 있었다.
 이 글을 통해 그 과정과 배운 점을 정리하고자 한다.&lt;/p&gt;
 &lt;h2 id=&quot;스터디를-시작한-이유&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EC%8A%A4%ED%84%B0%EB%94%94%EB%A5%BC-%EC%8B%9C%EC%9E%91%ED%95%9C-%EC%9D%B4%EC%9C%A0&quot; aria-label=&quot;스터디를 시작한 이유 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;스터디를 시작한 이유&lt;/h2&gt;
@@ -745,11 +745,135 @@ REDO 복구는 UNDO 복구와 마찬가지로 버퍼 관리 정책에 영향을 
 &lt;/ul&gt;
 &lt;p&gt;여기서 주의 깊게 봐야 할 부분은 NO-FORCE 정책을 따르더라도, 데이터베이스 백업 복구(미디어 복구, Media Recovery) 과정에서는 REDO 복구가 필요할 수 있다는 점이다.&lt;/p&gt;
 &lt;p&gt;NO-FORCE 정책은 수정된 데이터를 즉시 디스크에 반영하지 않음으로써, 버퍼 관리의 효율성을 높이고 시스템 성능을 개선하는 장점이 있다.
-그러나 이로 인해 장애 발생 시 REDO 복구가 필수적 이 된다.
+그러나 이로 인해 장애 발생 시 REDO 복구가 필수적이 된다.
 반면 FORCE 정책을 사용하면 REDO 복구가 필요 없지만, 모든 커밋 시점마다 디스크 I/O가 발생하여 성능이 저하되는 단점이 있다.&lt;/p&gt;
 &lt;p&gt;사실 FORCE 정책을 따르더라도, 데이터베이스 백업 복구(미디어 복구, Media Recovery) 과정에서는 REDO 복구가 필요할 수 있다.
 따라서 현실적으로 거의 모든 DBMS는 NO-FORCE(¬FORCE) 정책을 채택 하며, 시스템 장애 발생 시 커밋된 트랜잭션을 복구하기 위해 REDO 작업을 수행 한다.&lt;/p&gt;
-&lt;p&gt;정리해&lt;/p&gt;</content:encoded></item><item><title><![CDATA[인덱스만 사용하면 성능이 향상될까?]]></title><description><![CDATA[DBMS는 저장되어 있는 데이터를 효율적으로 검색할 수 있게 인덱스를 사용합니다.
+&lt;p&gt;앞서 살펴본 STEAL 정책과 NO-FORCE 정책을 함께 채택하면, 트랜잭션이 수행되는 동안 변경된 데이터가 언제든지 디스크에 기록될 수도 있고, 반대로 커밋 이후에도 디스크에 기록되지 않았을 수도 있다.
+이로 인해 다음과 같은 복구 작업이 필요해진다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;UNDO 복구: STEAL 정책을 사용하면 아직 커밋되지 않은 데이터가 디스크에 기록될 수 있으므로, 트랜잭션이 롤백될 경우 변경 내용을 되돌려야 한다.&lt;/li&gt;
+&lt;li&gt;REDO 복구: NO-FORCE 정책을 사용하면 커밋된 트랜잭션의 변경 사항이 디스크에 반영되지 않았을 수 있으므로, 시스템 장애 발생 시 이를 다시 적용해야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;정리해보면 DBMS는 성능과 복구 가능성을 모두 고려하여, STEAL + NO-FORCE 정책을 채택하는 것이 일반적이다.
+이러한 정책 선택으로 인해 UNDO 복구(롤백)와 REDO 복구(재적용)가 모두 필요하게 된다.&lt;/p&gt;
+&lt;h2 id=&quot;트랜잭션-관리&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EA%B4%80%EB%A6%AC&quot; aria-label=&quot;트랜잭션 관리 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;트랜잭션 관리&lt;/h2&gt;
+&lt;p&gt;지금까지 살펴본 UNDO 복구와 REDO 복구를 수행하기 위해 가장 널리 사용되는 구조는 로그(Log)이다.
+일부 데이터베이스 시스템에서는 Shadow Paging(Nilavalagan, 2009) 과 같은 복구 기법도 존재하지만, 여기서는 가장 일반적인 로그 기반 복구(Log-Based Recovery) 기법에 초점을 맞추어 설명하겠다.&lt;/p&gt;
+&lt;h3 id=&quot;로그Log란&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%A1%9C%EA%B7%B8Log%EB%9E%80&quot; aria-label=&quot;로그Log란 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;로그(Log)란?&lt;/h3&gt;
+&lt;p&gt;로그는 데이터베이스의 모든 갱신 작업을 기록하는 연속적인 로그 레코드(로그 파일의 단위)로 구성된다.
+이론적으로 로그는 안정적 저장 매체(Stable Storage)에 기록된다고 가정한다.
+안정적 저장 매체란 어떠한 경우에도 데이터 손실이 발생하지 않는 이상적인 저장 매체를 의미하지만, 현실적으로 존재하지 않는다.&lt;/p&gt;
+&lt;p&gt;이를 보완하기 위해 DBMS는 RAID와 같은 하드웨어 보호 기법을 사용하거나, 여러 개의 로그 파일을 유지하여 안정성을 보장하는 방법을 사용한다.
+하지만 성능상의 이유로, 대부분의 DBMS는 하나의 로그 파일만을 유지하는 경우가 많다.&lt;/p&gt;
+&lt;p&gt;로그는 항상 새로운 내용을 덧붙이는(append) 방식으로 기록되며, 각 로그 레코드는 고유한 식별자를 가진다.
+이 식별자를 LSN(Log Sequence Number) 또는 LSA(Log Sequence Address) 라고 부르며, 로그가 추가될 때마다 단조 증가하는 성질을 갖는다.&lt;/p&gt;
+&lt;p&gt;로그 데이터는 저장 방식과 기록 방식에 따라서 분류할 수 있다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;State&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;Transition&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;Physical&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;-&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;Action(DML, DDL)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;Logical&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;이전 이미지 &lt;br&gt; 이후 이미지&lt;/td&gt;
+&lt;td align=&quot;left&quot;&gt;XOR 차이&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;물리적인-상태-로깅Physical-State-Logging&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%AC%BC%EB%A6%AC%EC%A0%81%EC%9D%B8-%EC%83%81%ED%83%9C-%EB%A1%9C%EA%B9%85Physical-State-Logging&quot; aria-label=&quot;물리적인 상태 로깅Physical State Logging permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;물리적인 상태 로깅(Physical State Logging)&lt;/h3&gt;
+&lt;p&gt;DBMS에서 가장 널리 사용되는 로깅 방식으로, 갱신 이전(before-image)과 갱신 이후(after-image)의 물리적인 데이터를 기록한다.
+UNDO 복수 시, 수정 이미지로 데이터를 되돌리고, REDO 복구시, 수정 이후 이미지를 데이터베이스에 반영한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;UPDATE&lt;/span&gt; customer &lt;span class=&quot;token keyword&quot;&gt;SET&lt;/span&gt; balance &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; balance &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;-- UNDO 로그: balance = 기존 값(예: 500)&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;-- REDO 로그: balance = 변경된 값(예: 600)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&quot;물리적인-전이-로깅Physical-Transition-Logging&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%AC%BC%EB%A6%AC%EC%A0%81%EC%9D%B8-%EC%A0%84%EC%9D%B4-%EB%A1%9C%EA%B9%85Physical-Transition-Logging&quot; aria-label=&quot;물리적인 전이 로깅Physical Transition Logging permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;물리적인 전이 로깅(Physical Transition Logging)&lt;/h3&gt;
+&lt;p&gt;XOR 연산을 사용하여 변경된 부분만 기록하는 방식이다.
+전체 페이지나 레코드의 이미지를 저장하는 대신, 수정된 부분만 XOR 연산을 통해 기록하므로 로그 크기를 줄일 수 있다.
+복구 시, 로그에 기록된 XOR 차이를 적용하여 UNDO 및 REDO를 수행한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;UPDATE&lt;/span&gt; customer &lt;span class=&quot;token keyword&quot;&gt;SET&lt;/span&gt; balance &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; balance &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;-- 로그 데이터: XOR(기존 값, 변경 값)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이 방식은 로그 크기를 줄일 수 있는 장점이 있지만, 복구 과정이 복잡해질 수 있다.&lt;/p&gt;
+&lt;h3 id=&quot;논리적인-전이-로깅Logical-Transition-Logging&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%85%BC%EB%A6%AC%EC%A0%81%EC%9D%B8-%EC%A0%84%EC%9D%B4-%EB%A1%9C%EA%B9%85Logical-Transition-Logging&quot; aria-label=&quot;논리적인 전이 로깅Logical Transition Logging permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;논리적인 전이 로깅(Logical Transition Logging)&lt;/h3&gt;
+&lt;p&gt;오퍼레이션 자체를 기록하는 방식으로, 오퍼레이션 로깅(Operation Logging)이라고도 한다.
+물리적인 로그가 결과값을 저장하는 방식이라면, 논리적인 로그는 실행된 연산 자체를 기록한다.
+복구 시 UNDO와 REDO를 위해 연산을 재수행하거나 역 오퍼레이션을 수행한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;UPDATE&lt;/span&gt; customer &lt;span class=&quot;token keyword&quot;&gt;SET&lt;/span&gt; balance &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; balance &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;-- UNDO 로그: balance = balance - 100&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;-- REDO 로그: balance = balance + 100&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;하지만 더 중요한 점은 물리적으로 복구하기 쉽지 않은 자료 구조에 대한 로깅을 쉽게 해준다는 점이다.
+예를 들어, 인덱스 구조로 많이 사용되는 B+-tree 또는 B-tree 는 split, merge 와 같은 SMO(Structure Modification Operation)를 통해서 레코드의 위치가 계속 변경되기 때문에
+로깅 시점과 복구 시점의 데이터 물리적 위치가 같다는 점이 보장되지 않기 때문에(페이지 내의 위치가 다를 수도 있고, 심지어 다른 페이지에 위치할 수도 있다), 물리적인 로그를 통해서 복구하기가 쉽지 않지만, 논리적인 로그를 통해서 보다 쉽게 복구할 수 있다.
+즉, 인덱스에 키 값 k와 포인터 p가 저장되었다는 논리 로그에 대한 REDO 복구는 인덱스에 (k, p)를 다시 삽입하는 작업이면 충분하고, UNDO 복구는 (k, p)를 인덱스에서 제거하는 작업을 수행하면 된다.&lt;/p&gt;
+&lt;p&gt;대부분의 DBMS는 하나의 로깅 방식만 사용하는 것이 아니라, 상황에 따라 여러 가지 방식을 혼용한다.
+MySQL(InnoDB)도 물리적 로깅과 논리적 로깅을 함께 사용하여 복구 성능을 최적화 한다.
+위에서 설명한 3개의 그룹으로 나눠볼 수 있는 로그 레코드가 DBMS 내에 실제로 몇 종류나 필요할까 하는 궁금증이 드는데,
+DBMS마다 다르지만 MySQL(InnoDB)의 경우에는 UNDO 로그, REDO 로그, BINARY 로그(Binlog) 같은 것을 포함하여 약 40여 종류의 로그 레코드가 존재한다.
+또한, DBMS에서 자료 구조마다 복구 연산이 다르기 때문에, 실제로는 로그 레코드보다 훨씬 많은 복구 연산(Recovery Functions)이 필요하다.
+MySQL(InnoDB)의 경우, 약 100여 개의 복구 연산을 가지고 있다.&lt;/p&gt;
+&lt;p&gt;여기서 한 가지 더 얘기할 사항은 로그를 이용한 UNDO 및 REDO 복구는 반드시 멱등성(Idempotency)을 가져야 한다.
+즉, 같은 연산을 여러 번 수행하더라도 동일한 결과를 유지해야 하는 것을 의미하는데, 물리적인 로그를 통한 복구는 자연스럽게 멱등성이 보장되지만, 논리적인 로그를 통한 복구는 그렇게 간단하지 않다.
+예를 들어, 물리적인 로깅을 사용하면, 같은 데이터를 여러 번 복구해도 동일한 결과를 유지할 수 있다.
+하지만, 논리적인 로깅을 사용할 경우, a++ 연산을 여러 번 반복하면 값이 변하는 문제가 발생할 수 있다.
+이러한 문제를 방지하기 위해, DBMS는 한 번 수행한 복구 연산을 다시 수행하지 않도록 제어하는 추가적인 로직을 적용한다.&lt;/p&gt;
+&lt;h2 id=&quot;로그는-어떻게-쓸까&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%A1%9C%EA%B7%B8%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%93%B8%EA%B9%8C&quot; aria-label=&quot;로그는 어떻게 쓸까 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;로그는 어떻게 쓸까?&lt;/h2&gt;
+&lt;p&gt;로그는 로그 타입과 관계없이 다음과 같은 원칙을 준수하여 기록된다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;로그는 데이터베이스에 변경 사항이 반영되기 전에 먼저 기록되어야 한다. 이 원칙을 WAL(Write-Ahead Logging)이라고 하며, UNDO 복구를 위해 반드시 필요한 규칙이다. 즉, 어떤 경우에도 트랜잭션이 수정한 데이터가 디스크에 기록 되지 전에, 해당 변경 사항의 UNDO 정보가 로그에 먼저 기록되어야 한다. 이 원칙이 지켜지지 않으면, 트랜잭션이 롤백될 때 변경 사항을 되돌릴 수 없게 된다.&lt;/li&gt;
+&lt;li&gt;트랜잭션이 정상적으로 종료(Commit)되기 위해서는, REDO 정보가 로그에 기록되어야 한다. 마찬가지로 어떤 경우에도 커밋을 수행하기 전에 반드시 REDO 로그가 기록되어야 하며, 이 원칙이 지켜져야 장애 발생 시 커밋된 데이터를 복구할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;DBMS는 성능 최적화를 위해 로그를 즉시 디스크에 기록하지 않고, 로그 버퍼(Log Buffer)라는 메모리 공간에 먼저 저장한다.
+로그 버퍼에 모아둔 로그들은 일정한 조건이 충족되면 블록 단위로 로그 파일에 기록(flush)된다.&lt;/p&gt;
+&lt;p&gt;로그 버퍼에 저장된 로그 레코드는 다음과 같은 상황에서 로그 파일에 기록된다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;트랜잭션이 커밋을 요청한 경우&lt;/strong&gt;, 커밋을 요청한 트랜잭션의 모든 레코드가 로그 파일에 기록된 후, 트랜잭션이 완료된다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;WAL 규칙을 준수해야 하는 경우&lt;/strong&gt;, 데이터 변경 사항이 디스크에 기록되기 전에, 해당 변경을 되돌릴 수 있도록 UNDO 로그가 반드시 기록되어야 한다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;로그 버퍼가 가득 찬 경우&lt;/strong&gt;, 로그 버퍼는 상대적으로 작기 때문에(보통 수 MB에서 수십 MB 수준), 긴(long) 트랜잭션이 수행 중일 경우 버퍼가 소진될 수 있다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DBMS 내부적으로 로그 기록이 필요한 경우&lt;/strong&gt;, 체크포인트(Checkpoint) 연산, 로그 관리 연산 등으로 인해 DBMS가 주기적으로 로그를 기록하는 경우도 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;대부분의 경우 트랜잭션 커밋(1) 또는 WAL 규칙 준수(2)로 인해 로그가 기록되며, 로그 버퍼 소진(3)이나 DBMS 내부 처리(3)로 인해 추가적으로 기록될 수도 있다.&lt;/p&gt;
+&lt;p&gt;어떤 트랜잭션이 커밋을 요청하면, 해당 트랜잭션의 마지막 로그 레코드까지 로그 파일에 기록되어야 한다.
+예를 들어, 트랜잭션 T1이 커밋될 때, LSN3까지의 로그 레코드가 로그 파일에 기록되어야 한다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;LSN1&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; T1&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; location&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; before&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;after&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# 트랜잭션 T1의 첫 번째 로그&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;LSN2&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; T2&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; location&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; before&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;after&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# 트랜잭션 T2의 첫 번째 로그&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;LSN3&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; T1&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;commit&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;                         &lt;span class=&quot;token comment&quot;&gt;# T1의 커밋 로그&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;트랜잭션 T1이 커밋될 경우, LSN3까지의 모든 로그가 디스크에 기록된 후 커밋이 완료된다.&lt;/p&gt;
+&lt;h2 id=&quot;로그를-쓰는-일은-왜-느릴까&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%EB%A1%9C%EA%B7%B8%EB%A5%BC-%EC%93%B0%EB%8A%94-%EC%9D%BC%EC%9D%80-%EC%99%9C-%EB%8A%90%EB%A6%B4%EA%B9%8C&quot; aria-label=&quot;로그를 쓰는 일은 왜 느릴까 permalink&quot; class=&quot;heading-anchor before&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;15&quot; height=&quot;15&quot; viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z&quot;/&gt;&lt;/svg&gt;&lt;/a&gt;로그를 쓰는 일은 왜 느릴까?&lt;/h2&gt;
+&lt;p&gt;DBMS에서 로그(Log) 레코드가 손실되면 데이터베이스를 복구할 수 없기 때문에, 로그를 최대한 안전하게 기록하는 것이 필수적이다.
+이를 위해 DBMS는 로그를 기록할 때 write 함수(또는 writev 함수) 호출뿐만 아니라 fsync 함수(fsync(2) - Linux man page, 2013) 호출도 수행한다.&lt;/p&gt;
+&lt;p&gt;fsync 함수는 데이터가 디스크에 실제로 기록되는 것을 보장하는 함수이다.
+그러나 리눅스를 포함한 대부분의 운영체제(OS)는 fsync 호출이 반드시 데이터를 디스크에 물리적으로 기록하는 것까지 보장하지는 않는다.
+fyncs 함수 호출은 매우 느린 연산이고, 트랜잭션이 커밋되려면 해당 트랜잭션의 로그가 파일에 완전히 기록되어야 하므로, 커밋을 하려는 트랜잭션은 fsync가 종료되기를 대기해야 한다.&lt;/p&gt;
+&lt;p&gt;더 자세히 보면, DBMS가 로그 버퍼를 디스크에 기록할 때, 단순히 로그 레코드만 기록하는 것이 아니라, 로그 헤더까지 함께 기록되어야 하는데,
+로그 레코드를 먼저 쓰고 fsync 함수를 실행하고, 로그 헤더를 업데이트한 후에 다시 fsync 함수를 실행해야 한다.
+로그는 파일 끝에 덧붙이는(append) 방식으로 저장되므로, 이러한 단계가 없으면 로그 레코드나 헤더가 불완전한 상태로 기록될 수 있다.
+그러나 fsync 호출 시 어떤 버퍼 프레임부터 디스크에 기록될지는 OS가 결정하기 때문에, DBMS가 원하는 순서대로 기록할 방법이 없다.
+이로 인해 여러 단계의 fsync를 수행하면서 로그를 기록 하게 된다&lt;/p&gt;
+&lt;p&gt;하지만 DBMS는 보통 한 번에 하나의 로그 페이지(Log Page)만 기록하는 것이 아니라, 여러 개의 로그 페이지를 동시에 기록한다.
+이 경우, 로그 쓰기 작업은 더 복잡해진다.
+예를 들어, 로그 버퍼 Bi부터 Bk까지 출력하는 경우에, 먼저 Bj부터 Bk까지 로그 파일에 쓰고 fsync 함수를 실행하고, 첫 번째 로그 버퍼인 Bi를 쓴 후 다시 fsync 함수를 실행하고 나서, 비로소 로그 헤더를 업데이트하는 절차로 이루어진다.&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&apos;gatsby-resp-image-figure&apos; style=&apos;margin-bottom: 16px;&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-wrapper&apos; style=&apos;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; &apos;&gt;
+      &lt;a class=&apos;gatsby-resp-image-link&apos; href=&apos;/static/07eb44a93ce31ac00804bf25f0406a58/fda7e/img_2.png&apos; style=&apos;display: block&apos; target=&apos;_blank&apos; rel=&apos;noopener&apos;&gt;
+    &lt;span class=&apos;gatsby-resp-image-background-image&apos; style=&quot;padding-bottom: 53.529411764705884%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAABlUlEQVR42n2SWXLCQAxE5wzsmM3sm/ECNhg7BArufyZFT6lJ+Ssf8mhGbXVrcYPBQP6zfr8vl8tFbrebWZIk0uv17H0+X0hdf8n9XqndZbvdiiPoAVjz7s/xeCzH41E2m435HhMEgSadSxzHEoahxdxsFgrGZTqdqj+TyWRid0Dc2+22VFUleZ5Lt9v9w41GI7P3+214yN1qtbIfi6IwpvV6bef5fLYS9vu9XK9Xe4uiSHLFpWlqfppl1o7T6WStWC6X4mJ1YAYQKBtqYCfYarWsNMB1XVsPIaZfGP+h/PH4Vr9Q8oO4xWIhWKaK5nqSBJUQkJySUMvJkFAHGeSoPxwO1iJE7HY7cXwom5JofKTyT5qMMkjKD8TAYfhWop57jZGUOyekjknhUBoKfps7sDvvw+HQBuFx+GBoAwQkSlS13xLn16O5d00fI5lfIQiIdTodG0gcJ9Ym/+6Y4Ov1MjbYfQDz6tg/cJ/Px/rH21L7zWCez6cReiGO+pkgwKbSpkr2jt6VmoDmgwOf6dqUZWlD8Ql/AICxNeHt/y1LAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;&gt;&lt;/span&gt;
+  &lt;img class=&apos;gatsby-resp-image-image&apos; alt=&apos;로그 버퍼를 로그 파일에 쓰는 순서&apos; title=&apos;&apos; src=&apos;/static/07eb44a93ce31ac00804bf25f0406a58/ca1dc/img_2.png&apos; srcset=&apos;/static/07eb44a93ce31ac00804bf25f0406a58/e7570/img_2.png 170w,
+/static/07eb44a93ce31ac00804bf25f0406a58/f46e7/img_2.png 340w,
+/static/07eb44a93ce31ac00804bf25f0406a58/ca1dc/img_2.png 680w,
+/static/07eb44a93ce31ac00804bf25f0406a58/02d09/img_2.png 1020w,
+/static/07eb44a93ce31ac00804bf25f0406a58/fda7e/img_2.png 1257w&apos; sizes=&apos;(max-width: 680px) 100vw, 680px&apos; style=&apos;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&apos; loading=&apos;lazy&apos; decoding=&apos;async&apos;&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+    &lt;figcaption class=&apos;gatsby-resp-image-figcaption&apos;&gt;로그 버퍼를 로그 파일에 쓰는 순서&lt;/figcaption&gt;
+  &lt;/figure&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[인덱스만 사용하면 성능이 향상될까?]]></title><description><![CDATA[DBMS는 저장되어 있는 데이터를 효율적으로 검색할 수 있게 인덱스를 사용합니다.
 웹 애플리케이션의 백엔드 성능을 높이려고 종종 실행하는 SQL 튜닝이란, SQL이 DBMS의 인덱스를 활용하도록 SQL…]]></description><link>https://023-dev.github.io/database-index-sql/</link><guid isPermaLink="false">https://023-dev.github.io/database-index-sql/</guid><pubDate>Mon, 27 Jan 2025 18:00:00 GMT</pubDate><content:encoded>&lt;p&gt;DBMS는 저장되어 있는 데이터를 효율적으로 검색할 수 있게 인덱스를 사용합니다.
 웹 애플리케이션의 백엔드 성능을 높이려고 종종 실행하는 SQL 튜닝이란, SQL이 DBMS의 인덱스를 활용하도록 SQL을 수정하는 것이라고 할 수 있습니다.
 그러니 인덱스를 잘 이해하고 있다면 더 좋은 SQL을 작성할 수 있을 것이고, 훨씬 더 성능 좋은 애플리케이션을 만들 수 있을 것입니다.
