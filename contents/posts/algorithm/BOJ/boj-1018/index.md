@@ -34,15 +34,62 @@ tags:
 
 ## 풀이
 
-
+체스판 다시 칠하기 문제를 풀면서 가장 먼저 떠올린 방법은 8×8 크기의 체스판을 만들 수 있는 모든 경우를 탐색하는 것이었다. 보드에서 가능한 모든 8×8 영역을 잘라낸 후, 각 영역을 두 가지 체스판 패턴(왼쪽 위가 W 또는 B)과 비교하여 다시 칠해야 하는 개수를 구했다. 처음에는 직접 체스판 패턴을 리스트로 만들어 비교하려고 했는데, `(i + j) % 2` 규칙을 활용하면 불필요한 비교 연산을 줄일 수 있다는 점을 깨달았다. 이렇게 하면 현재 좌표가 W여야 하는지 B여야 하는지를 쉽게 판별할 수 있었고, 두 패턴과의 차이를 계산해 최소 변경 횟수를 구할 수 있었다. 이 방식을 적용해서 `(N-7) × (M-7)` 개의 8×8 영역을 검사하고, 각 영역에서 필요한 최소 변경 횟수를 구한 후 전체 최솟값을 찾는 방식으로 구현했다. 코드의 시간 복잡도는 `O(NM)`이었고, 입력 크기가 최대 50×50이라 충분히 빠르게 동작했다. 결과적으로 원하는 답을 효율적으로 구할 수 있었고, 최적화도 자연스럽게 이루어졌다.
 
 ```java
-public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
+import java.io.*;
 
-        RouterInstaller.of(houses, routes).printDistance();
+public class Main {
+    static char[][] board; // 입력받을 보드
+    static int N, M; // 보드의 크기
+    
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] size = br.readLine().split(" ");
+        N = Integer.parseInt(size[0]);
+        M = Integer.parseInt(size[1]);
+        
+        board = new char[N][M];
+        for (int i = 0; i < N; i++) {
+            board[i] = br.readLine().toCharArray();
+        }
+        
+        int minRepaints = Integer.MAX_VALUE; // 최솟값 초기화
+        
+        // 8x8 체스판을 추출할 수 있는 모든 경우 탐색
+        for (int i = 0; i <= N - 8; i++) {
+            for (int j = 0; j <= M - 8; j++) {
+                minRepaints = Math.min(minRepaints, countRepaints(i, j));
+            }
+        }
+        
+        System.out.println(minRepaints);
+    }
+    
+    // (x, y)에서 시작하는 8x8 체스판을 다시 칠하는 최소 비용 계산
+    public static int countRepaints(int x, int y) {
+        int repaintW = 0; // W로 시작하는 체스판과 비교
+        int repaintB = 0; // B로 시작하는 체스판과 비교
+
+        // 8x8 체스판 검사
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                char currentColor = board[x + i][y + j];
+
+                // 기준 체스판 패턴과 비교
+                if ((i + j) % 2 == 0) { // 짝수 위치
+                    if (currentColor != 'W') repaintW++; // 'W'가 아니면 다시 칠하기
+                    if (currentColor != 'B') repaintB++; // 'B'가 아니면 다시 칠하기
+                } else { // 홀수 위치
+                    if (currentColor != 'B') repaintW++; // 'B'가 아니면 다시 칠하기
+                    if (currentColor != 'W') repaintB++; // 'W'가 아니면 다시 칠하기
+                }
+            }
+        }
+        
+        // W로 시작하는 경우와 B로 시작하는 경우 중 최소값 반환
+        return Math.min(repaintW, repaintB);
     }
 }
+
 ```
