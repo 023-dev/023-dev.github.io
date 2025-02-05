@@ -1,5 +1,5 @@
 ---
-title: "Hustle Coder"
+title: "focus and hustle"
 
 ---
 
