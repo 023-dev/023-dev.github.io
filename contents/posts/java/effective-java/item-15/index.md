@@ -3,7 +3,7 @@ title: "클래스와 멤버의 접근 권한을 최소화하라"
 date: 2025-01-16 00:00:00
 tags: 
   - Java
-  - Effective Java
+series: "Effective Java"
 ---
 
 ## 잘 설계된 컴포넌트
