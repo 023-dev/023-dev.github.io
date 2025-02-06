@@ -3,7 +3,7 @@ title: "인터페이스는 구현하는 쪽을 생각해 설계하라"
 date: 2025-01-16 01:00:00
 tags: 
   - Java
-  - Effective Java
+series: "Effective Java"
 ---
 
 자바 8 이전에는 기존 인터페이스에 메서드르 추하려면 기존 구현체를 수정해야 했고,
