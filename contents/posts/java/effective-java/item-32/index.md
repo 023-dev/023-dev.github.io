@@ -1,9 +1,9 @@
 ---
 title: "제네릭과 가변인수를 함께 쓸 때는 신중하라"
 date: 2025-01-23 01:00:00
-tags: 
+tags:
   - Java
-  - Effective Java
+series: "Effective Java"
 ---
 
 ## 가변인수와 제네릭이 함께 사용될 때의 허점
