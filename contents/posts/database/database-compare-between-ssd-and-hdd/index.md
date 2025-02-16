@@ -187,5 +187,5 @@ TPS는 오히려 기울기가 커지다 10GB 부근에서 급격히 감소하는
 비용에 대비해 성능을 더 효율적으로 향상시킬 수 있다.
 
 ## 참고
-[NAVER D2 이기열](https://d2.naver.com/helloworld/7005)<br>
+
 [Hard disk drive](https://en.wikipedia.org/wiki/Cylinder-head-sector)
