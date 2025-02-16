@@ -2,7 +2,7 @@
 title: "Nginx 설정하기 전에 알면 좋은 글"
 date: 2024-07-17 02:00:00
 tags: 
-  - Java
+  - Nginx
 ---
 
 ## 왜 Nginx를 사용하는가?
