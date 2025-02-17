@@ -3,7 +3,6 @@ title: "SSD를 사용하면 DBMS가 빨라질까?"
 date: 2025-01-17 18:00:00
 tags: 
   - Database
-  - 데이터버퍼
 ---
 
 SSD(Solid State Drive)는 HDD(Hard Disk Drive)에 비해 데이터 처리 속도가 빠르다.
