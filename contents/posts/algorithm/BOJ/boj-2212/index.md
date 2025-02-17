@@ -70,15 +70,15 @@ public class Main {
         }
         Arrays.sort(sensors);
 
-        Integer[] diffs = new Integer[n-1];
+        Integer[] distances = new Integer[n-1];
         for(int i = 0; i < n-1; i++)
-            diffs[i] = sensors[i+1] - sensors[i];
+            distances[i] = sensors[i+1] - sensors[i];
 
-        Arrays.sort(diffs, Collections.reverseOrder());
+        Arrays.sort(distances, Collections.reverseOrder());
 
         int result = 0;
         for(int i = k-1; i < n-1; i++) {
-            result += diffs[i];
+            result += distances[i];
         }
 
 
