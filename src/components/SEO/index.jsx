@@ -1,6 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import { siteUrl } from "../../../blog-config"
+import { gtag } from "../../../blog-config"
 
 const SEO = ({ title, description, url }) => {
   return (
@@ -17,7 +18,7 @@ const SEO = ({ title, description, url }) => {
         {`window.dataLayer = window.dataLayer || []; function gtag()
         {dataLayer.push(arguments)}
         gtag('js', new Date());
-        gtag('config', 'G-LDJQ09Q3V9');`}
+        gtag('config', '`+gtag+`');`}
       </script>
     </Helmet>
   )

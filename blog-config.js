@@ -20,4 +20,5 @@ module.exports = {
     inputPosition: "bottom",
     lang: "ko",
   },
+  gtag: "G-LDJQ09Q3V9",
 }
