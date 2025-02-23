@@ -79,5 +79,5 @@ public static void main(String[] args) {
 
 ## 정리
 
-정확한 답이 필요한 계산ㅁ에는 float와 double을 피하자.
+정확한 답이 필요한 계산에는 float와 double을 피하자.
 소수점 추적은 BigDecimal을 사용하거나, 정수 타입을 사용하자.
