@@ -26,8 +26,7 @@ Spring Boot는 빠르게 개발할 수 있도록 자동 구성 기능 같은 많
 - Static index.html support.
 - Automatic use of a ConfigurableWebBindingInitializer bean (covered later in this document).
 
-> 자세한 내용은 [Spring Boot Reference Guide](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-spring-mvc-auto-configuration)
-> 와 [WebMvcAutoConfiguration](https://docs.spring.io/spring-boot/api/java/org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration.html)를 참고하면 된다.
+> 자세한 내용은 [Spring Boot Reference Guide](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-spring-mvc-auto-configuration)와 [WebMvcAutoConfiguration](https://docs.spring.io/spring-boot/api/java/org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration.html)를 참고하면 된다.
 
 아무튼 여기서 중요한 건 Spring MVC에 대한 자동 구성을 한다는 것이다.
 이러한 자동 구성 환경에서 `@EnableWebMvc`는 재앙이다.
