@@ -1,5 +1,5 @@
 ---
-title: "@Modifying만 사용하면 update/delete가 될까?"
+title: "@Query와 @Modifying만 사용하면 될까?"
 date: 2025-02-25 09:00:00
 tags: 
   - Java
