@@ -1,8 +1,10 @@
 ---
 title: "@EnableWebMvc 사용해도 될까?"
-date: 2025-02-25 09:00:00
+date: 2025-02-24 09:00:00
 tags: 
   - Java
+  - Spring
+  - Troubleshooting
 ---
 
 ## @EnableWebMvc의 함정
