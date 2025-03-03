@@ -169,11 +169,11 @@ fail2ban-client status nginx-bad-request
 Status for the jail: nginx-bad-request
 |- Filter
 |  |- Currently failed:	0
-|  |- Total failed:	0
-|  `- File list:
+|  |- Total failed:	26
+|  `- File list: nginx-bad-request
 `- Actions
-   |- Currently banned:	0
-   |- Total banned:	0
+   |- Currently banned:	3
+   |- Total banned:	5
    `- Banned IP list:
 ```
 
