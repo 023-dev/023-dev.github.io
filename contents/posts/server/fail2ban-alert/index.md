@@ -1,6 +1,6 @@
 ---
 title: "?"
-date: 2025-03-03 23:00:00
+date: 2025-03-04 23:00:00
 tags: 
   - Server
   - AWS
@@ -29,5 +29,6 @@ tags:
 
 ## 참고
 
-- [Slack Incoming Webhooks](https://api.slack.com/messaging/webhooks)
-- [Slack Webhook API](https://jojoldu.tistory.com/552)
+- [Reddit, This is how we are using fail2ban notifications and Slack](https://www.reddit.com/r/linuxadmin/comments/3xslx0/this_is_how_we_are_using_fail2ban_notifications/)
+- [Nihisil, Send notifications to the Slack from fail2ban](https://gist.github.com/Nihisil/29fd2971c9dd109ae245)
+- [Cole Turner, fail2ban-slack-action](https://github.com/coleturner/fail2ban-slack-action)
