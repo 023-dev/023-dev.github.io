@@ -8,6 +8,11 @@ module.exports = {
     email: "mailto:rhdgmltkd88@gmail.com",
   },
   useAbout: true,
+  gtag: "G-LDJQ09Q3V9",
+  utterances: {
+    repo: "023-dev/023-dev.github.io",
+    type: "pathname",
+  },
   // See https://giscus.app/
   giscus: {
     repo: "023-dev/023-dev.github.io",
@@ -20,5 +25,4 @@ module.exports = {
     inputPosition: "bottom",
     lang: "ko",
   },
-  gtag: "G-LDJQ09Q3V9",
 }
