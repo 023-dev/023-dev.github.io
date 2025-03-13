@@ -20,7 +20,7 @@ const Comment = () => {
       inputPosition={giscus.inputPosition}
       lang={giscus.lang}
       theme={theme === "light" ? "light" : "dark"}
-      emitMetadata="0"
+      emitMetadata={giscus.emitMetadata}
     />
   )
 }

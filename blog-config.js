@@ -20,9 +20,10 @@ module.exports = {
     category: "Comments",
     categoryId: "DIC_kwDONKt8Ys4Cll2b",
     mapping: "pathname",
-    strict: "1",
+    strict: "0",
     reactionsEnabled: "1",
     inputPosition: "bottom",
     lang: "ko",
+    emitMetadata: "0",
   },
 }
