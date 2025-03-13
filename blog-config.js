@@ -12,10 +12,10 @@ module.exports = {
   giscus: {
     repo: "023-dev/023-dev.github.io",
     repoId: "R_kgDONKt8Yg=",
-    category: "Announcements",
+    category: "Comments",
     categoryId: "DIC_kwDONKt8Ys4Cll2b",
     mapping: "pathname",
-    strict: "0",
+    strict: "1",
     reactionsEnabled: "1",
     inputPosition: "bottom",
     lang: "ko",

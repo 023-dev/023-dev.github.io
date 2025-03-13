@@ -5,7 +5,7 @@ import Giscus from "@giscus/react"
 import { giscus } from "../../../../blog-config"
 
 const Comment = () => {
-  const { theme } = useSelector(state => state.theme)
+  const { theme } = useSelector(state => state.theme);
 
   return (
     <Giscus
