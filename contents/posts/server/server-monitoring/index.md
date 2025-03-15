@@ -166,8 +166,6 @@ tags:
 
 ---
 
-## TroubleShooting
-
 ## 참고
 
 - [Nihisil, Send notifications to the Slack from fail2ban](https://gist.github.com/Nihisil/29fd2971c9dd109ae245)
