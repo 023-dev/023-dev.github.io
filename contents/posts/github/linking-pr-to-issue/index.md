@@ -1,7 +1,8 @@
 ---
 title: "Nginx 설정하기 전에 보면 좋은 글"
 date: 2024-10-20 02:00:00
-tags: 
+tags:
+  - DevOps
 ---
 
 ## 참고
