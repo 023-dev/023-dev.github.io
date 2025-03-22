@@ -16,7 +16,7 @@ tags:
 아래 링크는 유명한 깃 브랜칭 전략 중 하나인 `git-flow` 전략이다.
 많은 프로젝트에서 사용되는 전략이므로 참고하면 좋을 것이다.
 
-https://nvie.com/posts/a-successful-git-branching-model/
+[Successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
 
 ## Git commit convention
 
@@ -43,13 +43,8 @@ https://nvie.com/posts/a-successful-git-branching-model/
 - `optional detailed description`은 커밋의 상세한 내용을 작성한다.
 
 참고한 링크들은 아래와 같다.
-더 자세한 내용을 알고 싶다면 아래 링크를 참고하면 좋을 것이다.
-
-- reference
-  - https://github.com/joelparkerhenderson/git-commit-message/blob/main/README.md
-  - https://github.com/joelparkerhenderson/git-commit-template/blob/main/git-commit-template.txt
-  - https://www.conventionalcommits.org/en/v1.0.0/
-  - https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13
+더 자세한 내용을 알고 싶다면 맨 아래 링크를 참고하면 좋을 것이다.
+다음 섹션들에 대한 참고 링크도 같은 위치해 있으니 참고하길 바란다.
 
 ## Git branch convention
 
@@ -67,13 +62,6 @@ https://nvie.com/posts/a-successful-git-branching-model/
     - `test/`: 테스트 관련
     - `chore/`: 기타 작업
     - `docs/`: 문서 작업
-
-- reference
-    - https://gist.github.com/digitaljhelms/4287848
-    - https://medium.com/@abhay.pixolo/naming-conventions-for-git-branches-a-cheatsheet-8549feca2534
-    - https://gist.github.com/jpolete/aa31b9043e8e90f8a47c7738669555fa
-    - https://dev.to/jps27cse/github-branching-name-best-practices-49ei
-    - https://blog.injun.dev/posts/git-branch-naming-conventions/
 
 ## Label
 
@@ -105,10 +93,6 @@ https://nvie.com/posts/a-successful-git-branching-model/
     - `priority: high`: 높은 우선 순위
     - `priority: medium`: 보통 우선 순위
     - `priority: low`: 낮은 우선 순위
-
-- reference 
-  - https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels
-  - https://github.com/all-contributors/all-contributors/labels?sort=count-desc
 
 ## Issue template
 
@@ -142,11 +126,6 @@ https://nvie.com/posts/a-successful-git-branching-model/
 ## 참고 사항(선택)
 <!-- 추가적으로 공유할 내용 -->
 ```
-
-- reference
-  - https://github.com/kentcdodds/issue-template
-  - https://github.com/stevemao/github-issue-templates
-
 
 ## Pull request template
 
@@ -198,11 +177,6 @@ https://nvie.com/posts/a-successful-git-branching-model/
   - `resolves`
   - `resolved`
 
-- reference
-  - https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository
-  - https://amaran-th.github.io/Github/%5BGithub%5D%20Issue%20&%20PR%20Template%20%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0/
-  - https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue
-
 ## Bug report template
 
 버그 리포트 템플릿은 이슈 템플릿과 비슷하지만 버그 리포트에 특화된 템플릿을 따로 관리하는 것이 좋다고 생각한다.
@@ -228,13 +202,42 @@ https://nvie.com/posts/a-successful-git-branching-model/
 <!-- 추가적으로 공유할 내용 -->
 ```
 
-- reference
-  - https://docs.github.com/articles/configuring-issue-templates-for-your-repository#configuring-the-template-chooser
-  - https://gist.github.com/lisawolderiksen/a7b99d94c92c6671181611be1641c733
-
 ## 참고
 
-- [Linking a pull request to an issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue)
+[Github PR merge](https://yeoonjae.tistory.com/entry/Project-Github-PR-merge-%EC%8B%9C-issue-%EC%9E%90%EB%8F%99-close-%EB%B0%A9%EB%B2%95)
 
-- [Github PR->merge 시 issue 자동 close 방법](https://yeoonjae.tistory.com/entry/Project-Github-PR-merge-%EC%8B%9C-issue-%EC%9E%90%EB%8F%99-close-%EB%B0%A9%EB%B2%95)
+[Joel Parker Henderson, Git commit message](https://github.com/joelparkerhenderson/git-commit-message/blob/main/README.md)
 
+[Joel Parker Henderson, Git commit template](https://github.com/joelparkerhenderson/git-commit-template/blob/main/git-commit-template.txt)
+
+[Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
+
+[qoomon, conventional commits cheatsheet](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13)
+
+[digitaljhelms, Git/GitHub branching standards & conventions](https://gist.github.com/digitaljhelms/4287848)
+
+[Abhay Amin, Naming conventions for Git Branches — a Cheatsheet](https://medium.com/@abhay.pixolo/naming-conventions-for-git-branches-a-cheatsheet-8549feca2534)
+
+[jpolete, Git Branching Strategy](https://gist.github.com/jpolete/aa31b9043e8e90f8a47c7738669555fa)
+
+[Jack Pritom Soren, GitHub Branching Name Best Practices](https://dev.to/jps27cse/github-branching-name-best-practices-49ei)
+
+[In-Jun Hwang, Git Branch Naming: For Effective Collaboration](https://blog.injun.dev/posts/git-branch-naming-conventions/)
+
+[GitHub Docs, Managing labels](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels)
+
+[all contributors, Labels](https://github.com/all-contributors/all-contributors/labels?sort=count-desc)
+
+[kentcdodds, Issue Template](https://github.com/kentcdodds/issue-template)
+
+[stevemao, GitHub issue templates](https://github.com/stevemao/github-issue-templates)
+
+[GitHub Docs, Creating a pull request template for your repository](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository)
+
+[amaran-th, Github Issue & PR Template](https://amaran-th.github.io/Github/%5BGithub%5D%20Issue%20&%20PR%20Template%20%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0/)
+
+[GitHub Docs, Linking a pull request to an issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue)
+
+[GitHub Docs, Configuring the template chooser](https://docs.github.com/articles/configuring-issue-templates-for-your-repository#configuring-the-template-chooser)
+
+[lisawolderiksen, Using Git Commit Message Templates to Write Better Commit Messages](https://gist.github.com/lisawolderiksen/a7b99d94c92c6671181611be1641c733)
