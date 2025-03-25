@@ -14,8 +14,6 @@ tags:
 구축하고자 하는 파이프라인 구조는 GitHub Actions + AWS ECR + Bastion 서버 + EC2를 활용한 구조이다.
 이 글에서는 이러한 파이프라인을 통해 GitHub Actions에서 SSH로 Private 인스턴스에 배포하는 방법을 설명하겠다.
 
-###
-
 ## 참고
 
 
