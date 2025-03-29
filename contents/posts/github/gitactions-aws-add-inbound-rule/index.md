@@ -16,10 +16,6 @@ tags:
 
 ## 참고
 
-
-
-
-
 [mnavarrocarter, AWS Security Group Inbound Rule Action](https://github.com/marketplace/actions/aws-security-group-inbound-rule-action)
 
 [API GiHub meta](https://api.github.com/meta)
