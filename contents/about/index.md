@@ -42,7 +42,7 @@ And pursue raw intelligence. I believe that the best way to learn is to learn fr
 공부 시간은 무한하지 않다.
 아무리 오래 책상에 앉아 있어도 집중하지 못하면 좋은 결과를 얻을 수 없다.
 그러니 먼저, 스스로 얼마나 집중할 수 있는지 파악해야 한다.
-그렇게 정한 시간은 당분간 바꾸지 말고, 최대한 몰입해보자.
+그렇게 정한 시간은 당분간 바꾸지 말고, 최대한 몰입한다.
 
 ## 번아웃 (Burnout)
 
