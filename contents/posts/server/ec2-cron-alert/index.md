@@ -1,5 +1,5 @@
 ---
-title: "서버 장애를 미리 예측할 수 있을까?"
+title: "서버 장애를 대비해 서버 리소스에 대한 Slack Webhook 처리하기"
 date: 2025-03-03 23:00:00
 tags: 
   - Server

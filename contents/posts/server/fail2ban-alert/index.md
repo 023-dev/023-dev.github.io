@@ -1,5 +1,5 @@
 ---
-title: "Fail2Ban이 일 잘하고 있는 걸까?"
+title: "Fail2Ban의 상태를 Slack Webhhook 처리하기"
 date: 2025-03-04 23:00:00
 tags: 
   - Server
