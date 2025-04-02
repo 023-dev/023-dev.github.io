@@ -1,6 +1,6 @@
 ---
 title: "AWS Bastion Host"
-date: 2026-03-17 23:00:00
+date: 2025-03-17 23:00:00
 tags: 
   - Server
   - AWS
