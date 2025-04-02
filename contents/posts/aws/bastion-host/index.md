@@ -1,11 +1,12 @@
 ---
-title: "서버 장애를 미리 예측할 수 있을까?"
-date: 2025-03-17 23:00:00
+title: "AWS Bastion Host"
+date: 2026-03-17 23:00:00
 tags: 
   - Server
   - AWS
 ---
 
+작성 중..
 
 ## 참고
 

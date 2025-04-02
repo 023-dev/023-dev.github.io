@@ -1,10 +1,11 @@
 ---
-title: "Nginx 설정하기 전에 보면 좋은 글"
-date: 2025-03-15 02:00:00
+title: "SSL Protocol"
+date: 2026-03-15 02:00:00
 tags: 
   - Nginx
 ---
 
+작성 중..
 
 ## 참고
 
