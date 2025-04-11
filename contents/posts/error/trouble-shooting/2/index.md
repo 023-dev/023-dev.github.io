@@ -41,9 +41,7 @@ public class ApiController {
 Spring Boot에서는 `WebMvcConfigurer`를 구현한 클래스를 만들어서 CORS를 전역으로 설정할 수 있다.
 
 ```java
-
 @Configuration
-@EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 
     @Override
