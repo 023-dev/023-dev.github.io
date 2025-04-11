@@ -23,7 +23,7 @@ flutter: <html>
 
 ## Possible Causes
 
-[mdn web docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301)에서 보면 301은 "Moved Permanently"라는 의미로, 요청한 URL이 영구적으로 다른 URL로 이동했음을 나타낸다.
+[MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301)에서 보면 301은 "Moved Permanently"라는 의미로, 요청한 URL이 영구적으로 다른 URL로 이동했음을 나타낸다.
 
 Flutter에서 `http://dev.site.co.kr/api/...` 로 보내는 요청  확인해보면, HTTP 요청이 HTTPS로 리디렉션되고 있었다.
 HTTP 요청 시, Nginx가 HTTPS로 강제 리디렉션(301 Moved Permanently)하게 해주게끔 설정했었다.
