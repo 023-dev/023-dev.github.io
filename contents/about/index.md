@@ -6,8 +6,6 @@ title: "focus and hustle"
 
 ---
 
-<hr>
-
 **I’m a highly driven Software Engineer with a strong focus on building efficient, scalable backend systems using modern Java and Spring technologies.**
 
 My core strength lies in designing robust system architectures that align with both business goals and engineering best practices. I place a strong emphasis on clean code, modular design, and thoughtful abstraction — always aiming to create maintainable and extensible systems.
