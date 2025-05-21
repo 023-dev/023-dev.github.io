@@ -1,6 +1,8 @@
 ---
 title: "URI, URL, URN의 차이"
 date: 2025-05-21 23:00:00
+tags: 
+  - Server
 ---
 
 URI(Uniform Resource Identifier), URL(Uniform Resource Locator), URN(Uniform Resource Name)은 모두 웹 자원을 식별하는 방법이다. 

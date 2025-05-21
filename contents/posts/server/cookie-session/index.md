@@ -1,6 +1,8 @@
 ---
 title: "쿠키(Cookie)와 세션(Session)의 차이"
 date: 2025-05-20 23:00:00
+tags: 
+  - Server
 ---
 
 쿠키(Cookie)와 세션(Session)은 HTTP의 무상태(stateless) 특성을 보완하여 웹 애플리케이션에서 클라이언트와 서버 간의 상태를 유지하기 위해 사용되는 메커니즘이다. 
