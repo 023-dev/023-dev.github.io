@@ -2,9 +2,7 @@
 title: "Spring에서 Object를 Bean으로 관리하는 이유는 뭘까?"
 date: 2025-05-19 09:00:00
 tags: 
-  - Java
   - Spring
-  - Troubleshooting
 ---
 
 최근 리마인드를 할 겸 Spring을 다시 톺아보고 있다.
