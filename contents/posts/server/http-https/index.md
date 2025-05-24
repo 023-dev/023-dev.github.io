@@ -1,33 +1,53 @@
 ---
 title: "HTTP와 HTTPS의 차이"
-date: 2025-05-22 23:00:00
+date: 2025-05-23 23:00:00
 tags: 
   - Server
 ---
 
-URI(Uniform Resource Identifier), URL(Uniform Resource Locator), URN(Uniform Resource Name)은 모두 웹 자원을 식별하는 방법이다. 
-하지만 이들은 서로 다른 개념으로, 각각의 용도와 특징이 있다.
+HTTP(Hypertext Transfer Protocol) 는 웹에서 클라이언트와 서버 간 통신을 위한 통신 규약인 프로토콜 중 하나다. 
+하지만, HTTP는 암호화되지 않는 평문 데이터를 전송하기 때문에 제 3자가 정보를 조회할 수 있다는 위험이 있다. 
+예를 들어, 아래처럼 사용자가 로그인 정보를 입력할 때 HTTP를 통해 전송되면, 이 정보는 암호화되지 않은 상태인 평문으로 전송되어 제 3자가 쉽게 볼 수 있다.
 
-## URI (Uniform Resource Identifier)
+```http request
+POST /login HTTP/1.1
+Host: example.com
+Content-Type: application/x-www-form-urlencoded
+username=username
+password=password1234
+```
 
-URI는 웹 자원을 식별하는 고유한 문자열이다. URI는 URL과 URN을 포함하는 포괄적인 개념이다.
-즉, 특정 자원을 식별하기 위한 포괄적인 방법을 제공하며, 자원의 위치나 이름을 나타낼 수 있다.
+만약 이러한 민감한 정보가 노출되면, 개인 정보 유출이나 해킹 등의 심각한 보안 문제가 발생할 것이다.
+이를 해결하기 위해서 HTTPS가 등장다.
 
-## URL (Uniform Resource Locator)
+HTTPS(Hyertext Transfer Protocol Secure) 는 HTTP에 데이터 암호화가 추가되었다. 
+암호화된 데이터를 전송하기 때문에 제 3자가 볼 수 없도록 할 수 있다.
 
-URL은 URI의 한 형태로, 인터넷상에서 자원의 위치(주소)를 나타낸다.
-자원이 어디에 위치하는지를 명확하게 지정하며, 자원에 접근하기 위한 프로토콜(예: HTTP, FTP 등)도 포함된다.
-예를 들어, 웹페이지의 URL은 `https://www.example.com/index.html` 같은 형태로 해당 페이지가 위치한 서버의 주소와 접근 방법을 포함한다.
+```http request
+POST /login HTTP/1.1
+Host: example.com
+Content-Type: application/x-www-form-urlencoded
+username: qhgVtu0873LqtiOhhGGD5h/41638bVghRFg
+password: wsdrTGD65fTV&87Bgh8Bgr6JI9IL8g990nB
+```
 
-## URN (Uniform Resource Name)
+## HTTPS는 어떻게 적용할 수 있나?
 
-URN은 또다른 URI의 한 형태로, 자원의 위치와 상관없이 자원의 이름을 나타내어 식별하는 방식이다.
-자원의 위치가 변하더라도 동일한 식별자를 사용하여 자원을 참조할 수 있다.
-특정 스키마를 따르며, 자원에 대한 영구적인 식별자를 제공한다.
-예를 들어, ISBN(International Standard Book Number)은 책을 식별하기 위한 URN의 예이다.
+HTTPS를 적용하기 위해서는 인증된 기관(Certificate Authority, CA)에게 인증서를 발급받아야 한다. 
+CA에 인증서를 요청하면 CA 이름, 서버의 공개키, 서버의 정보를 활용하여 인증서를 생성하고 이를 CA 개인 키로 암호화하여 서버로 전송한다. 
+이때 인증서는 CA 개인 키로 암호화되니 신뢰성을 확보할 수 있다. 
+이러한 인증서를 서버측에서 발급받으면 HTTPS를 적용할 수 있다.
 
+## HTTPS 동작 원리는 뭘까?
+
+클라이언트가 서버로 최초로 요청할 때 암호화 알고리즘, 프로토콜 버전, 무작위 값을 전달한다. 
+이를 받은 서버는 클라이언트에게 암호화 알고리즘, 인증서, 무작위 값을 전달하며, 클라이언트는 서버의 인증서를 CA의 공개키로 복호화하여 검증한다. 
+검증이 끝난 이후에는 클라이언트와 서버에서 생성된 무작위 값을 조합하여 Pre Master Secret 값을 생성하여 서버 공개키로 암호화하여 전달한다.
+
+서버는 전달받은 암호화된 데이터를 개인 키로 복호화하여 Pre Master Secret를 얻는다. 
+클라이언트와 서버는 일련의 과정을 통해 Pre Master Secret를 Master Secret으로 변경하고, 해당 정보를 이용해 세션 키를 생성한다. 
+이러한 과정을 TLS 핸드 쉐이크라고 하며, 이후부터 클라이언트와 서버는 세션 키를 활용한 대칭키 암호화 방식으로 데이터 송수신을 수행한다.
 
 ## 참고
 
-- [URI, URL 그리고 URN](https://hudi.blog/uri-url-urn/)
-- [URL이 이상해요! Java와 Spring 중 범인은 누구?](https://tech.kakaopay.com/post/url-is-strange/)
+- [[10분 테코톡] 리니의 HTTPS](https://youtube.com/playlist?list=PLuHgQVnccGMD-9lk4xmb6EG1XK1OmwC3u&si=hQhP1ensUUWyDoe_)
