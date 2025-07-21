@@ -3,7 +3,6 @@ title: "GC 알고리즘(Garbage Collection Algorithms)"
 date: 2025-05-27 00:00:00
 tags: 
   - Java
-  - GC
 ---
 
 ## Serial GC
@@ -25,7 +24,7 @@ Old 영역에서도 멀티 스레드를 활용하여 GC를 수행한다.
 ## CMS GC
 
 CMS(Concurrent Mark-Sweep) GC는 Java 5부터 8까지 사용된 가비지 컬렉터로, 
-애플리케이션 스레드와 병렬로 실행되어 Stop-The-World 시간을 최소화하도록 설계되었다. 
+애플리케이션 스레드와 병렬로 실행되어 Stop-The-World 시간을 최소화하도록 설계되었다.
 하지만 메모리와 CPU 사용량이 많고, 메모리 압축을 수행하지 않아 메모리 단편화 문제가 있었다.
 그래서 Java 9부터 deprecated 처리가 되고, Java 14에서 완전히 제거되었다.
 
