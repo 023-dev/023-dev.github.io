@@ -4,7 +4,7 @@ description:
 date: 2025-09-08
 update: 2025-09-08
 tags:
-  - OS
+  - 운영체제
 ---
 
 ## 쓰레드란?

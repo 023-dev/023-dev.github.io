@@ -4,7 +4,7 @@ description:
 date: 2025-09-12
 update: 2025-09-12
 tags:
-  - OS
+  - 운영체제
 ---
 
 ## 기아 상태와 CPU 스케줄링
