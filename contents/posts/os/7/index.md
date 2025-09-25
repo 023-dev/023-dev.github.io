@@ -1,11 +1,10 @@
 ---
-title: "7. 교착 상태"
+title: "교착 상태"
 description:
-date: 2025-09-19
-update: 2025-09-19
+date: 2025-09-21
+update: 2025-09-21
 tags:
   - 운영체제
-series: "운영체제"
 ---
 
 ## 교착 상태
