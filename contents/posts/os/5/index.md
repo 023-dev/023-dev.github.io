@@ -5,6 +5,7 @@ date: 2025-09-12
 update: 2025-09-12
 tags:
   - 운영체제
+series: "운영체제"
 ---
 
 ## 기아 상태와 CPU 스케줄링
@@ -59,7 +60,7 @@ tags:
 
 스케줄링 방식에는 선점형 스케줄링과 비선점형 스케줄링 방식이 있습니다.
 
-![img_4.png](img_4.png)
+![](img_4.png)
 
 ### 선점형 스케줄링
 
@@ -78,7 +79,7 @@ tags:
 
 ### 선입 선처리 스케줄링
 
-![img.png](img.png)
+![](img.png)
 
 FCFS(First Come First Served) 스케줄링으로, 준비 큐에 삽입된 순서대로 처리하는 비선점 스케줄링 방식입니다.
 CPU를 먼저 요청한 프로세스부터 CPU를 할당합니다.
@@ -87,7 +88,7 @@ CPU를 먼저 요청한 프로세스부터 CPU를 할당합니다.
 
 ### 최단 작업 우선 스케줄링
 
-![img_1.png](img_1.png)
+![](img_1.png)
 
 SJF(Shortest Job First) 스케줄링으로,
 사용 시간이 긴 프로세스를 나중에 실행하고, 
@@ -97,7 +98,7 @@ SJF(Shortest Job First) 스케줄링으로,
 
 ### 라운드 로빈 스케줄링
 
-![img_2.png](img_2.png)
+![](img_2.png)
 
 RR(Round Robin) 스케줄링으로, 
 선입 선처리 스케줄링과 시분할 시스템의 타임 슬라이스(time slice) 개념이 결합된 방식입니디.
@@ -105,7 +106,7 @@ RR(Round Robin) 스케줄링으로,
 
 ### 최소 잔여 시간 우선 스케줄링
 
-![img_3.png](img_3.png)
+![](img_3.png)
 
 SRT(Shortest Remaining Time) 스케줄링으로,
 최단 작업 우선 스케줄링과 라운드 로빈 스케줄링이 결합된 형태입니다.
