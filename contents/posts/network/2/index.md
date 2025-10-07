@@ -1,5 +1,5 @@
 ---
-title: "2. 프로토콜"
+title: "프로토콜"
 description:
 date: 2025-09-30
 update: 2025-09-30

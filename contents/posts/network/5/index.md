@@ -1,5 +1,5 @@
 ---
-title: "5. IP 주소 체계"
+title: "IP 주소 체계"
 description:
 date: 2025-10-03
 update: 2025-10-03

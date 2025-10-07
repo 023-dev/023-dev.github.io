@@ -1,5 +1,5 @@
 ---
-title: "4. IP와 ARP"
+title: "IP와 ARP"
 description:
 date: 2025-10-03
 update: 2025-10-03
