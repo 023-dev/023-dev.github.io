@@ -336,7 +336,18 @@ implementation 'org<span class="token punctuation">.</span>flywaydb<span class="
 </li>
 </ul>
 <h3 id="마이그레이션-파일-작성-규칙" style="position:relative;"><a href="#%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98-%ED%8C%8C%EC%9D%BC-%EC%9E%91%EC%84%B1-%EA%B7%9C%EC%B9%99" aria-label="마이그레이션 파일 작성 규칙 permalink" class="heading-anchor before"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path d="M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z"/></svg></a><strong>마이그레이션 파일 작성 규칙</strong></h3>
-<p><img src="img_1.png" alt="마이그레이션 파일 명명 규칙"></p>
+<p><figure class='gatsby-resp-image-figure' style='margin-bottom: 16px;'>
+    <span class='gatsby-resp-image-wrapper' style='position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; '>
+      <a class='gatsby-resp-image-link' href='/static/844a042b32f85754ddee19c567765131/75539/img_1.png' style='display: block' target='_blank' rel='noopener'>
+    <span class='gatsby-resp-image-background-image' style="padding-bottom: 22.941176470588236%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsTAAALEwEAmpwYAAABMElEQVR42lWQS0/CQBhF+/vd6M4dBmHhxggkCjFqYkIibpTyKAnxCW1pKUhb6bvl+LU7J7mZzJzJzD2jWCsL3dBxNmvyIqc45JQjCAJMw6xYFIfVXp5n1RyGIaZpYq5WGKaO6+44HIoqynprs1t76EuH/T4lSZAkcshlZRu4Wx/L3Mk6qlgcp4RByGLxhbveYCw3UsYnTcsSEUqveUft4QR12kQdnjHVLvC8DfIeTz2V08tjnrU646Fkco5tz8WiwPj+4ajTYKDVmKgNYXUsa4bS7w64H3aYzXuoagtt1sX3d2Si99LXuHm8Qvu4ZaS2GY/bOM6nsBzH9ui9Dpi8XTMedeTCFpb9jvIbSN04F91EmkX4Xqkm6rGsfZc0yUQxrViZKIrJskz+NUKq/mOl8h/sr29g+psZjQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"></span>
+  <img class='gatsby-resp-image-image' alt='마이그레이션 파일 명명 규칙' title='' src='/static/844a042b32f85754ddee19c567765131/ca1dc/img_1.png' srcset='/static/844a042b32f85754ddee19c567765131/e7570/img_1.png 170w,
+/static/844a042b32f85754ddee19c567765131/f46e7/img_1.png 340w,
+/static/844a042b32f85754ddee19c567765131/ca1dc/img_1.png 680w,
+/static/844a042b32f85754ddee19c567765131/75539/img_1.png 839w' sizes='(max-width: 680px) 100vw, 680px' style='width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;' loading='lazy' decoding='async'>
+  </a>
+    </span>
+    <figcaption class='gatsby-resp-image-figcaption'>마이그레이션 파일 명명 규칙</figcaption>
+  </figure></p>
 <ul>
 <li>위치: <code class="language-text">src/main/resources/db/migration</code></li>
 <li>파일명 규칙: <code class="language-text">V{버전번호}__{설명}.sql</code>
@@ -356,19 +367,55 @@ implementation 'org<span class="token punctuation">.</span>flywaydb<span class="
 <ol>
 <li>
 <p>IntelliJ에서 연결한 데이터베이스 소스에서 target할 데이터베이스를 선택합니다.</p>
-<p><img src="img_2.png" alt="img_2.png"></p>
+<p><span class='gatsby-resp-image-wrapper' style='position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; margin-bottom: 16px;'>
+      <a class='gatsby-resp-image-link' href='/static/4d3dba206592fd5e4ea987f26ef3404d/e5fd4/img_2.png' style='display: block' target='_blank' rel='noopener'>
+    <span class='gatsby-resp-image-background-image' style="padding-bottom: 55.88235294117647%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAABOElEQVR42p2SzW7CMBCE/QaVmh8b57dJESEk1LETAxFpoVXpoa3E+7/MdKEHxI1w+DSWV1rtaIYFywCxzhCrDKme4slMkaoUovQgFj7BR8G8aoLcEF2KuCuR2hJJO0XSFQiaFH7lE/xmmF9J5JoWtgnitoCoBQ0E+J2wh9Ilqy4SLcHJ9kTFRAipEwgVwVk4I3DBPu2AvbU4DAO+D7/Y9e/YtFv03RvpAKtXWOk16fr8vug1K72BUTXYtjXoTYOv/QeOP0fstju0StNQEQ3aRt9E1xgoNQd7PJ1KtvONQWRmkJSwX3N4lUO4I/FOoQgES47MFv/JqgS8lqOSvUrZo4WZFkgbiYh6GOoc8iUeXZfLQqpJZgSeLV32EtGnR5b9s+17YM5MwvYhutcZQlUiWmbwCw4+n9zFH11DNyB15OrMAAAAAElFTkSuQmCC'); background-size: cover; display: block;"></span>
+  <img class='gatsby-resp-image-image' alt='img 2' title='' src='/static/4d3dba206592fd5e4ea987f26ef3404d/ca1dc/img_2.png' srcset='/static/4d3dba206592fd5e4ea987f26ef3404d/e7570/img_2.png 170w,
+/static/4d3dba206592fd5e4ea987f26ef3404d/f46e7/img_2.png 340w,
+/static/4d3dba206592fd5e4ea987f26ef3404d/ca1dc/img_2.png 680w,
+/static/4d3dba206592fd5e4ea987f26ef3404d/02d09/img_2.png 1020w,
+/static/4d3dba206592fd5e4ea987f26ef3404d/e5fd4/img_2.png 1022w' sizes='(max-width: 680px) 100vw, 680px' style='width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;' loading='lazy' decoding='async'>
+  </a>
+    </span></p>
 </li>
 <li>
 <p>오른쪽 마우스와 같이 더보기 이벤트 키를 누르면 사진처럼 뜹니다. <code class="language-text">Flyway 마이그레이션</code> 를 클릭합니다.</p>
-<p><img src="img_3.png" alt="img_3.png"></p>
+<p><span class='gatsby-resp-image-wrapper' style='position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 654px; margin-bottom: 16px;'>
+      <a class='gatsby-resp-image-link' href='/static/35fc531b5eebaf67d0587801bd22534d/ba4a2/img_3.png' style='display: block' target='_blank' rel='noopener'>
+    <span class='gatsby-resp-image-background-image' style="padding-bottom: 204.70588235294116%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAApCAYAAAA1bQl+AAAACXBIWXMAAAsTAAALEwEAmpwYAAAFi0lEQVR42rVWaW8aVxS1lE/9nA9NHCfFbDPDMguzgAdmYBh2A2b3mq2tmraq2qpJVDVqf05If08k/4D2X1hP6PbeB5jFQFtVRTp6z2AO991zzn2ztzd93UN88h9xb2/+CgTiv4ZF449IzPiom+51ynAQ7nVU0K9DUe06Ek3hOoe2gnBU+xgRUn8GgonfbgnDYeWDqHsgqA7rdC+h1hhAq3MOscQRRAQDYUJUtDikeGYdTEkVIRxRf78lfBJMvJeNAkhK9kY1CxMjU5rIujtJWR7u/Ylllyca7vW0PwmJxiQsmbcIieaNgMSHIXm8OPITaezn2+Bl6+yidwVXg2fQPx5Btz6AUfsMeo0RnNT6cNa5AFWyQBUXUAST6XEbguHkokI/nhn3/SG0i312WruAQeUMhtULOG9c8f1l6zmM8O/L5jMY1S6h6XShle9By+1B0+2xoTcCL5ZZELbjzvi0/RK67Rfsu69+hh+++QVevXwNX3/+Gl69+Al+/PYd39P6xdPvoVW9ukWzesVOGy+hlswuCOWwNvbNEhTUAquky3Cca3CUcd/xTqBu16GEn7fcFlQzFcglHXBlFxxC0mGeVoTEsiiBw8RY0GyIKBnmVTpQaw2h0hyAU2rhOgR67yhfh/LxAHJeA4KiwRGiVdBZBEX5LJxYIkSFLDUHWjLDNMOD9FGJQ0fl7VwVHLcBhuWBm2+AqrkQRSuJKA5BkCwWT2RXRXlyKI+zhgtpLctK1R60O2fQbJ+CXzmBk+4FHLdOoVTtwPD0OZLXIRw1iIgjghWSHw+XCUNhZSzE0MSiyST8NSnhIHIcwbCGHlPRuDpfyehCzLolTGpFpuil1QrJlLGEDQISikSUdEFE0hiulA4xll7CgkyQTFCNKtPMKhIqS4RYoRQ/oqixUvkE8oUG1DF+Pu5100NSc4lkFXTkeDK7emROGMNcxtIs69bA89vQaI6gfjxEMYo7CfEzFiPC4DIh2iamF0BUsqzgNcHFCjN2edGzrWQGxNGHmlVf6yEnxGkj28xFv5WqXXDQIrsqm1WHfc7Nerh25NjsyIVii3vQSBf5+FonIWHW3mNxxVkVhWwTkvAf42nWOjmHEiYjX2zyL4QiKfSdPkOK22i5clSdyZq3SvgIj1xNY0JUG/vhgZn2wcr4vNIjTEoa+0k9pb1XakNSzk5JEXHZuevD/UBifGL7UNAdZqMgtUYf2t1zKGCV1M9yrQeVeg+T04FGawQpjOR0ghuQVIssZdVWCedHjmIPiUBJORAIThUOYUJC4dQUkemRl5VHUrSNfdeHMTR2PHnEKliNomGTQxonoS+vJiV9x4cJFOVwU/TowxyGn/rk+Tj78OjUx1324T1M+WvRm2dZMlkBiah3R9kKJ9X0/A5CkxubVN5YIRGSogaqTBlOmYVZlnekRTBwHtp3p43ECS1Wqfe5qkU8drHchjxGcVf86DtJxV3LMhKKKApvMHqMRhQKBGoqj2nJ8CNvA/4Yo0l1Z8BOx1eG9YdPeUqoysurLyGdKXO1N0RuUaGa39ZDi9HdoSNkJQcqCkKQ8b7ZJgydavM8xAolzDLdIb3BFR+ulOsW3i80eej5ZnsP83d7KOHjBAVdR2UTss2FiArmdP2bAbu1QroCyNR0RIoYTZj5tNmpsupu7yElI+vU+bShO9nO1TAt5e0VSlRh7i7h3Id0n9BdQhGktYlPX3658+99OCe0sEICVUexo6mz68ibKwzLvIfoNd7D+RMDpYTI6MlgV4UJZa2HwZD8fpoU6waH5wQzPQkElQnOQr5HJbcC7XQzS8qHRVIiynuSHu2CSXk2EyHNL6kNz9QbnrE9TJOyIHz48NB5/Djybv8g8ub+/YO3n+4H3x4cRP4p3jzC7z54EHD3/o/XX9UUPoi/G9mFAAAAAElFTkSuQmCC'); background-size: cover; display: block;"></span>
+  <img class='gatsby-resp-image-image' alt='img 3' title='' src='/static/35fc531b5eebaf67d0587801bd22534d/ba4a2/img_3.png' srcset='/static/35fc531b5eebaf67d0587801bd22534d/e7570/img_3.png 170w,
+/static/35fc531b5eebaf67d0587801bd22534d/f46e7/img_3.png 340w,
+/static/35fc531b5eebaf67d0587801bd22534d/ba4a2/img_3.png 654w' sizes='(max-width: 654px) 100vw, 654px' style='width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;' loading='lazy' decoding='async'>
+  </a>
+    </span></p>
 </li>
 <li>
 <p>소스는 현재 프로젝트 코드 모델로 설정하고, 타깃은 실제 데이터베이스의 스키마를 선택한 다음 확인을 클릭합니다.</p>
-<p><img src="img_4.png" alt="img_4.png"></p>
+<p><span class='gatsby-resp-image-wrapper' style='position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; margin-bottom: 16px;'>
+      <a class='gatsby-resp-image-link' href='/static/766d2e6e01d9a6ddbd606bf4704bff28/f7edd/img_4.png' style='display: block' target='_blank' rel='noopener'>
+    <span class='gatsby-resp-image-background-image' style="padding-bottom: 40.588235294117645%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAAsTAAALEwEAmpwYAAABuElEQVR42p3R3W7aMBQH8KgXQ+OioEoZ1cTAlMSJnZjgJAYSyMeAClXTqqnS7or6lNtDlIu+RrexPQHO2SGtkHa7i5+O7WMd/WUbXzl/E7vxHSHioTfw7ymTW8rik5FMtkmx2SaLTb0f0n/76N521cOQRV8sy2oYF28vukmy3perW1jkN5U/moPLp8C8Wc0XKQg8m6TXUCw/g+cnp96rivspuEw9dzp9YhhGgxT5zb4sPwETycHhU03Z5MQ5VhrpYnqtN8tbTb2ptt0YKW05WJk6OAwDuPEP0+xaRqPRIEtZ/s7Cj8BdVQlseu4EqZrPX5KksoBcrUF6CURiXlPBAkI+qwJMiIN/1gPb7cv+iEd7NZ5BwMKDeyU0JUzbPUdbH6gW9lhzkWqBiRYy06UqdR4VOg3mdY2c6BDjQOrNns1zc2i0Wi0ylvmfscyAc1VZ9hgoDU9sW4JzTDrKYDJZwXS2BqVWeDcBD9MGQVGF0QpEkP06N03LaDabl44VfL+yRk89wh/7A7HrD7wTctwTXBO+6/bdFz22w7s7MvR2+MaPMsqfZJh9ww95j4wz1EYd9O4/dV5nnP0FFRO5gBMDGv0AAAAASUVORK5CYII='); background-size: cover; display: block;"></span>
+  <img class='gatsby-resp-image-image' alt='img 4' title='' src='/static/766d2e6e01d9a6ddbd606bf4704bff28/ca1dc/img_4.png' srcset='/static/766d2e6e01d9a6ddbd606bf4704bff28/e7570/img_4.png 170w,
+/static/766d2e6e01d9a6ddbd606bf4704bff28/f46e7/img_4.png 340w,
+/static/766d2e6e01d9a6ddbd606bf4704bff28/ca1dc/img_4.png 680w,
+/static/766d2e6e01d9a6ddbd606bf4704bff28/02d09/img_4.png 1020w,
+/static/766d2e6e01d9a6ddbd606bf4704bff28/9d567/img_4.png 1360w,
+/static/766d2e6e01d9a6ddbd606bf4704bff28/f7edd/img_4.png 2116w' sizes='(max-width: 680px) 100vw, 680px' style='width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;' loading='lazy' decoding='async'>
+  </a>
+    </span></p>
 </li>
 <li>
 <p>경로를 <code class="language-text">resources/db/migration</code> 으로 하고, 적절한 파일 이름을 작성한 다음 저장을 합니다.</p>
-<p><img src="img_5.png" alt="img_5.png"></p>
+<p><span class='gatsby-resp-image-wrapper' style='position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; margin-bottom: 16px;'>
+      <a class='gatsby-resp-image-link' href='/static/20e0f949e7b5b66f991c246efeb7c1de/89260/img_5.png' style='display: block' target='_blank' rel='noopener'>
+    <span class='gatsby-resp-image-background-image' style="padding-bottom: 77.05882352941177%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAACg0lEQVR42p2T21LTUBSGe8GM2JuCNyU0zaHJzk52kibN+QT0IEWLPoOP4PgGdEafzfEplAtA+giSdLnSgoUBZ5SLb/bsHL78a6+VxgdR3PYHySfVDT4T6p9RI5zfxxnk8zg9nqf5ydxx8jkh/voeDe/WM00Pv1Aj+MhxXLPBv3zVcd38uh8cArPzpW4moLM1mh5BGE/g4OgUoug1JOkUonwKrn8EfjyGQTCEIB5XcXYCfae43N7ZERu7u/tdoto/mWGBqbMbQmjZU41SUvqlIBql7WalYaelToMytMLS0ZxSF1nJJLM0JFbqEvtl92zoq95Fq92WV8IO31tQRQFLk5eU6iBrDsiqDZ0uAdc7hGHxHsbpKUyKt3CUTSELJ5D6I8i8MSTeqMoxve8UVy9aK+FuV5DoQqE2dFVtKSgqCD0CgkxBkBiWHYA/GEIRnUCWIAczLPMYS55AGEzAD8ZVlGLJbi1srRPyXbLgBRV4UVkiwAs1ZJWQaB5EHqZJjqEoaukUKItBIR4QGoCq+RWhIe4HV+1NyWSxx0nAcdKS42S4Y48T6wchvBXm2JQ0nq4SW2YKmhECNaKqbiDR/KtWq71JyO2jZF9e3q4r6o8QDYX+GA6KN3A4nEGBHR0V7yDA89ONCKX/IcTEmNAFA9MwHCdm42olYOLeQAmme5Cw/a9CHc8Mh/cha9lzhX/SPMVjYYdXruvzQkqkuqO9J1YKcfCFuMLf7Ekw7Q2uddc3gy3J5kKUDBBEfYnABroqj1nZ6hwfgddNO6+cwQisfrFuSrPZ5AzqfcN5uxB71g9Jsc/v01P6f0Ul7jmz0u9pPrtMstnXRqPRQRpbiISYCHsm5q1j6zdLm3mKX8iTZQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"></span>
+  <img class='gatsby-resp-image-image' alt='img 5' title='' src='/static/20e0f949e7b5b66f991c246efeb7c1de/ca1dc/img_5.png' srcset='/static/20e0f949e7b5b66f991c246efeb7c1de/e7570/img_5.png 170w,
+/static/20e0f949e7b5b66f991c246efeb7c1de/f46e7/img_5.png 340w,
+/static/20e0f949e7b5b66f991c246efeb7c1de/ca1dc/img_5.png 680w,
+/static/20e0f949e7b5b66f991c246efeb7c1de/02d09/img_5.png 1020w,
+/static/20e0f949e7b5b66f991c246efeb7c1de/9d567/img_5.png 1360w,
+/static/20e0f949e7b5b66f991c246efeb7c1de/89260/img_5.png 2072w' sizes='(max-width: 680px) 100vw, 680px' style='width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;' loading='lazy' decoding='async'>
+  </a>
+    </span></p>
 </li>
 <li>
 <p>그럼 <code class="language-text">src/main/resources/db/migration</code> 에서 파일을 확인할 수 있습니다.</p>
