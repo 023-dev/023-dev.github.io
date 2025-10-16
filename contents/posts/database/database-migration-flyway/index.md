@@ -1,189 +1,107 @@
 ---
-title: "제약 조건(Constraints)"
-date: 2025-01-09 00:00:00
+title: "Flyway를 도입해보자!"
+date: 2025-10-15 23:00:00
 tags: 
-  - Database
+  - 데이터베이스
 ---
 
+기존에는 ddl-auto=create/update 옵션을 사용해 스키마를 관리하고 있었지만,
+이 방식은 환경마다 스키마 불일치가 발생할 수 있고, DB 변경 이력이 추적되지 않습니다.
+이 부분을 해결하고자 Flyway 도입을 하고자 했습니다.
+Flyway를 사용하면 애플리케이션 실행 시 자동으로 데이터베이스와 스키마 이력을 관리하여 모든 환경에서 동일한 마이그레이션 수행할 수 있습니다.
 
-## 제약 조건(Constraints)
-제약 조건이란 데이터의 무결성을 보장하기 위해, 데이터베이스에 저장되는 데이터의 논리적인 조건을 의미한다.
-이러한 제약 조건은 `CREATE TABLE`문을 사용하여 테이블을 생성할 때나,
-`ALTER TABLE`문을 사용하여 테이블을 생성한 후에 제약조건을 지정할 수 있다.
-이와 같은 DDL(Data Definition Language) 문을 사용하여 테이블에 설정할 수 있다.
+### 적용 방법
 
-```sql
-CREATE TABLE table_name (
-    column_name data_type CONSTRAINT constraint_name constraint_type
-);
-```
+- build.gradle 의존성 추가
 
-## NOT NULL
-`NOT NULL` 제약 조건은 특정 컬럼에 NULL 값을 허용하지 않도록 설정하는 제약 조건이다.
-테이블의 필드를 `NOT NULL`로 설정하면, 해당 필드에는 `NULL` 값의 저장을 허용하지 않는다.
+    ```kotlin
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-mysql' // ver for MySQL 8.X
+    ```
 
-```sql
-CREATE TABLE table_name (
-    column_name data_type NOT NULL
-);
-```
+- application.yml 환경 변수 추가
 
-```sql
-ALTER TABLE table_name ADD CONSTRAINT constraint_name NOT NULL (column_name); -- ALTER TABLE 문을 사용하여 제약 조건 추가
-ALTER TABLE table_name MODIFY column_name data_type NOT NULL; -- ALTER TABLE 문을 사용하여 제약 조건 수정
-```
+    ```yaml
+    spring:
+    	jpa:
+    		hibernate:
+    			ddl-auto: validate # or none
+    
+    	flyway:
+    		enabled: true
+    ```
 
-## UNIQUE
 
-`UNIQUE` 제약 조건은 특정 컬럼에 중복된 값을 허용하지 않도록 설정하는 제약 조건이다.
-이 제약 조건은 테이블의 각 행을 고유하게 식별하는데 사용된다.
-즉, 특정 열의 경우 모든 행은 고유한 값을 가져야 한다.
+### **환경별 적용 전략**
 
-```sql
-CREATE TABLE table_name (
-    column_name data_type UNIQUE -- 테이블 생성 시 제약 조건 추가
-);
-```
+- 운영 환경 (application-prod.yml)
 
-```sql
-CREATE TABLE table_name (
-    column_name data_type,
-    CONSTRAINT constraint_name UNIQUE (column_name) -- 테이블 생성 시 제약 조건 추가 및 제약 이름 설정
-);
-```
+    ```yaml
+    spring:
+      flyway:
+        enabled: true
+        locations: classpath:db/migration
+        baseline-on-migrate: true
+        baseline-version: 1
+        validate-on-migrate: true
+        clean-disabled: true   
+    ```
 
-```sql
-ALTER TABLE table_name ADD column_name data_type UNIQUE; -- 이름 설정 불가
-ALTER TABLE table_name ADD CONSTRAINT constraint_name UNIQUE (column_name); -- 이름 설정 가능
-```
+    - `ddl-auto: validate`: Hibernate가 스키마를 건드리지 않게 설정
+    - `baseline-on-migrate: true`, `baseline-version: 1`: 기존 DB를 기준으로 마이그레이션 시작
+    - `clean-disabled: true`: 운영 DB 보호 (실수로 초기화 방지, 운영 환경에선 절대 clean 금지!)
+    - `validate-on-migrate: true`: 마이그레이션 시 검증
 
-`UNIQUE` 제약 조건을 설정하면, 해당 필드는 자동으로 보조 인덱스(INDEX)가 생성된다.
-만일 제약 조건에 이름을 설정하면, 다음과 같은 쿼리로 해당 제약 조건을 삭제할 수 있다.
+- 개발 환경 (application-dev.yml)
 
-```sql
-ALTER TABLE table_name DROP INDEX constraint_name;
-DROP INDEX constraint_name ON table_name;
-```
+    ```yaml
+    spring:
+      flyway:
+        enabled: true
+        locations: classpath:db/migration
+        baseline-on-migrate: false
+        validate-on-migrate: true
+    ```
 
-## PRIMARY KEY
-`PRIMARY KEY` 제약 조건은 테이블의 각 행을 고유하게 식별하는데 사용되는 제약 조건이다.
-테이블의 필드가 기본 키인 경우 필드는 `NULL` 값을 포함할 수 없으며 모든 행은 이 필드에 대해 고유한 값을 가져야 한다.
-즉, `PRIMARY KEY` 제약 조건은 `UNIQUE` 제약 조건과 `NOT NULL` 제약 조건을 모두 포함한다.
-테이블은 기본 키로 하나의 필드만 가질 수 있다.
+    - `ddl-auto: validate`: 엔티티와 DB 스키마를 검증만 하도록 설정
+    - `baseline-on-migrate: false`: 초기 DB는 Flyway migration 파일로 자동 생성
+    - `validate-on-migrate: true`: 마이그레이션 실행 시 스키마 검증
 
-```sql
-CREATE TABLE table_name (
-    column_name data_type PRIMARY KEY -- 테이블 생성 시 제약 조건 추가
-);
-```
+  > 추가적으로 JPA 설정 또한 기존 `update`에서 `validate`로 수정
 
-```sql
-CREATE TABLE table_name (
-    column_name data_type,
-    CONSTRAINT constraint_name PRIMARY KEY (column_name) -- 테이블 생성 시 제약 조건 추가 및 제약 이름 설정
-);
-```
+### **마이그레이션 파일 작성 규칙**
 
-```sql
-ALTER TABLE table_name ADD column_name data_type PRIMARY KEY; -- 이름 설정 불가
-ALTER TABLE table_name ADD CONSTRAINT constraint_name PRIMARY KEY (column_name); -- 이름 설정 가능
-```
+![마이그레이션 파일 명명 규칙](img_1.png)
 
-## FOREIGN KEY
-`FOREIGN KEY` 제약 조건은 참조하는 테이블의 기본 키를 참조하는 필드이다.
-이때 반드시 `UNIQUE`나 `PRIMARY KEY` 제약 조건이 설정되어 있어야 한다.
-일반적으로 이렇게 테이블 간에 일종의 관계를 만든다.
+- 위치: `src/main/resources/db/migration`
+- 파일명 규칙: `V{버전번호}__{설명}.sql`
+    - 예: `V1__init.sql`, `V2__add_project_table.sql`
+- 작성 원칙:
+    - `CREATE TABLE IF NOT EXISTS` 사용
+    - 변경 사항은 반드시 새로운 버전 파일로 추가 (기존 파일 수정 금지)
+    - 데이터 변경이 필요할 경우도 마찬가지 (`V3__insert_default_roles.sql`)
 
-```sql
-CREATE TABLE table_name (
-    column_name data_type,
-    CONSTRAINT constraint_name FOREIGN KEY (column_name) REFERENCES another_table_name (another_column_name) -- 테이블 생성 시 제약 조건 추가 및 제약 이름 설정
-);
-```
+### 마이그레이션 파일 작성 팁(✋ 해당 팁은 IntelliJ 환경입니다.)
 
-```sql
-ALTER TABLE table_name 
-    ADD CONSTRAINT constraint_name FOREIGN KEY (column_name) REFERENCES another_table_name (another_column_name); -- 이름 설정 가능
-```
+1. IntelliJ에서 연결한 데이터베이스 소스에서 target할 데이터베이스를 선택합니다.
 
-## CHECK
-`CHECK` 제약 조건은 특정 컬럼에 저장할 수 있는 값의 범위를 제한하는 제약 조건이다.
+   ![img_2.png](img_2.png)
 
-```sql
-CREATE TABLE table_name (
-    column_name data_type CHECK (condition) -- 테이블 생성 시 제약 조건 추가
-);
-```
+2. 오른쪽 마우스와 같이 더보기 이벤트 키를 누르면 사진처럼 뜹니다. `Flyway 마이그레이션` 를 클릭합니다.
 
-```sql
-CREATE TABLE table_name (
-    column_name data_type,
-    CONSTRAINT constraint_name CHECK (condition) -- 테이블 생성 시 제약 조건 추가 및 제약 이름 설정
-);
-```
+   ![img_3.png](img_3.png)
 
-```sql
-ALTER TABLE table_name ADD column_name data_type CHECK (condition); -- 이름 설정 불가
-ALTER TABLE table_name ADD CONSTRAINT constraint_name CHECK (condition); -- 이름 설정 가능
-```
+3. 소스는 현재 프로젝트 코드 모델로 설정하고, 타깃은 실제 데이터베이스의 스키마를 선택한 다음 확인을 클릭합니다.
 
-## DEFAULT
-`DEFAULT` 제약 조건은 특정 컬럼에 기본값을 설정하는 제약 조건이다.
-이 제약 조건은 특정 컬럼에 값을 입력하지 않았을 때, 자동으로 설정된 기본값이 입력된다.
+   ![img_4.png](img_4.png)
 
-```sql
-CREATE TABLE table_name (
-    column_name data_type DEFAULT default_value -- 테이블 생성 시 제약 조건 추가
-);
-```
+4. 경로를 `resources/db/migration` 으로 하고, 적절한 파일 이름을 작성한 다음 저장을 합니다.
 
-```sql
-ALTER TABLE table_name ADD column_name data_type DEFAULT default_value; -- 이름 설정 불가
-```
+   ![img_5.png](img_5.png)
 
-## ON DELETE / ON UPDATE
-`ON DELETE`와 `ON UPDATE` 제약 조건은 외래 키 제약 조건을 설정할 때 사용된다.
-`ON DELETE` 제약 조건은 참조하는 테이블의 행이 삭제될 때, 참조하는 테이블의 행에 대한 처리 방법을 설정한다.
-반면, `ON UPDATE` 제약 조건은 참조하는 테이블의 행이 업데이트될 때, 참조하는 테이블의 행에 대한 처리 방법을 설정한다.
+5. 그럼 `src/main/resources/db/migration` 에서 파일을 확인할 수 있습니다.
 
-이때 참조한고 있는 테이블의 동작은 다음 키워드를 사용하여 `FOREIGN KEY` 제약 조건을 설정할 때 설정할 수 있다.
+### **참고**
 
-```sql
-CREATE TABLE table_name (
-    column_name data_type,
-    CONSTRAINT constraint_name FOREIGN KEY (column_name) REFERENCES another_table_name (another_column_name) ON DELETE action ON UPDATE action -- 테이블 생성 시 제약 조건 추가 및 제약 이름 설정
-);
-```
-
-```sql
-ALTER TABLE table_name 
-    ADD CONSTRAINT constraint_name FOREIGN KEY (column_name) REFERENCES another_table_name (another_column_name) ON DELETE action ON UPDATE action; -- 이름 설정 가능
-```
-
-설정할 수 있는 `action`은 다음과 같다.
-
-- `CASCADE`: 참조하는 테이블의 행이 삭제되거나 업데이트될 때, 참조하는 테이블의 행도 삭제되거나 업데이트된다.
-- `SET NULL`: 참조하는 테이블의 행이 삭제되거나 업데이트될 때, 참조하는 테이블의 행의 외래 키 값을 `NULL`로 설정한다.
-- `SET DEFAULT`: 참조하는 테이블의 행이 삭제되거나 업데이트될 때, 참조하는 테이블의 행의 외래 키 값을 기본값으로 설정한다.
-- `RESTRICT`: 참조하는 테이블의 행이 삭제되거나 업데이트될 때, 참조하는 테이블의 행이 삭제되거나 업데이트되지 않는다.
-- `NO ACTION`: `RESTRICT`와 동일한 동작을 수행한다.
-
-```sql
-CREATE TABLE table_name (
-    column_name data_type,
-    CONSTRAINT constraint_name FOREIGN KEY (column_name) REFERENCES another_table_name (another_column_name) ON DELETE CASCADE ON UPDATE CASCADE -- 테이블 생성 시 제약 조건 추가 및 제약 이름 설정
-);
-```
-
-## CASCADE
-`CASCADE` 제약 조건은 참조하는 테이블의 행이 삭제되거나 업데이트될 때, 참조하는 테이블의 행도 삭제되거나 업데이트 하게 하여 참조 무결성을 유지한다.
-
-```sql
-CREATE TABLE table_name (
-    column_name data_type,
-    CONSTRAINT constraint_name FOREIGN KEY (column_name) REFERENCES another_table_name (another_column_name) ON DELETE CASCADE ON UPDATE CASCADE -- 테이블 생성 시 제약 조건 추가 및 제약 이름 설정
-);
-```
-
-하지만, `CASCADE` 제약 조건은 데이터의 무결성 유지하는데 유용하지만 위협할 수 있으므로 주의해서 사용해야 한다.
-대표적인 예로, 부모 테이블의 행이 삭제되면 자식 테이블의 행도 삭제되는데, 이러한 경우 데이터 손실이 발생할 수 있다.
+- https://leeeeeyeon-dev.tistory.com/12
+- https://hudi.blog/dallog-flyway/
