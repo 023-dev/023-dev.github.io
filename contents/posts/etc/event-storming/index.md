@@ -181,3 +181,8 @@ tags:
 도입만 하게된다면 새로운 개발자도 누락된 도메인 지식을 빠르게 파악이 가능하다. 그럼 새로운 개발자도 보다 빨리 도메인에 몰입하여 개발할 수 있는 환경이 될 것이다.
 
 이벤트 스토밍을 하면서 얻게 되는 제일 큰 효과는 모두가 같은 사실을 알게 된다는 것이다.
+
+## 참고
+
+- https://www.msaschool.io/operation/design/design-three/
+- https://en.wikipedia.org/wiki/Event_storming
