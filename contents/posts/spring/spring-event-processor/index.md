@@ -11,7 +11,7 @@ tags:
 
 ```java
 public void 회원가입() {
-		회원_가입_처리();
+		회원가입_처리();
 }
 ```
 
@@ -19,7 +19,7 @@ public void 회원가입() {
 
 ```java
 public void 회원가입() {
-		회원_가입_처리();
+		회원가입_처리();
 		emailService.이메일_보내기();
 }
 ```
@@ -28,10 +28,10 @@ public void 회원가입() {
 
 ```java
 public void 회원가입() {
-		회원_가입_처리();
+		회원가입_처리();
 		emailService.이메일_보내기();
-		alimTalkService.카카오톡_알림_보내기();
-		pointService.웰컴_포인_지급하기();
+		talkService.톡_알림_보내기();
+		pointService.포인트_지급하기();
 }
 ```
 
@@ -49,8 +49,8 @@ public void 회원가입() {
 
 ```java
 public void 회원가입() {
-		회원_가입_처리();
-		이벤트발행기.발행(회원가입_이벤트);
+		회원가입_처리();
+        eventPublisher.이벤트_발행(new 회원가입_이벤트());
 }
 ```
 
@@ -59,27 +59,27 @@ public void 회원가입() {
 - email 패키지
 
     ```java
-    @EventListener(회원가입Event)
-    public void handle회원가입Event() {
+    @EventListener(회원가입_이벤트)
+    public void 회원가입_이벤트_처리기() {
     		emailService.이메일_보내기();
     }
     ```
 
-- alim 패키지
+- talk 패키지
 
     ```java
-    @EventListener(회원가입Event)
-    public void handle회원가입Event() {
-    		alimTalkService.카카오톡_알림_보내기();
+    @EventListener(회원가입_이벤트)
+    public void 회원가입_이벤트_처리기() {
+    		talkService.톡_알림_보내기();
     }
     ```
 
 - point 패키지
 
     ```java
-    @EventListener(회원가입Event)
-    public void handle회원가입Event() {
-    		pointService.웰컴_포인_지급하기();
+    @EventListener(회원가입_이벤트)
+    public void 회원가입_이벤트_처리기() {
+    		pointService.포인트_지급하기();
     }
     ```
 
@@ -89,20 +89,20 @@ public void 회원가입() {
 - email 패키지
 
     ```java
-    @EventListener(회원가입Event)
+    @EventListener(회원가입_이벤트)
     @Order(1)
-    public void handle회원가입Event() {
+    public void 회원가입_이벤트_처리기() {
     		emailService.이메일_보내기();
     }
     ```
 
-- alim 패키지
+- talk 패키지
 
     ```java
-    @EventListener(회원가입Event)
+    @EventListener(회원가입_이벤트)
     @Order(2)
-    public void handle회원가입Event() {
-    		alimTalkService.카카오톡_알림_보내기();
+    public void 회원가입_이벤트_처리기() {
+    		talkService.톡_알림_보내기();
     }
     ```
 
@@ -117,17 +117,17 @@ public void 회원가입() {
 
 1. `ApplicationEventPublisher`를 통해 이벤트 객체를 발행한다.
     ```java
-    public void signUp() {
-    		회원_가입_처리();
-    		eventPublisher.publishEvent(new 회원가입Event());
+    public void 회원가입() {
+    		회원가입_처리();
+    		eventPublisher.이벤트_발행(new 회원가입_이벤트());
     }
     ```
 2. `ApplicationEventMulticaster`에서 해당 타입을 처리할 수 있는 리스너만 골라 브로드 캐스트 방식으로 전파한다. 이때 상속관계에 대해서 설정도 가능하다.
 3. 이벤트 수신 및 실행을 한다.
 
     ```java
-    @EventListener(회원가입Event)
-    public void handle회원가입Event() {
+    @EventListener(회원가입_이벤트)
+    public void 회원가입_이벤트_처리기() {
     		emailService.이메일_보내기();
     }
     ```
@@ -139,15 +139,15 @@ public void 회원가입() {
 `eventPublisher.publishEvent(new 회원가입Event());` 라인에서 바로 실행이 될까?
 
 ```java
-public void signUp() {
-		회원_가입_처리();
-		eventPublisher.publishEvent(new 회원가입Event());
+public void 회원가입() {
+		회원가입_처리();
+		eventPublisher.이벤트_발행(new 회원가입_이벤트());
 }
 ```
 
 ```java
-@EventListener(회원가입Event)
-public void handle회원가입Event() {
+@EventListener(회원가입_이벤트)
+public void 회원가입_이벤트_처리기() {
 		emailService.이메일_보내기();
 }
 ```
@@ -157,11 +157,11 @@ public void handle회원가입Event() {
 
 ```java
 @Transactional
-public void signUp() {
-		회원_가입_처리();
-		약관동의저장();
+public void 회원가입() {
+		회원가입_처리();
+		약관동의_저장();
 	  // 기타 등등 회원가입 로직
-		eventPublisher.publishEvent(new 회원가입Event());
+		eventPublisher.이벤트_발행(new 회원가입_이벤트());
 }
 ```
 
