@@ -360,7 +360,7 @@ data-styled.g43[id="Footer__CommentWrapper-sc-zqxmks-7"]{content:"cRSPGb,"}/*!sc
 <p>"그냥 bs=1M count=2048 해도 되고, bs=2G count=1 해도 되는 거 아닌가?"라고 생각할 수도 있다. 맞는 말이지만 서버 성능 관점에서는 완전히 다르다.<br>
 <code class="language-text">bs=1M count=2048</code>이면 1MB씩 2048번 디스크에 쓰라고 명령하면 디스크에 시스템 콜을 2000번이나 보내야 한다.<br>
 그럼 <code class="language-text">bs=2G count=1</code>이면 어떨까? 2GB를 한 번에 올리려고 하면 현재 RAM이 2GB인 t3.small 환경에선 서버가 다운 될 것이다.<br>
-그래서 128MB씩 16번으로 실용적인 관점으로 생각하여 쪼개어 설정했다.</p>
+그래서 실용적인 관점에서 생각하여 128MB씩 16번으로 쪼개어 설정했다.</p>
 </blockquote>
 </li>
 <li><code class="language-text">sudo chmod 600 /swapfile</code>: root만 읽고 쓸 수 있게 설정</li>
