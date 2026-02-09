@@ -13,7 +13,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://old-023-dev.github.io',
+  site: 'https://023-dev.github.io',
 
   vite: {
     plugins: [tailwindcss()]
@@ -21,7 +21,5 @@ export default defineConfig({
 
   integrations: [sitemap(), mdx(), react()],
 
-  adapter: node({
-    mode: 'standalone'
-  })
+
 });
