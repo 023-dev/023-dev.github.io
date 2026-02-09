@@ -5,12 +5,20 @@
 </section>
 
 <script>
-    const container = document.querySelector("section.utterances");
-    const repo = "023-dev/old-023-dev.github.io"; // 예: my-name/my-blog
+    const repo = "023-dev/old-023-dev.github.io";
 
     const createUtterances = (theme) => {
-        if (!container) return;
-        container.innerHTML = "";
+        const container = document.querySelector("section.utterances");
+        if (!container) {
+            console.log("Utterances container not found yet, retrying...");
+            setTimeout(() => createUtterances(theme), 300);
+            return;
+        }
+
+        // Prevent duplicate injection
+        if (container.querySelector("script")) return;
+
+        container.innerHTML = ""; // Clear loading message
         const script = document.createElement("script");
         script.src = "https://utteranc.es/client.js";
         script.setAttribute("repo", repo);
@@ -29,13 +37,14 @@
     };
 
     // Initial load
+    window.addEventListener("load", () => createUtterances(getTheme()));
+    // Also try immediately just in case
     createUtterances(getTheme());
 
     // Theme sync logic
     const updateUtterancesTheme = () => {
         const theme = getTheme();
-        const iframe =
-            document.querySelector<HTMLIFrameElement>(".utterances iframe");
+        const iframe = document.querySelector(".utterances iframe");
 
         if (iframe) {
             const message = {
@@ -44,7 +53,7 @@
             };
             iframe.contentWindow?.postMessage(message, "https://utteranc.es");
         } else {
-            // Fallback if iframe is not yet ready or script hasn't run
+            // If iframe doesn't exist yet, try creating it (this handles late theme switches before load)
             createUtterances(theme);
         }
     };
