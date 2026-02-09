@@ -94,17 +94,18 @@ const HeaderContent = () => {
             </div>
 
             <div className="w-full sticky top-[64px]" style={{
-                height: '50px',
                 zIndex: 2001,
                 backgroundColor: '#FFFFFF',
                 display: 'flex',
-                alignItems: 'center'
+                alignItems: 'center',
+                paddingBottom: '12px',
+                paddingTop: '12px'
             }}>
                 <div className="w-full max-w-screen-xl mx-auto px-4 h-full flex items-center justify-between overflow-x-auto no-scrollbar">
                     <div style={{
                         fontFamily: 'UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
                         fontWeight: '700',
-                        fontSize: '20px',
+                        fontSize: '24px',
                         color: '#000000',
                         marginRight: 'auto'
                     }}>
