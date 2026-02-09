@@ -13,7 +13,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://antigravity-blog.vercel.app',
+  site: 'https://old-023-dev.github.io',
 
   vite: {
     plugins: [tailwindcss()]
