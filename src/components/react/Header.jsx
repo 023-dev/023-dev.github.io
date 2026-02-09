@@ -100,7 +100,16 @@ const HeaderContent = () => {
                 display: 'flex',
                 alignItems: 'center'
             }}>
-                <div className="w-full max-w-screen-xl mx-auto px-4 h-full flex items-center justify-end overflow-x-auto no-scrollbar">
+                <div className="w-full max-w-screen-xl mx-auto px-4 h-full flex items-center justify-between overflow-x-auto no-scrollbar">
+                    <div style={{
+                        fontFamily: 'UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
+                        fontWeight: '700',
+                        fontSize: '20px',
+                        color: '#000000',
+                        marginRight: 'auto'
+                    }}>
+                        Engineering
+                    </div>
                     <div className="flex space-x-8">
                         {['Backend', 'DevOps', 'Etc'].map((item) => (
                             <a key={item} href={`/tags/${item.toLowerCase()}`} style={{
