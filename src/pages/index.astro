@@ -1,0 +1,55 @@
+---
+import { getReadingTime } from "../utils/readingTime";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import FormattedDate from "../components/FormattedDate.astro";
+
+const posts = (await getCollection("blog")).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<BaseLayout title="Astro Tech Blog" wide={true}>
+    <h1 class="text-[44px] font-extrabold tracking-tight mb-8">Latest Posts</h1>
+    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+        {
+            posts.map((post) => (
+                <li class="group flex flex-col h-full">
+                    <a
+                        href={`/blog/${post.slug}/`}
+                        class="block flex flex-col h-full bg-white min-h-[480px] hover:shadow-2xl transition-shadow duration-300"
+                    >
+                        {post.data.heroImage && (
+                            <div class="w-full relative overflow-hidden group aspect-[16/9]">
+                                <Image
+                                    src={post.data.heroImage}
+                                    alt=""
+                                    class="absolute inset-0 w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                                />
+                            </div>
+                        )}
+
+                        <div class="flex-1 flex flex-col p-8 bg-[#f8f8fa]">
+                            {post.data.tags && post.data.tags.length > 0 && (
+                                <div class="mb-2 text-sm text-gray-500 font-medium">
+                                    {post.data.tags.join(", ")}
+                                </div>
+                            )}
+
+                            <h2 class="text-2xl font-medium leading-tight mb-4">
+                                {post.data.title}
+                            </h2>
+
+                            <div class="flex items-center text-sm font-medium text-gray-500 mt-auto">
+                                <FormattedDate date={post.data.date} />
+                                <span class="mx-2 text-gray-300">/</span>
+                                <span>{getReadingTime(post.body)}</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</BaseLayout>

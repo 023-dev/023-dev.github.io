@@ -1,0 +1,72 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+	headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+
+const filteredHeadings = headings.filter((heading) => heading.depth <= 3);
+---
+
+<nav class="toc">
+	<ul class="flex flex-col gap-1 text-[15px]">
+		{
+			filteredHeadings.map((heading) => (
+				<li
+					class={`toc-item depth-${heading.depth} border-l-2 border-transparent hover:border-text-heading transition-colors duration-200`}
+				>
+					<a
+						href={`#${heading.slug}`}
+						class="block pl-4 py-1.5 text-gray-500 hover:text-text-heading transition-colors duration-200 line-clamp-2"
+					>
+						{heading.text}
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</nav>
+
+<script>
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				const id = entry.target.getAttribute('id');
+				if (id) {
+					const tocItem = document.querySelector(`.toc-item a[href="#${id}"]`);
+					if (tocItem) {
+						if (entry.isIntersecting) {
+							document
+								.querySelectorAll('.toc-item')
+								.forEach((item) => item.classList.remove('active'));
+							tocItem.parentElement?.classList.add('active');
+						}
+					}
+				}
+			});
+		},
+		{ rootMargin: '-100px 0px -66%' }
+	);
+
+	const headings = document.querySelectorAll('h1, h2, h3');
+	headings.forEach((heading) => {
+		observer.observe(heading);
+	});
+</script>
+
+<style>
+	.depth-3 {
+		margin-left: 0.75rem;
+	}
+
+	.toc-item.active {
+		border-color: #111827;
+	}
+
+	.toc-item.active a {
+		color: #111827;
+		font-weight: 600;
+	}
+</style>

@@ -1,0 +1,29 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/react/Header.jsx";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+	title: string;
+
+	wide?: boolean;
+}
+
+const { title, wide = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead title={title} />
+	</head>
+	<body class="flex flex-col min-h-screen">
+		<Header client:only="react" />
+		<main
+			class={`flex-grow w-full mx-auto px-4 py-8 ${wide ? "max-w-screen-xl" : "max-w-[700px]"}`}
+		>
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

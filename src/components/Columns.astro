@@ -1,0 +1,27 @@
+---
+interface Props {
+  cols?: number;
+  gap?: string;
+  class?: string;
+}
+
+const { cols = 2, gap = "1rem", class: className } = Astro.props;
+---
+
+<div 
+  class:list={["grid", className]} 
+  style={{ 
+    gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`, 
+    gap: gap 
+  }}
+>
+  <slot />
+</div>
+
+<style>
+  @media (max-width: 768px) {
+    div {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

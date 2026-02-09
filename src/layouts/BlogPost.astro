@@ -1,0 +1,106 @@
+---
+import type { CollectionEntry } from "astro:content";
+import type { MarkdownHeading } from "astro";
+import BaseLayout from "./BaseLayout.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import Comments from "../components/Comments.astro";
+import TableOfContents from "../components/TableOfContents.astro";
+
+type Props = CollectionEntry<"blog">["data"] & {
+	headings?: MarkdownHeading[];
+	readingTime?: string;
+};
+
+const { title, date, headings, readingTime } = Astro.props;
+---
+
+<BaseLayout title={title} wide={true}>
+	<div class="relative mx-auto px-4 max-w-screen-2xl">
+		<div class="grid grid-cols-1 xl:grid-cols-[1fr_700px_1fr] gap-12">
+			<aside
+				class="hidden xl:block justify-self-end w-[240px] col-start-1"
+			>
+				{
+					headings && headings.length > 0 && (
+						<div class="sticky top-[100px]">
+							<TableOfContents headings={headings} />
+						</div>
+					)
+				}
+			</aside>
+
+			<main
+				class="min-w-0 w-full max-w-[700px] mx-auto xl:mx-0 col-start-2"
+			>
+				<div class="mb-8">
+					{
+						Astro.props.tags && Astro.props.tags.length > 0 && (
+							<div class="mb-3 text-[12px] leading-[20px] font-medium text-[#4B4B4B] font-text">
+								{Astro.props.tags.map((tag, i) => (
+									<>
+										<a
+											href={`/tags/${tag}`}
+											class="hover:text-black transition-colors"
+										>
+											{tag}
+										</a>
+										{i < Astro.props.tags.length - 1 && (
+											<span class="mr-1">,</span>
+										)}
+									</>
+								))}
+							</div>
+						)
+					}
+
+					<h1
+						class="text-[36px] leading-[44px] font-bold text-black mb-[20px] font-heading tracking-tight"
+					>
+						{title}
+					</h1>
+
+					<div
+						class="flex items-center gap-1 text-[#4B4B4B] text-[12px] leading-[20px] font-medium font-text"
+					>
+						<FormattedDate date={date} />
+						{
+							readingTime && (
+								<>
+									<span>/</span>
+									<span>{readingTime}</span>
+								</>
+							)
+						}
+						<span>/</span>
+						<div class="flex items-center">
+							<span id="view-count" class="min-w-[1ch]">0</span>
+							<span class="ml-1">views</span>
+						</div>
+					</div>
+				</div>
+				<div
+					class="prose prose-pre:bg-gray-900 prose-pre:text-gray-50 prose-pre:shadow-lg prose-pre:rounded-xl"
+				>
+					<slot />
+				</div>
+				<Comments />
+			</main>
+		</div>
+	</div>
+</BaseLayout>
+
+<script>
+	const viewCountElement = document.getElementById("view-count");
+	if (viewCountElement) {
+		const slug = window.location.pathname.replace(/^\/blog\/|\/$/g, "");
+		fetch(`/api/views/${slug}`)
+			.then((res) => res.json())
+			.then((data) => {
+				viewCountElement.textContent = data.views.toLocaleString();
+				viewCountElement.classList.add("fade-in");
+			})
+			.catch(() => {
+				viewCountElement.textContent = "0";
+			});
+	}
+</script>
