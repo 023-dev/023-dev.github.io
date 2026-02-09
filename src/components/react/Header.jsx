@@ -102,13 +102,13 @@ const HeaderContent = () => {
             }}>
                 <div className="w-full max-w-screen-xl mx-auto px-4 h-full flex items-center justify-end overflow-x-auto no-scrollbar">
                     <div className="flex space-x-8">
-                        {['All', 'Engineering', 'Backend', 'DevOps', 'Etc'].map((item) => (
-                            <a key={item} href={item === 'All' ? '/' : `/tags/${item.toLowerCase()}`} style={{
+                        {['Backend', 'DevOps', 'Etc'].map((item) => (
+                            <a key={item} href={`/tags/${item.toLowerCase()}`} style={{
                                 textDecoration: 'none',
-                                color: item === 'All' ? '#000000' : '#555555',
+                                color: '#555555',
                                 fontFamily: 'UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
                                 fontSize: '14px',
-                                fontWeight: item === 'All' ? '500' : '400',
+                                fontWeight: '400',
                                 whiteSpace: 'nowrap',
                                 cursor: 'pointer'
                             }}>
