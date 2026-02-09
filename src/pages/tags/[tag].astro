@@ -33,12 +33,10 @@ const { tag, posts } = Astro.props;
         <h1
             class="text-[44px] font-bold tracking-tight mb-4 font-heading leading-none capitalize"
         >
-            {tag} Engineering
+            {tag}
         </h1>
-        <p class="text-[20px] text-[#555] font-text font-normal">
-            The technology behind 023 {
-                tag.charAt(0).toUpperCase() + tag.slice(1)
-            } Engineering
+        <p class="text-[20px] text-[#555] font-text font-normal capitalize">
+            {tag} Engineering
         </p>
     </div>
     <ul
