@@ -101,7 +101,7 @@ const HeaderContent = () => {
                 paddingBottom: '12px',
                 paddingTop: '12px'
             }}>
-                <div className="w-full max-w-screen-xl mx-auto px-4 h-full flex items-center justify-between overflow-x-auto no-scrollbar">
+                <div className="w-full max-w-[1340px] mx-auto px-4 h-full flex items-center justify-between overflow-x-auto no-scrollbar">
                     <div style={{
                         fontFamily: 'UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
                         fontWeight: '700',
