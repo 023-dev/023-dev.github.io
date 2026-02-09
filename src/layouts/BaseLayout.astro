@@ -20,7 +20,7 @@ const { title, wide = false } = Astro.props;
 	<body class="flex flex-col min-h-screen">
 		<Header client:only="react" />
 		<main
-			class={`flex-grow w-full mx-auto px-4 py-8 ${wide ? "max-w-[1440px]" : "max-w-[700px]"}`}
+			class={`flex-grow w-full mx-auto px-4 py-8 ${wide ? "max-w-[1340px]" : "max-w-[700px]"}`}
 		>
 			<slot />
 		</main>
