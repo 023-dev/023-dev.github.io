@@ -29,11 +29,18 @@ const { tag, posts } = Astro.props;
 ---
 
 <BaseLayout title={`Posts tagged with ${tag}`} wide={true}>
-    <h1
-        class="text-4xl font-extrabold tracking-tight sm:text-5xl mb-8 capitalize"
-    >
-        {tag}
-    </h1>
+    <div class="mb-12">
+        <h1
+            class="text-[52px] font-bold tracking-tight mb-4 font-heading leading-none capitalize"
+        >
+            {tag} Engineering
+        </h1>
+        <p class="text-[20px] text-[#555] font-text font-normal">
+            The technology behind 023 {
+                tag.charAt(0).toUpperCase() + tag.slice(1)
+            } Engineering
+        </p>
+    </div>
     <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
         {
             posts.map((post) => (
