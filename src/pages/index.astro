@@ -27,10 +27,10 @@ const posts = (await getCollection("blog"))
                 <li class="group flex flex-col h-full">
                     <a
                         href={`/blog/${post.slug}/`}
-                        class="block flex flex-col h-full bg-white min-h-[480px] hover:shadow-2xl transition-shadow duration-300"
+                        class="block flex flex-col h-full bg-white min-h-[410px] hover:shadow-2xl transition-shadow duration-300"
                     >
                         {post.data.heroImage && (
-                            <div class="w-full relative overflow-hidden group aspect-[16/9]">
+                            <div class="w-full relative overflow-hidden group h-[200px]">
                                 <Image
                                     src={post.data.heroImage}
                                     alt=""
