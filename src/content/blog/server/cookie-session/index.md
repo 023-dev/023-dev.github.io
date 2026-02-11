@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "쿠키(Cookie)와 세션(Session)의 차이"
 date: 2025-05-20 23:00:00
 tags: 

@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "저장 매체와 랜덤 I/O, 순차 I/O"
 date: 2025-01-16 18:00:00
 tags: 

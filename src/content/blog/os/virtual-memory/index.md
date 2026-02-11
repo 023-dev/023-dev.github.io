@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "가상 메모리"
 description:
 date: 2025-09-23

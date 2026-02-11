@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "System.out.println()를 사용한 로깅을 피해야 하는 이유"
 date: 2024-11-05 18:00:00
 tags: 

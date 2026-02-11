@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "17503 맥주 축제"
 date: 2025-02-12 18:00:00
 tags: 

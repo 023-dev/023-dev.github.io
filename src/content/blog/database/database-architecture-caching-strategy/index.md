@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "캐싱 전략(Caching Strategy)"
 date: 2025-01-09 00:00:00
 tags: 

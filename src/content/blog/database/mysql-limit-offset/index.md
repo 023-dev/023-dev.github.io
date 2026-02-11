@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "MySQL의 Pagination"
 date: 2025-01-11 00:00:00
 tags: 

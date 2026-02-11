@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "42839 소수찾기"
 date: 2025-02-11 21:00:00
 tags: 

@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "2212 센서"
 date: 2025-02-17 20:50:00
 tags: 

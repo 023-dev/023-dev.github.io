@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "협업을 위한 Git 컨벤션"
 date: 2024-10-15 02:00:00
 tags:

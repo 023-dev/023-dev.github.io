@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "Linux 아는 척 해보기"
 description:
 date: 2025-11-10

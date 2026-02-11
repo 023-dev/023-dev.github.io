@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "2529 부등호"
 date: 2025-02-05 18:00:00
 tags: 

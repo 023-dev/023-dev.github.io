@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "래퍼 클래스(Wrapper Class)"
 date: 2024-12-26 00:00:00
 tags: 

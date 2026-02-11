@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "Spring Data JPA의 Slice & Page"
 date: 2024-10-24 09:00:00
 tags: 

@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "2573 빙산"
 date: 2025-01-25 00:34:00
 tags: 

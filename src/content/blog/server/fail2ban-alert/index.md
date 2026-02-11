@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "Fail2Ban의 상태를 Slack Webhhook 처리하기"
 date: 2025-03-04 23:00:00
 tags: 

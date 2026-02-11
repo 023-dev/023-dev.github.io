@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "2225 합분해"
 date: 2025-02-20 18:00:00
 tags: 

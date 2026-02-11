@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "SQL(Structured Query Language)"
 date: 2025-01-08 00:00:00
 tags: 

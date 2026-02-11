@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "트랜잭션의 격리 수준(Transaction Isolation Level)"
 date: 2025-01-31 00:00:00
 tags: 

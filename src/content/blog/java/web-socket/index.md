@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "웹 소켓(Web socket)"
 date: 2025-07-27 00:00:00
 tags: 

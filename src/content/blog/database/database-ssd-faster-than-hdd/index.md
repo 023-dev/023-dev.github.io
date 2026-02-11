@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "SSD를 사용하면 DBMS가 빨라질까?"
 date: 2025-01-17 18:00:00
 tags: 

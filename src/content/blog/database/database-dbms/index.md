@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "데이터베이스 관리 시스템(DBMS)"
 date: 2024-12-21 00:00:00
 tags: 

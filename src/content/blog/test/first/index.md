@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "FIRST 원칙"
 date: 2025-10-20 23:00:00
 tags: 

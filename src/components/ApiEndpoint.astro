@@ -1,0 +1,35 @@
+---
+interface Props {
+    method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+    path: string;
+}
+
+const { method, path } = Astro.props;
+
+const methodColors = {
+    GET: "bg-blue-100 text-blue-800 border-blue-200",
+    POST: "bg-green-100 text-green-800 border-green-200",
+    PUT: "bg-orange-100 text-orange-800 border-orange-200",
+    DELETE: "bg-red-100 text-red-800 border-red-200",
+    PATCH: "bg-yellow-100 text-yellow-800 border-yellow-200",
+};
+
+const colorClass =
+    methodColors[method] || "bg-gray-100 text-gray-800 border-gray-200";
+---
+
+<div class="my-6 rounded-lg overflow-hidden border border-gray-200 shadow-sm">
+    <div
+        class="flex items-center px-4 py-3 bg-gray-50 border-b border-gray-200 font-mono text-sm"
+    >
+        <span
+            class={`px-2 py-0.5 rounded text-xs font-bold border ${colorClass} mr-3`}
+        >
+            {method}
+        </span>
+        <span class="text-gray-600 break-all">{path}</span>
+    </div>
+    <div class="bg-[#282c34] text-white p-4 overflow-x-auto text-sm">
+        <slot />
+    </div>
+</div>

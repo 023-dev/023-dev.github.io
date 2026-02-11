@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "커널의 작동 방식"
 description:
 date: 2025-09-04

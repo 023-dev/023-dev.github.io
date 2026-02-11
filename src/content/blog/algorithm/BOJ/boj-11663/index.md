@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "11663 선분 위의 점"
 date: 2025-01-15 18:00:00
 tags: 

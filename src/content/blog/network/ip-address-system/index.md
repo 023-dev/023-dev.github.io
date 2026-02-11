@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "IP 주소 체계"
 description:
 date: 2025-10-03

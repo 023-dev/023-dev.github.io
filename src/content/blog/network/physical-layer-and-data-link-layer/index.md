@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "물리 계층 및 데이터 링크 계층"
 description:
 date: 2025-09-30

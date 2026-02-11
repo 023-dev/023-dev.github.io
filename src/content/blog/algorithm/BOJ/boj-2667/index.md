@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "2667 단지번호붙이기"
 date: 2025-01-22 15:00:00
 tags: 

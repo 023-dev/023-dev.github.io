@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "자바 열거형 타입(Type-Safe Enum Pattern)"
 date: 2024-12-28 00:00:00
 tags: 

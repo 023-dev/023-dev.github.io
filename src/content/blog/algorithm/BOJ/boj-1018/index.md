@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "1018 체스판 다시 칠하기"
 date: 2025-02-03 18:00:00
 tags: 

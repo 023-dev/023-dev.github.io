@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "2110 공유기 설치"
 date: 2025-01-19 18:00:00
 tags: 

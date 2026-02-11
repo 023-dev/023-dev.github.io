@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "AWS Security Group의 Inbound Rule에 GitHub Actions의 Public IP 추가하기"
 date: 2025-03-21 02:00:00
 tags:

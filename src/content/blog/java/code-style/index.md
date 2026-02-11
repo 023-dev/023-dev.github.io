@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "Utility Class에서 생성자를 private으로 선언해야 하는 이유"
 date: 2025-04-15 00:00:00
 tags: 

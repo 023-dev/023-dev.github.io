@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "자바 에러(Error)와 예외처리(Exception)"
 date: 2024-11-05 00:00:00
 tags: 

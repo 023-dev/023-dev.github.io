@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "2805 나무 자르기"
 date: 2025-01-16 18:00:00
 tags: 

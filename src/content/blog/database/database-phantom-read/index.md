@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "Phantom Read와 Gap Lock, Next-Key Lock"
 date: 2024-12-21 00:00:00
 tags: 

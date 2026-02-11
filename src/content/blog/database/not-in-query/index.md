@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "NOT IN 쿼리를 사용할 때 발생할 수 있는 문제"
 date: 2025-05-23 09:00:00
 tags: 

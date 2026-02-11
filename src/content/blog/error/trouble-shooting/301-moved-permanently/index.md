@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "301 Moved Permanently"
 date: 2025-04-02 02:00:00
 tags:

@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "Nginx 설정하기"
 date: 2024-07-17 02:00:00
 tags: 

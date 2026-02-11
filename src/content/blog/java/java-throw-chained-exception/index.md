@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "throw와 throws 그리고 Chained Exception"
 date: 2024-11-06 18:00:00
 tags: 

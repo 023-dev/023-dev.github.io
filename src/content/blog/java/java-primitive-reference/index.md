@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "기본형(Primitive)과 참조형(Reference)"
 date: 2024-12-20 00:00:00
 tags: 

@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "2615 오목"
 date: 2025-02-06 18:00:00
 tags: 

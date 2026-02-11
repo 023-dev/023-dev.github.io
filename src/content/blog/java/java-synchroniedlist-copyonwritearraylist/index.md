@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "SynchronizedList와 CopyOnWriteArrayList의 차이"
 date: 2024-11-22 00:00:00
 tags: 

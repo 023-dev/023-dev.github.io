@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "JSON serialization with Jackson don’t work properly."
 date: 2025-03-10 02:00:00
 tags:

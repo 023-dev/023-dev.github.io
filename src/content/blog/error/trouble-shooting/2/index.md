@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "No 'Access-Control-Allow-Origin' header is present on the requested resource"
 date: 2025-03-09 02:00:00
 tags:

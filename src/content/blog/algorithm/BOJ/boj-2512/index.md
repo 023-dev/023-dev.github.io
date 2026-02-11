@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "2512 예산"
 date: 2025-01-15 18:00:00
 tags: 

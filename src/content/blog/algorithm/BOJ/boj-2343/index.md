@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "2343 기타 레슨"
 date: 2025-01-16 18:00:00
 tags: 

@@ -5,9 +5,9 @@
 </section>
 
 <script>
-    const repo = "023-dev/old-023-dev.github.io";
+    const repo = "023-dev/023-dev.github.io";
 
-    const createUtterances = (theme) => {
+    const createUtterances = (theme: string) => {
         const container = document.querySelector("section.utterances");
         if (!container) {
             console.log("Utterances container not found yet, retrying...");
@@ -44,7 +44,8 @@
     // Theme sync logic
     const updateUtterancesTheme = () => {
         const theme = getTheme();
-        const iframe = document.querySelector(".utterances iframe");
+        const iframe =
+            document.querySelector<HTMLIFrameElement>(".utterances iframe");
 
         if (iframe) {
             const message = {

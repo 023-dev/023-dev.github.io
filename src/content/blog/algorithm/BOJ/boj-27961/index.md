@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "27961 고양이는 많을수록 좋다"
 date: 2025-02-11 18:00:00
 tags: 

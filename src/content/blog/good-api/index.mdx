@@ -1,9 +1,12 @@
 ---
+visible: true
 title: "좋은 API 설계하기"
 date: 2025-12-23 16:42:00
-tags:
-  - etc
+tags: ["Engineering", "Backend"]
+heroImage: "./image.jpg"
 ---
+
+import ApiEndpoint from '../../../components/ApiEndpoint.astro';
 
 팀 프로젝트를 하다가 다음과 같은 요청을 받았다.
 
@@ -50,7 +53,7 @@ Pull Request를 생성하려면, 다음과 같은 행위가 필요하다.
 
 이 행위를 API로 옮기면 다음과 같은 형태의 API로 표현할 수 있을 것이다.
 
-**POST /pull-request**
+<ApiEndpoint method="POST" path="/pull-request">
 ```json
 {
 	"title": "PR 제목",
@@ -61,6 +64,7 @@ Pull Request를 생성하려면, 다음과 같은 행위가 필요하다.
 	"labels": ["bug"]
 }
 ```
+</ApiEndpoint>
 
 한 번에 요청에 title, content, head, base, assignees, label의 정보를 담았다.
 
@@ -123,7 +127,7 @@ PR 생성만 실패를 하는 게 아니라 assignee 배정과 label 설정도 �
 
 이렇게 분리한 리소스를 API 스펙으로 구현하면 다음과 같이 나타낼 수 있을 것이다.
 
-**POST /pull-requests**
+<ApiEndpoint method="POST" path="/pull-requests">
 ```json
 {
 	"title": "PR 제목",
@@ -132,20 +136,23 @@ PR 생성만 실패를 하는 게 아니라 assignee 배정과 label 설정도 �
 	"base": "main"
 }
 ```
+</ApiEndpoint>
 
-**POST /issues/{id}/assignee**
+<ApiEndpoint method="POST" path="/issues/{id}/assignee">
 ```json
 {
 	"assignees": ["john"]
 }
 ```
+</ApiEndpoint>
 
-**POST /issues/{id}/label**
+<ApiEndpoint method="POST" path="/issues/{id}/label">
 ```json
 {
 	"labels": ["bug"]
 }
 ```
+</ApiEndpoint>
 
 Pull Request는 title, content, head, base를 가지고, Assignee와 Label은 별도의 API로 각각의 설정을 한다.
 

@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "프로세스 동기화"
 description:
 date: 2025-09-19

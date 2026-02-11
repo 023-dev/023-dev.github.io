@@ -102,17 +102,20 @@ const HeaderContent = () => {
                 paddingTop: '12px'
             }}>
                 <div className="w-full max-w-[1310px] mx-auto px-4 h-full flex items-center justify-between overflow-x-auto no-scrollbar">
-                    <div style={{
-                        fontFamily: 'UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
-                        fontWeight: '700',
-                        fontSize: '24px',
-                        color: '#000000',
-                        marginRight: 'auto'
-                    }}>
-                        Engineering
-                    </div>
+                    <a href="/tags/engineering" style={{ textDecoration: 'none' }}>
+                        <div style={{
+                            fontFamily: 'UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
+                            fontWeight: '700',
+                            fontSize: '24px',
+                            color: '#000000',
+                            marginRight: 'auto',
+                            cursor: 'pointer'
+                        }}>
+                            Engineering
+                        </div>
+                    </a>
                     <div className="flex space-x-8">
-                        {['Backend', 'DevOps', 'Etc'].map((item) => (
+                        {['Backend', 'DevOps', 'Communication', 'Etc'].map((item) => (
                             <a key={item} href={`/tags/${item.toLowerCase()}`} style={{
                                 textDecoration: 'none',
                                 color: '#555555',

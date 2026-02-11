@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "데이터 독립성(Data Independence)"
 date: 2025-01-02 00:00:00
 tags: 

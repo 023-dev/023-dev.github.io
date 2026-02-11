@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "GC 알고리즘(Garbage Collection Algorithms)"
 date: 2025-05-27 00:00:00
 tags: 

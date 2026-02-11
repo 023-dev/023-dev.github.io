@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "JSCODE 스터디 되돌아보기"
 date: 2025-01-31 23:20:00
 tags: 

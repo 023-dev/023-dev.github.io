@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "Java Method Naming Conventions"
 date: 2025-03-02 00:00:00
 tags: 

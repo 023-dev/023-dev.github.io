@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "DBMS는 트랜잭션을 어떻게 관리할까?"
 date: 2025-01-29 11:00:00
 tags: 

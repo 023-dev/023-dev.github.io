@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "인덱스만 사용하면 성능이 향상될까?"
 date: 2025-01-27 18:00:00
 tags: 

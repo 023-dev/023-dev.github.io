@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "URI, URL, URN의 차이"
 date: 2025-05-21 23:00:00
 tags: 

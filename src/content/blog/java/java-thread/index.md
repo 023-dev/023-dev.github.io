@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "프로세스(Process)와 스레드(Thread)"
 date: 2024-11-14 00:00:00
 tags: 

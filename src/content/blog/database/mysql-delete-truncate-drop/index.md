@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "MySQL의 DELETE, TRUNCATE, DROP 차이"
 date: 2025-01-10 00:00:00
 tags: 

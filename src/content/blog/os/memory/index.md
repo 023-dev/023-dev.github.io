@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "메모리 관리"
 description:
 date: 2025-09-22

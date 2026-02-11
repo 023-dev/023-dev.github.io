@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "2776 암기왕"
 date: 2025-01-13 18:00:00
 tags: 

@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "최범균님의 테스트 세미나를 보고"
 date: 2025-10-14 23:00:00
 tags: 

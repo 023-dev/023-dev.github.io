@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "서버 모니터링에 대한 생각"
 date: 2025-03-10 23:00:00
 tags: 

@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "GitHub Actions에서 SSH로 Private 인스턴스에 접근하기"
 date: 2025-03-20 02:00:00
 tags:

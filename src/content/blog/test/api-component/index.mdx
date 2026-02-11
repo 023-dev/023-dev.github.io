@@ -1,0 +1,39 @@
+---
+visible: false
+title: "API Component Test"
+date: 2026-02-10 00:00:00
+tags: ["Test"]
+---
+import ApiEndpoint from '../../../../components/ApiEndpoint.astro';
+
+# API Component Test
+
+Here is an example of the API Endpoint component.
+
+<ApiEndpoint method="GET" path="/api/members">
+```json
+{
+  "members": [
+    {
+      "id": 1,
+      "name": "Alice",
+      "role": "Admin"
+    },
+    {
+      "id": 2,
+      "name": "Bob",
+      "role": "User"
+    }
+  ]
+}
+```
+</ApiEndpoint>
+
+<ApiEndpoint method="POST" path="/api/members">
+```json
+{
+  "name": "Charlie",
+  "role": "User"
+}
+```
+</ApiEndpoint>

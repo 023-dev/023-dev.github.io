@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "1051 숫자 정사각형"
 date: 2025-02-04 18:00:00
 tags: 

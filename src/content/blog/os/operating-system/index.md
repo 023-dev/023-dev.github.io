@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "운영체제의 개념과 구조"
 description:
 date: 2025-09-03

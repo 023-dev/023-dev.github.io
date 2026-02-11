@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "자바 Object 클래스"
 date: 2024-12-16 00:00:00
 tags: 

@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "Spring에서 Object를 Bean으로 관리하는 이유는 뭘까?"
 date: 2025-05-19 09:00:00
 tags: 

@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "인덱스(Index)"
 date: 2025-01-16 18:00:00
 tags: 

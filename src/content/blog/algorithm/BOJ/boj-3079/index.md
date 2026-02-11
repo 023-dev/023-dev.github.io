@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "3079 입국심사"
 date: 2025-01-21 10:00:00
 tags: 

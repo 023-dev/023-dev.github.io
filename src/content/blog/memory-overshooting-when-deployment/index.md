@@ -1,8 +1,8 @@
 ---
 title: "배포했더니 서버가 죽을 뻔 했던 건에 대하여"
 date: 2026-01-29 15:42:00
-tags: ["Engineering", "Backend", "DevOps", "Etc"]
-heroImage: "./preview.png"
+tags: ["Engineering", "Backend", "DevOps"]
+heroImage: "./image1.jpg"
 ---
 
 ## 서버가 응답이 없다

@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "불변 객체(Immutable Object)"
 date: 2024-12-23 00:00:00
 tags: 

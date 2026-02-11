@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "Vector와 Hashtable 그리고 Collections.SynchronizedXXX"
 date: 2024-11-22 00:00:00
 tags: 

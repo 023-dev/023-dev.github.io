@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "자바 가상 머신(Java Virtual Machine)"
 date: 2024-11-25 00:00:00
 tags: 

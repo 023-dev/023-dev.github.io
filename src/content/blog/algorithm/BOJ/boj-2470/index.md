@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "2470 두 용액"
 date: 2025-01-17 18:00:00
 tags: 

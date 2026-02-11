@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "자바 Class 클래스와 System 클래스"
 date: 2024-12-27 00:00:00
 tags: 

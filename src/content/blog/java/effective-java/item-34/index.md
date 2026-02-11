@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "int 상수 대신 열거 타입을 사용하라"
 date: 2025-01-29 11:00:00
 tags:

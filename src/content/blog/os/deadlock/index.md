@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "교착 상태"
 description:
 date: 2025-09-21

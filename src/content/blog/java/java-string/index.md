@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "자바 문자열(String)"
 date: 2024-11-05 18:00:00
 tags: 

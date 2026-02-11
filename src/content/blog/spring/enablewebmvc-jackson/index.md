@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "@EnableWebMvc 사용해도 될까?"
 date: 2025-02-24 09:00:00
 tags: 

@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "싱글턴 패턴(Singleton Pattern)"
 date: 2025-05-24 23:00:00
 tags: 

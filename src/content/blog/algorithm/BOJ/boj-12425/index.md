@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "12425 윷놀이 (Small)"
 date: 2025-01-26 03:00:00
 tags: 

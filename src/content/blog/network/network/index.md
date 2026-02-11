@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "네트워크"
 description:
 date: 2025-09-30

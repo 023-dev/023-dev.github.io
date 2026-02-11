@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "9663 N-Queen"
 date: 2025-02-10 18:00:00
 tags: 

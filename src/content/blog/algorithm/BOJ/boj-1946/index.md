@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "1946 신입 사원"
 date: 2025-02-13 18:00:00
 tags: 

@@ -1,4 +1,5 @@
 ---
+visible: false
 title: "ID를 만드는 방법들"
 date: 2025-05-01 02:00:00
 tags: 
