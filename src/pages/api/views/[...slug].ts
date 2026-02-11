@@ -7,13 +7,24 @@ export async function getStaticPaths() {
     }));
 }
 
-import type { APIRoute } from 'astro';
+import { getPageViews } from '../../../lib/ga4';
 
 export const GET: APIRoute = async ({ params }) => {
-    return new Response(JSON.stringify({ views: 0 }), {
+    const { slug } = params;
+    if (!slug) {
+        return new Response(JSON.stringify({ error: 'Slug is required' }), {
+            status: 400,
+            headers: { 'Content-Type': 'application/json' },
+        });
+    }
+
+    const views = await getPageViews(slug);
+
+    return new Response(JSON.stringify({ views }), {
         status: 200,
         headers: {
             'Content-Type': 'application/json',
+            'Cache-Control': 'public, max-age=60, s-maxage=60, stale-while-revalidate=30'
         },
     });
 }
