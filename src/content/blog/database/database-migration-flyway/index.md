@@ -3,6 +3,7 @@ visible: true
 title: "Flyway 도입기"
 date: 2026-02-09 23:00:00
 tags: ["Engineering", "Backend", "Database"]
+heroImage: "./image.jpg"
 ---
 
 현재 진행하고 있는 프로젝트 기존에는 생산성과 편의성을 위해
@@ -120,7 +121,7 @@ spring:
 환경에 따라 Flyway 전략은 달라져야 했다.
 운영 DB는 보호가 최우선이고, 개발 환경은 유연성이 더 중요했기 떄문이다.
 
-#### 운영 환경 (application-prod.yml)
+#### 운영 환경
 
 ```yaml
 spring:
@@ -147,7 +148,7 @@ spring:
 
 운영 환경의 핵심은 보수성과 추적 가능성이다.
 
-#### 개발 환경 (application-dev.yml)
+#### 개발 환경
 
 ```yaml
 spring:
