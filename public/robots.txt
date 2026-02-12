@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://023-dev.github.io/sitemap-index.xml
