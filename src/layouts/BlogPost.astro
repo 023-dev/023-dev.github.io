@@ -55,9 +55,15 @@ const { title, date, headings, readingTime } = Astro.props;
 
 					<h1
 						class="text-[36px] leading-[44px] font-bold text-black mb-[20px] font-heading tracking-tight"
+						data-pagefind-meta="title"
 					>
 						{title}
 					</h1>
+                    <div style="display: none">
+                        {Astro.props.heroImage && <meta data-pagefind-meta="heroImage[content]" content={typeof Astro.props.heroImage === 'string' ? Astro.props.heroImage : Astro.props.heroImage.src} />}
+                        {date && <meta data-pagefind-meta="date[content]" content={date.toISOString()} />}
+                        {Astro.props.tags && Astro.props.tags.map(tag => <meta data-pagefind-meta="tag" content={tag} />)}
+                    </div>
 
 					<div
 						class="flex items-center gap-1 text-[#4B4B4B] text-[12px] leading-[20px] font-medium font-text"
@@ -80,6 +86,7 @@ const { title, date, headings, readingTime } = Astro.props;
 				</div>
 				<div
 					class="prose prose-pre:bg-gray-900 prose-pre:text-gray-50 prose-pre:shadow-lg prose-pre:rounded-xl"
+                    data-pagefind-body
 				>
 					<slot />
 				</div>

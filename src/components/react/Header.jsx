@@ -7,23 +7,37 @@ import StyletronProvider from '../StyletronProvider';
 const HeaderContent = () => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [searchTerm, setSearchTerm] = React.useState('');
-    const [posts, setPosts] = React.useState([]);
+    const [results, setResults] = React.useState([]);
 
     React.useEffect(() => {
-        fetch('/search.json')
-            .then(res => res.json())
-            .then(data => setPosts(data))
-            .catch(err => console.error('Failed to fetch search data', err));
-    }, []);
+        const performSearch = async () => {
+            if (searchTerm.length < 2) {
+                setResults([]);
+                return;
+            }
+            try {
+                // @ts-ignore
+                const pagefindUrl = '/pagefind/pagefind.js';
+                const pagefind = await import(/* @vite-ignore */ pagefindUrl);
+                const search = await pagefind.search(searchTerm);
+                const fiveResults = await Promise.all(search.results.slice(0, 5).map(r => r.data()));
 
-    const filteredPosts = React.useMemo(() => {
-        if (!searchTerm) return posts.slice(0, 5);
-        const lowerTerm = searchTerm.toLowerCase();
-        return posts.filter(post =>
-            post.title.toLowerCase().includes(lowerTerm) ||
-            (post.description && post.description.toLowerCase().includes(lowerTerm))
-        ).slice(0, 10);
-    }, [searchTerm, posts]);
+                setResults(fiveResults.map(d => ({
+                    slug: d.url.replace(/^\/blog\/|\/$/g, ""),
+                    title: d.meta.title,
+                    heroImage: d.meta.heroImage,
+                    tags: d.meta.tag ? (Array.isArray(d.meta.tag) ? d.meta.tag : [d.meta.tag]) : [],
+                    date: d.meta.date
+                })));
+            } catch (e) {
+                console.warn("Pagefind search failed (likely because it's only available after build):", e);
+                setResults([]);
+            }
+        };
+
+        const timeoutId = setTimeout(performSearch, 300);
+        return () => clearTimeout(timeoutId);
+    }, [searchTerm]);
 
     return (
         <>
@@ -211,7 +225,7 @@ const HeaderContent = () => {
                         </div>
 
                         {/* Results List */}
-                        {filteredPosts.map((result, index) => (
+                        {results.map((result, index) => (
                             <a key={index} href={`/blog/${result.slug}`} style={{ textDecoration: 'none' }}>
                                 <div style={{
                                     display: 'flex',
@@ -246,7 +260,7 @@ const HeaderContent = () => {
                                 </div>
                             </a>
                         ))}
-                        {filteredPosts.length === 0 && (
+                        {results.length === 0 && searchTerm.length >= 2 && (
                             <div style={{ padding: '24px', color: '#999', textAlign: 'center' }}>
                                 No posts found.
                             </div>
