@@ -10,7 +10,25 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, image = "/blog-placeholder-1.jpg" } = Astro.props;
+
+const GA4_MEASUREMENT_ID =
+	import.meta.env.PUBLIC_GA4_MEASUREMENT_ID || "G-LDJQ09Q3V9";
 ---
+
+<!-- Google tag (gtag.js) -->
+<script
+	async
+	src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`}
+></script>
+<script define:vars={{ GA4_MEASUREMENT_ID }}>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() {
+		dataLayer.push(arguments);
+	}
+	gtag("js", new Date());
+
+	gtag("config", GA4_MEASUREMENT_ID);
+</script>
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
