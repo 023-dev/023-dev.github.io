@@ -12,9 +12,13 @@ type Props = CollectionEntry<"blog">["data"] & {
 };
 
 const { title, date, headings, readingTime } = Astro.props;
+
+
+const slug = Astro.url.pathname.replace(/^\/blog\/|\/$/g, "");
+const ogImage = `/og/${slug}.png`;
 ---
 
-<BaseLayout title={title} wide={true}>
+<BaseLayout title={title} wide={true} image={ogImage}>
 	<div class="relative mx-auto px-4 max-w-screen-2xl">
 		<div class="grid grid-cols-1 xl:grid-cols-[1fr_700px_1fr] gap-12">
 			<aside

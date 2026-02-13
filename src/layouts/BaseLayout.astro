@@ -7,17 +7,18 @@ import { ClientRouter } from 'astro:transitions';
 
 interface Props {
 	title: string;
-
+	description?: string;
+	image?: string;
 	wide?: boolean;
 }
 
-const { title, wide = false } = Astro.props;
+const { title, description, image, wide = false } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="ko">
 	<head>
-		<BaseHead title={title} />
+		<BaseHead title={title} description={description} image={image} />
         <ClientRouter />
 	</head>
 	<body class="flex flex-col min-h-screen">
