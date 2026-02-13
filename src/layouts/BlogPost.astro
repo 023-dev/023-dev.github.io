@@ -97,17 +97,19 @@ const { title, date, headings, readingTime } = Astro.props;
 </BaseLayout>
 
 <script>
-	const viewCountElement = document.getElementById("view-count");
-	if (viewCountElement) {
-		const slug = window.location.pathname.replace(/^\/blog\/|\/$/g, "");
-		fetch(`/api/views/${slug}`)
-			.then((res) => res.json())
-			.then((data) => {
-				viewCountElement.textContent = data.views.toLocaleString();
-				viewCountElement.classList.add("fade-in");
-			})
-			.catch(() => {
-				viewCountElement.textContent = "0";
-			});
-	}
+	document.addEventListener("astro:page-load", () => {
+		const viewCountElement = document.getElementById("view-count");
+		if (viewCountElement) {
+			const slug = window.location.pathname.replace(/^\/blog\/|\/$/g, "");
+			fetch(`/api/views/${slug}`)
+				.then((res) => res.json())
+				.then((data) => {
+					viewCountElement.textContent = data.views.toLocaleString();
+					viewCountElement.classList.add("fade-in");
+				})
+				.catch(() => {
+					viewCountElement.textContent = "0";
+				});
+		}
+	});
 </script>

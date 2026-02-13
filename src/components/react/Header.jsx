@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { HeaderNavigation, ALIGN, StyledNavigationList, StyledNavigationItem } from 'baseui/header-navigation';
-import { StyledLink } from 'baseui/link';
-import { Modal, ModalBody, SIZE, ROLE } from 'baseui/modal';
-import StyletronProvider from '../StyletronProvider';
 
-const HeaderContent = () => {
+// Using Tailwind CSS for styling instead of Styletron/BaseUI
+// Replicating the exact look & feel of the previous Header implementation
+
+export default function Header() {
     const [isOpen, setIsOpen] = React.useState(false);
     const [searchTerm, setSearchTerm] = React.useState('');
     const [results, setResults] = React.useState([]);
@@ -39,249 +38,148 @@ const HeaderContent = () => {
         return () => clearTimeout(timeoutId);
     }, [searchTerm]);
 
+    // Close modal on Escape key
+    React.useEffect(() => {
+        const handleEsc = (event) => {
+            if (event.key === 'Escape') setIsOpen(false);
+        };
+        window.addEventListener('keydown', handleEsc);
+        return () => window.removeEventListener('keydown', handleEsc);
+    }, []);
+
+    const fontStyle = { fontFamily: 'UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif' };
+
     return (
         <>
-            <div className="w-full sticky top-0" style={{
-                height: '64px',
-                zIndex: 2002,
-                backgroundColor: '#000000',
-                backdropFilter: 'blur(10px)',
-                boxSizing: 'border-box',
-                display: 'flex',
-                alignItems: 'center',
-                paddingTop: '12px',
-                paddingBottom: '12px'
-            }}>
+            {/* Top Bar - Black */}
+            <header
+                className="w-full sticky top-0 bg-black/90 backdrop-blur-md z-[2002] box-border flex items-center py-3 h-16"
+                style={fontStyle}
+            >
                 <div className="w-full max-w-[1310px] mx-auto px-4 h-full flex items-center justify-between">
-                    <HeaderNavigation overrides={{
-                        Root: {
-                            style: ({ $theme }) => ({
-                                borderBottom: 'none',
-                                backgroundColor: 'transparent',
-                                color: '#FFFFFF',
-                                position: 'static',
-                                width: '100%',
-                                fontFamily: 'UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
-                            })
-                        }
-                    }}>
-                        <StyledNavigationList $align={ALIGN.left} style={{ paddingLeft: 0 }}>
-                            <StyledNavigationItem style={{ paddingLeft: 0 }}>
-                                <a href="/" style={{
-                                    textDecoration: 'none',
-                                    color: '#FFFFFF',
-                                    fontFamily: 'UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
-                                    fontSize: '24px',
-                                    fontWeight: '400',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    lineHeight: '1'
-                                }}>
-                                    Blog
-                                </a>
-                            </StyledNavigationItem>
-                        </StyledNavigationList>
-                        <StyledNavigationList $align={ALIGN.center} />
-                        <StyledNavigationList $align={ALIGN.right} style={{ paddingRight: 0 }}>
-                            <StyledNavigationItem style={{ paddingRight: 0 }}>
-                                <div
-                                    onClick={() => setIsOpen(true)}
-                                    style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
-                                >
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '12px' }}>
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                    </svg>
-                                    <span style={{
-                                        color: '#FFFFFF',
-                                        fontFamily: 'UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
-                                        fontSize: '16px',
-                                        fontWeight: '500',
-                                    }}>
-                                        Search
-                                    </span>
-                                </div>
-                            </StyledNavigationItem>
-                        </StyledNavigationList>
-                    </HeaderNavigation>
-                </div>
-            </div>
+                    {/* Left: Logo */}
+                    <div className="flex items-center">
+                        <a href="/" className="text-white text-2xl font-normal no-underline flex items-center leading-none" style={fontStyle}>
+                            Blog
+                        </a>
+                    </div>
 
-            <div className="w-full sticky top-[64px]" style={{
-                zIndex: 2001,
-                backgroundColor: '#FFFFFF',
-                display: 'flex',
-                alignItems: 'center',
-                paddingBottom: '12px',
-                paddingTop: '12px'
-            }}>
+                    {/* Right: Search Trigger */}
+                    <div className="flex items-center">
+                        <div
+                            onClick={() => setIsOpen(true)}
+                            className="flex items-center cursor-pointer group"
+                        >
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="mr-3 text-white">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <span className="text-white text-base font-medium" style={fontStyle}>
+                                Search
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            {/* Second Bar - White Navigation */}
+            <nav
+                className="w-full sticky top-16 bg-white z-[2001] flex items-center py-3 border-b border-gray-100"
+                style={fontStyle}
+            >
                 <div className="w-full max-w-[1310px] mx-auto px-4 h-full flex items-center justify-between overflow-x-auto no-scrollbar">
-                    <a href="/tags/engineering" style={{ textDecoration: 'none' }}>
-                        <div style={{
-                            fontFamily: 'UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
-                            fontWeight: '700',
-                            fontSize: '24px',
-                            color: '#000000',
-                            marginRight: 'auto',
-                            cursor: 'pointer'
-                        }}>
+                    <a href="/tags/engineering" className="no-underline mr-auto">
+                        <div className="text-2xl font-bold text-black cursor-pointer" style={fontStyle}>
                             Engineering
                         </div>
                     </a>
-                    <div className="flex space-x-8">
+                    <div className="flex space-x-8 ml-8">
                         {['Backend', 'DevOps', 'Communication', 'Etc'].map((item) => (
-                            <a key={item} href={`/tags/${item.toLowerCase()}`} style={{
-                                textDecoration: 'none',
-                                color: '#555555',
-                                fontFamily: 'UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif',
-                                fontSize: '14px',
-                                fontWeight: '400',
-                                whiteSpace: 'nowrap',
-                                cursor: 'pointer'
-                            }}>
+                            <a key={item} href={`/tags/${item.toLowerCase()}`} className="no-underline text-[#555555] text-sm font-normal whitespace-nowrap hover:text-black transition-colors" style={fontStyle}>
                                 {item}
                             </a>
                         ))}
                     </div>
                 </div>
-            </div>
+            </nav>
 
-            <Modal
-                onClose={() => setIsOpen(false)}
-                closeable
-                isOpen={isOpen}
-                animate
-                autoFocus
-                size={SIZE.default}
-                role={ROLE.dialog}
-                overrides={{
-                    Root: {
-                        style: {
-                            zIndex: 99999
-                        }
-                    },
-                    Backdrop: {
-                        style: {
-                            backgroundColor: 'rgba(0, 0, 0, 0.85)',
-                            backdropFilter: 'blur(8px)',
-                            zIndex: 99999
-                        }
-                    },
-                    Dialog: {
-                        style: {
-                            backgroundColor: '#262626',
-                            borderTopLeftRadius: '16px',
-                            borderTopRightRadius: '16px',
-                            borderBottomLeftRadius: '16px',
-                            borderBottomRightRadius: '16px',
-                            width: '640px',
-                            boxShadow: '0px 20px 60px rgba(0,0,0,0.6)',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            outline: 'none',
-                            maxHeight: '80vh',
-                            overflow: 'hidden'
-                        }
-                    },
-                    DialogContainer: {
-                        style: {
-                            alignItems: 'flex-start',
-                            paddingTop: '15vh',
-                        }
-                    },
-                    Close: {
-                        component: () => null
-                    }
-                }}
-            >
-                <ModalBody style={{ margin: 0, padding: 0, display: 'flex', flexDirection: 'column' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', padding: '24px 24px', borderBottom: '1px solid #333' }}>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '16px' }}>
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                        <input
-                            placeholder="Search posts..."
-                            autoFocus
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            style={{
-                                flex: 1,
-                                backgroundColor: 'transparent',
-                                border: 'none',
-                                color: '#FFFFFF',
-                                fontSize: '24px',
-                                fontFamily: 'UberMoveText, system-ui, sans-serif',
-                                fontWeight: '300',
-                                outline: 'none'
-                            }}
-                        />
-                    </div>
+            {/* Search Modal */}
+            {isOpen && (
+                <div className="fixed inset-0 z-[99999] flex justify-center items-start pt-[15vh]">
+                    {/* Backdrop */}
+                    <div
+                        className="absolute inset-0 bg-black/85 backdrop-blur-sm"
+                        onClick={() => setIsOpen(false)}
+                    />
 
-                    <div style={{ padding: '8px 0', overflowY: 'auto' }}>
-                        {/* Section Header */}
-                        <div style={{ padding: '16px 24px 8px 24px', color: '#888', fontSize: '12px', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                            {searchTerm ? 'Search Results' : 'Recent Posts'}
+                    {/* Modal Content */}
+                    <div className="relative bg-[#262626] w-[640px] max-w-[90vw] max-h-[80vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-fade-in-down">
+                        {/* Search Input */}
+                        <div className="flex items-center p-6 border-b border-[#333]">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-4">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input
+                                placeholder="Search posts..."
+                                autoFocus
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="flex-1 bg-transparent border-none text-white text-2xl font-light outline-none placeholder-gray-600"
+                                style={fontStyle}
+                            />
                         </div>
 
-                        {/* Results List */}
-                        {results.map((result, index) => (
-                            <a key={index} href={`/blog/${result.slug}`} style={{ textDecoration: 'none' }}>
-                                <div style={{
-                                    display: 'flex',
-                                    padding: '12px 24px',
-                                    cursor: 'pointer',
-                                    transition: 'background-color 0.2s',
-                                }}
-                                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#333'}
-                                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
-                                >
-                                    <div style={{
-                                        width: '60px',
-                                        height: '60px',
-                                        borderRadius: '8px',
-                                        backgroundColor: '#444',
-                                        marginRight: '16px',
-                                        backgroundImage: result.heroImage ? `url(${typeof result.heroImage === 'string' ? result.heroImage : result.heroImage.src})` : 'none',
-                                        backgroundSize: 'cover',
-                                        backgroundPosition: 'center'
-                                    }} />
-                                    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                                        <div style={{ color: '#FFFFFF', fontSize: '16px', fontWeight: '500', marginBottom: '4px' }}>
-                                            {result.title}
-                                        </div>
-                                        <div style={{ display: 'flex', alignItems: 'center', color: '#999', fontSize: '12px' }}>
-                                            <span style={{ backgroundColor: '#333', padding: '2px 6px', borderRadius: '4px', marginRight: '8px', color: '#ccc' }}>
-                                                {result.tags ? result.tags[0] : 'Blog'}
-                                            </span>
-                                            <span>{new Date(result.date).toLocaleDateString()}</span>
+                        {/* Results Area */}
+                        <div className="flex-1 overflow-y-auto py-2">
+                            <div className="px-6 pt-4 pb-2 text-[#888] text-xs font-medium uppercase tracking-wider">
+                                {searchTerm ? 'Search Results' : 'Recent Posts'}
+                            </div>
+
+                            {results.map((result, index) => (
+                                <a key={index} href={`/blog/${result.slug}`} className="block no-underline" onClick={() => setIsOpen(false)}>
+                                    <div className="flex px-6 py-3 cursor-pointer hover:bg-[#333] transition-colors group">
+                                        <div
+                                            className="w-[60px] h-[60px] rounded-lg bg-[#444] mr-4 bg-cover bg-center shrink-0"
+                                            style={{
+                                                backgroundImage: result.heroImage ? `url(${typeof result.heroImage === 'string' ? result.heroImage : result.heroImage.src})` : 'none'
+                                            }}
+                                        />
+                                        <div className="flex flex-col justify-center min-w-0">
+                                            <div className="text-white text-base font-medium mb-1 truncate group-hover:text-blue-400 transition-colors">
+                                                {result.title}
+                                            </div>
+                                            <div className="flex items-center text-[#999] text-xs">
+                                                <span className="bg-[#333] px-1.5 py-0.5 rounded text-[#ccc] mr-2 shrink-0">
+                                                    {result.tags && result.tags.length > 0 ? result.tags[0] : 'Blog'}
+                                                </span>
+                                                <span className="truncate">
+                                                    {new Date(result.date).toLocaleDateString()}
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
+                                </a>
+                            ))}
+
+                            {results.length === 0 && searchTerm.length >= 2 && (
+                                <div className="p-6 text-[#999] text-center">
+                                    No posts found.
                                 </div>
-                            </a>
-                        ))}
-                        {results.length === 0 && searchTerm.length >= 2 && (
-                            <div style={{ padding: '24px', color: '#999', textAlign: 'center' }}>
-                                No posts found.
-                            </div>
-                        )}
-                    </div>
+                            )}
+                        </div>
 
-                    {/* Footer */}
-                    <div style={{ borderTop: '1px solid #333', padding: '12px 24px', color: '#666', fontSize: '13px', display: 'flex', justifyContent: 'space-between', backgroundColor: '#262626' }}>
-                        <span>Type to search...</span>
-                        <span><kbd style={{ backgroundColor: '#444', padding: '2px 4px', borderRadius: '4px', color: '#bbb', fontFamily: 'monospace' }}>ESC</kbd> to close</span>
+                        {/* Footer */}
+                        <div className="p-3 px-6 bg-[#262626] border-t border-[#333] text-[#666] text-xs flex justify-between items-center">
+                            <span>Type to search...</span>
+                            <span>
+                                <kbd className="bg-[#444] px-1 py-0.5 rounded text-[#bbb] font-mono mr-1">ESC</kbd>
+                                to close
+                            </span>
+                        </div>
                     </div>
-                </ModalBody>
-            </Modal>
+                </div>
+            )}
         </>
-    );
-};
-
-export default function Header() {
-    return (
-        <StyletronProvider>
-            <HeaderContent />
-        </StyletronProvider>
     );
 }

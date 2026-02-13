@@ -3,6 +3,8 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/react/Header.jsx";
 import Footer from "../components/Footer.astro";
 
+import { ClientRouter } from 'astro:transitions';
+
 interface Props {
 	title: string;
 
@@ -16,6 +18,7 @@ const { title, wide = false } = Astro.props;
 <html lang="ko">
 	<head>
 		<BaseHead title={title} />
+        <ClientRouter />
 	</head>
 	<body class="flex flex-col min-h-screen">
 		<Header client:only="react" />

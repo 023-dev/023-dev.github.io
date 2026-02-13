@@ -27,7 +27,11 @@ const GA4_MEASUREMENT_ID =
 	}
 	gtag("js", new Date());
 
-	gtag("config", GA4_MEASUREMENT_ID);
+	document.addEventListener("astro:page-load", () => {
+		gtag("config", GA4_MEASUREMENT_ID, {
+			page_path: window.location.pathname,
+		});
+	});
 </script>
 
 <!-- Global Metadata -->

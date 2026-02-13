@@ -19,11 +19,8 @@
     "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",
     "astro": "^5.17.1",
-    "baseui": "^16.0.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "styletron-engine-atomic": "^1.6.2",
-    "styletron-react": "^6.1.1",
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
