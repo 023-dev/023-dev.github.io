@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/react/Header.jsx";
 import Footer from "../components/Footer.astro";
+import VisitorMonitor from "../components/react/VisitorMonitor.jsx";
 
 import { ClientRouter } from 'astro:transitions';
 
@@ -29,5 +30,6 @@ const { title, description, image, wide = false } = Astro.props;
 			<slot />
 		</main>
 		<Footer />
+		<VisitorMonitor client:idle />
 	</body>
 </html>

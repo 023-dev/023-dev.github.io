@@ -35,8 +35,8 @@ const { tag, posts } = Astro.props;
         >
             {tag}
         </h1>
-        <p class="text-[20px] text-[#555] font-text font-normal capitalize">
-            {tag} Engineering
+        <p class="text-[20px] text-[#555] font-text font-normal">
+            {tag.toLowerCase() === 'engineering' ? 'The technology behind My Engineering' : `${tag} Engineering`}
         </p>
     </div>
     <ul

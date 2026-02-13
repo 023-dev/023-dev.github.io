@@ -2,11 +2,9 @@
 visible: false
 title: "문자열 최적화(String Optimization)"
 date: 2024-12-24 00:00:00
-tags: 
-  - Java
+tags: ["Engineering"]
 ---
 
-# String Optimization
 자바 컴파일러는 다음과 같이 문자열을 처리하는 코드를 만나면, 이를 최적화하여 하나의 문자열로 만들어준다.
 
 ## String literal 결합 최적화

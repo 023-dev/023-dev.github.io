@@ -211,4 +211,29 @@
     .prose ol>li::before {
         color: var(--text-body) !important;
     }
+
+    /* Inline Code Styling */
+    .prose :not(pre) > code {
+        background-color: rgba(135, 131, 120, 0.15); /* Notion-like gray */
+        color: #EB5757; /* Notion-like red-ish text for code, or keep generic */
+        padding: 0.2em 0.4em;
+        border-radius: 4px;
+        font-family: var(--font-mono);
+        font-weight: 500;
+        font-size: 0.85em;
+    }
+
+    /* Remove default backticks from prose */
+    .prose :not(pre) > code::before {
+        content: none !important;
+    }
+    .prose :not(pre) > code::after {
+        content: none !important;
+    }
+
+    /* Dark mode adaptation */
+    :root[class~="dark"] .prose :not(pre) > code {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #ff7b72;
+    }
 }

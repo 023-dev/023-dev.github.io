@@ -81,3 +81,69 @@ export async function getPageViews(slug: string): Promise<number> {
         return 0; // Fallback
     }
 }
+
+
+export interface VisitorStats {
+    today: number;
+    total: number;
+    trend: { date: string; count: number }[];
+}
+
+// Cache for visitor stats (1 hour)
+let visitorStatsCache: { data: VisitorStats; timestamp: number } | null = null;
+
+export async function getVisitorStats(): Promise<VisitorStats> {
+    const now = Date.now();
+    if (visitorStatsCache && now - visitorStatsCache.timestamp < CACHE_DURATION) {
+        return visitorStatsCache.data;
+    }
+
+    if (!analyticsDataClient) {
+        return { today: 0, total: 0, trend: [] };
+    }
+
+    try {
+        const [todayResponse, totalResponse, trendResponse] = await Promise.all([
+            // Today's Visitors
+            analyticsDataClient.runReport({
+                property: `properties/${propertyId}`,
+                dateRanges: [{ startDate: 'today', endDate: 'today' }],
+                metrics: [{ name: 'activeUsers' }],
+            }),
+            // Total Visitors
+            analyticsDataClient.runReport({
+                property: `properties/${propertyId}`,
+                dateRanges: [{ startDate: '2020-01-01', endDate: 'today' }],
+                metrics: [{ name: 'activeUsers' }],
+            }),
+            // 30 Days Trend
+            analyticsDataClient.runReport({
+                property: `properties/${propertyId}`,
+                dateRanges: [{ startDate: '30daysAgo', endDate: 'today' }],
+                dimensions: [{ name: 'date' }],
+                metrics: [{ name: 'activeUsers' }],
+                orderBys: [{ dimension: { dimensionName: 'date' } }],
+            }),
+        ]);
+
+        const today = todayResponse[0].rows?.[0]?.metricValues?.[0]?.value
+            ? parseInt(todayResponse[0].rows[0].metricValues[0].value, 10)
+            : 0;
+
+        const total = totalResponse[0].rows?.[0]?.metricValues?.[0]?.value
+            ? parseInt(totalResponse[0].rows[0].metricValues[0].value, 10)
+            : 0;
+
+        const trend = (trendResponse[0].rows || []).map((row) => ({
+            date: row.dimensionValues?.[0]?.value || '',
+            count: parseInt(row.metricValues?.[0]?.value || '0', 10),
+        }));
+
+        const stats = { today, total, trend };
+        visitorStatsCache = { data: stats, timestamp: now };
+        return stats;
+    } catch (error) {
+        console.error('Error fetching visitor stats:', error);
+        return { today: 0, total: 0, trend: [] };
+    }
+}

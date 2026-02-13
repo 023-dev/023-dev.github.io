@@ -1,6 +1,6 @@
 ---
 visible: true
-title: "Flyway 도입기"
+title: "무질서한 스키마를 통제하기"
 date: 2026-02-09 23:00:00
 tags: ["Engineering", "Backend", "Database"]
 heroImage: "./image.jpg"
