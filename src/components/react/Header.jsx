@@ -22,7 +22,7 @@ export default function Header() {
                 const fiveResults = await Promise.all(search.results.slice(0, 5).map(r => r.data()));
 
                 setResults(fiveResults.map(d => ({
-                    slug: d.url.replace(/^\/blog\/|\/$/g, ""),
+                    url: d.url,
                     title: d.meta.title,
                     heroImage: d.meta.heroImage,
                     tags: d.meta.tag ? (Array.isArray(d.meta.tag) ? d.meta.tag : [d.meta.tag]) : [],
@@ -137,7 +137,7 @@ export default function Header() {
                             </div>
 
                             {results.map((result, index) => (
-                                <a key={index} href={`/blog/${result.slug}`} className="block no-underline" onClick={() => setIsOpen(false)}>
+                                <a key={index} href={result.url} className="block no-underline" onClick={() => setIsOpen(false)}>
                                     <div className="flex px-6 py-3 cursor-pointer hover:bg-[#333] transition-colors group">
                                         <div
                                             className="w-[60px] h-[60px] rounded-lg bg-[#444] mr-4 bg-cover bg-center shrink-0"
