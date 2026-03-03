@@ -118,7 +118,7 @@ ssl_certificate       ./ssl/cert.pem;
 ssl_certificate_key   ./ssl/key.pem;
 
 ssl_protocols  TLSv1.2 TLSv1.3;
-ssl_ciphers    AES128:RC4:AES256:!ADH:!aNULL:!DH:!EDH:!eNULL:!LOW:!SSLv2:!EXP:!NULL;
+ssl_ciphers    ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384;
 ssl_prefer_server_ciphers   on;
 ```
 
@@ -138,7 +138,7 @@ server {
     ssl_certificate_key   ./ssl/key.pem;
 
     ssl_protocols  TLSv1.2 TLSv1.3;
-    ssl_ciphers    AES128:RC4:AES256:!ADH:!aNULL:!DH:!EDH:!eNULL:!LOW:!SSLv2:!EXP:!NULL;
+    ssl_ciphers    ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384;
     ssl_prefer_server_ciphers   on;
 
     location ^~ /actuator {
@@ -184,7 +184,6 @@ server {
 
     location / {
         return 404; # 그 외의 경로로 접근한 경우, 404 반환
-        break;
     }
     
     error_page 400 401 403 404 405 /404.html;
@@ -248,8 +247,8 @@ upstream backend {#연결했던 커넥션을 nginx가 캐시해서 재활용 할
 }
 
 server {
-        listen: 80; #default_server 붙이는 방법도 있음
-        server_name: {탄력적 IP or DNS} # ex) 43.200.98.236;
+        listen 80; #default_server 붙이는 방법도 있음
+        server_name {탄력적 IP or DNS}; # ex) 43.200.98.236;
         
         #location /hello { # 이렇게 할 수도 있음
         #        return 200 'Hello World';
@@ -363,7 +362,7 @@ http {
 		log_format main '$remote_addr - $remote_user [$time_local] "$request" '
 										'$status $body_bytes_sent "$http_referer" '
 										'"$http_user_agent" "$http_x_forwarded_for"'
-										'"$request_time" "$upsteam_connect_time" "$upstream_header_time" "$upstream_response_time"';
+										'"$request_time" "$upstream_connect_time" "$upstream_header_time" "$upstream_response_time"';
 										
 		access_log /var/log/nginx/access.log main;
 }
