@@ -1,9 +1,8 @@
 ---
-visible: false
+visible: true
 title: "Nginx 설정하기"
-date: 2024-07-17 02:00:00
-tags: 
-  - Nginx
+date: 2025-07-17 02:00:00
+tags: ["Engineering"]
 ---
 
 ## 왜 Nginx를 사용하는가?
@@ -15,7 +14,7 @@ tags:
 Nginx를 사용하면 물론 오버헤드가 발생하지만, 이는 Nginx가 주는 편리함을 생각하면 무시할 정도로 성능이 우수하다.
 이정도로 Nginx를 사용하는 이유에 대해 알아보고 이제 Nginx 설정에 대해 알아보자.
 
-## 트렌디한 최신 Nginx 설치
+## Nginx 설치
 
 우선, Nginx를 설치해야 한다. Nginx는 다양한 운영체제에서 사용할 수 있지만, 여기서는 Red Hat 기반 Linux를 기준으로 설명한다.
 패키지 설정할 때는 `sudo -u root -i`로 root 권한을 획득하고 진행하는게 좋다.
