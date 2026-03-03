@@ -3,7 +3,7 @@ visible: true
 title: "디렉토리 스캔 공격은 어떻게 대응해야 할까?"
 date: 2025-02-28 23:00:00
 tags: ["Engineering"]
-heroImage: "./image.jpeg"
+heroImage: "./image.jpg"
 ---
 
 최근 개발 중인 서버에 무수히 많은 에러 로그와 트래픽이 발생하는 이슈가 발생했다.
