@@ -60,12 +60,11 @@ spring.web.resources.add-mappings: false
 ```
 
 이제 Nginx만 설정하면 당장 대응이 가능할 것으로 판단했다.
-위의 로그들을 보고 공격을 감행하던 경로를 패턴으로 설정하고, 해당 경로로 요청이 들어오면 403 Forbidden을 반환하도록 설정했다.
+위의 로그들을 보고 공격을 감행하던 경로를 패턴으로 설정하고, 해당 경로로 요청이 들어오면 무시하도록 설정했다.
 
 ```nginx
 location ~* \.(env|config\.env|aws/credentials|git|bak|old|dist|dev|local)$ {
     deny all;
-    return 403;
 }
 ```
 
@@ -184,7 +183,7 @@ Status for the jail: nginx-bad-request
 ## 참고
 
 - [How to define a location regex matching block in nginx.conf](https://stackoverflow.com/questions/65650622/how-to-define-a-location-regex-matching-block-in-nginx-conf)
-- [Nginx Security Best Practices](https://stackoverflow.com/questions/65650622/how-to-define-a-location-regex-matching-block-in-nginx-conf)
+- [Nginx Security Best Practices](https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/)
 - [AWS WAF Official Docs](https://docs.aws.amazon.com/waf/latest/developerguide/)
 - [Fail2Ban GitHub](https://github.com/fail2ban/fail2ban)
 - [Fail2Ban Official Docs](https://www.fail2ban.org/wiki/index.php/Main_Page)
