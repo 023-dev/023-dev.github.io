@@ -1,10 +1,11 @@
 ---
 visible: true
-title: "Linux 아는 척 해보기"
+title: "Linux와 친한 척 해보기"
 description:
 date: 2025-11-10
 update: 2025-11-10
 tags: ["Engineering"]
+heroImage: "./image.jpg"
 ---
 
 ## 리눅스
