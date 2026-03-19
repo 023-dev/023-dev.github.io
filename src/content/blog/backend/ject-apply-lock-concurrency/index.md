@@ -1,7 +1,7 @@
 ---
 visible: true
 title: "비관적 락로 지원서 이중 제출 동시성 문제 해결하기"
-date: 2025-02-28 23:00:00
+date: 2026-03-17 23:00:00
 tags: ["Engineering", "Backend"]
 heroImage: "./image.png"
 ---
