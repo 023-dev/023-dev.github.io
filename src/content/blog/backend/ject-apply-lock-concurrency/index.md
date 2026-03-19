@@ -3,7 +3,7 @@ visible: true
 title: "비관적 락로 지원서 이중 제출 동시성 문제 해결하기"
 date: 2025-02-28 23:00:00
 tags: ["Engineering", "Backend"]
-heroImage: "./image.jpg"
+heroImage: "./image.png"
 ---
 
 JECT 서비스는 모집 기간마다 지원자들의 지원서 데이터를 실시간으로 수신받아 관리합니다. 특히 지원서 제출은 모집 마감 직전 짧은 시간에 많은 요청이 몰리는 성향을 가지고 있다.
