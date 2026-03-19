@@ -1,6 +1,6 @@
 ---
 visible: true
-title: "비관적 락로 지원서 이중 제출 동시성 문제 해결하기"
+title: "모집 마감일에 몰리는 지원서 제출 동시성 문제 해결하기"
 date: 2026-03-17 23:00:00
 tags: ["Engineering", "Backend"]
 heroImage: "./image.png"
