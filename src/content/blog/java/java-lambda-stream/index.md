@@ -1,9 +1,8 @@
 ---
-visible: false
+visible: true
 title: "자바 람다(Lambda)와 스트림(Stream)"
 date: 2024-11-05 00:00:00
-tags: 
-  - Java
+tags: ["Engineering", "Backend"]
 ---
 
 # 람다 표현식(Lambda Expression)
