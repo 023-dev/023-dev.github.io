@@ -1,9 +1,8 @@
 ---
-visible: false
+visible: true
 title: "Utility Class에서 생성자를 private으로 선언해야 하는 이유"
 date: 2025-04-15 00:00:00
-tags: 
-  - Java
+tags: ["Engineering", "Backend"]
 ---
 
 개발을 하다 보면 `Utils`, `Helper`, `Constants` 등과 같이 객체를 생성하지 않고 정적인 메서드나 상수를 모아두는 **유틸리티 클래스(Utility Class)**를 사용하는 경우가 있다.
