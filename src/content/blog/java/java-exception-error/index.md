@@ -1,9 +1,8 @@
 ---
-visible: false
+visible: true
 title: "자바 에러(Error)와 예외처리(Exception)"
 date: 2024-11-05 00:00:00
-tags: 
-  - Java
+tags: ["Engineering", "Backend"]
 ---
 
 프로그램에서 오류가 발생하면 시스템 레벨에서 문제를 일으켜 원치 않는 버그를 유발하거나, 심각한 경우 프로그램을 강제로 종료시키기도 한다.
