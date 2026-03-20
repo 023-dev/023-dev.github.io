@@ -1,9 +1,8 @@
 ---
-visible: false
+visible: true
 title: "동일성(Identity)와 동등성(Equality)"
 date: 2024-12-19 00:00:00
-tags: 
-  - Java
+tags: ["Engineering", "Backend"]
 ---
 
 # 동일성와 동등성
