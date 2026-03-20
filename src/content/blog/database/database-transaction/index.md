@@ -1,9 +1,8 @@
 ---
-visible: false
+visible: true
 title: "DBMS는 트랜잭션을 어떻게 관리할까?"
 date: 2025-01-29 11:00:00
-tags: 
-  - Database
+tags: ["Engineering", "Backend"]
 ---
 
 트랜잭션 관리는 DBMS가 제공하는 핵심 기능 중 하나로, 
