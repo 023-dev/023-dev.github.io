@@ -1,5 +1,5 @@
 ---
-visible: false
+visible: true
 title: "Spring에서 Event 처리하기"
 date: 2026-01-21 09:00:00
 tags: ["Engineering", "Backend"]
