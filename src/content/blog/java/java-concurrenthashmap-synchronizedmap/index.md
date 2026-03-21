@@ -1,9 +1,8 @@
 ---
-visible: false
-title: "SynchronizedMap vs ConcurrentHashMap"
+visible: true
+title: "SynchronizedMap와 ConcurrentHashMap"
 date: 2024-11-22 00:00:00
-tags: 
-  - Java
+tags: ["Engineering", "Backend"]
 ---
 
 # SynchronizedMap와 ConcurrentHashMap
