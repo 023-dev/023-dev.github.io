@@ -1,8 +1,8 @@
 ---
-visible: false
+visible: true
 title: "자바 문자열(String)"
 date: 2024-11-05 18:00:00
-tags: ["Engineering"]
+tags: ["Engineering", "Backend"]
 ---
 
 자바에서 문자를 다루는 대표적인 타입은 `char`와 `String` 이렇게 2가지가 있다.
