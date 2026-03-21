@@ -1,6 +1,6 @@
 ---
 visible: true
-title: "JVM은 "
+title: "컴파일러와 인터프리터"
 date: 2026-03-19 23:00:00
 tags: ["Engineering", "Backend"]
 heroImage: "./image.png"
