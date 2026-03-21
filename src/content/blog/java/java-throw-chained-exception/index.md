@@ -1,9 +1,8 @@
 ---
-visible: false
+visible: true
 title: "throw와 throws 그리고 Chained Exception"
 date: 2024-11-06 18:00:00
-tags: 
-  - Java
+tags: ["Engineering", "Backend"]
 ---
 
 자바에서 예외처리는 오류를 예측하고 이에 대응하여 프로그램의 안정성을 높일 뿐만 아니라, 상황에 따라서 단순히 발생한 오류를 잡아내는 것을 넘어, 필요에 따라 예외를 발생시키거나 떠넘기고,
