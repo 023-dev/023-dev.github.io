@@ -1,9 +1,8 @@
 ---
-visible: false
+visible: true
 title: "자바 Object 클래스"
 date: 2024-12-16 00:00:00
-tags: 
-  - Java
+tags: ["Engineering", "Backend"]
 ---
 
 Object 클래스를 알아가기 전에 먼저 Object 클래스가 속한 패키지에 대해 알아야 한다.
