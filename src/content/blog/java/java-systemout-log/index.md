@@ -1,9 +1,8 @@
 ---
-visible: false
+visible: true
 title: "System.out.println()를 사용한 로깅을 피해야 하는 이유"
 date: 2024-11-05 18:00:00
-tags: 
-  - Java
+tags: ["Engineering", "Backend"]
 ---
 
 프로그래밍을 처음 배우면 `System.out.println("Hello World");`와 같이 콘솔에 출력을 시도하게 된다.
