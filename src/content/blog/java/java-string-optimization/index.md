@@ -1,8 +1,8 @@
 ---
-visible: false
-title: "문자열 최적화(String Optimization)"
+visible: true
+title: "자바의 문자열 최적화(String Optimization)"
 date: 2024-12-24 00:00:00
-tags: ["Engineering"]
+tags: ["Engineering", 'Backend"]
 ---
 
 자바 컴파일러는 다음과 같이 문자열을 처리하는 코드를 만나면, 이를 최적화하여 하나의 문자열로 만들어준다.
@@ -126,7 +126,7 @@ String string = sb.append("A").append("B").append("C").append("D")
 System.out.println(string); // DCBA
 ```
 
-이렇게 메서드 체인을 사용하면 코드가 간결해지고 가독성이 좋아진다.
-메서드 체이닝의 구현은 복잡하고 번거롭지만 사용하는 입장에서는 편리함을 경험할 수 있다.
-자바의 라이브러리와 오픈 소스들은 메서드 체이닝 기법을 많이 사용하고 있다.
+이렇듯 메서드 체인을 사용하면 코드가 간결해지고 가독성이 좋아진다.
+물론 메서드 체이닝의 구현은 복잡하고 번거롭지만, 사용하는 입장에서는 편리함을 경험할 수 있다.
+그런 이유인지 자바의 라이브러리와 오픈 소스들은 메서드 체이닝 기법을 많이 사용하고 있다.
 
