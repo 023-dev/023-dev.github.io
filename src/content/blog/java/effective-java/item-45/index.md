@@ -1,10 +1,8 @@
 ---
-visible: false
+visible: true
 title: "스트림은 주의해서 사용하라"
 date: 2025-02-05 11:00:00
-tags: 
-  - Java
-  - Effective Java
+tags: ["Engineering", "Backend"]
 series: "Effective Java"
 ---
 

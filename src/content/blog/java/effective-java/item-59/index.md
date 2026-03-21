@@ -1,10 +1,8 @@
 ---
-visible: false
+visible: true
 title: "라이브러리를 익히고 사용하라"
 date: 2025-02-21 21:00:00
-tags: 
-  - Java
-  - Effective Java
+tags: ["Engineering", "Backend"]
 series: "Effective Java"
 ---
 

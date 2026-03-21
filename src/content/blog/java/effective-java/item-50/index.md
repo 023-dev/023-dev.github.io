@@ -1,10 +1,8 @@
 ---
-visible: false
+visible: true
 title: "적시에 방어적 복사본을 만들라"
 date: 2025-02-13 21:00:00
-tags: 
-  - Java
-  - Effective Java
+tags: ["Engineering", "Backend"]
 series: "Effective Java"
 ---
 

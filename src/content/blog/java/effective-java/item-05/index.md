@@ -1,10 +1,8 @@
 ---
-visible: false
+visible: true
 title: "자원을 직접 명시하지 말고 의존 객체 주입을 사용하라"
 date: 2025-01-01 00:00:00
-tags: 
-  - Java
-  - Effective Java
+tags: ["Engineering", "Backend"]
 series: "Effective Java"
 ---
 

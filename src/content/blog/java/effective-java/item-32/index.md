@@ -1,10 +1,8 @@
 ---
-visible: false
+visible: true
 title: "제네릭과 가변인수를 함께 쓸 때는 신중하라"
 date: 2025-01-23 01:00:00
-tags:
-  - Java
-  - Effective Java
+tags: ["Engineering", "Backend"]
 series: "Effective Java"
 ---
 

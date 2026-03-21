@@ -1,10 +1,8 @@
 ---
-visible: false
+visible: true
 title: "readObject 메서드는 방어적으로 작성하라"
 date: 2025-03-13 20:00:00
-tags: 
-  - Java
-  - Effective Java
+tags: ["Engineering", "Backend"]
 series: "Effective Java"
 ---
 

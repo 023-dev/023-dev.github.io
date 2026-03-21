@@ -1,10 +1,8 @@
 ---
-visible: false
+visible: true
 title: "정확한 답이 필요하다면 float와 double은 피하라"
 date: 2025-02-22 21:00:00
-tags: 
-  - Java
-  - Effective Java
+tags: ["Engineering", "Backend"]
 series: "Effective Java"
 ---
 

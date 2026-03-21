@@ -1,10 +1,8 @@
 ---
-visible: false
+visible: true
 title: "다른 타입이 적절하다면 문자열 사용을 피하라"
 date: 2025-02-23 09:00:00
-tags: 
-  - Java
-  - Effective Java
+tags: ["Engineering", "Backend"]
 series: "Effective Java"
 ---
 
