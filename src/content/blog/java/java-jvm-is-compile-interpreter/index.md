@@ -3,7 +3,6 @@ visible: true
 title: "JVM은 컴파일러일까, 인터프리터일까?"
 date: 2026-03-19 23:00:00
 tags: ["Engineering", "Backend"]
-heroImage: "./image.png"
 ---
 
 ## 컴파일러 방식
