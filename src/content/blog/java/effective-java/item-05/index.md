@@ -12,7 +12,7 @@ heroImage: "../effective-java.png"
 `NotificationService`는 `EmailSender`를 사용하여 이메일을 보낸다.
 여기서 `NotificationService`가 `EmailSender` 리소스에 의존한다고 말한다.
 이때 `NotificationService` 클래스는 다음과 같이 구현하는 경우가 있다.
-![img.png](img.png)
+
 ## 정적 유틸리티 클래스(Static Utility Class)
 다음 코드는 알림을 보내는 `NotificationService`를 정적 유틸리티 클래스로 구현한 경우이다.
 
