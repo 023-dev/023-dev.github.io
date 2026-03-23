@@ -4,6 +4,7 @@ title: "public 클래스에서는 public 필드가 아닌 접근자 메서드를
 date: 2025-01-09 00:00:00
 tags: ["Engineering", "Backend"]
 series: "Effective Java"
+heroImage: "../effective-java.png"
 ---
 
 ## 캡슐화의 이점을 제공하지 못하는 클래스

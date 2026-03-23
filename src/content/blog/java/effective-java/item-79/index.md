@@ -4,6 +4,7 @@ title: "과도한 동기화는 피하라"
 date: 2025-03-06 20:00:00
 tags: ["Engineering", "Backend"]
 series: "Effective Java"
+heroImage: "../effective-java.png"
 ---
 
 이번 아이템에서는 동기화를 과도하게 했을 때의 피해에 대해 알아본다.

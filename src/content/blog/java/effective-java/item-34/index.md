@@ -4,6 +4,7 @@ title: "int 상수 대신 열거 타입을 사용하라"
 date: 2025-01-29 11:00:00
 tags: ["Engineering", "Backend"]
 series: "Effective Java"
+heroImage: "../effective-java.png"
 ---
 
 > 열거 타입: 일정 개수의 상수 값을 정의한 다음, 그외의 값은 허용하지 않는 타입

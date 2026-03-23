@@ -4,6 +4,7 @@ title: "readObject 메서드는 방어적으로 작성하라"
 date: 2025-03-13 20:00:00
 tags: ["Engineering", "Backend"]
 series: "Effective Java"
+heroImage: "../effective-java.png"
 ---
 
 ## 방어적 복사를 사용하는 불변 클래스

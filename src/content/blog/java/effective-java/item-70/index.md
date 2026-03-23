@@ -2,10 +2,9 @@
 visible: true
 title: "복구할 수 있는 상황에는 검사 예외를, 프로그래밍 오류에는 런타임 예외를 사용하라"
 date: 2025-02-27 09:00:00
-tags: 
-  - Java
-  - Effective Java
+tags: ["Engineering", "Backend"]
 series: "Effective Java"
+heroImage: "../effective-java.png"
 ---
 
 자바는 문제 상황을 알리는 타입(throwable)으로 검사 예외, 런타임 예외, 에러 이렇게 세 가지를 제공하고 있다.

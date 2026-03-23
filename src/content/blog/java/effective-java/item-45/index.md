@@ -4,6 +4,7 @@ title: "스트림은 주의해서 사용하라"
 date: 2025-02-05 11:00:00
 tags: ["Engineering", "Backend"]
 series: "Effective Java"
+heroImage: "../effective-java.png"
 ---
 
 ## 스트림이란?

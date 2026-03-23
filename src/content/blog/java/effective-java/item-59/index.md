@@ -4,6 +4,7 @@ title: "라이브러리를 익히고 사용하라"
 date: 2025-02-21 21:00:00
 tags: ["Engineering", "Backend"]
 series: "Effective Java"
+heroImage: "../effective-java.png"
 ---
 
 ## 라이브러리에 익숙치 않으면 발생할 수 있는 문제
