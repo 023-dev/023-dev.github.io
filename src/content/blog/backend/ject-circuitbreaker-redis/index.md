@@ -1,7 +1,7 @@
 ---
 visible: true
 title: "서킷 브레이커을 사용헌 Redis 장애 전파 막기"
-date: 2026-03-17 23:00:00
+date: 2026-03-22 23:00:00
 tags: ["Engineering", "Backend"]
 heroImage: "./image.png"
 ---
