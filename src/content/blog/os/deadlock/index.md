@@ -1,12 +1,9 @@
 ---
-visible: false
+visible: true
 title: "교착 상태"
-description:
-date: 2025-09-21
-update: 2025-09-21
-tags:
-  - 운영체제
-series: "운영체제"
+date: 2025-09-21 23:00:00
+tags: ["Backend"]
+heroImage: "./img.png"
 ---
 
 ## 교착 상태

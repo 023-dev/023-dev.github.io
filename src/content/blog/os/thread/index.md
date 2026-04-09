@@ -1,11 +1,9 @@
 ---
-visible: false
+visible: true
 title: "쓰레드 "
-description:
-date: 2025-09-08
-update: 2025-09-08
-tags:
-  - 운영체제
+date: 2025-09-23 23:00:00
+tags: ["Backend"]
+heroImage: "./img_1.png"
 ---
 
 ## 쓰레드란?

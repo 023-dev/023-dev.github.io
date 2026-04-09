@@ -1,12 +1,10 @@
 ---
-visible: false
+visible: true
 title: "CPU 스케줄링"
 description:
-date: 2025-09-12
-update: 2025-09-12
-tags:
-  - 운영체제
-series: "운영체제"
+date: 2025-09-12 23:00:00
+tags: ["Backend"]
+heroImage: "./img_5.png"
 ---
 
 ## 기아 상태와 CPU 스케줄링

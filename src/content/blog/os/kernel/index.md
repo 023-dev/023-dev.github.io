@@ -1,12 +1,9 @@
 ---
-visible: false
+visible: true
 title: "커널의 작동 방식"
-description:
-date: 2025-09-04
-update: 2025-09-04
-tags:
-  - 운영체제
-series: "운영체제"
+date: 2025-09-04 23:00:00
+tags: ["Backend"]
+heroImage: "./img.png"
 ---
 
 앞서, 운영체제란 무엇인지 그리고 커널에 대해 간단하게 알아봤다.

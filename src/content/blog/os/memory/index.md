@@ -1,12 +1,9 @@
 ---
-visible: false
+visible: true
 title: "메모리 관리"
-description:
-date: 2025-09-22
-update: 2025-09-22
-tags:
-  - 운영체제
-series: "운영체제"
+date: 2025-09-22 23:00:00
+tags: ["Backend"]
+heroImage: "./img.png"
 ---
 
 ## 절대 주소와 상대 주소

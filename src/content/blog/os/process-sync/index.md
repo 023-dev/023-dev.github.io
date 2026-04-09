@@ -1,12 +1,9 @@
 ---
-visible: false
+visible: true
 title: "프로세스 동기화"
-description:
-date: 2025-09-19
-update: 2025-09-19
-tags:
-  - 운영체제
-series: "운영체제"
+date: 2025-09-19 23:00:00
+tags: ["Backend"]
+heroImage: "./img.png"
 ---
 
 ## 프로세스 동기화

@@ -1,12 +1,9 @@
 ---
-visible: false
+visible: true
 title: "운영체제의 개념과 구조"
-description:
-date: 2025-09-03
-update: 2025-09-03
-tags:
-  - 운영체제
-series: "운영체제"
+date: 2025-09-03 23:00:00
+tags: ["Backend"]
+heroImage: "./img_1.png"
 ---
 
 ## 운영체제(OS, Operating System)

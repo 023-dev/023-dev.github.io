@@ -1,12 +1,9 @@
 ---
-visible: false
+visible: true
 title: "프로세스"
-description:
-date: 2025-09-08
-update: 2025-09-08
-tags:
-  - 운영체제
-series: "운영체제"
+date: 2025-09-08 23:00:00
+tags: ["Backend"]
+heroImage: "./img.png"
 ---
 
 ## 프로세스란? 
