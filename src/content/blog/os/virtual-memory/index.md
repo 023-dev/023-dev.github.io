@@ -1,12 +1,9 @@
 ---
-visible: false
+visible: true
 title: "가상 메모리"
-description:
-date: 2025-09-23
-update: 2025-09-23
-tags:
-  - 운영체제
-series: "운영체제"
+date: 2025-09-23 23:00:00
+tags: ["Backend"]
+heroImage: "./image.png"
 ---
 
 ## 연속 메모리 할당의 문제점

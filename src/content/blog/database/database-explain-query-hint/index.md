@@ -1,10 +1,9 @@
 ---
-visible: false
+visible: true
 title: "실행 계획과 쿼리 최적화"
 date: 2025-01-16 18:00:00
-tags: 
-  - Database
-  - Index
+tags: ["Backend"]
+heroImage: "./image.png"
 ---
 
 데이터베이스의 데이터가 커질수록 데이터를 조회하는데 시간이 오래걸리게 된다. 
