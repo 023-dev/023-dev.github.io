@@ -3,7 +3,7 @@ visible: true
 title: "가상 메모리"
 date: 2025-09-23 23:00:00
 tags: ["Backend"]
-heroImage: "./image.png"
+heroImage: "./img.png"
 ---
 
 ## 연속 메모리 할당의 문제점
