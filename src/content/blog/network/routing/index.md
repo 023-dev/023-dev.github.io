@@ -1,12 +1,9 @@
 ---
-visible: false
+visible: true
 title: "라우팅"
 description:
-date: 2025-10-03
-update: 2025-10-03
-tags:
-  - 네트워크
-series: "네트워크"
+date: 2025-10-03 23:00:00
+tags: ["Backend"]
 ---
 
 라우터의 핵심 기능은 패킷이 이동할 최적의 경로를 설정한 뒤 해당 경로로 패킷을 이동시키는 것입니다.
