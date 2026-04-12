@@ -1,12 +1,9 @@
 ---
-visible: false
+visible: true
 title: "IP 주소 체계"
 description:
-date: 2025-10-03
-update: 2025-10-03
-tags:
-  - 네트워크
-series: "네트워크"
+date: 2025-10-03 23:00:00
+tags: ["Backend"]
 ---
 
 ## 네트워크 주소와 호스트 주소
