@@ -1,7 +1,6 @@
 ---
 visible: true
 title: "라우팅"
-description:
 date: 2025-10-03 23:00:00
 tags: ["Backend"]
 ---
