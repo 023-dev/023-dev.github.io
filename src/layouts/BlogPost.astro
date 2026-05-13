@@ -19,84 +19,82 @@ const ogImage = `/og/${slug}.png`;
 ---
 
 <BaseLayout title={title} wide={true} image={ogImage}>
-	<div class="relative mx-auto px-4 max-w-screen-2xl">
-		<div class="grid grid-cols-1 xl:grid-cols-[1fr_700px_1fr] gap-12">
-			<aside
-				class="hidden xl:block justify-self-end w-[240px] col-start-1"
-			>
+	<div class="relative mx-auto w-full">
+		<aside
+			class="hidden 2xl:block absolute top-0 left-[calc(50%_-_450px_-_280px)] w-[240px]"
+		>
+			{
+				headings && headings.length > 0 && (
+					<div class="sticky top-[100px]">
+						<TableOfContents headings={headings} />
+					</div>
+				)
+			}
+		</aside>
+
+		<main
+			class="min-w-0 w-full max-w-[900px] mx-auto"
+		>
+			<div class="mb-8">
 				{
-					headings && headings.length > 0 && (
-						<div class="sticky top-[100px]">
-							<TableOfContents headings={headings} />
+					Astro.props.tags && Astro.props.tags.length > 0 && (
+						<div class="mb-3 text-[12px] leading-[20px] font-medium text-[#4B4B4B] font-text">
+							{Astro.props.tags.map((tag, i) => (
+								<>
+									<a
+										href={`/tags/${tag}`}
+										class="hover:text-black transition-colors"
+									>
+										{tag}
+									</a>
+									{i < Astro.props.tags.length - 1 && (
+										<span class="mr-1">,</span>
+									)}
+								</>
+							))}
 						</div>
 					)
 				}
-			</aside>
 
-			<main
-				class="min-w-0 w-full max-w-[700px] mx-auto xl:mx-0 col-start-2"
-			>
-				<div class="mb-8">
+				<h1
+					class="text-[36px] leading-[44px] font-bold text-black mb-[20px] font-heading tracking-tight"
+					data-pagefind-meta="title"
+				>
+					{title}
+				</h1>
+				<div style="display: none">
+					{Astro.props.heroImage && <meta data-pagefind-meta="heroImage[content]" content={typeof Astro.props.heroImage === 'string' ? Astro.props.heroImage : Astro.props.heroImage.src} />}
+					{date && <meta data-pagefind-meta="date[content]" content={date.toISOString()} />}
+					{Astro.props.tags && Astro.props.tags.map(tag => <meta data-pagefind-meta="tag" content={tag} />)}
+				</div>
+
+				<div
+					class="flex items-center gap-1 text-[#4B4B4B] text-[12px] leading-[20px] font-medium font-text"
+				>
+					<FormattedDate date={date} />
 					{
-						Astro.props.tags && Astro.props.tags.length > 0 && (
-							<div class="mb-3 text-[12px] leading-[20px] font-medium text-[#4B4B4B] font-text">
-								{Astro.props.tags.map((tag, i) => (
-									<>
-										<a
-											href={`/tags/${tag}`}
-											class="hover:text-black transition-colors"
-										>
-											{tag}
-										</a>
-										{i < Astro.props.tags.length - 1 && (
-											<span class="mr-1">,</span>
-										)}
-									</>
-								))}
-							</div>
+						readingTime && (
+							<>
+								<span>/</span>
+								<span>{readingTime}</span>
+							</>
 						)
 					}
-
-					<h1
-						class="text-[36px] leading-[44px] font-bold text-black mb-[20px] font-heading tracking-tight"
-						data-pagefind-meta="title"
-					>
-						{title}
-					</h1>
-                    <div style="display: none">
-                        {Astro.props.heroImage && <meta data-pagefind-meta="heroImage[content]" content={typeof Astro.props.heroImage === 'string' ? Astro.props.heroImage : Astro.props.heroImage.src} />}
-                        {date && <meta data-pagefind-meta="date[content]" content={date.toISOString()} />}
-                        {Astro.props.tags && Astro.props.tags.map(tag => <meta data-pagefind-meta="tag" content={tag} />)}
-                    </div>
-
-					<div
-						class="flex items-center gap-1 text-[#4B4B4B] text-[12px] leading-[20px] font-medium font-text"
-					>
-						<FormattedDate date={date} />
-						{
-							readingTime && (
-								<>
-									<span>/</span>
-									<span>{readingTime}</span>
-								</>
-							)
-						}
-						<span>/</span>
-						<div class="flex items-center">
-							<span id="view-count" class="min-w-[1ch]">0</span>
-							<span class="ml-1">views</span>
-						</div>
+					<span>/</span>
+					<div class="flex items-center">
+						<span id="view-count" class="min-w-[1ch]">0</span>
+						<span class="ml-1">views</span>
 					</div>
 				</div>
-				<div
-					class="prose prose-pre:bg-gray-900 prose-pre:text-gray-50 prose-pre:shadow-lg prose-pre:rounded-xl"
-                    data-pagefind-body
-				>
-					<slot />
-				</div>
-				<Comments />
-			</main>
-		</div>
+			</div>
+			<div
+				class="prose max-w-none prose-pre:bg-gray-900 prose-pre:text-gray-50 prose-pre:shadow-lg prose-pre:rounded-xl"
+				data-pagefind-body
+			>
+				<slot />
+			</div>
+			<Comments />
+		</main>
 	</div>
 </BaseLayout>
 
