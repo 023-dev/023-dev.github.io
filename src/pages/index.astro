@@ -1,66 +1,93 @@
 ---
-import { getReadingTime } from "../utils/readingTime";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
-import FormattedDate from "../components/FormattedDate.astro";
+import FeaturedPost from "../components/FeaturedPost.astro";
+import PostListItem from "../components/PostListItem.astro";
 
 const posts = (await getCollection("blog"))
     .filter((post) => post.data.visible !== false)
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const [leadPost, ...recentPosts] = posts.slice(0, 3);
+const tags = [
+    ...new Set(posts.flatMap((post) => post.data.tags ?? [])),
+].sort();
 ---
 
 <BaseLayout title="Astro Tech Blog" wide={true}>
-    <div class="py-16">
-        <h1
-            class="text-[44px] font-bold tracking-tight mb-4 font-heading leading-none"
-        >
-            Engineering
-        </h1>
-        <p class="text-[20px] text-[#555] font-text font-normal">
-            The technology behind My Engineering
-        </p>
-    </div>
-    <ul
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8 md:gap-x-5 md:gap-y-10"
-    >
+    <section class="border-b border-gray-200 py-12 md:py-16">
+        <div class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <div>
+                <p class="mb-4 text-xs font-bold uppercase tracking-wider text-[#167d68]">
+                    Tech Blog
+                </p>
+                <h1 class="font-heading text-[44px] font-bold leading-none tracking-tight md:text-[56px]">
+                    Engineering
+                </h1>
+                <p class="mt-5 max-w-[560px] text-[18px] leading-[28px] text-[#555]">
+                    The technology behind My Engineering
+                </p>
+            </div>
+
+            <nav class="flex max-w-[520px] flex-wrap gap-2" aria-label="Tags">
+                {
+                    tags.slice(0, 6).map((tag) => (
+                        <a
+                            href={`/tags/${tag.toLowerCase()}`}
+                            class="rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-[#555] transition-colors hover:border-black hover:text-black"
+                        >
+                            {tag}
+                        </a>
+                    ))
+                }
+            </nav>
+        </div>
+    </section>
+
+    <section class="py-12 md:py-14">
+        <div class="mb-6 flex items-baseline justify-between border-b border-gray-200 pb-4">
+            <h2 class="text-[24px] font-bold tracking-tight">최근 올라온 글</h2>
+            <span class="text-sm font-medium text-gray-500">{posts.length} posts</span>
+        </div>
+
         {
-            posts.map((post) => (
-                <li class="group flex flex-col h-full">
-                    <a
-                        href={`/blog/${post.slug}/`}
-                        class="block flex flex-col h-full bg-white min-h-[410px] hover:shadow-2xl transition-shadow duration-300"
-                    >
-                        {post.data.heroImage && (
-                            <div class="w-full relative overflow-hidden group h-[200px]">
-                                <Image
-                                    src={post.data.heroImage}
-                                    alt=""
-                                    class="absolute inset-0 w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
-                                />
-                            </div>
-                        )}
-
-                        <div class="flex-1 flex flex-col p-8 bg-[rgb(246,246,246)]">
-                            {post.data.tags && post.data.tags.length > 0 && (
-                                <div class="mb-2 text-sm text-gray-500 font-medium">
-                                    {post.data.tags.join(", ")}
-                                </div>
-                            )}
-
-                            <h2 class="text-2xl font-medium leading-tight mb-4">
-                                {post.data.title}
-                            </h2>
-
-                            <div class="flex items-center text-sm font-medium text-gray-500 mt-auto">
-                                <FormattedDate date={post.data.date} />
-                                <span class="mx-2 text-gray-300">/</span>
-                                <span>{getReadingTime(post.body)}</span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-            ))
+            leadPost && (
+                <div class="grid gap-5 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,.65fr)]">
+                    <FeaturedPost post={leadPost} />
+                    <div class="grid gap-5">
+                        {recentPosts.map((post) => (
+                            <FeaturedPost post={post} compact />
+                        ))}
+                    </div>
+                </div>
+            )
         }
-    </ul>
+    </section>
+
+    <section class="grid gap-10 pb-16 lg:grid-cols-[minmax(0,1fr)_260px]">
+        <div>
+            <div class="mb-2 flex items-baseline justify-between">
+                <h2 class="text-[24px] font-bold tracking-tight">전체 게시글</h2>
+            </div>
+            <ul>
+                {posts.map((post) => <PostListItem post={post} />)}
+            </ul>
+        </div>
+
+        <aside class="self-start border-t border-gray-200 pt-6 lg:sticky lg:top-24">
+            <h2 class="mb-4 text-[18px] font-bold tracking-tight">Tag</h2>
+            <div class="flex flex-wrap gap-2">
+                {
+                    tags.map((tag) => (
+                        <a
+                            href={`/tags/${tag.toLowerCase()}`}
+                            class="rounded-full bg-[rgb(246,246,246)] px-3 py-1.5 text-sm font-medium text-[#555] transition-colors hover:bg-black hover:text-white"
+                        >
+                            {tag}
+                        </a>
+                    ))
+                }
+            </div>
+        </aside>
+    </section>
 </BaseLayout>

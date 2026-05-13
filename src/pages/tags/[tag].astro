@@ -1,9 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { Image } from "astro:assets";
-import FormattedDate from "../../components/FormattedDate.astro";
-import { getReadingTime } from "../../utils/readingTime";
+import PostListItem from "../../components/PostListItem.astro";
 
 export async function getStaticPaths() {
     const allPosts = (await getCollection("blog")).filter(
@@ -29,56 +27,21 @@ const { tag, posts } = Astro.props;
 ---
 
 <BaseLayout title={`Posts tagged with ${tag}`} wide={true}>
-    <div class="py-16">
-        <h1
-            class="text-[44px] font-bold tracking-tight mb-4 font-heading leading-none capitalize"
-        >
+    <section class="border-b border-gray-200 py-12 md:py-16">
+        <p class="mb-4 text-xs font-bold uppercase tracking-wider text-[#167d68]">
+            Tag
+        </p>
+        <h1 class="font-heading text-[44px] font-bold leading-none tracking-tight capitalize md:text-[56px]">
             {tag}
         </h1>
-        <p class="text-[20px] text-[#555] font-text font-normal">
-            {tag.toLowerCase() === 'engineering' ? 'The technology behind My Engineering' : `${tag} Engineering`}
+        <p class="mt-5 text-[18px] leading-[28px] text-[#555]">
+            {posts.length} posts
         </p>
-    </div>
-    <ul
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8 md:gap-x-5 md:gap-y-10"
-    >
-        {
-            posts.map((post) => (
-                <li class="group flex flex-col h-full">
-                    <a
-                        href={`/blog/${post.slug}/`}
-                        class="block flex flex-col h-full bg-white min-h-[410px] hover:shadow-2xl transition-shadow duration-300"
-                    >
-                        {post.data.heroImage && (
-                            <div class="w-full relative overflow-hidden group h-[200px]">
-                                <Image
-                                    src={post.data.heroImage}
-                                    alt=""
-                                    class="absolute inset-0 w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
-                                />
-                            </div>
-                        )}
+    </section>
 
-                        <div class="flex-1 flex flex-col p-8 bg-[rgb(246,246,246)]">
-                            {post.data.tags && post.data.tags.length > 0 && (
-                                <div class="mb-2 text-sm text-gray-500 font-medium">
-                                    {post.data.tags.join(", ")}
-                                </div>
-                            )}
-
-                            <h2 class="text-2xl font-medium leading-tight mb-4">
-                                {post.data.title}
-                            </h2>
-
-                            <div class="flex items-center text-sm font-medium text-gray-500 mt-auto">
-                                <FormattedDate date={post.data.date} />
-                                <span class="mx-2 text-gray-300">/</span>
-                                <span>{getReadingTime(post.body)}</span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-            ))
-        }
-    </ul>
+    <section class="pb-16 pt-8">
+        <ul>
+            {posts.map((post) => <PostListItem post={post} />)}
+        </ul>
+    </section>
 </BaseLayout>

@@ -1,0 +1,68 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "./FormattedDate.astro";
+import { getReadingTime } from "../utils/readingTime";
+import { getPostExcerpt } from "../utils/postExcerpt";
+
+interface Props {
+    post: CollectionEntry<"blog">;
+    compact?: boolean;
+}
+
+const { post, compact = false } = Astro.props;
+const excerpt = getPostExcerpt(post.body, compact ? 96 : 150);
+const tags = post.data.tags ?? [];
+const primaryTag = tags[0] ?? "Post";
+---
+
+<a
+    href={`/blog/${post.slug}/`}
+    class={`group grid h-full overflow-hidden rounded-lg border border-gray-200 bg-white transition-shadow duration-300 hover:shadow-lg ${compact ? "grid-cols-[112px_1fr]" : "md:grid-cols-[1.15fr_1fr]"}`}
+>
+    <div class={`relative overflow-hidden bg-gray-100 ${compact ? "min-h-[148px]" : "min-h-[280px]"}`}>
+        {
+            post.data.heroImage ? (
+                <Image
+                    src={post.data.heroImage}
+                    alt=""
+                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+            ) : (
+                <div class="flex h-full min-h-[inherit] items-end bg-[rgb(246,246,246)] p-5">
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#888]">
+                        {primaryTag}
+                    </span>
+                </div>
+            )
+        }
+    </div>
+
+    <div class={`flex min-w-0 flex-col ${compact ? "p-5" : "p-7 md:p-8"}`}>
+        {
+            tags.length > 0 && (
+                <div class="mb-3 flex flex-wrap gap-x-2 gap-y-1">
+                    {tags.map((tag) => (
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#167d68]">
+                            {tag}
+                        </span>
+                    ))}
+                </div>
+            )
+        }
+
+        <h2 class={`${compact ? "text-[20px] leading-[28px]" : "text-[30px] leading-[38px]"} font-bold tracking-tight text-black transition-colors group-hover:text-[#167d68]`}>
+            {post.data.title}
+        </h2>
+
+        <p class={`${compact ? "mt-2 line-clamp-2 text-[14px] leading-[22px]" : "mt-4 line-clamp-3 text-[16px] leading-[26px]"} text-[#555]`}>
+            {excerpt}
+        </p>
+
+        <div class="mt-auto flex items-center gap-2 pt-5 text-[13px] font-medium text-gray-500">
+            <FormattedDate date={post.data.date} />
+            <span class="text-gray-300">/</span>
+            <span>{getReadingTime(post.body)}</span>
+        </div>
+    </div>
+</a>
