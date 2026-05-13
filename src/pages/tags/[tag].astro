@@ -27,8 +27,8 @@ const { tag, posts } = Astro.props;
 ---
 
 <BaseLayout title={`Posts tagged with ${tag}`} wide={true}>
-    <section class="border-b border-gray-200 py-12 md:py-16">
-        <p class="mb-4 text-xs font-bold uppercase tracking-wider text-[#167d68]">
+    <section class="pb-6 pt-12 md:pb-8 md:pt-16">
+        <p class="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">
             Tag
         </p>
         <h1 class="font-heading text-[44px] font-bold leading-none tracking-tight capitalize md:text-[56px]">
@@ -39,7 +39,7 @@ const { tag, posts } = Astro.props;
         </p>
     </section>
 
-    <section class="pb-16 pt-8">
+    <section class="pb-16 pt-4 md:pt-6">
         <ul>
             {posts.map((post) => <PostListItem post={post} />)}
         </ul>
