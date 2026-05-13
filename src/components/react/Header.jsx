@@ -1,8 +1,5 @@
 import * as React from 'react';
 
-// Using Tailwind CSS for styling instead of Styletron/BaseUI
-// Replicating the exact look & feel of the previous Header implementation
-
 export default function Header() {
     const [isOpen, setIsOpen] = React.useState(false);
     const [searchTerm, setSearchTerm] = React.useState('');
@@ -48,113 +45,133 @@ export default function Header() {
     }, []);
 
     const fontStyle = { fontFamily: 'Pretendard, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif' };
+    const closeSearch = () => setIsOpen(false);
 
     return (
         <>
-            {/* Top Bar - Black */}
             <header
-                className="w-full sticky top-0 bg-black/90 backdrop-blur-md z-[2002] box-border flex items-center py-3 h-16"
+                className="sticky top-0 z-[2002] w-full bg-white/95 backdrop-blur-md"
                 style={fontStyle}
             >
-                <div className="w-full max-w-[1310px] mx-auto px-4 h-full flex items-center justify-between">
-                    {/* Left: Logo */}
-                    <div className="flex items-center">
-                        <a href="/" className="text-white text-2xl font-normal no-underline flex items-center leading-none" style={fontStyle}>
-                            Blog
-                        </a>
-                    </div>
+                <div className="mx-auto flex h-14 w-full max-w-[1310px] items-center justify-between px-4">
+                    <a
+                        href="/"
+                        className="inline-flex text-[22px] font-bold leading-tight text-black no-underline"
+                        style={fontStyle}
+                    >
+                        Tech Blog
+                    </a>
 
-                    {/* Right: Search Trigger */}
-                    <div className="flex items-center">
-                        <div
-                            onClick={() => setIsOpen(true)}
-                            className="flex items-center cursor-pointer group"
+                    <button
+                        type="button"
+                        onClick={() => setIsOpen(true)}
+                        className="inline-flex h-9 items-center gap-2 rounded-full px-3 text-sm font-medium text-[#555] transition-colors hover:bg-[rgb(246,246,246)] hover:text-black"
+                        style={fontStyle}
+                        aria-label="Search posts"
+                    >
+                        <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
                         >
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="mr-3 text-white">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                            </svg>
-                            <span className="text-white text-base font-medium" style={fontStyle}>
-                                Search
-                            </span>
-                        </div>
-                    </div>
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+                        <span className="hidden sm:inline">Search</span>
+                    </button>
                 </div>
             </header>
 
-            {/* Second Bar - White Navigation */}
-            <nav
-                className="w-full sticky top-16 bg-white z-[2001] flex items-center py-3 border-b border-gray-100"
-                style={fontStyle}
-            >
-                <div className="w-full max-w-[1310px] mx-auto px-4 h-full flex items-center justify-between overflow-x-auto no-scrollbar">
-                    <a href="/tags/engineering" className="no-underline mr-auto">
-                        <div className="text-2xl font-bold text-black cursor-pointer" style={fontStyle}>
-                            Engineering
-                        </div>
-                    </a>
-                    <div className="flex space-x-8 ml-8">
-                        {['Backend', 'DevOps', 'Communication', 'Etc'].map((item) => (
-                            <a key={item} href={`/tags/${item.toLowerCase()}`} className="no-underline text-[#555555] text-sm font-normal whitespace-nowrap hover:text-black transition-colors" style={fontStyle}>
-                                {item}
-                            </a>
-                        ))}
-                    </div>
-                </div>
-            </nav>
-
-            {/* Search Modal */}
             {isOpen && (
-                <div className="fixed inset-0 z-[99999] flex justify-center items-start pt-[15vh]">
-                    {/* Backdrop */}
+                <div className="fixed inset-0 z-[99999] flex justify-center px-4 pt-[14vh]">
                     <div
-                        className="absolute inset-0 bg-black/85 backdrop-blur-sm"
-                        onClick={() => setIsOpen(false)}
+                        className="absolute inset-0 bg-white/75 backdrop-blur-sm"
+                        onClick={closeSearch}
                     />
 
-                    {/* Modal Content */}
-                    <div className="relative bg-[#262626] w-[640px] max-w-[90vw] max-h-[80vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-fade-in-down">
-                        {/* Search Input */}
-                        <div className="flex items-center p-6 border-b border-[#333]">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-4">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    <div
+                        className="relative flex max-h-[76vh] w-[680px] max-w-full flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-2xl"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Search posts"
+                    >
+                        <div className="flex items-center border-b border-gray-200 px-5 py-4">
+                            <svg
+                                width="22"
+                                height="22"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="mr-3 shrink-0 text-[#777]"
+                                aria-hidden="true"
+                            >
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
                             </svg>
                             <input
                                 placeholder="Search posts..."
                                 autoFocus
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="flex-1 bg-transparent border-none text-white text-2xl font-light outline-none placeholder-gray-600"
+                                className="min-w-0 flex-1 border-none bg-transparent text-[20px] font-medium text-black outline-none placeholder:text-gray-400"
                                 style={fontStyle}
                             />
+                            <button
+                                type="button"
+                                onClick={closeSearch}
+                                className="ml-3 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[#777] transition-colors hover:bg-[rgb(246,246,246)] hover:text-black"
+                                aria-label="Close search"
+                            >
+                                <svg
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <line x1="18" y1="6" x2="6" y2="18" />
+                                    <line x1="6" y1="6" x2="18" y2="18" />
+                                </svg>
+                            </button>
                         </div>
 
-                        {/* Results Area */}
                         <div className="flex-1 overflow-y-auto py-2">
-                            <div className="px-6 pt-4 pb-2 text-[#888] text-xs font-medium uppercase tracking-wider">
-                                {searchTerm ? 'Search Results' : 'Recent Posts'}
+                            <div className="px-5 pb-2 pt-3 text-xs font-medium text-[#777]">
+                                {searchTerm ? 'Search results' : 'Type at least 2 characters'}
                             </div>
 
                             {results.map((result, index) => (
-                                <a key={index} href={result.url} className="block no-underline" onClick={() => setIsOpen(false)}>
-                                    <div className="flex px-6 py-3 cursor-pointer hover:bg-[#333] transition-colors group">
+                                <a key={index} href={result.url} className="block no-underline" onClick={closeSearch}>
+                                    <div className="group flex cursor-pointer px-5 py-3 transition-colors hover:bg-[rgb(246,246,246)]">
                                         <div
-                                            className="w-[60px] h-[60px] rounded-lg bg-[#444] mr-4 bg-cover bg-center shrink-0"
+                                            className="mr-4 h-[60px] w-[60px] shrink-0 rounded-md bg-gray-100 bg-cover bg-center"
                                             style={{
                                                 backgroundImage: result.heroImage ? `url(${typeof result.heroImage === 'string' ? result.heroImage : result.heroImage.src})` : 'none'
                                             }}
                                         />
                                         <div className="flex flex-col justify-center min-w-0">
-                                            <div className="text-white text-base font-medium mb-1 truncate group-hover:text-blue-400 transition-colors">
+                                            <div className="mb-1 truncate text-base font-bold text-black">
                                                 {result.title}
                                             </div>
-                                            <div className="flex items-center text-[#999] text-xs">
-                                                <span className="bg-[#333] px-1.5 py-0.5 rounded text-[#ccc] mr-2 shrink-0">
+                                            <div className="flex items-center text-xs text-[#777]">
+                                                <span className="mr-2 shrink-0 rounded-full bg-[rgb(246,246,246)] px-2 py-0.5 text-[#555]">
                                                     {result.tags && result.tags.length > 0 ? result.tags[0] : 'Blog'}
                                                 </span>
                                                 <span className="truncate">
-                                                    {new Date(result.date).toLocaleDateString()}
+                                                    {result.date ? new Date(result.date).toLocaleDateString('ko-KR') : ''}
                                                 </span>
                                             </div>
                                         </div>
@@ -163,17 +180,16 @@ export default function Header() {
                             ))}
 
                             {results.length === 0 && searchTerm.length >= 2 && (
-                                <div className="p-6 text-[#999] text-center">
+                                <div className="px-5 py-10 text-center text-sm text-[#777]">
                                     No posts found.
                                 </div>
                             )}
                         </div>
 
-                        {/* Footer */}
-                        <div className="p-3 px-6 bg-[#262626] border-t border-[#333] text-[#666] text-xs flex justify-between items-center">
+                        <div className="flex items-center justify-between border-t border-gray-200 bg-white px-5 py-3 text-xs text-[#777]">
                             <span>Type to search...</span>
                             <span>
-                                <kbd className="bg-[#444] px-1 py-0.5 rounded text-[#bbb] font-mono mr-1">ESC</kbd>
+                                <kbd className="mr-1 rounded bg-[rgb(246,246,246)] px-1 py-0.5 font-mono text-[#555]">ESC</kbd>
                                 to close
                             </span>
                         </div>

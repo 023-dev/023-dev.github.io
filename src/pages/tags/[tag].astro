@@ -9,7 +9,7 @@ export async function getStaticPaths() {
     );
     const uniqueTags = [
         ...new Set(allPosts.map((post) => post.data.tags).flat()),
-    ];
+    ].sort();
 
     return uniqueTags.map((tag) => {
         const filteredPosts = allPosts
@@ -18,30 +18,56 @@ export async function getStaticPaths() {
 
         return {
             params: { tag: tag.toLowerCase() },
-            props: { posts: filteredPosts, tag },
+            props: { posts: filteredPosts, tag, allTags: uniqueTags },
         };
     });
 }
 
-const { tag, posts } = Astro.props;
+const { tag, posts, allTags } = Astro.props;
+const activeTag = tag.toLowerCase();
 ---
 
 <BaseLayout title={`Posts tagged with ${tag}`} wide={true}>
-    <section class="pb-6 pt-12 md:pb-8 md:pt-16">
-        <p class="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">
-            Tag
-        </p>
-        <h1 class="font-heading text-[44px] font-bold leading-none tracking-tight capitalize md:text-[56px]">
-            {tag}
-        </h1>
-        <p class="mt-5 text-[18px] leading-[28px] text-[#555]">
-            {posts.length} posts
-        </p>
-    </section>
+    <section class="grid gap-10 pb-16 lg:grid-cols-[minmax(0,1fr)_260px]">
+        <div>
+            <div class="mb-5 flex flex-wrap items-center gap-3 text-sm font-medium text-[#777]">
+                <a href="/" class="transition-colors hover:text-black">전체 글</a>
+                <span class="h-1 w-1 rounded-full bg-gray-300" aria-hidden="true"></span>
+                <span class="rounded-full bg-black px-3 py-1.5 leading-none text-white">
+                    {activeTag}
+                </span>
+                <span>{posts.length} posts</span>
+            </div>
 
-    <section class="pb-16 pt-4 md:pt-6">
-        <ul>
-            {posts.map((post) => <PostListItem post={post} />)}
-        </ul>
+            <ul>
+                {posts.map((post) => <PostListItem post={post} />)}
+            </ul>
+        </div>
+
+        <aside class="self-start lg:sticky lg:top-24">
+            <h2 class="mb-4 text-[18px] font-bold tracking-tight">Tag</h2>
+            <div class="flex flex-wrap gap-2">
+                {
+                    allTags.map((tagItem) => {
+                        const tagSlug = tagItem.toLowerCase();
+                        const isActive = tagSlug === activeTag;
+
+                        return (
+                            <a
+                                href={`/tags/${tagSlug}`}
+                                aria-current={isActive ? "page" : undefined}
+                                class={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
+                                    isActive
+                                        ? "bg-black text-white"
+                                        : "bg-[rgb(246,246,246)] text-[#555] hover:bg-black hover:text-white"
+                                }`}
+                            >
+                                {tagItem}
+                            </a>
+                        );
+                    })
+                }
+            </div>
+        </aside>
     </section>
 </BaseLayout>
