@@ -1,14 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-import FeaturedPost from "../components/FeaturedPost.astro";
 import PostListItem from "../components/PostListItem.astro";
 
 const posts = (await getCollection("blog"))
     .filter((post) => post.data.visible !== false)
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-const [leadPost, ...recentPosts] = posts.slice(0, 3);
 const tags = [
     ...new Set(posts.flatMap((post) => post.data.tags ?? [])),
 ].sort();
@@ -16,58 +14,24 @@ const tags = [
 
 <BaseLayout title="Astro Tech Blog" wide={true}>
     <section class="border-b border-gray-200 py-12 md:py-16">
-        <div class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-            <div>
-                <p class="mb-4 text-xs font-bold uppercase tracking-wider text-[#167d68]">
-                    Tech Blog
-                </p>
-                <h1 class="font-heading text-[44px] font-bold leading-none tracking-tight md:text-[56px]">
-                    Engineering
-                </h1>
-                <p class="mt-5 max-w-[560px] text-[18px] leading-[28px] text-[#555]">
-                    The technology behind My Engineering
-                </p>
-            </div>
-
-            <nav class="flex max-w-[520px] flex-wrap gap-2" aria-label="Tags">
-                {
-                    tags.slice(0, 6).map((tag) => (
-                        <a
-                            href={`/tags/${tag.toLowerCase()}`}
-                            class="rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-[#555] transition-colors hover:border-black hover:text-black"
-                        >
-                            {tag}
-                        </a>
-                    ))
-                }
-            </nav>
+        <div>
+            <p class="mb-4 text-xs font-bold uppercase tracking-wider text-[#167d68]">
+                Tech Blog
+            </p>
+            <h1 class="font-heading text-[44px] font-bold leading-none tracking-tight md:text-[56px]">
+                Engineering
+            </h1>
+            <p class="mt-5 max-w-[560px] text-[18px] leading-[28px] text-[#555]">
+                The technology behind My Engineering
+            </p>
         </div>
     </section>
 
-    <section class="py-12 md:py-14">
-        <div class="mb-6 flex items-baseline justify-between border-b border-gray-200 pb-4">
-            <h2 class="text-[24px] font-bold tracking-tight">최근 올라온 글</h2>
-            <span class="text-sm font-medium text-gray-500">{posts.length} posts</span>
-        </div>
-
-        {
-            leadPost && (
-                <div class="grid gap-5 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,.65fr)]">
-                    <FeaturedPost post={leadPost} />
-                    <div class="grid gap-5">
-                        {recentPosts.map((post) => (
-                            <FeaturedPost post={post} compact />
-                        ))}
-                    </div>
-                </div>
-            )
-        }
-    </section>
-
-    <section class="grid gap-10 pb-16 lg:grid-cols-[minmax(0,1fr)_260px]">
+    <section class="grid gap-10 py-12 md:py-14 lg:grid-cols-[minmax(0,1fr)_260px]">
         <div>
             <div class="mb-2 flex items-baseline justify-between">
                 <h2 class="text-[24px] font-bold tracking-tight">전체 게시글</h2>
+                <span class="text-sm font-medium text-gray-500">{posts.length} posts</span>
             </div>
             <ul>
                 {posts.map((post) => <PostListItem post={post} />)}
