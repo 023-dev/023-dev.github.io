@@ -47,7 +47,7 @@ export default function Header() {
         return () => window.removeEventListener('keydown', handleEsc);
     }, []);
 
-    const fontStyle = { fontFamily: 'UberMoveText, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif' };
+    const fontStyle = { fontFamily: 'Pretendard, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif' };
 
     return (
         <>

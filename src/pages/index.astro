@@ -13,32 +13,20 @@ const tags = [
 ---
 
 <BaseLayout title="Astro Tech Blog" wide={true}>
-    <section class="pb-6 pt-12 md:pb-8 md:pt-16">
-        <div>
-            <p class="mb-4 text-xs font-bold uppercase tracking-wider text-gray-500">
-                Tech Blog
-            </p>
-            <h1 class="font-heading text-[44px] font-bold leading-none tracking-tight md:text-[56px]">
-                Engineering
-            </h1>
-            <p class="mt-5 max-w-[560px] text-[18px] leading-[28px] text-[#555]">
-                The technology behind My Engineering
-            </p>
-        </div>
+    <section class="pb-5 pt-0 md:pb-6">
+        <a href="/" class="inline-flex text-[22px] font-bold leading-tight text-black no-underline">
+            Tech Blog
+        </a>
     </section>
 
-    <section class="grid gap-10 pb-16 pt-4 md:pt-6 lg:grid-cols-[minmax(0,1fr)_260px]">
+    <section class="grid gap-10 pb-16 lg:grid-cols-[minmax(0,1fr)_260px]">
         <div>
-            <div class="mb-2 flex items-baseline justify-between">
-                <h2 class="text-[24px] font-bold tracking-tight">전체 게시글</h2>
-                <span class="text-sm font-medium text-gray-500">{posts.length} posts</span>
-            </div>
             <ul>
                 {posts.map((post) => <PostListItem post={post} />)}
             </ul>
         </div>
 
-        <aside class="self-start border-t border-gray-200 pt-6 lg:sticky lg:top-24">
+        <aside class="self-start lg:sticky lg:top-24">
             <h2 class="mb-4 text-[18px] font-bold tracking-tight">Tag</h2>
             <div class="flex flex-wrap gap-2">
                 {

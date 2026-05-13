@@ -8,15 +8,10 @@ import path from 'path';
 export async function GET({ params, props }: { params: any; props: any }) {
     const { title, date, tags } = props;
 
-    const fontData = await fs.readFile(path.join(process.cwd(), 'public/fonts/UberMoveBold.otf'));
-
-    // NOTE: This endpoint uses the local 'UberMove' font.
-    // Korean characters will render as tofu (plain boxes) because UberMove does not support them.
-    // To support Korean, please download 'NotoSansKR-Bold.otf' (or similar) to 'public/fonts/'
-    // and add it to the fonts array in the satori options below.
+    const fontData = await fs.readFile(path.join(process.cwd(), 'public/fonts/Pretendard-Bold.otf'));
 
     const markup = html`
-    <div style="display: flex; flex-direction: column; height: 100%; width: 100%; background-color: #121212; color: white; padding: 80px; justify-content: space-between; font-family: 'UberMove', sans-serif;">
+    <div style="display: flex; flex-direction: column; height: 100%; width: 100%; background-color: #121212; color: white; padding: 80px; justify-content: space-between; font-family: 'Pretendard', sans-serif;">
       <div style="display: flex; flex-direction: column;">
         <div style="font-size: 32px; color: #a1a1aa; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;">
             ${date ? new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}
@@ -41,7 +36,7 @@ export async function GET({ params, props }: { params: any; props: any }) {
         height: 630,
         fonts: [
             {
-                name: 'UberMove',
+                name: 'Pretendard',
                 data: fontData,
                 weight: 700,
                 style: 'normal',
