@@ -90,6 +90,99 @@ Oracle WebLogic 튜닝 문서 역시 GC를 줄이기 위한 일반 규칙으로 
    시작 직후 캐시 로딩, 클래스 로딩, 배치성 초기화가 몰리는 애플리케이션은 작은 힙으로 시작하면 초반부터 GC가 바빠질 수 있다.
    처음부터 목표 힙 크기로 시작하면 이 구간이 더 안정적일 수 있다.
 
+## 로컬 테스트로 확인한 차이
+
+실제로 어떤 차이가 나는지 로컬에서 간단히 확인해봤다.
+테스트 환경은 OpenJDK 21.0.11 Corretto이고, GC는 기본값인 G1을 사용했다.
+
+테스트 코드는 256KB짜리 byte 배열을 480개 만들어 약 120MB를 할당하고, 할당 전후의 heap 상태를 출력한다.
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class HeapSizingProbe {
+    private static final long MB = 1024L * 1024L;
+
+    private static void printHeap(String label) {
+        Runtime runtime = Runtime.getRuntime();
+        long total = runtime.totalMemory() / MB;
+        long max = runtime.maxMemory() / MB;
+        long free = runtime.freeMemory() / MB;
+        long used = total - free;
+        System.out.printf("%s total=%dMB max=%dMB used=%dMB free=%dMB%n", label, total, max, used, free);
+    }
+
+    public static void main(String[] args) {
+        printHeap("before");
+
+        List<byte[]> chunks = new ArrayList<>();
+        long started = System.nanoTime();
+
+        for (int i = 0; i < 480; i++) {
+            chunks.add(new byte[256 * 1024]);
+        }
+
+        long elapsedMs = (System.nanoTime() - started) / 1_000_000;
+        printHeap("after ");
+        System.out.printf("allocated=120MB elapsed=%dms%n", elapsedMs);
+    }
+}
+```
+
+먼저 `-Xms64m -Xmx256m`처럼 초기 힙과 최대 힙을 다르게 두고 실행했다.
+
+```bash
+javac HeapSizingProbe.java
+java -Xms64m -Xmx256m -Xlog:gc HeapSizingProbe
+```
+
+결과는 다음과 같았다.
+
+```text
+before total=66MB max=256MB used=3MB free=63MB
+GC(0) ... 23M->22M(66M)
+GC(1) ... 34M->33M(66M)
+GC(2) ... 42M->42M(66M)
+GC(4) ... 60M->60M(82M)
+GC(5) ... 75M->75M(160M)
+GC(6) ... 115M->115M(160M)
+GC(7) ... 149M->151M(196M)
+after  total=196MB max=256MB used=164MB free=32MB
+allocated=120MB elapsed=35ms
+```
+
+처음에는 `total=66MB`로 시작했고, 할당이 진행되면서 GC log의 heap 크기가 `(66M) -> (82M) -> (160M) -> (196M)`처럼 커졌다.
+즉, 애플리케이션 실행 중에 JVM이 heap을 확장했다.
+
+이번에는 `-Xms256m -Xmx256m`처럼 두 값을 같게 두고 실행했다.
+
+```bash
+java -Xms256m -Xmx256m -Xlog:gc HeapSizingProbe
+```
+
+```text
+before total=256MB max=256MB used=3MB free=253MB
+GC(0) ... 23M->22M(256M)
+GC(1) ... 36M->36M(256M)
+GC(2) ... 60M->60M(256M)
+GC(3) ... 92M->91M(256M)
+GC(4) ... 133M->133M(256M)
+after  total=256MB max=256MB used=162MB free=94MB
+allocated=120MB elapsed=20ms
+```
+
+이번에는 시작부터 `total=256MB`였고, GC log에서도 heap 크기가 계속 `(256M)`로 유지됐다.
+이 테스트에서는 Young GC pause도 7번에서 5번으로 줄었고, 할당 시간도 35ms에서 20ms로 줄었다.
+
+물론 이 수치만으로 `-Xms == -Xmx`가 항상 몇 퍼센트 더 빠르다고 말할 수는 없다.
+작은 로컬 테스트는 OS 상태, CPU 상태, GC 종류, 객체 크기, allocation pattern에 따라 흔들린다.
+하지만 이 테스트로 확인할 수 있는 이점은 분명하다.
+
+**`-Xms`와 `-Xmx`를 같게 두면 실행 중 heap 확장이라는 변수가 사라진다.**
+그래서 초반 할당 구간에서 heap resizing과 그에 따라 달라지는 GC 패턴을 줄일 수 있다.
+성능 향상 자체보다 운영 관점의 예측 가능성이 핵심 이점이다.
+
 다만 `-Xms == -Xmx`라고 해서 물리 메모리가 항상 시작 즉시 전부 점유된다고 단정하면 안 된다.
 운영체제와 JVM 옵션에 따라 실제 페이지 접근은 지연될 수 있다.
 정말 시작 시점에 힙 페이지를 미리 만지고 싶다면 `-XX:+AlwaysPreTouch` 같은 옵션을 함께 검토하지만, 그만큼 시작 시간이 길어질 수 있다.
