@@ -35,13 +35,15 @@ const filteredHeadings = headings.filter((heading) => heading.depth <= 3);
 			entries.forEach((entry) => {
 				const id = entry.target.getAttribute('id');
 				if (id) {
-					const tocItem = document.querySelector(`.toc-item a[href="#${id}"]`);
-					if (tocItem) {
+					const tocItems = document.querySelectorAll(`.toc-item a[href="#${id}"]`);
+					if (tocItems.length > 0) {
 						if (entry.isIntersecting) {
 							document
 								.querySelectorAll('.toc-item')
 								.forEach((item) => item.classList.remove('active'));
-							tocItem.parentElement?.classList.add('active');
+							tocItems.forEach((tocItem) =>
+								tocItem.parentElement?.classList.add('active'),
+							);
 						}
 					}
 				}

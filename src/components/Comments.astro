@@ -1,6 +1,6 @@
 <section class="utterances mx-auto mt-10 w-full">
     <div class="loading-msg text-center text-gray-400 py-10">
-        Loading Comments...
+        댓글을 불러오는 중입니다...
     </div>
 </section>
 
@@ -39,7 +39,7 @@
         script.onerror = () => {
             container.dataset.utterancesInitialized = "false";
             container.innerHTML =
-                '<div class="text-center text-sm text-gray-400 py-10">Comments failed to load.</div>';
+                '<div class="text-center text-sm text-gray-400 py-10">댓글을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</div>';
         };
         container.appendChild(script);
     };

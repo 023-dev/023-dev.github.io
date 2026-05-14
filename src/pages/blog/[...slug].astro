@@ -6,21 +6,44 @@ import { getReadingTime } from "../../utils/readingTime";
 export async function getStaticPaths() {
 	const posts = (await getCollection("blog")).filter(
 		(post) => post.data.visible !== false,
-	);
-	return posts.map((post) => ({
+	).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+	const toPostNavItem = (post: CollectionEntry<"blog">) => ({
+		href: `/blog/${post.slug}/`,
+		title: post.data.title,
+	});
+
+	return posts.map((post, index) => ({
 		params: { slug: post.slug },
-		props: post,
+		props: {
+			post,
+			previousPost: posts[index - 1]
+				? toPostNavItem(posts[index - 1])
+				: undefined,
+			nextPost: posts[index + 1] ? toPostNavItem(posts[index + 1]) : undefined,
+		},
 	}));
 }
-type Props = CollectionEntry<"blog">;
+type PostNavItem = {
+	href: string;
+	title: string;
+};
 
-const post = Astro.props;
+type Props = {
+	post: CollectionEntry<"blog">;
+	previousPost?: PostNavItem;
+	nextPost?: PostNavItem;
+};
+
+const { post, previousPost, nextPost } = Astro.props;
 const { Content, headings } = await post.render();
 ---
 
 <BlogPost
 	{...post.data}
 	headings={headings}
+	previousPost={previousPost}
+	nextPost={nextPost}
 	readingTime={getReadingTime(post.body)}
 >
 	<Content />

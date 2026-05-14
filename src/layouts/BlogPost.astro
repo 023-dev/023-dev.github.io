@@ -8,10 +8,21 @@ import TableOfContents from "../components/TableOfContents.astro";
 
 type Props = CollectionEntry<"blog">["data"] & {
 	headings?: MarkdownHeading[];
+	previousPost?: {
+		href: string;
+		title: string;
+	};
+	nextPost?: {
+		href: string;
+		title: string;
+	};
 	readingTime?: string;
 };
 
-const { title, date, headings, readingTime } = Astro.props;
+const { title, date, headings, previousPost, nextPost, readingTime } =
+	Astro.props;
+const hasTableOfContents =
+	headings?.some((heading) => heading.depth <= 3) ?? false;
 
 
 const slug = Astro.url.pathname.replace(/^\/blog\/|\/$/g, "");
@@ -40,6 +51,13 @@ const ogImage = `/og/${slug}.png`;
 			class="min-w-0 w-full max-w-[900px] mx-auto"
 		>
 			<div class="mb-8">
+				<a
+					href="/"
+					class="mb-5 inline-flex text-[13px] font-medium leading-[20px] text-[#666] transition-colors hover:text-black"
+				>
+					&larr; 목록으로
+				</a>
+
 				{
 					Astro.props.tags && Astro.props.tags.length > 0 && (
 						<div class="mb-3 text-[12px] leading-[20px] font-medium text-[#4B4B4B] font-text">
@@ -91,12 +109,70 @@ const ogImage = `/og/${slug}.png`;
 					</div>
 				</div>
 			</div>
+			{
+				hasTableOfContents && (
+					<details class="mb-8 rounded-lg border border-gray-200 px-4 py-3 2xl:hidden">
+						<summary class="cursor-pointer select-none text-[14px] font-bold leading-[22px] text-black">
+							목차
+						</summary>
+						<div class="mt-3 border-t border-gray-100 pt-3">
+							<TableOfContents headings={headings ?? []} />
+						</div>
+					</details>
+				)
+			}
 			<div
 				class="prose max-w-none prose-pre:bg-gray-900 prose-pre:text-gray-50 prose-pre:shadow-lg prose-pre:rounded-xl"
 				data-pagefind-body
 			>
 				<slot />
 			</div>
+			{
+				(previousPost || nextPost) && (
+					<nav
+						aria-label="Post navigation"
+						class="mt-14 border-t border-gray-200 pt-6"
+					>
+						<div class="grid gap-6 sm:grid-cols-2">
+							{
+								previousPost ? (
+									<a
+										href={previousPost.href}
+										class="group block border-t border-gray-200 pt-4 transition-colors hover:border-black"
+									>
+										<span class="block text-[12px] font-medium leading-[20px] text-[#777]">
+											이전 글
+										</span>
+										<span class="mt-1 line-clamp-2 block text-[18px] font-bold leading-[26px] tracking-tight text-black">
+											{previousPost.title}
+										</span>
+									</a>
+								) : (
+									<div class="hidden sm:block" />
+								)
+							}
+
+							{
+								nextPost ? (
+									<a
+										href={nextPost.href}
+										class="group block border-t border-gray-200 pt-4 transition-colors hover:border-black sm:text-right"
+									>
+										<span class="block text-[12px] font-medium leading-[20px] text-[#777]">
+											다음 글
+										</span>
+										<span class="mt-1 line-clamp-2 block text-[18px] font-bold leading-[26px] tracking-tight text-black">
+											{nextPost.title}
+										</span>
+									</a>
+								) : (
+									<div class="hidden sm:block" />
+								)
+							}
+						</div>
+					</nav>
+				)
+			}
 			<Comments />
 		</main>
 	</div>
