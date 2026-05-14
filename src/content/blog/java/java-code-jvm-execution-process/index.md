@@ -3,7 +3,7 @@ visible: true
 title: "자바 코드는 JVM에서 어떻게 실행될까?"
 date: 2026-05-14 00:00:00
 tags: ["Engineering", "Backend"]
-heroImage: "./image.svg"
+heroImage: "./img_1.png"
 ---
 
 자바를 처음 배울 때 가장 자주 듣는 말은 "Write Once, Run Anywhere"이다.
