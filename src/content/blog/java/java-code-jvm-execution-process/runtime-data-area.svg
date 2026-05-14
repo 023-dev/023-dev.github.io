@@ -1,0 +1,38 @@
+<svg width="1100" height="640" viewBox="0 0 1100 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1100" height="640" fill="#F8FAFC"/>
+  <text x="64" y="78" fill="#111827" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800">JVM runtime data areas</text>
+  <text x="66" y="112" fill="#526070" font-family="Inter, Arial, sans-serif" font-size="17">Some areas are shared by all threads, while stacks and PC registers are per-thread.</text>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0F172A" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="164" width="452" height="352" rx="24" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+    <text x="296" y="209" text-anchor="middle" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">Shared by all threads</text>
+    <rect x="114" y="250" width="364" height="86" rx="16" fill="#EEF6FF" stroke="#93C5FD" stroke-width="2"/>
+    <text x="296" y="284" text-anchor="middle" fill="#1E3A8A" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="800">Method Area</text>
+    <text x="296" y="312" text-anchor="middle" fill="#315B87" font-family="Inter, Arial, sans-serif" font-size="14">class metadata, methods, runtime constant pool</text>
+    <rect x="114" y="368" width="364" height="86" rx="16" fill="#ECFDF5" stroke="#86EFAC" stroke-width="2"/>
+    <text x="296" y="402" text-anchor="middle" fill="#166534" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="800">Heap</text>
+    <text x="296" y="430" text-anchor="middle" fill="#306F50" font-family="Inter, Arial, sans-serif" font-size="14">objects and arrays, managed by GC</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="578" y="164" width="452" height="352" rx="24" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+    <text x="804" y="209" text-anchor="middle" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">Created per thread</text>
+    <rect x="622" y="242" width="364" height="70" rx="16" fill="#FEF3C7" stroke="#FCD34D" stroke-width="2"/>
+    <text x="804" y="271" text-anchor="middle" fill="#92400E" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">PC Register</text>
+    <text x="804" y="294" text-anchor="middle" fill="#92400E" font-family="Inter, Arial, sans-serif" font-size="13">current bytecode instruction</text>
+    <rect x="622" y="333" width="364" height="70" rx="16" fill="#F7F1FF" stroke="#C4B5FD" stroke-width="2"/>
+    <text x="804" y="362" text-anchor="middle" fill="#5B21B6" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">JVM Stack</text>
+    <text x="804" y="385" text-anchor="middle" fill="#68518E" font-family="Inter, Arial, sans-serif" font-size="13">frames, local variables, operand stacks</text>
+    <rect x="622" y="424" width="364" height="70" rx="16" fill="#FFF7ED" stroke="#FDBA74" stroke-width="2"/>
+    <text x="804" y="453" text-anchor="middle" fill="#9A3412" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">Native Method Stack</text>
+    <text x="804" y="476" text-anchor="middle" fill="#9A3412" font-family="Inter, Arial, sans-serif" font-size="13">JNI and native calls</text>
+  </g>
+
+  <rect x="210" y="546" width="680" height="44" rx="12" fill="#F1F5F9" stroke="#CBD5E1"/>
+  <text x="550" y="574" text-anchor="middle" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="14">The exact physical layout is implementation dependent. The diagram shows the specification-level model.</text>
+</svg>
