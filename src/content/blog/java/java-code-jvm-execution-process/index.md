@@ -1,5 +1,5 @@
 ---
-visible: true
+visible: false
 title: "자바 코드는 JVM에서 어떻게 실행될까?"
 date: 2026-05-14 00:00:00
 tags: ["Engineering", "Backend"]
