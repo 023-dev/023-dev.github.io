@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="560" viewBox="0 0 1100 560" role="img" aria-labelledby="title desc">
+  <title id="title">HotSpot Tiered Compilation</title>
+  <desc id="desc">HotSpot tiered compilation moves code from interpreter to C1 compiler, C2 compiler, and code cache.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#334155"/>
+    </marker>
+    <style>
+      .heading { font: 800 32px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; letter-spacing: 0; }
+      .label { font: 800 22px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; letter-spacing: 0; }
+      .small { font: 500 16px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; letter-spacing: 0; }
+      .tiny { font: 600 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #64748b; letter-spacing: 0; }
+      .card { fill: #ffffff; stroke: #d1d5db; stroke-width: 2; }
+      .arrow { stroke: #334155; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1100" height="560" fill="#ffffff"/>
+  <text x="56" y="68" class="heading">HotSpot 단계별 컴파일</text>
+  <text x="56" y="98" class="small">시작은 빠르게, 오래 도는 코드는 더 강하게 최적화한다.</text>
+
+  <g transform="translate(70 175)">
+    <rect class="card" width="190" height="130" rx="18"/>
+    <circle cx="95" cy="38" r="22" fill="#e0f2fe"/>
+    <text x="95" y="46" text-anchor="middle" class="label" fill="#0369a1">0</text>
+    <text x="95" y="80" text-anchor="middle" class="label">Interpreter</text>
+    <text x="95" y="105" text-anchor="middle" class="small">빠른 시작</text>
+    <text x="95" y="122" text-anchor="middle" class="tiny">프로파일 수집</text>
+  </g>
+
+  <path class="arrow" d="M278 240 H356"/>
+
+  <g transform="translate(375 175)">
+    <rect class="card" width="210" height="130" rx="18"/>
+    <circle cx="105" cy="38" r="22" fill="#dcfce7"/>
+    <text x="105" y="46" text-anchor="middle" class="label" fill="#166534">1-3</text>
+    <text x="105" y="80" text-anchor="middle" class="label">C1 Compiler</text>
+    <text x="105" y="105" text-anchor="middle" class="small">빠른 네이티브 코드</text>
+    <text x="105" y="122" text-anchor="middle" class="tiny">일부 단계는 프로파일 포함</text>
+  </g>
+
+  <path class="arrow" d="M604 240 H682"/>
+
+  <g transform="translate(700 175)">
+    <rect class="card" width="210" height="130" rx="18"/>
+    <circle cx="105" cy="38" r="22" fill="#fef3c7"/>
+    <text x="105" y="46" text-anchor="middle" class="label" fill="#92400e">4</text>
+    <text x="105" y="80" text-anchor="middle" class="label">C2 Compiler</text>
+    <text x="105" y="105" text-anchor="middle" class="small">강한 최적화</text>
+    <text x="105" y="122" text-anchor="middle" class="tiny">장기 실행 성능</text>
+  </g>
+
+  <path class="arrow" d="M805 320 V384"/>
+
+  <g transform="translate(645 402)">
+    <rect width="320" height="86" rx="18" fill="#0f172a"/>
+    <text x="160" y="36" text-anchor="middle" class="label" fill="#ffffff">Code Cache</text>
+    <text x="160" y="62" text-anchor="middle" class="small" fill="#cbd5e1">컴파일된 네이티브 코드 저장</text>
+  </g>
+
+  <g transform="translate(100 400)">
+    <rect width="395" height="88" rx="18" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="28" y="35" class="label">중요한 점</text>
+    <text x="28" y="63" class="small">컴파일도 CPU와 메모리를 쓰는 런타임 작업이다.</text>
+  </g>
+</svg>

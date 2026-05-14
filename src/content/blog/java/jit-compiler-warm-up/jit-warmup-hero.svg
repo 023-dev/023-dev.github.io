@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">JIT Warm-up Overview</title>
+  <desc id="desc">Java bytecode is first interpreted and then hot code is compiled by the JIT compiler into native code.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eef6ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#334155"/>
+    </marker>
+    <style>
+      .title { font: 800 54px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; letter-spacing: 0; }
+      .subtitle { font: 500 24px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; letter-spacing: 0; }
+      .label { font: 700 24px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; letter-spacing: 0; }
+      .small { font: 500 17px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #64748b; letter-spacing: 0; }
+      .code { font: 700 18px "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; fill: #1e293b; letter-spacing: 0; }
+      .card { fill: #ffffff; stroke: #dbeafe; stroke-width: 2; filter: url(#shadow); }
+      .pill { fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5; }
+      .line { stroke: #334155; stroke-width: 3.5; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1008" cy="110" r="74" fill="#dbeafe"/>
+  <circle cx="1030" cy="110" r="32" fill="#93c5fd"/>
+  <circle cx="940" cy="500" r="96" fill="#dcfce7"/>
+  <circle cx="280" cy="535" r="68" fill="#fef3c7"/>
+
+  <text x="80" y="105" class="title">첫 요청은 왜 느릴까?</text>
+  <text x="82" y="148" class="subtitle">JIT 컴파일러와 JVM Warm-up으로 보는 Java 실행 흐름</text>
+
+  <g transform="translate(78 245)">
+    <rect class="card" x="0" y="0" width="190" height="128" rx="18"/>
+    <rect class="pill" x="28" y="28" width="134" height="32" rx="16"/>
+    <text x="95" y="51" text-anchor="middle" class="code">.class</text>
+    <text x="95" y="90" text-anchor="middle" class="label">Bytecode</text>
+  </g>
+
+  <path class="line" d="M292 309 H397"/>
+
+  <g transform="translate(415 245)">
+    <rect class="card" x="0" y="0" width="210" height="128" rx="18"/>
+    <path d="M58 32 h94 v58 h-94 z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+    <path d="M74 48 h62 M74 64 h62 M74 80 h42" stroke="#64748b" stroke-width="5" stroke-linecap="round"/>
+    <text x="105" y="112" text-anchor="middle" class="label">Interpreter</text>
+  </g>
+
+  <path class="line" d="M649 309 H754"/>
+
+  <g transform="translate(772 245)">
+    <rect class="card" x="0" y="0" width="270" height="128" rx="18"/>
+    <path d="M54 42 h162" stroke="#2563eb" stroke-width="12" stroke-linecap="round"/>
+    <path d="M54 68 h118" stroke="#16a34a" stroke-width="12" stroke-linecap="round"/>
+    <path d="M54 94 h196" stroke="#f59e0b" stroke-width="12" stroke-linecap="round"/>
+    <text x="135" y="31" text-anchor="middle" class="label">JIT Compiler</text>
+    <text x="135" y="114" text-anchor="middle" class="small">hot code -> native code</text>
+  </g>
+
+  <g transform="translate(192 438)">
+    <rect x="0" y="0" width="816" height="78" rx="18" fill="#0f172a"/>
+    <text x="36" y="33" class="small" fill="#cbd5e1">Warm-up 전</text>
+    <rect x="150" y="19" width="170" height="14" rx="7" fill="#ef4444"/>
+    <text x="352" y="33" class="small" fill="#cbd5e1">Warm-up 후</text>
+    <rect x="470" y="19" width="282" height="14" rx="7" fill="#22c55e"/>
+    <text x="36" y="59" class="small" fill="#e2e8f0">class loading + profiling + compilation 비용을 실제 트래픽 밖으로 밀어내기</text>
+  </g>
+</svg>
