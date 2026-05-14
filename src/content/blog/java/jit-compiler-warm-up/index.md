@@ -1,21 +1,17 @@
 ---
 visible: true
 title: "Java 애플리케이션에서 첫 요청이 느린 이유: JIT 컴파일러와 JVM Warm-up"
-date: 2026-05-14 00:00:00
+date: 2026-05-15 00:00:00
 tags: ["Engineering", "Backend", "Java"]
 heroImage: "./jit-warmup-hero.svg"
 ---
 
-배포 직후 첫 요청만 유독 느린 경우가 있다.
+Java 기반 애플리케이션에서 첫 요청만 유독 느린 경우가 있다.
 서버는 정상적으로 떠 있고, 헬스 체크도 통과했는데 실제 사용자의 첫 API 요청에서 응답 시간이 튀는 식이다.
 이 현상은 보통 하나의 원인으로만 설명되지 않는다.
-Spring MVC의 `DispatcherServlet` 초기화, 지연 로딩되는 클래스와 빈, DB 커넥션이나 캐시 초기화도 영향을 준다.
-
 그중 JVM 관점에에서 큰 축은 **JIT 컴파일러와 JVM Warm-up**이다.
 Java 애플리케이션은 처음부터 최고 성능으로 실행되는 것이 아니라, 실행 중에 프로파일링 정보를 모으고 자주 실행되는 코드를 점점 더 최적화한다.
 그래서 서버가 "시작됨" 상태가 되었더라도 JVM 입장에서는 아직 충분히 달궈지지 않은 상태일 수 있다.
-
-![JIT warm-up overview](jit-warmup-hero.svg)
 
 ## Java 코드는 바로 기계어가 아니다
 
@@ -23,27 +19,11 @@ C, C++, Go, Rust 같은 언어는 일반적으로 빌드 시점에 특정 운영
 반면 Java는 먼저 `javac`를 통해 JVM이 이해하는 `.class` 바이트코드로 컴파일된다.
 이 바이트코드는 CPU가 직접 실행하는 기계어가 아니라 JVM을 위한 중간 표현이다.
 
-```text
-Main.java
-   |
-   | javac
-   v
-Main.class
-   |
-   | jar/war packaging
-   v
-JVM
-   |
-   | interpreter + JIT compiler
-   v
-Native machine code
-```
+![img.png](img.png)
 
 JVM 명세는 `.class` 파일을 하드웨어와 운영체제에 독립적인 바이너리 형식으로 정의한다.
 또한 런타임 데이터 영역의 메모리 배치, GC 알고리즘, JVM 명령어를 기계어로 바꾸는 내부 최적화 방식은 구현체의 재량에 맡긴다.
 즉 "Write Once, Run Anywhere"는 하나의 기계어를 어디서나 실행한다는 뜻이 아니라, 같은 바이트코드를 각 플랫폼의 JVM이 실행한다는 의미에 가깝다.
-
-![Java execution flow](java-execution-flow.svg)
 
 ## JVM이 클래스를 실행하기까지
 
@@ -65,37 +45,14 @@ JVM 명세에서는 클래스 또는 인터페이스 초기화가 클래스 초�
 
 ## 인터프리터와 JIT는 왜 같이 있을까
 
+![img_1.png](img_1.png)
+
 JVM은 기본적으로 **mixed mode**로 실행된다.
-Oracle의 `java` 명령 문서에서도 `-Xmixed`는 기본값이며, 대부분의 바이트코드는 인터프리터로 실행하되 hot method는 네이티브 코드로 컴파일한다고 설명한다.
+[Oracle의 `java` 명령 문서에서도 `-Xmixed`는 기본값이며, 대부분의 바이트코드는 인터프리터로 실행하되 hot method는 네이티브 코드로 컴파일한다고 설명한다.](https://docs.oracle.com/en/java/javase/17/docs/specs/man/java.html#extra-options-for-java:~:text=%2DXmixed,off%2E0)
 
 처음부터 모든 바이트코드를 네이티브 코드로 컴파일하면 시작이 늦어진다.
 반대로 끝까지 인터프리터만 사용하면 같은 바이트코드를 매번 해석해야 하므로 장기 실행 성능이 떨어진다.
 그래서 HotSpot JVM은 우선 인터프리터로 빠르게 실행을 시작하고, 실행 중에 자주 호출되는 메서드와 루프를 찾아 JIT 컴파일 대상으로 올린다.
-
-```text
-처음 실행        반복 실행                    충분히 뜨거운 코드
----------       -------------------------     ---------------------
-Interpreter -> profiling / counters ------>   JIT compiled code
-```
-
-직접 확인하려면 다음 옵션을 사용할 수 있다.
-
-```bash
-java -Xint -version
-```
-
-`-Xint`는 컴파일을 비활성화하고 모든 바이트코드를 인터프리터로만 실행한다.
-로컬 JDK 21에서는 다음처럼 `interpreted mode`가 출력된다.
-
-```text
-OpenJDK 64-Bit Server VM Corretto-21.0.11.10.1 (build 21.0.11+10-LTS, interpreted mode, sharing)
-```
-
-반대로 기본 실행은 `mixed mode`다.
-
-```text
-OpenJDK 64-Bit Server VM Corretto-21.0.11.10.1 (build 21.0.11+10-LTS, mixed mode, sharing)
-```
 
 ## HotSpot의 단계별 컴파일
 
@@ -105,12 +62,12 @@ Java SE 7에서 도입되었고, 서버 VM에서는 기본 모드다.
 
 단순화하면 흐름은 다음과 같다.
 
+![img_2.png](img_2.png)
+
 1. 인터프리터가 바이트코드를 실행하며 호출 빈도, 루프 반복, 타입 정보 같은 프로파일을 모은다.
 2. C1 컴파일러가 비교적 빠르게 네이티브 코드를 만든다.
 3. 충분히 자주 실행되는 코드는 C2 컴파일러가 더 공격적인 최적화를 적용한다.
 4. 컴파일된 네이티브 코드는 Code Cache에 저장되고 이후 호출에서 재사용된다.
-
-![Tiered compilation](tiered-compilation.svg)
 
 JDK에서 실제 플래그도 확인할 수 있다.
 
