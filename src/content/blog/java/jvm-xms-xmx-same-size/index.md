@@ -65,7 +65,7 @@ JVM은 GC가 발생할 때마다 살아있는 객체와 여유 공간의 비율�
 
 `-Xms`와 `-Xmx`를 같은 값으로 두면 힙 크기 조절이라는 변수가 사라진다.
 
-![Xms와 Xmx를 같게 둔 고정 힙](heap-fixed.png)
+![img_2.png](img_2.png)
 
 [Oracle의 HotSpot GC 튜닝 가이드도 서버 애플리케이션에서 두 값을 같게 두면 JVM의 중요한 크기 결정 하나를 제거해서 예측 가능성이 높아진다고 설명한다.](https://docs.oracle.com/en/middleware/standalone/weblogic-server/14.1.1.0/perfm/jvm_tuning.html#:~:text=adequate%2E-,In,sizes)
 Oracle WebLogic 튜닝 문서 역시 GC를 줄이기 위한 일반 규칙으로 초기 힙 크기와 최대 힙 크기를 같게 두는 방식을 제시한다.
