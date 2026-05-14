@@ -48,7 +48,7 @@ heap 밖의 메모리가 추가로 필요하기 때문이다.
 
 ![Oracle의 HotSpot GC 튜닝 가이드](img.png)
 
-Oracle의 HotSpot GC 튜닝 가이드는 JVM이 시작할 때 `-Xmx` 크기만큼 힙 주소 공간을 예약하고, `-Xms`가 더 작으면 전체 공간을 즉시 커밋하지 않는다고 설명한다.
+[Oracle의 HotSpot GC 튜닝 가이드는 JVM이 시작할 때 `-Xmx` 크기만큼 힙 주소 공간을 예약하고, `-Xms`가 더 작으면 전체 공간을 즉시 커밋하지 않는다고 설명한다.](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/sizing.html#:~:text=At,machine%2E)
 즉, `-Xms512m -Xmx2g`라면 JVM은 최대 2GB까지 커질 수 있는 공간을 염두에 두지만, 처음부터 2GB 힙을 모두 쓰는 것은 아니다.
 
 ![Xms와 Xmx가 다를 때 힙이 확장되는 흐름](![img_1.png](img_1.png))
@@ -67,7 +67,7 @@ JVM은 GC가 발생할 때마다 살아있는 객체와 여유 공간의 비율�
 
 ![Xms와 Xmx를 같게 둔 고정 힙](heap-fixed.png)
 
-Oracle의 HotSpot GC 튜닝 가이드도 서버 애플리케이션에서 두 값을 같게 두면 JVM의 중요한 크기 결정 하나를 제거해서 예측 가능성이 높아진다고 설명한다.
+[Oracle의 HotSpot GC 튜닝 가이드도 서버 애플리케이션에서 두 값을 같게 두면 JVM의 중요한 크기 결정 하나를 제거해서 예측 가능성이 높아진다고 설명한다.](https://docs.oracle.com/en/middleware/standalone/weblogic-server/14.1.1.0/perfm/jvm_tuning.html#:~:text=adequate%2E-,In,sizes)
 Oracle WebLogic 튜닝 문서 역시 GC를 줄이기 위한 일반 규칙으로 초기 힙 크기와 최대 힙 크기를 같게 두는 방식을 제시한다.
 
 효과를 조금 더 나누어 보면 다음과 같다.
