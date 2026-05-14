@@ -1,6 +1,6 @@
 ---
-visible: true
-title: "자바 코드는 JVM에서 어떻게 실행될까?"
+visible: false
+title: "Java는 JVM에서 어떻게 실행될까?"
 date: 2026-05-14 00:00:00
 tags: ["Engineering", "Backend"]
 heroImage: "./image.svg"
@@ -32,12 +32,7 @@ heroImage: "./image.svg"
 ```java
 public class Main {
     public static void main(String[] args) {
-        int result = add(1, 2);
-        System.out.println(result);
-    }
-
-    static int add(int a, int b) {
-        return a + b;
+        System.out.println("Hello, Java!");
     }
 }
 ```
@@ -45,7 +40,7 @@ public class Main {
 이 코드를 `javac Main.java`로 컴파일하면 `Main.class`가 생성된다.
 이 `.class` 파일은 CPU가 직접 실행하는 기계어가 아니라 JVM 명령어 집합으로 구성된 바이트코드다.
 
-`javap -c Main`으로 확인하면 대략 다음과 같은 명령어를 볼 수 있다.
+`javap -c JvmRun`으로 확인하면 대략 다음과 같은 명령어를 볼 수 있다.
 
 ```text
 public static void main(java.lang.String[]);
@@ -72,7 +67,7 @@ JVM의 실행 엔진은 이 명령어들을 하나씩 실행하거나, 자주 �
 
 ## JVM이 시작될 때
 
-`java Main`을 실행하면 운영체제 위에서 JVM 프로세스가 시작된다.
+`java JvmRun`을 실행하면 운영체제 위에서 JVM 프로세스가 시작된다.
 JVM은 먼저 사용자가 지정한 초기 클래스를 찾고, 그 클래스를 로딩한 뒤, 링킹하고, 초기화한 다음 `main` 메서드를 호출한다.
 이 `main` 호출이 이후 프로그램 실행의 출발점이 된다.
 
@@ -108,9 +103,9 @@ Java 8까지는 `Bootstrap -> Extension -> Application` 흐름으로 설명하�
 준비는 `static` 필드 같은 클래스 수준 저장 공간을 만들고 기본값을 넣는 단계다.
 예를 들어 `static int count = 10;`이 있으면 준비 단계에서는 우선 `0`이 들어가고, 실제 `10` 대입은 초기화 단계에서 수행된다.
 
-해결은 상수 풀의 심볼릭 레퍼런스를 다이렉트 레퍼런스로 바꾸는 단계다.
-바이트코드 안에는 `java/lang/System.out` 같은 이름 기반 참조가 들어 있는데, 실행하려면 이것이 실제 메모리상의 클래스, 필드, 메서드 참조와 연결되어야 한다.(예시: `0x7f4a2b1c`)
-이 해결 과정은 JVM 구현에 따라 일찍 처리될 수도 있고, 실제로 그 참조를 처음 사용할 때까지 미뤄질 수도 있다.
+해석은 상수 풀의 심볼릭 레퍼런스를 실제 참조로 바꾸는 단계다.
+바이트코드 안에는 `java/lang/System.out` 같은 이름 기반 참조가 들어 있는데, 실행하려면 이것이 실제 메모리상의 클래스, 필드, 메서드 참조와 연결되어야 한다.
+이 해석은 JVM 구현에 따라 일찍 처리될 수도 있고, 실제로 그 참조를 처음 사용할 때까지 미뤄질 수도 있다.
 
 ### Initialization
 
@@ -240,7 +235,7 @@ int result = add(1, 2);
 System.out.println(result);
 ```
 
-1. `Main.class`가 클래스 로더에 의해 로딩된다.
+1. `JvmRun.class`가 클래스 로더에 의해 로딩된다.
 2. 링킹 과정에서 바이트코드 검증, static 저장 공간 준비, 심볼릭 레퍼런스 해석이 수행된다.
 3. 클래스 초기화가 필요한 경우 `<clinit>`이 실행된다.
 4. JVM이 `main` 스택 프레임을 만든다.
