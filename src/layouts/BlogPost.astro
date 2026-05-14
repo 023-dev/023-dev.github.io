@@ -36,12 +36,12 @@ const ogImage = `/og/${slug}.png`;
 
 	<div class="relative mx-auto w-full">
 		<aside
-			class="hidden 2xl:block absolute top-0 left-[calc(50%_-_450px_-_280px)] w-[240px]"
+			class="absolute right-0 top-0 hidden w-[88px] min-[1120px]:block min-[1180px]:w-[112px] min-[1280px]:w-[152px] min-[1440px]:left-[calc(50%_+_450px_+_32px)] min-[1440px]:right-auto min-[1440px]:w-[220px]"
 		>
 			{
-				headings && headings.length > 0 && (
+				hasTableOfContents && (
 					<div class="sticky top-[100px]">
-						<TableOfContents headings={headings} />
+						<TableOfContents headings={headings ?? []} />
 					</div>
 				)
 			}
@@ -79,7 +79,7 @@ const ogImage = `/og/${slug}.png`;
 				}
 
 				<h1
-					class="text-[36px] leading-[44px] font-bold text-black mb-[20px] font-heading tracking-tight"
+					class="text-[34px] leading-[42px] font-bold text-black mb-[20px] font-heading tracking-tight md:text-[36px] md:leading-[44px]"
 					data-pagefind-meta="title"
 				>
 					{title}
@@ -111,7 +111,7 @@ const ogImage = `/og/${slug}.png`;
 			</div>
 			{
 				hasTableOfContents && (
-					<details class="mb-8 rounded-lg border border-gray-200 px-4 py-3 2xl:hidden">
+					<details class="mb-8 rounded-lg border border-gray-200 px-4 py-3 min-[1120px]:hidden">
 						<summary class="cursor-pointer select-none text-[14px] font-bold leading-[22px] text-black">
 							목차
 						</summary>

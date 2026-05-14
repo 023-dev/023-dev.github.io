@@ -91,8 +91,8 @@
 
         /* Precise Typography Overrides */
         font-family: "Pretendard", system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 15.5px;
+        line-height: 25px;
         font-weight: 400;
         letter-spacing: normal;
         color: var(--text-body) !important;
@@ -100,18 +100,18 @@
 
     .prose h1 {
         font-family: var(--font-heading);
-        font-size: 44px;
-        line-height: 52px;
+        font-size: 40px;
+        line-height: 48px;
         font-weight: 700;
-        margin-top: 44px !important;
-        margin-bottom: 44px !important;
+        margin-top: 40px !important;
+        margin-bottom: 40px !important;
         color: var(--text-heading);
     }
 
     .prose h2 {
         font-family: var(--font-heading);
-        font-size: 32px;
-        line-height: 40px;
+        font-size: 30px;
+        line-height: 38px;
         font-weight: 700;
         margin-top: 32px !important;
         margin-bottom: 32px !important;
@@ -120,8 +120,8 @@
 
     .prose h3 {
         font-family: var(--font-heading);
-        font-size: 24px;
-        line-height: 32px;
+        font-size: 22px;
+        line-height: 30px;
         font-weight: 700;
         margin-top: 24px !important;
         margin-bottom: 24px !important;
