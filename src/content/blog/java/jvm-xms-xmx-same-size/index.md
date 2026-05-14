@@ -46,12 +46,12 @@ heap 밖의 메모리가 추가로 필요하기 때문이다.
 
 ## Xms와 Xmx가 다르면 JVM은 힙을 조절한다
 
-![Oracle의 HotSpot GC 튜닝 가이드](img.png)
+![Oracle의 HotSpot GC 튜닝 가이드](img_3.png)
 
 [Oracle의 HotSpot GC 튜닝 가이드는 JVM이 시작할 때 `-Xmx` 크기만큼 힙 주소 공간을 예약하고, `-Xms`가 더 작으면 전체 공간을 즉시 커밋하지 않는다고 설명한다.](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/sizing.html#:~:text=At,machine%2E)
 즉, `-Xms512m -Xmx2g`라면 JVM은 최대 2GB까지 커질 수 있는 공간을 염두에 두지만, 처음부터 2GB 힙을 모두 쓰는 것은 아니다.
 
-![Xms와 Xmx가 다를 때 힙이 확장되는 흐름](![img_1.png](img_1.png))
+![img_1.png](img_1.png)
 
 JVM은 GC가 발생할 때마다 살아있는 객체와 여유 공간의 비율을 보고 힙을 키우거나 줄일 수 있다.
 예를 들어 객체 할당량이 늘어나고 GC 이후 여유 공간이 부족하면 힙을 확장한다.
