@@ -187,8 +187,10 @@ allocated=120MB elapsed=20ms
 
 ## 그래도 항상 같은 값이 정답은 아니다
 
-`-Xms`와 `-Xmx`를 같게 두는 방식은 예측 가능성을 얻는 대신 유연성을 포기한다.
-Oracle 문서도 두 값을 같게 두면 JVM이 잘못된 선택을 보정할 수 없다고 주의한다.
+![img_4.png](img_4.png)
+
+[`-Xms`와 `-Xmx`를 같게 두는 방식은 예측 가능성을 얻는 대신 유연성을 포기한다.
+Oracle 문서도 두 값을 같게 두면 JVM이 잘못된 선택을 보정할 수 없다고 주의한다.](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/sizing.html#:~:text=Setting,choice)
 
 예를 들어 `-Xms4g -Xmx4g`로 고정했는데 실제 애플리케이션의 live set이 700MB 수준이라면, 다른 프로세스가 쓸 수 있는 메모리를 불필요하게 붙잡을 수 있다.
 반대로 실제로 6GB가 필요한 애플리케이션에 `-Xms4g -Xmx4g`를 주면 JVM은 더 커질 수 없고 `OutOfMemoryError`로 이어질 수 있다.
@@ -198,16 +200,17 @@ Oracle 문서도 두 값을 같게 두면 JVM이 잘못된 선택을 보정할 �
 - 개발 환경처럼 메모리를 아끼는 것이 더 중요한 경우
 - 트래픽이 시간대별로 크게 출렁이는 서비스
 - 유휴 시간이 길고, 그동안 메모리를 운영체제나 다른 프로세스에 돌려주고 싶은 서비스
-- Kubernetes처럼 메모리 비용과 pod density가 중요한 환경
 - G1, ZGC처럼 사용하지 않는 heap memory를 운영체제에 반환하는 기능을 활용하고 싶은 경우
 
-OpenJDK의 JEP 346은 G1이 유휴 상태에서 사용하지 않는 committed heap memory를 운영체제에 반환하는 기능을 다룬다.
-또 JEP 351은 ZGC의 unused memory uncommit 기능을 설명하면서, 최소 힙(`-Xms`)과 최대 힙(`-Xmx`)이 같으면 이 기능이 사실상 비활성화된다고 설명한다.
+![img_5.png](img_5.png)
+
+[OpenJDK의 JEP 346은 G1이 유휴 상태에서 사용하지 않는 committed heap memory를 운영체제에 반환하는 기능을 다룬다.
+또 JEP 351은 ZGC의 unused memory uncommit 기능을 설명하면서, 최소 힙(`-Xms`)과 최대 힙(`-Xmx`)이 같으면 이 기능이 사실상 비활성화된다고 설명한다.](https://openjdk.org/jeps/351#:~:text=later%2E-,The,feature)
 즉, 최신 GC를 사용하면서 메모리 탄력성이 중요하다면 `-Xms == -Xmx`가 오히려 손해일 수 있다.
 
 ## 어떻게 결정하면 좋을까
 
-무작정 블로그 설정을 복사하기보다, 먼저 애플리케이션의 실제 메모리 사용량을 봐야 한다.
+무작정 설정을 복사하기보다, 먼저 애플리케이션의 실제 메모리 사용량을 봐야 한다.
 
 ```bash
 java -Xms1g -Xmx1g \
