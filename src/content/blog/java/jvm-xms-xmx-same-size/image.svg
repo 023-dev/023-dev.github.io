@@ -1,0 +1,24 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F8FAFC"/>
+  <rect x="72" y="64" width="1056" height="502" rx="28" fill="#FFFFFF" stroke="#D7DEE8" stroke-width="2"/>
+  <text x="116" y="145" fill="#111827" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="54" font-weight="800">-Xms와 -Xmx를 왜 같게 둘까?</text>
+  <text x="118" y="190" fill="#526071" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="26" font-weight="500">힙 크기 결정을 줄여 GC와 메모리 사용을 예측 가능하게 만든다</text>
+
+  <rect x="118" y="266" width="430" height="88" rx="18" fill="#E8F3FF" stroke="#5BA7E5" stroke-width="2"/>
+  <rect x="118" y="266" width="132" height="88" rx="18" fill="#5BA7E5"/>
+  <path d="M250 266H530C539.941 266 548 274.059 548 284V336C548 345.941 539.941 354 530 354H250V266Z" fill="#E8F3FF"/>
+  <text x="148" y="320" fill="#FFFFFF" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="22" font-weight="800">Xms</text>
+  <text x="340" y="320" fill="#1F4E79" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="22" font-weight="800">Xmx까지 확장</text>
+  <text x="118" y="390" fill="#526071" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="22" font-weight="600">작게 시작하면 실행 중 힙 리사이징이 발생할 수 있다</text>
+
+  <path d="M596 306H690" stroke="#9AA6B2" stroke-width="6" stroke-linecap="round"/>
+  <path d="M690 306L666 282V330L690 306Z" fill="#9AA6B2"/>
+
+  <rect x="742" y="266" width="340" height="88" rx="18" fill="#DFF7EA" stroke="#3AA66E" stroke-width="2"/>
+  <rect x="742" y="266" width="340" height="88" rx="18" fill="#3AA66E"/>
+  <text x="803" y="320" fill="#FFFFFF" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="25" font-weight="800">Xms = Xmx</text>
+  <text x="742" y="390" fill="#526071" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="22" font-weight="600">처음부터 목표 힙 크기로 고정한다</text>
+
+  <rect x="118" y="456" width="964" height="54" rx="14" fill="#FFF7ED" stroke="#F4A261" stroke-width="2"/>
+  <text x="148" y="492" fill="#7C3F11" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="22" font-weight="700">좋은 설정은 공식이 아니라 측정된 live set, pause time, container limit으로 결정한다</text>
+</svg>

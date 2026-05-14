@@ -1,0 +1,26 @@
+<svg width="1000" height="460" viewBox="0 0 1000 460" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1000" height="460" rx="24" fill="#F8FAFC"/>
+  <text x="54" y="70" fill="#111827" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="32" font-weight="800">-Xmx는 JVM 프로세스 전체 메모리가 아니라 Java heap의 한도다</text>
+  <text x="56" y="110" fill="#526071" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="20" font-weight="500">컨테이너 limit을 잡을 때는 heap 밖 메모리까지 함께 계산해야 한다.</text>
+
+  <rect x="70" y="160" width="860" height="210" rx="22" fill="#FFFFFF" stroke="#CAD5E2" stroke-width="2"/>
+  <text x="94" y="202" fill="#111827" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="22" font-weight="800">JVM process RSS</text>
+
+  <rect x="94" y="232" width="330" height="92" rx="14" fill="#5BA7E5"/>
+  <text x="134" y="286" fill="#FFFFFF" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="24" font-weight="800">Java heap</text>
+  <text x="154" y="346" fill="#1F4E79" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="20" font-weight="800">controlled by -Xmx</text>
+
+  <rect x="442" y="232" width="150" height="92" rx="14" fill="#DFF7EA" stroke="#3AA66E" stroke-width="2"/>
+  <text x="470" y="272" fill="#17643D" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="19" font-weight="800">Metaspace</text>
+  <text x="474" y="300" fill="#17643D" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="16" font-weight="700">class metadata</text>
+
+  <rect x="610" y="232" width="140" height="92" rx="14" fill="#FFF7ED" stroke="#F4A261" stroke-width="2"/>
+  <text x="640" y="272" fill="#7C3F11" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="19" font-weight="800">Thread</text>
+  <text x="642" y="300" fill="#7C3F11" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="16" font-weight="700">stacks</text>
+
+  <rect x="768" y="232" width="138" height="92" rx="14" fill="#F0E9FF" stroke="#8B5CF6" stroke-width="2"/>
+  <text x="796" y="272" fill="#5B21B6" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="19" font-weight="800">Native</text>
+  <text x="790" y="300" fill="#5B21B6" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="16" font-weight="700">direct/code/GC</text>
+
+  <text x="94" y="410" fill="#526071" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="19" font-weight="600">container memory limit &gt; Java heap + non-heap + 여유분</text>
+</svg>

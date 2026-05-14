@@ -1,0 +1,13 @@
+<svg width="1000" height="360" viewBox="0 0 1000 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1000" height="360" rx="24" fill="#F8FAFC"/>
+  <text x="54" y="70" fill="#111827" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="32" font-weight="800">-Xms = -Xmx: 힙 크기 결정을 고정한다</text>
+  <text x="56" y="110" fill="#526071" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="20" font-weight="500">JVM이 실행 중 전체 힙 크기를 키우거나 줄이는 변수를 제거한다.</text>
+
+  <rect x="70" y="170" width="860" height="94" rx="18" fill="#3AA66E"/>
+  <rect x="70" y="170" width="860" height="94" rx="18" stroke="#238253" stroke-width="2"/>
+  <text x="398" y="226" fill="#FFFFFF" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="28" font-weight="800">fixed Java heap</text>
+  <text x="70" y="306" fill="#238253" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="22" font-weight="800">-Xms 2g</text>
+  <text x="810" y="306" fill="#238253" font-family="Pretendard, Noto Sans KR, Arial, sans-serif" font-size="22" font-weight="800">-Xmx 2g</text>
+  <path d="M160 302H790" stroke="#238253" stroke-width="4" stroke-linecap="round"/>
+  <path d="M790 302L770 290V314L790 302Z" fill="#238253"/>
+</svg>

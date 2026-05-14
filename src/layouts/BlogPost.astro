@@ -19,6 +19,10 @@ const ogImage = `/og/${slug}.png`;
 ---
 
 <BaseLayout title={title} wide={true} image={ogImage}>
+	<Fragment slot="head">
+		<link rel="preload" as="script" href="https://utteranc.es/client.js" crossorigin />
+	</Fragment>
+
 	<div class="relative mx-auto w-full">
 		<aside
 			class="hidden 2xl:block absolute top-0 left-[calc(50%_-_450px_-_280px)] w-[240px]"

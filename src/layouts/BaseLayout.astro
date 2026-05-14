@@ -20,7 +20,8 @@ const { title, description, image, wide = false } = Astro.props;
 <html lang="ko">
 	<head>
 		<BaseHead title={title} description={description} image={image} />
-        <ClientRouter />
+		<slot name="head" />
+		<ClientRouter />
 	</head>
 	<body class="flex flex-col min-h-screen">
 		<Header client:only="react" />
