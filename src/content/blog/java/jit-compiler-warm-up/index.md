@@ -3,7 +3,7 @@ visible: true
 title: "Java 애플리케이션에서 첫 요청이 느린 이유: JIT 컴파일러와 JVM Warm-up"
 date: 2026-05-15 00:00:00
 tags: ["Engineering", "Backend", "Java"]
-heroImage: "./img_2.png"
+heroImage: "./img_5.png"
 ---
 
 Java 기반 애플리케이션에서 첫 요청만 유독 느린 경우가 있다.
