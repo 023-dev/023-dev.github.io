@@ -58,7 +58,7 @@ JVM은 기본적으로 **mixed mode**로 실행된다.
 
 처음부터 모든 바이트코드를 네이티브 코드로 컴파일하면 시작이 늦어진다.
 반대로 끝까지 인터프리터만 사용하면 같은 바이트코드를 매번 해석해야 하므로 장기 실행 성능이 떨어진다.
-그래서 ava 1.3부터는 Hotspot VM이 추가되었고, Hotspot VM에는 2개의 JIT 컴파일러가 포함되어 있다.
+그래서 Java 1.3부터는 HotSpot VM이 추가되었고, HotSpot VM에는 2개의 JIT 컴파일러가 포함되어 있다.
 HotSpot JVM은 우선 인터프리터로 빠르게 실행을 시작하고, 실행 중에 자주 호출되는 메서드와 루프를 찾아 JIT 컴파일 대상으로 올린다.
 
 ![img_4.png](img_4.png)
@@ -73,9 +73,9 @@ HotSpot JVM은 우선 인터프리터로 빠르게 실행을 시작하고, 실�
   - 장기 실행되는 서버 애플리케이션 등에 적합함
 
 
-Java 6에서는 c1 컴파일러와 c2 컴파일러 중 하나를 선택해야 했지만, 
-Java 7부터는 계층형 컴파일을 사용할 수 있는 옵션이 추가되었고, 
-Java 8부터는 이것이 JVM의 기본 동작이 되었다. 
+Java 6에서는 c1 컴파일러와 c2 컴파일러 중 하나를 선택해야 했지만,
+Java 7부터는 계층형 컴파일을 사용할 수 있는 옵션이 추가되었고,
+Java 7의 HotSpot server VM부터는 이것이 기본 동작이 되었다.
 이 접근 방식은 c1 컴파일러와 c2 컴파일러를 모두 사용한다.
 
 ![img_5.png](img_5.png)
@@ -86,11 +86,11 @@ HotSpot VM은 초기에 인터프리터를 사용해서 최적화 없이 코드�
 호출 횟수가 C1 컴파일러의 임계값을 초과하면 해당 메서드를 C1 컴파일러 대기열에 넣고 재컴파일하여 최적화한다.
 이후에도 계속 각 메서드의 호출 횟수를 추적하여 동일하게 최적화를 진행하는데,
 C1 컴파일러 이후에는 C2 컴파일러를 사용한다.
-이렇듯 컴파일러를 단계적으로 적용하는 방식을 계층형 컴파일(Tired Compilation)이라고 한다.
+이렇듯 컴파일러를 단계적으로 적용하는 방식을 계층형 컴파일(Tiered Compilation)이라고 한다.
 
 ![img_2.png](img_2.png)
 
-이때 컴파일되어 최적화된 네이티브 코드는 코드 캐시영역에 저장된다.
+이때 컴파일되어 최적화된 네이티브 코드는 코드 캐시 영역에 저장된다.
 이 네이티브 코드는 해당 메서드의 컴파일 결과가 유효하고 실행 가능할 동안 재사용되고, 다음과 같은 상황에서 회수된다.
 
 - 관련 클래스가 언로드되는 경우
@@ -126,27 +126,82 @@ OpenJDK 64-Bit Server VM warning: Try increasing the code cache size using -XX:R
 Compilation: disabled (not enough contiguous free space left)
 ```
 
-> 재현할 때는 방법은 다음과 같다.
-> `ReservedCodeCacheSize`를 최소 허용값 근처로 낮추고, `UseCodeCacheFlushing`을 꺼서 Code Cache가 스스로 버티는 여지를 줄인다.
-> JIT가 컴파일할 만한 핫 메서드를 많이 만든다. `-XX:+PrintCompilation`으로 어떤 메서드가 컴파일되는지, 그리고 언제 Code Cache가 가득 차는지 확인한다.
+재현용 코드는 아래처럼 만들 수 있다.
+
+```java
+import javax.tools.JavaCompiler;
+import javax.tools.ToolProvider;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class CodeCacheFiller {
+    public static void main(String[] args) throws Exception {
+        int methodCount = 300;
+        int iterations = 10_000;
+
+        Path workDir = Files.createTempDirectory("codecache-demo");
+        Path sourceFile = workDir.resolve("ManyHotMethods.java");
+        Files.writeString(sourceFile, buildSource(methodCount), StandardCharsets.UTF_8);
+
+        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+        if (compiler.run(null, null, null, "-d", workDir.toString(), sourceFile.toString()) != 0) {
+            throw new IllegalStateException("javac failed");
+        }
+
+        try (URLClassLoader loader = URLClassLoader.newInstance(new URL[]{workDir.toUri().toURL()})) {
+            Class<?> type = Class.forName("ManyHotMethods", true, loader);
+            Object instance = type.getConstructor().newInstance();
+            Method[] methods = type.getDeclaredMethods();
+            Arrays.sort(methods, Comparator.comparing(Method::getName));
+
+            long sum = 0;
+            for (int round = 0; round < iterations; round++) {
+                for (Method method : methods) {
+                    sum += (int) method.invoke(instance, round);
+                }
+            }
+            System.out.println(sum);
+        }
+    }
+
+    private static String buildSource(int methodCount) {
+        StringBuilder source = new StringBuilder("public class ManyHotMethods {\n");
+        for (int i = 0; i < methodCount; i++) {
+            source.append("  public int m").append(i)
+                  .append("(int x) { return (x + ").append(i).append(") * 31 ^ ")
+                  .append(i * 17 + 3).append("; }\n");
+        }
+        source.append("}\n");
+        return source.toString();
+    }
+}
+```
+
+실행할 때는 `ReservedCodeCacheSize`를 최소 허용값 근처로 낮추고, `UseCodeCacheFlushing`을 꺼서 Code Cache가 스스로 버티는 여지를 줄인다.
+그다음 `-XX:+PrintCompilation`으로 어떤 메서드가 컴파일되는지, 그리고 언제 Code Cache가 가득 차는지 확인한다.
 
 즉, JVM은 대상 아키텍처와 코드의 동적인 동작 방식에 대한 정보를 얻을 때까지 컴파일을 연기한다.
 미리 네이티브 코드로 컴파일하는 AOT(Ahead-Of-Time) 컴파일과 달리, JIT 컴파일은 동적으로 적시에 컴파일한다.
 
-Oracle의 HotSpot 성능 문서에 따르면 단계별 컴파일은 인터프리터뿐 아니라 클라이언트 컴파일러를 함께 사용해 프로파일링 정보를 모으고, 
+Oracle의 HotSpot 성능 문서에 따르면 단계별 컴파일은 인터프리터뿐 아니라 클라이언트 컴파일러를 함께 사용해 프로파일링 정보를 모으고,
 이후 서버 컴파일러가 더 강한 최적화를 적용할 수 있게 한다. 단순화하면 흐름은 다음과 같다.
 
-1. 인터프리터가 바이트코드를 실행하며 호출 빈도, 루프 반복, 타입 정보 같은 프로파일을 모은다. 
-2. 런타임 정보 및 통계를 고려해 최적화를 함 
-3. C1 컴파일러가 비교적 빠르게 네이티브 코드를 만든다. 
-4. 충분히 자주 실행되는 코드는 C2 컴파일러가 더 공격적인 최적화를 적용한다. 
+1. 인터프리터가 바이트코드를 실행하며 호출 빈도, 루프 반복, 타입 정보 같은 프로파일을 모은다.
+2. 런타임 정보와 통계를 고려해 최적화 방향을 정한다.
+3. C1 컴파일러가 비교적 빠르게 네이티브 코드를 만든다.
+4. 충분히 자주 실행되는 코드는 C2 컴파일러가 더 공격적인 최적화를 적용한다.
 5. 컴파일된 네이티브 코드는 Code Cache에 저장되고 이후 호출에서 재사용된다.
 
-HotSpot은 99년도에 나왔고, 오랜 연구 결과 끝에 많은 최적화가 구현되어 있다. 
-C2 컴파일러는 극도로 최적화가 많이 되어 있어서 컴파일 언어를 능가하는 성능을 보여주기도 한다. 
-최적화에는 프로파일링을 통해 얻은 정보들(디바이스 정보, 클럭 수 등)이 사용되며, 
-자바의 성능 향상은 이러한 프로파일링을 통해 얻어낸 정보를 바탕으로 하는 JIT 컴파일러의 최적화 역할이 크다.
-하지만 반대로 이로 인해 애플리케이션이 초기에 느리게 실행되는 웜업 문제가 발생하기도 한다.
+HotSpot은 1999년에 공개된 이후 오랜 연구 결과를 바탕으로 많은 최적화가 구현되어 있다.
+C2 컴파일러는 공격적인 최적화를 적용할 수 있어서, 상황에 따라서는 컴파일 언어에 가까운 성능을 보여주기도 한다.
+이때 최적화는 하드웨어 스펙 자체보다도, 실행 중에 얻은 프로파일링 정보와 런타임 관측값에 더 크게 의존한다.
+자바의 성능 향상은 이런 JIT 최적화의 역할이 크지만, 반대로 애플리케이션이 초기에 느리게 실행되는 warm-up 문제가 생기기도 한다.
 
 ## JIT가 하는 최적화
 
