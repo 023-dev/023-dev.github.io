@@ -3,7 +3,7 @@ visible: true
 title: "Java 애플리케이션에서 첫 요청이 느린 이유: JIT 컴파일러와 JVM Warm-up"
 date: 2026-05-15 00:00:00
 tags: ["Engineering", "Backend", "Java"]
-heroImage: "./jit-warmup-hero.svg"
+heroImage: "./img_2.png"
 ---
 
 Java 기반 애플리케이션에서 첫 요청만 유독 느린 경우가 있다.
@@ -98,34 +98,9 @@ C1 컴파일러 이후에는 C2 컴파일러를 사용한다.
 - 더 높은 단계의 컴파일 결과로 대체된 경우
 - 오랫동안 사용되지 않아 제거 대상으로 판단되는 경우
 
-참고로 코드 캐시는 크기가 한정되어 있으므로 공간이 부족하면 더 이상 코드를 컴파일할 수 없어 성능 문제가 발생할 수 있다.
-
-```bash
-OpenJDK 64-Bit Server VM warning: CodeCache is full. Compiler has been disabled.
-OpenJDK 64-Bit Server VM warning: Try increasing the code cache size using -XX:ReservedCodeCacheSize=
-Compilation: disabled (not enough contiguous free space left)
-```
-
-> 재현할 때는 방법은 다음과 같다.
-> `ReservedCodeCacheSize`를 최소 허용값 근처로 낮추고, `UseCodeCacheFlushing`을 꺼서 Code Cache가 스스로 버티는 여지를 줄인다.
-> JIT가 컴파일할 만한 핫 메서드를 많이 만든다. `-XX:+PrintCompilation`으로 어떤 메서드가 컴파일되는지, 그리고 언제 Code Cache가 가득 차는지 확인한다.
-
-즉, JVM은 대상 아키텍처와 코드의 동적인 동작 방식에 대한 정보를 얻을 때까지 컴파일을 연기한다.
-미리 네이티브 코드로 컴파일하는 AOT(Ahead-Of-Time) 컴파일과 달리, JIT 컴파일은 동적으로 적시에 컴파일한다.
-
-- 애플리케이션의 시작 시간이 느려지지만 나중에 최고의 성능에 도달하게 됨
-- 특정 플랫폼 종속적이게 컴파일할 필요 없이 가상 머신이 이를 해결해줌
-
-Oracle의 HotSpot 성능 문서에 따르면 단계별 컴파일은 인터프리터뿐 아니라 클라이언트 컴파일러를 함께 사용해 프로파일링 정보를 모으고, 
-이후 서버 컴파일러가 더 강한 최적화를 적용할 수 있게 한다. 단순화하면 흐름은 다음과 같다.
-
-1. 인터프리터가 바이트코드를 실행하며 호출 빈도, 루프 반복, 타입 정보 같은 프로파일을 모은다. 
-2. 런타임 정보 및 통계를 고려해 최적화를 함 
-3. C1 컴파일러가 비교적 빠르게 네이티브 코드를 만든다. 
-4. 충분히 자주 실행되는 코드는 C2 컴파일러가 더 공격적인 최적화를 적용한다. 
-5. 컴파일된 네이티브 코드는 Code Cache에 저장되고 이후 호출에서 재사용된다.
-
-JDK에서 실제 플래그도 확인할 수 있다.
+중요한 점은 JIT 컴파일도 공짜가 아니라는 것이다.
+바이트코드를 네이티브 코드로 바꾸는 동안 컴파일러 스레드가 CPU를 사용하고, 생성된 코드는 Code Cache에 저장된다.
+Oracle의 `java` 명령 문서에서도 `ReservedCodeCacheSize`가 JIT 컴파일된 코드의 최대 Code Cache 크기를 정한다고 설명한다.
 
 ```bash
 java -XX:+PrintFlagsFinal -version \
@@ -143,10 +118,35 @@ intx  FreqInlineSize        = 325
 bool  DoEscapeAnalysis      = true
 ```
 
-중요한 점은 JIT 컴파일도 공짜가 아니라는 것이다.
-바이트코드를 네이티브 코드로 바꾸는 동안 컴파일러 스레드가 CPU를 사용하고, 생성된 코드는 Code Cache에 저장된다.
-Oracle의 `java` 명령 문서에서도 `ReservedCodeCacheSize`가 JIT 컴파일된 코드의 최대 Code Cache 크기를 정한다고 설명한다.
-Code Cache가 부족하면 더 이상 컴파일하지 못해 장기 실행 성능에 영향을 줄 수 있다.
+그리고 Code Cache가 부족하면 더 이상 컴파일하지 못해 장기 실행 성능에 영향을 줄 수 있다.
+
+```bash
+OpenJDK 64-Bit Server VM warning: CodeCache is full. Compiler has been disabled.
+OpenJDK 64-Bit Server VM warning: Try increasing the code cache size using -XX:ReservedCodeCacheSize=
+Compilation: disabled (not enough contiguous free space left)
+```
+
+> 재현할 때는 방법은 다음과 같다.
+> `ReservedCodeCacheSize`를 최소 허용값 근처로 낮추고, `UseCodeCacheFlushing`을 꺼서 Code Cache가 스스로 버티는 여지를 줄인다.
+> JIT가 컴파일할 만한 핫 메서드를 많이 만든다. `-XX:+PrintCompilation`으로 어떤 메서드가 컴파일되는지, 그리고 언제 Code Cache가 가득 차는지 확인한다.
+
+즉, JVM은 대상 아키텍처와 코드의 동적인 동작 방식에 대한 정보를 얻을 때까지 컴파일을 연기한다.
+미리 네이티브 코드로 컴파일하는 AOT(Ahead-Of-Time) 컴파일과 달리, JIT 컴파일은 동적으로 적시에 컴파일한다.
+
+Oracle의 HotSpot 성능 문서에 따르면 단계별 컴파일은 인터프리터뿐 아니라 클라이언트 컴파일러를 함께 사용해 프로파일링 정보를 모으고, 
+이후 서버 컴파일러가 더 강한 최적화를 적용할 수 있게 한다. 단순화하면 흐름은 다음과 같다.
+
+1. 인터프리터가 바이트코드를 실행하며 호출 빈도, 루프 반복, 타입 정보 같은 프로파일을 모은다. 
+2. 런타임 정보 및 통계를 고려해 최적화를 함 
+3. C1 컴파일러가 비교적 빠르게 네이티브 코드를 만든다. 
+4. 충분히 자주 실행되는 코드는 C2 컴파일러가 더 공격적인 최적화를 적용한다. 
+5. 컴파일된 네이티브 코드는 Code Cache에 저장되고 이후 호출에서 재사용된다.
+
+HotSpot은 99년도에 나왔고, 오랜 연구 결과 끝에 많은 최적화가 구현되어 있다. 
+C2 컴파일러는 극도로 최적화가 많이 되어 있어서 컴파일 언어를 능가하는 성능을 보여주기도 한다. 
+최적화에는 프로파일링을 통해 얻은 정보들(디바이스 정보, 클럭 수 등)이 사용되며, 
+자바의 성능 향상은 이러한 프로파일링을 통해 얻어낸 정보를 바탕으로 하는 JIT 컴파일러의 최적화 역할이 크다.
+하지만 반대로 이로 인해 애플리케이션이 초기에 느리게 실행되는 웜업 문제가 발생하기도 한다.
 
 ## JIT가 하는 최적화
 
@@ -278,10 +278,6 @@ last  = 2792
 ```
 
 여기서 `3`, `4`는 컴파일 레벨을 의미하고, `%`는 루프 실행 중 컴파일 코드로 갈아타는 OSR(On-Stack Replacement)과 관련이 있다.
-`made not entrant`는 이전에 만들어둔 컴파일 코드가 더 이상 새 호출에 쓰이지 않게 되었다는 뜻이다.
-
-단, 위 코드는 JIT 현상을 관찰하기 위한 장난감 예제일 뿐이다.
-정확한 마이크로벤치마크가 필요하다면 직접 `System.nanoTime()`만으로 결론을 내리지 말고 JMH 같은 벤치마크 도구를 사용해야 한다.
 
 ## 정리
 
