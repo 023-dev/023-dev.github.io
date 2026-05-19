@@ -1,5 +1,5 @@
 ---
-visible: false
+visible: true
 title: "ArrayList 컬렉션"
 date: 2024-11-17 00:00:00
 tags: 
