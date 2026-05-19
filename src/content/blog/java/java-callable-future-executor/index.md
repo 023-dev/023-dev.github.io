@@ -83,10 +83,10 @@ Callable<Integer> task = () -> {
 | 메서드 | 역할 | 주의할 점 |
 | --- | --- | --- |
 | `get()` | 작업이 끝날 때까지 기다렸다가 결과를 가져온다. | 완료 전이면 호출한 스레드가 블로킹된다. |
-| `get(timeout, unit)` | 지정한 시간까지만 기다린다. | 시간이 지나면 `TimeoutException`이 발생한다. |
+| `get(timeout, unit)` | 지정한 시간까지만 기다린다. | 시간이 지나면 `TimeoutException`이 발생한다. 작업 자체가 자동으로 취소되는 것은 아니다. |
 | `isDone()` | 작업 완료 여부를 확인한다. | 정상 완료, 예외 발생, 취소 모두 완료로 본다. |
 | `isCancelled()` | 취소 여부를 확인한다. | 취소된 작업은 결과를 정상적으로 받을 수 없다. |
-| `cancel(boolean)` | 작업 취소를 시도한다. | 이미 실행 중인 작업은 인터럽트 협조가 필요하다. |
+| `cancel(boolean)` | 작업 취소를 시도한다. | 아직 시작되지 않은 작업은 실행되지 않을 수 있고, 이미 실행 중인 작업은 인터럽트 협조가 필요하다. |
 
 간단한 예제는 다음과 같다.
 
@@ -232,7 +232,9 @@ executor.submit(() -> System.out.println("work"));
 executor.shutdown();
 ```
 
-**[`shutdown()`은 새 작업을 더 받지 않고 기존에 제출된 작업을 실행한 뒤 종료를 시작하며, 이미 종료된 상태에서 다시 호출해도 추가 효과는 없다.](<https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/ExecutorService.html#shutdown()>)**
+**[`shutdown()`은 새 작업을 더 받지 않는 질서 있는 종료를 시작하고, 기존에 제출된 작업은 계속 실행되도록 둔다. 이미 종료된 상태에서 다시 호출해도 추가 효과는 없다.](<https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/ExecutorService.html#shutdown()>)**
+`shutdown()` 자체가 기존 작업이 모두 끝날 때까지 기다리는 것은 아니다.
+그 시점까지 기다려야 한다면 `awaitTermination()`이나 Java 19 이후의 `close()` 동작까지 함께 고려해야 한다.
 더 강하게 멈추고 싶을 때는 `shutdownNow()`를 사용할 수 있지만, 이 역시 실행 중인 작업을 강제로 죽인다는 뜻은 아니다.
 실행 중인 작업에는 보통 인터럽트를 보내므로, 작업 코드가 인터럽트에 협조해야 한다.
 
@@ -295,6 +297,7 @@ public class InvokeAllExample {
 
 `invokeAny()`는 여러 작업 중 하나만 필요할 때 쓴다.
 성공적으로 완료된 작업이 하나라도 있으면 그 결과를 반환하고, 아직 끝나지 않은 나머지 작업은 취소된다.
+반대로 성공적으로 완료된 작업이 하나도 없으면 예외로 흐름이 넘어간다.
 예를 들어 여러 서버에 같은 요청을 보내고 가장 빠른 응답 하나만 쓰는 구조에서 생각해 볼 수 있다.
 
 ```java
@@ -309,7 +312,7 @@ try (ExecutorService executor = Executors.newFixedThreadPool(3)) {
 ## ScheduledExecutorService
 
 일정 시간이 지난 뒤 작업을 실행하거나, 일정 주기로 작업을 반복해야 할 때는 `ScheduledExecutorService`를 사용한다.
-`Timer`보다 유연하고, 여러 스레드를 가진 스케줄러로도 구성할 수 있다.
+실행기 기반 API라서 지연 실행과 반복 실행도 `ExecutorService`의 생명주기 안에서 관리할 수 있다.
 
 `ScheduledExecutorService`는 지정한 지연 시간 뒤에 명령을 실행하거나 주기적으로 실행할 수 있는 `ExecutorService`다.
 자주 쓰는 메서드는 다음 세 가지다.
@@ -346,6 +349,7 @@ scheduler.scheduleWithFixedDelay(task, 0, 2, TimeUnit.SECONDS);
 
 **[`scheduleAtFixedRate()`는 `initialDelay`, `initialDelay + period`, `initialDelay + 2 * period`처럼 시작 시점 기준으로 반복 실행을 예약한다.](<https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/ScheduledExecutorService.html#scheduleAtFixedRate(java.lang.Runnable,long,long,java.util.concurrent.TimeUnit)>)**
 반면 `scheduleWithFixedDelay()`는 이전 작업이 끝난 뒤 지정한 지연 시간을 두고 다음 작업을 시작한다.
+한 번의 실행 시간이 `period`보다 길면 다음 실행은 늦게 시작될 수 있지만, 같은 작업이 동시에 겹쳐 실행되지는 않는다.
 
 작업 시간이 짧고 일정한 주기를 최대한 맞추고 싶다면 `scheduleAtFixedRate()`가 맞다.
 이전 작업이 얼마나 오래 걸렸는지에 따라 다음 실행 간격을 조정하고 싶다면 `scheduleWithFixedDelay()`가 더 자연스럽다.

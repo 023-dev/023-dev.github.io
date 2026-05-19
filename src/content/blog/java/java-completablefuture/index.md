@@ -1,9 +1,10 @@
 ---
 visible: true
 title: "CompletableFuture에 대한 이해"
-date: 2026-05-19 00:00:00
+date: 2026-05-19 18:00:00
 tags:
   - Java
+heroImage: "./img.png"
 ---
 
 `Future`는 비동기 작업의 결과를 나중에 받을 수 있게 해 준다.
@@ -109,7 +110,7 @@ System.out.println(future.join());
 ## 기본 실행기와 커스텀 Executor
 
 `runAsync()`와 `supplyAsync()`에 `Executor`를 넘기지 않으면 기본 실행기를 사용한다.
-**[명시적인 `Executor`가 없는 async 메서드는 기본 비동기 실행기를 사용하며, 일반적으로 `ForkJoinPool.commonPool()`에서 실행된다.](<https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/CompletableFuture.html#defaultExecutor()>)**
+**[명시적인 `Executor`가 없는 async 메서드는 기본 비동기 실행기를 사용하며, 일반적으로 `ForkJoinPool.commonPool()`에서 실행된다. 단, common pool이 충분한 병렬성을 지원하지 않는 환경에서는 새 스레드가 사용될 수 있다.](<https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/CompletableFuture.html#defaultExecutor()>)**
 
 학습용 예제에서는 기본 실행기를 써도 괜찮다.
 하지만 서버 애플리케이션에서 블로킹 I/O, 외부 API 호출, 오래 걸리는 작업을 모두 공용 풀에 맡기면 다른 비동기 작업까지 영향을 받을 수 있다.
@@ -230,6 +231,7 @@ System.out.println(result.join()); // Hello Java
 
 **[`allOf()`는 전달된 `CompletableFuture`들이 모두 완료되면 완료되는 새 `CompletableFuture`를 반환한다.](<https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/CompletableFuture.html#allOf(java.util.concurrent.CompletableFuture...)>)**
 다만 `allOf()` 자체의 결과 타입은 `CompletableFuture<Void>`다.
+또한 전달된 작업 중 하나라도 예외로 완료되면, `allOf()`가 반환한 `CompletableFuture`도 예외로 완료된다.
 각 작업의 결과를 모으려면 원래의 `CompletableFuture` 목록에서 다시 값을 꺼내야 한다.
 
 ```java
@@ -263,6 +265,7 @@ public class AllOfExample {
 
 **[`anyOf()`는 전달된 `CompletableFuture` 중 하나가 완료되면 같은 결과로 완료되는 새 `CompletableFuture`를 반환한다.](<https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/CompletableFuture.html#anyOf(java.util.concurrent.CompletableFuture...)>)**
 가장 빠른 결과 하나만 필요할 때 사용할 수 있다.
+먼저 끝난 작업이 예외로 끝났다면 `anyOf()`가 반환한 `CompletableFuture`도 예외로 완료될 수 있다.
 
 ```java
 CompletableFuture<String> slow = CompletableFuture.supplyAsync(() -> {
@@ -328,10 +331,11 @@ System.out.println(future.join()); // SUCCESS
 
 예외를 단순히 기록하고 결과는 바꾸고 싶지 않다면 `whenComplete()`가 더 적합하다.
 `whenComplete()`는 성공/실패 여부를 볼 수 있지만, 기본적으로 결과를 다른 값으로 바꾸기 위한 메서드는 아니다.
+다만 `whenComplete()` 안에서 새 예외를 던지면 반환된 단계가 예외로 완료될 수 있으므로, 로깅 용도로 쓸 때도 콜백 내부 예외는 조심해야 한다.
 
 ## 타임아웃 처리
 
-MangKyu 글에서는 `Future`의 한계로 “타임아웃을 걸고 `get()`으로 기다리는 방식”을 언급한다.
+`Future.get(timeout, unit)`은 호출한 스레드가 지정 시간까지 기다렸다가, 시간이 지나면 `TimeoutException`으로 빠져나오는 방식이다.
 최신 자바에서는 `CompletableFuture` 자체에도 타임아웃 관련 메서드가 있다.
 Java 9부터 사용할 수 있는 `orTimeout()`과 `completeOnTimeout()`이다.
 
