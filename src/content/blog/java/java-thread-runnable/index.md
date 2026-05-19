@@ -253,4 +253,3 @@ thread.join();
 
 ## 참고
 
-- [MangKyu's Diary - Thread와 Runnable에 대한 이해 및 사용법](https://mangkyu.tistory.com/258)

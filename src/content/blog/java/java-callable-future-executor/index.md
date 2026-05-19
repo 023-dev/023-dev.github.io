@@ -410,6 +410,4 @@ ThreadPoolExecutor executor = new ThreadPoolExecutor(
 하지만 작업 수가 늘고 결과, 실패, 취소, 종료까지 관리해야 한다면 실행기를 쓰는 편이 낫다.
 작업은 작게 정의하고 실행 정책은 실행기에게 맡기는 구조가 자바 동시성 API의 핵심이다.
 
-## 참고
 
-- [MangKyu's Diary - Callable, Future 및 Executors, Executor, ExecutorService, ScheduledExecutorService에 대한 이해 및 사용법](https://mangkyu.tistory.com/259)
