@@ -201,7 +201,7 @@ worker.interrupt();
 - 작업이 많아질수록 스레드 수, 종료 시점, 자원 해제를 관리하기 어렵다.
 
 이 문제를 줄이기 위해 자바는 `ExecutorService`, `Callable`, `Future` 같은 더 높은 수준의 API를 제공한다.
-**[`ExecutorService.submit(Callable)`](<https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/ExecutorService.html#submit(java.util.concurrent.Callable)>)**은 값을 반환하는 작업을 제출하고, 그 결과를 `Future`로 받을 수 있다.
+**[`ExecutorService.submit(Callable)`](<https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/ExecutorService.html#submit(java.util.concurrent.Callable)>)** 은 값을 반환하는 작업을 제출하고, 그 결과를 `Future`로 받을 수 있다.
 
 ```java
 import java.util.concurrent.ExecutorService;
