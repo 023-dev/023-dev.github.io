@@ -253,9 +253,7 @@ thread.join();
 
 ## 참고
 
-- [MangKyu's Diary - Thread와 Runnable에 대한 이해 및 사용법](https://mangkyu.tistory.com/258)
-- 공식 문서
-  - [Oracle Java SE 26 API - Thread](https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/lang/Thread.html)
-  - [Oracle Java SE 26 API - Thread.State](https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/lang/Thread.State.html)
-  - [Oracle Java SE 26 API - Runnable](https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/lang/Runnable.html)
-  - [Oracle Java SE 26 API - ExecutorService](https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/ExecutorService.html)
+- [Oracle Java SE 26 API - Thread](https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/lang/Thread.html)
+- [Oracle Java SE 26 API - Thread.State](https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/lang/Thread.State.html)
+- [Oracle Java SE 26 API - Runnable](https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/lang/Runnable.html)
+- [Oracle Java SE 26 API - ExecutorService](https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/ExecutorService.html)
