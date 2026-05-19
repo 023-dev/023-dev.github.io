@@ -411,3 +411,11 @@ ThreadPoolExecutor executor = new ThreadPoolExecutor(
 작업은 작게 정의하고 실행 정책은 실행기에게 맡기는 구조가 자바 동시성 API의 핵심이다.
 
 
+## 참고
+
+- [Oracle Java SE 26 API - Callable](https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/Callable.html)
+- [Oracle Java SE 26 API - Future](https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/Future.html)
+- [Oracle Java SE 26 API - Executor](https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/Executor.html)
+- [Oracle Java SE 26 API - ExecutorService](https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/ExecutorService.html)
+- [Oracle Java SE 26 API - ScheduledExecutorService](https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/ScheduledExecutorService.html)
+- [Oracle Java SE 26 API - Executors](https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/Executors.html)

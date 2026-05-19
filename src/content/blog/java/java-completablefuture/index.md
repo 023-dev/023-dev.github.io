@@ -388,4 +388,6 @@ API 사용법보다 중요한 것은 이 작업이 어떤 성격의 작업인지
 
 ## 참고
 
-- [MangKyu's Diary - CompletableFuture에 대한 이해 및 사용법](https://mangkyu.tistory.com/263)
+- [Oracle Java SE 26 API - CompletableFuture](https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/CompletableFuture.html)
+- [Oracle Java SE 26 API - CompletionStage](https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/CompletionStage.html)
+- [Oracle Java SE 26 API - Future](https://docs.oracle.com/en/java/javase/26/docs/api/java.base/java/util/concurrent/Future.html)
