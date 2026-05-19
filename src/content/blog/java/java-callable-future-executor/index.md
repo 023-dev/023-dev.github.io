@@ -4,6 +4,7 @@ title: "Callable, Future, ExecutorService에 대한 이해"
 date: 2026-05-19 00:00:00
 tags:
   - Java
+heroImage: "./img.png"
 ---
 
 `Thread`와 `Runnable`만으로도 새 실행 흐름을 만들 수는 있다.
