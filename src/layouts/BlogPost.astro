@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownHeading } from "astro";
 import BaseLayout from "./BaseLayout.astro";
@@ -8,190 +9,117 @@ import TableOfContents from "../components/TableOfContents.astro";
 
 type Props = CollectionEntry<"blog">["data"] & {
 	headings?: MarkdownHeading[];
-	previousPost?: {
-		href: string;
-		title: string;
-	};
-	nextPost?: {
-		href: string;
-		title: string;
-	};
+	previousPost?: { href: string; title: string };
+	nextPost?: { href: string; title: string };
 	readingTime?: string;
 };
 
-const { title, date, headings, previousPost, nextPost, readingTime } =
+const { title, date, headings, previousPost, nextPost, readingTime, heroImage, tags } =
 	Astro.props;
-const hasTableOfContents =
-	headings?.some((heading) => heading.depth <= 3) ?? false;
-
-
+const hasTableOfContents = headings?.some((heading) => heading.depth <= 3) ?? false;
 const slug = Astro.url.pathname.replace(/^\/blog\/|\/$/g, "");
 const ogImage = `/og/${slug}.png`;
 ---
 
 <BaseLayout title={title} wide={true} image={ogImage}>
-	<Fragment slot="head">
-		<link rel="preload" as="script" href="https://utteranc.es/client.js" crossorigin />
-	</Fragment>
+	<article class="article-page">
+		<header class="article-header">
+			<a href="/" class="article-back">← All posts</a>
+			<p class="article-kicker">Blog / {tags?.[0] ?? "Note"} / Article</p>
+			<h1 class="article-title" data-pagefind-meta="title">{title}</h1>
 
-	<div class="relative mx-auto w-full">
-		<aside
-			class="absolute bottom-0 right-0 top-0 hidden w-[88px] min-[1120px]:block min-[1180px]:w-[112px] min-[1280px]:w-[152px] min-[1440px]:left-[calc(50%_+_450px_+_32px)] min-[1440px]:right-auto min-[1440px]:w-[220px]"
-		>
-			{
-				hasTableOfContents && (
-					<div class="sticky top-[100px]">
-						<TableOfContents headings={headings ?? []} />
-					</div>
-				)
-			}
-		</aside>
+			<div style="display: none">
+				{heroImage && (
+					<meta
+						data-pagefind-meta="heroImage[content]"
+						content={typeof heroImage === "string" ? heroImage : heroImage.src}
+					/>
+				)}
+				{date && <meta data-pagefind-meta="date[content]" content={date.toISOString()} />}
+				{tags?.map((tag) => <meta data-pagefind-meta="tag" content={tag} />)}
+			</div>
 
-		<main
-			class="min-w-0 w-full max-w-[900px] mx-auto"
-		>
-			<div class="mb-8">
-				<a
-					href="/"
-					class="mb-5 inline-flex text-[13px] font-medium leading-[20px] text-[#666] transition-colors hover:text-black"
-				>
-					&larr; 목록으로
-				</a>
+			<div class="article-meta">
+				<FormattedDate date={date} />
+				{readingTime && <><span>/</span><span>{readingTime}</span></>}
+				<span>/</span>
+				<span id="view-count" aria-live="polite">0</span>
+				<span>views</span>
+			</div>
+		</header>
+
+		{
+			heroImage ? (
+				<Image src={heroImage} alt="" class="article-hero" />
+			) : (
+				<div class="article-hero article-hero--placeholder" aria-hidden="true">
+					<span>023 DEV / NOTE</span>
+				</div>
+			)
+		}
+
+		{
+			hasTableOfContents && (
+				<details class="article-mobile-toc">
+					<summary>On this page</summary>
+					<div><TableOfContents headings={headings ?? []} /></div>
+				</details>
+			)
+		}
+
+		<div class="article-layout">
+			<div class="article-content">
+				<div class="prose" data-pagefind-body>
+					<slot />
+				</div>
 
 				{
-					Astro.props.tags && Astro.props.tags.length > 0 && (
-						<div class="mb-3 text-[12px] leading-[20px] font-medium text-[#4B4B4B] font-text">
-							{Astro.props.tags.map((tag, i) => (
-								<>
-									<a
-										href={`/tags/${tag.toLowerCase()}`}
-										class="hover:text-black transition-colors"
-									>
-										{tag}
-									</a>
-									{i < Astro.props.tags.length - 1 && (
-										<span class="mr-1">,</span>
-									)}
-								</>
-							))}
-						</div>
+					(previousPost || nextPost) && (
+						<nav class="post-navigation" aria-label="Post navigation">
+							{previousPost ? (
+								<a href={previousPost.href}>
+									<span class="post-navigation__label">Previous</span>
+									<span class="post-navigation__title">{previousPost.title}</span>
+								</a>
+							) : <span />}
+							{nextPost ? (
+								<a href={nextPost.href}>
+									<span class="post-navigation__label">Next</span>
+									<span class="post-navigation__title">{nextPost.title}</span>
+								</a>
+							) : <span />}
+						</nav>
 					)
 				}
 
-				<h1
-					class="text-[34px] leading-[42px] font-bold text-black mb-[20px] font-heading tracking-tight md:text-[36px] md:leading-[44px]"
-					data-pagefind-meta="title"
-				>
-					{title}
-				</h1>
-				<div style="display: none">
-					{Astro.props.heroImage && <meta data-pagefind-meta="heroImage[content]" content={typeof Astro.props.heroImage === 'string' ? Astro.props.heroImage : Astro.props.heroImage.src} />}
-					{date && <meta data-pagefind-meta="date[content]" content={date.toISOString()} />}
-					{Astro.props.tags && Astro.props.tags.map(tag => <meta data-pagefind-meta="tag" content={tag} />)}
-				</div>
-
-				<div
-					class="flex items-center gap-1 text-[#4B4B4B] text-[12px] leading-[20px] font-medium font-text"
-				>
-					<FormattedDate date={date} />
-					{
-						readingTime && (
-							<>
-								<span>/</span>
-								<span>{readingTime}</span>
-							</>
-						)
-					}
-					<span>/</span>
-					<div class="flex items-center">
-						<span id="view-count" class="min-w-[1ch]">0</span>
-						<span class="ml-1">views</span>
-					</div>
-				</div>
+				<Comments />
 			</div>
+
 			{
 				hasTableOfContents && (
-					<details class="mb-8 rounded-lg border border-gray-200 px-4 py-3 min-[1120px]:hidden">
-						<summary class="cursor-pointer select-none text-[14px] font-bold leading-[22px] text-black">
-							목차
-						</summary>
-						<div class="mt-3 border-t border-gray-100 pt-3">
-							<TableOfContents headings={headings ?? []} />
-						</div>
-					</details>
+					<aside class="article-toc" aria-label="On this page">
+						<p class="article-toc__title">On this page</p>
+						<TableOfContents headings={headings ?? []} />
+					</aside>
 				)
 			}
-			<div
-				class="prose max-w-none prose-pre:bg-gray-900 prose-pre:text-gray-50 prose-pre:shadow-lg prose-pre:rounded-xl"
-				data-pagefind-body
-			>
-				<slot />
-			</div>
-			{
-				(previousPost || nextPost) && (
-					<nav
-						aria-label="Post navigation"
-						class="mt-14 border-t border-gray-200 pt-6"
-					>
-						<div class="grid gap-6 sm:grid-cols-2">
-							{
-								previousPost ? (
-									<a
-										href={previousPost.href}
-										class="group block border-t border-gray-200 pt-4 transition-colors hover:border-black"
-									>
-										<span class="block text-[12px] font-medium leading-[20px] text-[#777]">
-											이전 글
-										</span>
-										<span class="mt-1 line-clamp-2 block text-[18px] font-bold leading-[26px] tracking-tight text-black">
-											{previousPost.title}
-										</span>
-									</a>
-								) : (
-									<div class="hidden sm:block" />
-								)
-							}
-
-							{
-								nextPost ? (
-									<a
-										href={nextPost.href}
-										class="group block border-t border-gray-200 pt-4 transition-colors hover:border-black sm:text-right"
-									>
-										<span class="block text-[12px] font-medium leading-[20px] text-[#777]">
-											다음 글
-										</span>
-										<span class="mt-1 line-clamp-2 block text-[18px] font-bold leading-[26px] tracking-tight text-black">
-											{nextPost.title}
-										</span>
-									</a>
-								) : (
-									<div class="hidden sm:block" />
-								)
-							}
-						</div>
-					</nav>
-				)
-			}
-			<Comments />
-		</main>
-	</div>
+		</div>
+	</article>
 </BaseLayout>
 
 <script>
 	document.addEventListener("astro:page-load", () => {
 		const viewCountElement = document.getElementById("view-count");
-		if (viewCountElement) {
-			const slug = window.location.pathname.replace(/^\/blog\/|\/$/g, "");
-			fetch(`/api/views/${slug}`)
-				.then((res) => res.json())
-				.then((data) => {
-					viewCountElement.textContent = data.views.toLocaleString();
-					viewCountElement.classList.add("fade-in");
-				})
-				.catch(() => {
-					viewCountElement.textContent = "0";
-				});
-		}
+		if (!viewCountElement) return;
+
+		const slug = window.location.pathname.replace(/^\/blog\/|\/$/g, "");
+		fetch(`/api/views/${slug}`)
+			.then((response) => response.json())
+			.then((data) => {
+				viewCountElement.textContent = data.views.toLocaleString();
+			})
+			.catch(() => {
+				viewCountElement.textContent = "0";
+			});
 	});
 </script>

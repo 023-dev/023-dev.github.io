@@ -1,39 +1,64 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import PostListItem from "../components/PostListItem.astro";
+import { getPostExcerpt } from "../utils/postExcerpt";
+import { getReadingTime } from "../utils/readingTime";
 
 const posts = (await getCollection("blog"))
-    .filter((post) => post.data.visible !== false)
-    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+	.filter((post) => post.data.visible !== false)
+	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-const tags = [
-    ...new Set(posts.flatMap((post) => post.data.tags ?? [])),
-].sort();
+const [featuredPost, ...recentPosts] = posts;
+const description =
+	"Java, Spring, backend, and the small decisions behind reliable software.";
 ---
 
-<BaseLayout title="Astro Tech Blog" wide={true}>
-    <section class="grid gap-10 pb-16 lg:grid-cols-[minmax(0,1fr)_260px]">
-        <div>
-            <ul>
-                {posts.map((post) => <PostListItem post={post} />)}
-            </ul>
-        </div>
+<BaseLayout title="023 DEV · Tech Blog" {description} wide={true}>
+	<section class="blog-home">
+		<div class="home-intro">
+			<p class="page-kicker">023 DEV / BLOG</p>
+			<h1 class="page-title">023 DEV Blog</h1>
+			<p class="page-lede">{description}</p>
+		</div>
 
-        <aside class="self-start lg:sticky lg:top-24">
-            <h2 class="mb-4 text-[18px] font-bold tracking-tight">Tag</h2>
-            <div class="flex flex-wrap gap-2">
-                {
-                    tags.map((tag) => (
-                        <a
-                            href={`/tags/${tag.toLowerCase()}`}
-                            class="rounded-full bg-[rgb(246,246,246)] px-3 py-1.5 text-sm font-medium text-[#555] transition-colors hover:bg-black hover:text-white"
-                        >
-                            {tag}
-                        </a>
-                    ))
-                }
-            </div>
-        </aside>
-    </section>
+		{
+			featuredPost && (
+				<a class="featured-post" href={`/blog/${featuredPost.slug}/`}>
+					<div class="featured-post__media">
+						{featuredPost.data.heroImage ? (
+							<Image src={featuredPost.data.heroImage} alt={featuredPost.data.title} />
+						) : (
+							<div class="featured-post__placeholder" aria-hidden="true" />
+						)}
+					</div>
+					<div class="featured-post__content">
+						<p class="eyebrow">Featured note · {featuredPost.data.tags?.[0] ?? "Blog"}</p>
+						<h2 class="featured-post__title">{featuredPost.data.title}</h2>
+						<p class="featured-post__excerpt">{getPostExcerpt(featuredPost.body)}</p>
+						<p class="featured-post__meta">
+							{featuredPost.data.date.toLocaleDateString("ko-KR")} · {getReadingTime(featuredPost.body)}
+						</p>
+						<span class="text-link">읽어보기 <span aria-hidden="true">→</span></span>
+					</div>
+				</a>
+			)
+		}
+
+		<div class="section-heading" id="recent">
+			<h2>Recent posts</h2>
+			<a href="/tags/java">View by topic <span aria-hidden="true">→</span></a>
+		</div>
+
+		{
+			recentPosts.length > 0 ? (
+				<ul class="post-grid">
+					{recentPosts.slice(0, 9).map((post) => <PostListItem post={post} />)}
+				</ul>
+			) : (
+				<p class="page-lede">아직 공개된 글이 없습니다.</p>
+			)
+		}
+	</section>
 </BaseLayout>

@@ -1,9 +1,20 @@
 import * as React from 'react';
 
+const formatDate = (value) => {
+    if (!value) return '';
+    return new Date(value).toLocaleDateString('ko-KR');
+};
+
 export default function Header() {
     const [isOpen, setIsOpen] = React.useState(false);
     const [searchTerm, setSearchTerm] = React.useState('');
     const [results, setResults] = React.useState([]);
+    const [theme, setTheme] = React.useState(() => (
+        typeof document !== 'undefined' && document.documentElement.dataset.theme === 'dark'
+            ? 'dark'
+            : 'light'
+    ));
+    const pathname = typeof window === 'undefined' ? '/' : window.location.pathname;
 
     React.useEffect(() => {
         const performSearch = async () => {
@@ -11,187 +22,164 @@ export default function Header() {
                 setResults([]);
                 return;
             }
+
             try {
-                // @ts-ignore
                 const pagefindUrl = '/pagefind/pagefind.js';
                 const pagefind = await import(/* @vite-ignore */ pagefindUrl);
                 const search = await pagefind.search(searchTerm);
-                const fiveResults = await Promise.all(search.results.slice(0, 5).map(r => r.data()));
+                const resultData = await Promise.all(
+                    search.results.slice(0, 8).map((result) => result.data()),
+                );
 
-                setResults(fiveResults.map(d => ({
-                    url: d.url,
-                    title: d.meta.title,
-                    heroImage: d.meta.heroImage,
-                    tags: d.meta.tag ? (Array.isArray(d.meta.tag) ? d.meta.tag : [d.meta.tag]) : [],
-                    date: d.meta.date
+                setResults(resultData.map((data) => ({
+                    url: data.url,
+                    title: data.meta.title,
+                    tags: data.meta.tag
+                        ? (Array.isArray(data.meta.tag) ? data.meta.tag : [data.meta.tag])
+                        : [],
+                    date: data.meta.date,
                 })));
-            } catch (e) {
-                console.warn("Pagefind search failed (likely because it's only available after build):", e);
+            } catch (error) {
+                console.warn('Pagefind search is available after build.', error);
                 setResults([]);
             }
         };
 
-        const timeoutId = setTimeout(performSearch, 300);
-        return () => clearTimeout(timeoutId);
+        const timeoutId = window.setTimeout(performSearch, 250);
+        return () => window.clearTimeout(timeoutId);
     }, [searchTerm]);
 
-    // Close modal on Escape key
     React.useEffect(() => {
-        const handleEsc = (event) => {
+        const handleKeyDown = (event) => {
             if (event.key === 'Escape') setIsOpen(false);
+            if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+                event.preventDefault();
+                setIsOpen(true);
+            }
         };
-        window.addEventListener('keydown', handleEsc);
-        return () => window.removeEventListener('keydown', handleEsc);
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
 
-    const fontStyle = { fontFamily: 'Pretendard, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif' };
+    React.useEffect(() => {
+        document.documentElement.dataset.theme = theme;
+        window.localStorage.setItem('023-theme', theme);
+    }, [theme]);
+
     const closeSearch = () => setIsOpen(false);
+    const toggleTheme = () => setTheme((current) => current === 'dark' ? 'light' : 'dark');
+    const isBlogPage = pathname === '/' || pathname.startsWith('/blog/');
+    const isTopicPage = pathname.startsWith('/tags/');
 
     return (
         <>
-            <header
-                className="sticky top-0 z-[2002] w-full bg-white/95 backdrop-blur-md"
-                style={fontStyle}
-            >
-                <div className="mx-auto flex h-14 w-full max-w-[1310px] items-center justify-between px-4">
-                    <a
-                        href="/"
-                        className="inline-flex text-[22px] font-bold leading-tight text-black no-underline"
-                        style={fontStyle}
-                    >
-                        Tech Blog
+            <header className="site-header">
+                <div className="site-header__inner">
+                    <a href="/" className="site-brand" aria-label="023 DEV home">
+                        <span>023 DEV</span>
                     </a>
 
-                    <button
-                        type="button"
-                        onClick={() => setIsOpen(true)}
-                        className="inline-flex h-9 items-center gap-2 rounded-full px-3 text-sm font-medium text-[#555] transition-colors hover:bg-[rgb(246,246,246)] hover:text-black"
-                        style={fontStyle}
-                        aria-label="Search posts"
-                    >
-                        <svg
-                            width="18"
-                            height="18"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            aria-hidden="true"
+                    <nav className="site-nav" aria-label="주요 메뉴">
+                        <a href="/" aria-current={isBlogPage ? 'page' : undefined}>Home</a>
+                        <a href="/#recent">Posts</a>
+                        <a href="/tags/java" aria-current={isTopicPage ? 'page' : undefined}>
+                            Topics <span className="site-nav__chevron" aria-hidden="true">⌄</span>
+                        </a>
+                        <a href="/about">About <span className="site-nav__chevron" aria-hidden="true">⌄</span></a>
+                    </nav>
+
+                    <div className="header-actions">
+                        <a className="header-dashboard" href="https://github.com/023-dev/023-dev.github.io">
+                            GitHub <span aria-hidden="true">↗</span>
+                        </a>
+                        <button
+                            type="button"
+                            className="theme-toggle"
+                            data-theme-toggle
+                            aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+                            aria-pressed={theme === 'dark'}
+                            onClick={toggleTheme}
                         >
-                            <circle cx="11" cy="11" r="8" />
-                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                        </svg>
-                        <span className="hidden sm:inline">Search</span>
-                    </button>
+                            {theme === 'dark' ? (
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M20.6 15.2A8.5 8.5 0 0 1 8.8 3.4 8.5 8.5 0 1 0 20.6 15.2Z" />
+                                </svg>
+                            ) : (
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="4" />
+                                    <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+                                </svg>
+                            )}
+                        </button>
+                        <button
+                            type="button"
+                            className="header-search"
+                            onClick={() => setIsOpen(true)}
+                            aria-haspopup="dialog"
+                            aria-expanded={isOpen}
+                            aria-label="Search posts"
+                        >
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                <circle cx="11" cy="11" r="7" />
+                                <path d="m20 20-4-4" />
+                            </svg>
+                            <span>Search</span>
+                        </button>
+                    </div>
                 </div>
             </header>
 
             {isOpen && (
-                <div className="fixed inset-0 z-[99999] flex justify-center px-4 pt-[14vh]">
-                    <div
-                        className="absolute inset-0 bg-white/75 backdrop-blur-sm"
-                        onClick={closeSearch}
-                    />
-
-                    <div
-                        className="relative flex max-h-[76vh] w-[680px] max-w-full flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-2xl"
-                        role="dialog"
-                        aria-modal="true"
-                        aria-label="Search posts"
-                    >
-                        <div className="flex items-center border-b border-gray-200 px-5 py-4">
-                            <svg
-                                width="22"
-                                height="22"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="mr-3 shrink-0 text-[#777]"
-                                aria-hidden="true"
-                            >
-                                <circle cx="11" cy="11" r="8" />
-                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                <div
+                    className="search-backdrop"
+                    onClick={(event) => {
+                        if (event.target === event.currentTarget) closeSearch();
+                    }}
+                >
+                    <div className="search-dialog" role="dialog" aria-modal="true" aria-label="Search posts">
+                        <div className="search-dialog__input">
+                            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                <circle cx="11" cy="11" r="7" />
+                                <path d="m20 20-4-4" />
                             </svg>
                             <input
-                                placeholder="Search posts..."
                                 autoFocus
                                 value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="min-w-0 flex-1 border-none bg-transparent text-[20px] font-medium text-black outline-none placeholder:text-gray-400"
-                                style={fontStyle}
+                                onChange={(event) => setSearchTerm(event.target.value)}
+                                placeholder="Search posts..."
+                                aria-label="Search posts"
                             />
-                            <button
-                                type="button"
-                                onClick={closeSearch}
-                                className="ml-3 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[#777] transition-colors hover:bg-[rgb(246,246,246)] hover:text-black"
-                                aria-label="Close search"
-                            >
-                                <svg
-                                    width="18"
-                                    height="18"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    aria-hidden="true"
-                                >
-                                    <line x1="18" y1="6" x2="6" y2="18" />
-                                    <line x1="6" y1="6" x2="18" y2="18" />
+                            <button type="button" className="search-dialog__close" onClick={closeSearch} aria-label="Close search">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                    <path d="M6 6l12 12M18 6 6 18" />
                                 </svg>
                             </button>
                         </div>
 
-                        <div className="flex-1 overflow-y-auto py-2">
-                            <div className="px-5 pb-2 pt-3 text-xs font-medium text-[#777]">
+                        <div className="search-dialog__results">
+                            <span className="search-dialog__label">
                                 {searchTerm ? 'Search results' : 'Type at least 2 characters'}
-                            </div>
+                            </span>
 
-                            {results.map((result, index) => (
-                                <a key={index} href={result.url} className="block no-underline" onClick={closeSearch}>
-                                    <div className="group flex cursor-pointer px-5 py-3 transition-colors hover:bg-[rgb(246,246,246)]">
-                                        <div
-                                            className="mr-4 h-[60px] w-[60px] shrink-0 rounded-md bg-gray-100 bg-cover bg-center"
-                                            style={{
-                                                backgroundImage: result.heroImage ? `url(${typeof result.heroImage === 'string' ? result.heroImage : result.heroImage.src})` : 'none'
-                                            }}
-                                        />
-                                        <div className="flex flex-col justify-center min-w-0">
-                                            <div className="mb-1 truncate text-base font-bold text-black">
-                                                {result.title}
-                                            </div>
-                                            <div className="flex items-center text-xs text-[#777]">
-                                                <span className="mr-2 shrink-0 rounded-full bg-[rgb(246,246,246)] px-2 py-0.5 text-[#555]">
-                                                    {result.tags && result.tags.length > 0 ? result.tags[0] : 'Blog'}
-                                                </span>
-                                                <span className="truncate">
-                                                    {result.date ? new Date(result.date).toLocaleDateString('ko-KR') : ''}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
+                            {results.map((result) => (
+                                <a key={result.url} href={result.url} className="search-result" onClick={closeSearch}>
+                                    <span className="search-result__title">{result.title}</span>
+                                    <span className="search-result__meta">
+                                        <span>{result.tags[0] || 'Blog'}</span>
+                                        <span>{formatDate(result.date)}</span>
+                                    </span>
                                 </a>
                             ))}
 
                             {results.length === 0 && searchTerm.length >= 2 && (
-                                <div className="px-5 py-10 text-center text-sm text-[#777]">
-                                    No posts found.
-                                </div>
+                                <span className="search-dialog__empty">No posts found.</span>
                             )}
                         </div>
 
-                        <div className="flex items-center justify-between border-t border-gray-200 bg-white px-5 py-3 text-xs text-[#777]">
-                            <span>Type to search...</span>
-                            <span>
-                                <kbd className="mr-1 rounded bg-[rgb(246,246,246)] px-1 py-0.5 font-mono text-[#555]">ESC</kbd>
-                                to close
-                            </span>
+                        <div className="search-dialog__footer">
+                            <span>Search 023 DEV</span>
+                            <span><kbd>ESC</kbd> to close</span>
                         </div>
                     </div>
                 </div>

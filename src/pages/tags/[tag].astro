@@ -4,23 +4,21 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostListItem from "../../components/PostListItem.astro";
 
 export async function getStaticPaths() {
-    const allPosts = (await getCollection("blog")).filter(
-        (post) => post.data.visible !== false,
-    );
-    const uniqueTags = [
-        ...new Set(allPosts.map((post) => post.data.tags).flat()),
-    ].sort();
+	const allPosts = (await getCollection("blog")).filter(
+		(post) => post.data.visible !== false,
+	);
+	const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags ?? []))].sort();
 
-    return uniqueTags.map((tag) => {
-        const filteredPosts = allPosts
-            .filter((post) => post.data.tags.includes(tag))
-            .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
-        return {
-            params: { tag: tag.toLowerCase() },
-            props: { posts: filteredPosts, tag, allTags: uniqueTags },
-        };
-    });
+	return allTags.map((tag) => ({
+		params: { tag: tag.toLowerCase() },
+		props: {
+			tag,
+			allTags,
+			posts: allPosts
+				.filter((post) => post.data.tags?.includes(tag))
+				.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
+		},
+	}));
 }
 
 const { tag, posts, allTags } = Astro.props;
@@ -28,46 +26,31 @@ const activeTag = tag.toLowerCase();
 ---
 
 <BaseLayout title={`Posts tagged with ${tag}`} wide={true}>
-    <section class="grid gap-10 pb-16 lg:grid-cols-[minmax(0,1fr)_260px]">
-        <div>
-            <div class="mb-5 flex flex-wrap items-center gap-3 text-sm font-medium text-[#777]">
-                <a href="/" class="transition-colors hover:text-black">전체 글</a>
-                <span class="h-1 w-1 rounded-full bg-gray-300" aria-hidden="true"></span>
-                <span class="rounded-full bg-black px-3 py-1.5 leading-none text-white">
-                    {activeTag}
-                </span>
-                <span>{posts.length} posts</span>
-            </div>
+	<section class="blog-archive">
+		<p class="page-kicker">BLOG / TOPIC</p>
+		<div class="archive-header">
+			<div>
+				<h1 class="page-title">{tag}</h1>
+				<p class="page-lede">{tag}에 관한 023 DEV의 기록입니다.</p>
+			</div>
+			<p class="archive-count">{posts.length} posts</p>
+		</div>
 
-            <ul>
-                {posts.map((post) => <PostListItem post={post} />)}
-            </ul>
-        </div>
+		<nav class="archive-toolbar" aria-label="주제 필터">
+			<a href="/" class="topic-chip">All posts</a>
+			{allTags.map((tagItem) => (
+				<a
+					href={`/tags/${tagItem.toLowerCase()}`}
+					class={tagItem.toLowerCase() === activeTag ? "topic-chip is-active" : "topic-chip"}
+					aria-current={tagItem.toLowerCase() === activeTag ? "page" : undefined}
+				>
+					{tagItem}
+				</a>
+			))}
+		</nav>
 
-        <aside class="self-start lg:sticky lg:top-24">
-            <h2 class="mb-4 text-[18px] font-bold tracking-tight">Tag</h2>
-            <div class="flex flex-wrap gap-2">
-                {
-                    allTags.map((tagItem) => {
-                        const tagSlug = tagItem.toLowerCase();
-                        const isActive = tagSlug === activeTag;
-
-                        return (
-                            <a
-                                href={`/tags/${tagSlug}`}
-                                aria-current={isActive ? "page" : undefined}
-                                class={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
-                                    isActive
-                                        ? "bg-black text-white"
-                                        : "bg-[rgb(246,246,246)] text-[#555] hover:bg-black hover:text-white"
-                                }`}
-                            >
-                                {tagItem}
-                            </a>
-                        );
-                    })
-                }
-            </div>
-        </aside>
-    </section>
+		<ul class="post-list">
+			{posts.map((post) => <PostListItem post={post} />)}
+		</ul>
+	</section>
 </BaseLayout>

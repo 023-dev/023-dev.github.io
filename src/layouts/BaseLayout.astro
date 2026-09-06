@@ -3,6 +3,8 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/react/Header.jsx";
 import Footer from "../components/Footer.astro";
 import VisitorMonitor from "../components/react/VisitorMonitor.jsx";
+import BlogSidebar from "../components/BlogSidebar.astro";
+import { getCollection } from "astro:content";
 
 import { ClientRouter } from 'astro:transitions';
 
@@ -14,6 +16,11 @@ interface Props {
 }
 
 const { title, description, image, wide = false } = Astro.props;
+const posts = (await getCollection("blog"))
+	.filter((post) => post.data.visible !== false)
+	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const tags = [...new Set(posts.flatMap((post) => post.data.tags ?? []))].sort();
+const recentPosts = posts.map((post) => ({ slug: post.slug, title: post.data.title }));
 ---
 
 <!doctype html>
@@ -23,13 +30,14 @@ const { title, description, image, wide = false } = Astro.props;
 		<slot name="head" />
 		<ClientRouter />
 	</head>
-	<body class="flex flex-col min-h-screen">
-		<Header client:only="react" />
-		<main
-			class={`flex-grow w-full mx-auto px-4 py-8 ${wide ? "max-w-[1310px]" : "max-w-[700px]"}`}
-		>
-			<slot />
-		</main>
+	<body>
+		<Header client:load />
+		<div class="site-body">
+			<BlogSidebar tags={tags} recentPosts={recentPosts} />
+			<main class={`site-main ${wide ? "" : "site-main--compact"}`}>
+				<slot />
+			</main>
+		</div>
 		<Footer />
 		<VisitorMonitor client:idle />
 	</body>

@@ -1,0 +1,54 @@
+---
+interface Props {
+	tags: string[];
+	recentPosts: { slug: string; title: string }[];
+}
+
+const { tags, recentPosts } = Astro.props;
+const pathname = Astro.url.pathname;
+const activeTag = pathname.startsWith("/tags/")
+	? decodeURIComponent(pathname.split("/")[2] ?? "").toLowerCase()
+	: "";
+const isBlogPage = pathname === "/" || pathname.startsWith("/blog/");
+const activePost = pathname.startsWith("/blog/")
+	? pathname.replace(/^\/blog\//, "").replace(/\/$/, "")
+	: "";
+---
+
+<aside class="blog-sidebar" aria-label="블로그 탐색">
+	<div class="blog-sidebar__inner">
+		<nav class="sidebar-nav sidebar-nav--primary" aria-label="블로그 메뉴">
+			<a href="/" class={isBlogPage && !activePost && !activeTag ? "is-active" : undefined}>All posts</a>
+		</nav>
+
+		<div class="sidebar-section">
+			<p class="sidebar-eyebrow">Recent</p>
+			<nav class="sidebar-nav" aria-label="최근 글">
+				{recentPosts.slice(0, 5).map((post) => (
+					<a
+						href={`/blog/${post.slug}/`}
+						class={activePost === post.slug ? "is-active" : undefined}
+						aria-current={activePost === post.slug ? "page" : undefined}
+					>
+						{post.title}
+					</a>
+				))}
+			</nav>
+		</div>
+
+		<div class="sidebar-section sidebar-section--topics">
+			<p class="sidebar-eyebrow">Topics</p>
+			<nav class="sidebar-nav" aria-label="주제">
+				{tags.map((tag) => (
+					<a
+						href={`/tags/${tag.toLowerCase()}`}
+						class={activeTag === tag.toLowerCase() ? "is-active" : undefined}
+						aria-current={activeTag === tag.toLowerCase() ? "page" : undefined}
+					>
+						{tag}
+					</a>
+				))}
+			</nav>
+		</div>
+	</div>
+</aside>
