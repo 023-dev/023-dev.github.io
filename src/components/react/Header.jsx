@@ -14,8 +14,6 @@ export default function Header() {
             ? 'dark'
             : 'light'
     ));
-    const pathname = typeof window === 'undefined' ? '/' : window.location.pathname;
-
     React.useEffect(() => {
         const performSearch = async () => {
             if (searchTerm.length < 2) {
@@ -69,9 +67,6 @@ export default function Header() {
 
     const closeSearch = () => setIsOpen(false);
     const toggleTheme = () => setTheme((current) => current === 'dark' ? 'light' : 'dark');
-    const isBlogPage = pathname === '/' || pathname.startsWith('/blog/');
-    const isTopicPage = pathname.startsWith('/tags/');
-
     return (
         <>
             <header className="site-header">
@@ -79,15 +74,6 @@ export default function Header() {
                     <a href="/" className="site-brand" aria-label="023 DEV home">
                         <span>023 DEV</span>
                     </a>
-
-                    <nav className="site-nav" aria-label="주요 메뉴">
-                        <a href="/" aria-current={isBlogPage ? 'page' : undefined}>Home</a>
-                        <a href="/#recent">Posts</a>
-                        <a href="/tags/java" aria-current={isTopicPage ? 'page' : undefined}>
-                            Topics <span className="site-nav__chevron" aria-hidden="true">⌄</span>
-                        </a>
-                        <a href="/about">About <span className="site-nav__chevron" aria-hidden="true">⌄</span></a>
-                    </nav>
 
                     <div className="header-actions">
                         <a className="header-dashboard" href="https://github.com/023-dev/023-dev.github.io">

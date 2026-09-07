@@ -17,12 +17,6 @@ const description =
 
 <BaseLayout title="023 DEV · Tech Blog" {description} wide={true}>
 	<section class="blog-home">
-		<div class="home-intro">
-			<p class="page-kicker">023 DEV / BLOG</p>
-			<h1 class="page-title">023 DEV Blog</h1>
-			<p class="page-lede">{description}</p>
-		</div>
-
 		{
 			featuredPost && (
 				<a class="featured-post" href={`/blog/${featuredPost.slug}/`}>

@@ -1244,7 +1244,7 @@ body {
 
 .featured-post__media {
     min-height: 0;
-    aspect-ratio: 1.86;
+    aspect-ratio: 800 / 295;
     border-radius: 14px;
     background: var(--openai-surface);
 }
