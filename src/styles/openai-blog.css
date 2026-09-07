@@ -1085,18 +1085,9 @@ body {
 }
 
 .theme-toggle svg {
-    width: 25px;
-    height: 25px;
-    fill: none;
-    stroke: currentColor;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 1.8;
-}
-
-.theme-toggle svg path:first-child {
-    fill: currentColor;
-    stroke: none;
+    display: block;
+    width: 16px;
+    height: 16px;
 }
 
 .header-search {
@@ -1273,7 +1264,11 @@ body {
     min-height: 0;
     aspect-ratio: 800 / 295;
     border-radius: 8px;
-    background: var(--openai-surface);
+    background: #fff;
+}
+
+.featured-post__media img {
+    object-fit: contain;
 }
 
 .featured-post__content {
