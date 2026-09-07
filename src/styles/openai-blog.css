@@ -982,7 +982,7 @@ body {
 }
 
 .site-header {
-    height: 100px;
+    height: 64px;
     border-bottom: 1px solid var(--openai-line);
     background: var(--openai-header);
     color: var(--openai-ink);
@@ -1037,8 +1037,8 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 9px;
-    min-height: 50px;
-    padding: 0 24px;
+    min-height: 44px;
+    padding: 0 20px;
     border-radius: 999px;
     background: var(--openai-dashboard);
     color: var(--openai-dashboard-ink);
@@ -1085,11 +1085,11 @@ body {
 
 .header-search {
     display: grid;
-    width: 58px;
-    height: 58px;
+    width: 44px;
+    height: 44px;
     padding: 0;
     place-items: center;
-    border: 2px solid #0969da;
+    border: 0;
     border-radius: 50%;
     background: transparent;
     color: var(--openai-ink);
@@ -1116,12 +1116,12 @@ body {
 
 .site-body {
     grid-template-columns: 240px minmax(0, 1fr);
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 64px);
 }
 
 .blog-sidebar {
-    top: 100px;
-    height: calc(100vh - 100px);
+    top: 64px;
+    height: calc(100vh - 64px);
     border-right: 0;
     background: var(--openai-sidebar);
 }
