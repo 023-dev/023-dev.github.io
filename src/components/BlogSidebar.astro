@@ -18,7 +18,9 @@ const activePost = pathname.startsWith("/blog/")
 <aside class="blog-sidebar" aria-label="블로그 탐색">
 	<div class="blog-sidebar__inner">
 		<nav class="sidebar-nav sidebar-nav--primary" aria-label="블로그 메뉴">
-			<a href="/" class={isBlogPage && !activePost && !activeTag ? "is-active" : undefined}>All posts</a>
+			<a href="/" class={isBlogPage && !activePost && !activeTag ? "is-active" : undefined}>
+				<span class="sidebar-link__label">All posts</span>
+			</a>
 		</nav>
 
 		<div class="sidebar-section">
@@ -30,7 +32,7 @@ const activePost = pathname.startsWith("/blog/")
 						class={activePost === post.slug ? "is-active" : undefined}
 						aria-current={activePost === post.slug ? "page" : undefined}
 					>
-						{post.title}
+						<span class="sidebar-link__label">{post.title}</span>
 					</a>
 				))}
 			</nav>
@@ -45,7 +47,7 @@ const activePost = pathname.startsWith("/blog/")
 						class={activeTag === tag.toLowerCase() ? "is-active" : undefined}
 						aria-current={activeTag === tag.toLowerCase() ? "page" : undefined}
 					>
-						{tag}
+						<span class="sidebar-link__label">{tag}</span>
 					</a>
 				))}
 			</nav>
