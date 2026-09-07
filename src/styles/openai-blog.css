@@ -1949,3 +1949,33 @@ body {
         order: 3;
     }
 }
+
+/* Match the OpenAI Blog article grid: wide reading column with a right TOC. */
+.article-page {
+    width: 100%;
+    max-width: none;
+}
+
+.article-layout {
+    grid-template-columns: minmax(0, 1fr) 200px;
+    gap: 48px;
+}
+
+@media (max-width: 1279px) {
+    .article-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .article-toc {
+        display: none;
+    }
+
+    .article-mobile-toc {
+        display: block;
+        margin: 30px 0 40px;
+        padding: 16px;
+        border: 1px solid var(--openai-line);
+        border-radius: 8px;
+    }
+}
