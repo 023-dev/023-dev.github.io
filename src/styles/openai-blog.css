@@ -944,31 +944,39 @@ body {
 :root {
     color-scheme: light;
     --openai-page: #ffffff;
-    --openai-ink: #171717;
-    --openai-muted: #666666;
-    --openai-soft-muted: #7f7f7f;
+    --openai-ink: #181818;
+    --openai-body-ink: #282828;
+    --openai-muted: #5d5d5d;
+    --openai-soft-muted: #5d5d5d;
     --openai-line: #e7e7e7;
     --openai-surface: #f0f0f0;
     --openai-sidebar: #ffffff;
     --openai-header: #ffffff;
-    --openai-hover: #eeeeee;
+    --openai-hover: rgba(24, 24, 24, 0.08);
+    --openai-sidebar-ink: #282828;
+    --openai-sidebar-heading: #181818;
     --openai-dashboard: #191919;
     --openai-dashboard-ink: #ffffff;
+    --openai-dashboard-hover: #303030;
 }
 
 :root[data-theme="dark"] {
     color-scheme: dark;
     --openai-page: #000000;
-    --openai-ink: #f4f4f4;
-    --openai-muted: #b7b7b7;
-    --openai-soft-muted: #aaaaaa;
+    --openai-ink: #dcdcdc;
+    --openai-body-ink: #dcdcdc;
+    --openai-muted: #b9b9b9;
+    --openai-soft-muted: #b9b9b9;
     --openai-line: #242424;
     --openai-surface: #222222;
     --openai-sidebar: #000000;
     --openai-header: #000000;
-    --openai-hover: #232323;
+    --openai-hover: rgba(255, 255, 255, 0.12);
+    --openai-sidebar-ink: #dcdcdc;
+    --openai-sidebar-heading: #dcdcdc;
     --openai-dashboard: #f4f4f4;
-    --openai-dashboard-ink: #101010;
+    --openai-dashboard-ink: #0d0d0d;
+    --openai-dashboard-hover: #ededed;
 }
 
 html,
@@ -1036,19 +1044,27 @@ body {
 .header-dashboard {
     display: inline-flex;
     align-items: center;
-    gap: 9px;
-    min-height: 44px;
-    padding: 0 20px;
+    gap: 8px;
+    min-height: 36px;
+    padding: 0 16px;
     border-radius: 999px;
     background: var(--openai-dashboard);
     color: var(--openai-dashboard-ink);
-    font-size: clamp(14px, 1vw, 19px);
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.16px;
+    line-height: 14px;
 }
 
 .header-dashboard:hover {
-    opacity: 0.84;
+    background: var(--openai-dashboard-hover);
+}
+
+.header-dashboard svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
 }
 
 .theme-toggle {
@@ -1142,7 +1158,7 @@ body {
     padding: 6px 12px;
     overflow: hidden;
     border-radius: 8px;
-    color: var(--openai-ink);
+    color: var(--openai-sidebar-ink);
     font-size: 14px;
     font-weight: 400;
     letter-spacing: -0.14px;
@@ -1158,7 +1174,7 @@ body {
 .sidebar-nav a:hover,
 .sidebar-nav a.is-active {
     background: var(--openai-hover);
-    color: var(--openai-ink);
+    color: var(--openai-sidebar-ink);
 }
 
 .sidebar-nav--primary {
@@ -1174,7 +1190,7 @@ body {
 .sidebar-eyebrow {
     margin: 0 0 0 12px;
     padding: 0;
-    color: var(--openai-ink);
+    color: var(--openai-sidebar-heading);
     font-size: 14px;
     font-weight: 600;
     letter-spacing: -0.14px;
@@ -1268,7 +1284,7 @@ body {
 .featured-post__title {
     max-width: none;
     margin: 8px 0 0;
-    color: var(--openai-ink);
+    color: var(--openai-body-ink);
     font-size: 18px;
     font-weight: 500;
     letter-spacing: -0.18px;
@@ -1278,7 +1294,7 @@ body {
 .featured-post__excerpt {
     max-width: none;
     margin: 12px 0 0;
-    color: var(--openai-ink);
+    color: var(--openai-body-ink);
     font-size: 16px;
     letter-spacing: -0.16px;
     line-height: 24px;
@@ -1328,7 +1344,7 @@ body {
 }
 
 .post-grid .post-card__title {
-    color: var(--openai-ink);
+    color: var(--openai-body-ink);
     font-size: 18px;
     font-weight: 500;
     letter-spacing: -0.18px;
@@ -1339,7 +1355,7 @@ body {
     display: block;
     max-width: none;
     margin-top: 12px;
-    color: var(--openai-ink);
+    color: var(--openai-body-ink);
     font-size: 16px;
     letter-spacing: -0.16px;
     line-height: 24px;
