@@ -623,37 +623,73 @@ body {
 }
 
 .article-toc__title {
-    margin: 0 0 14px;
-    color: var(--openai-soft-muted);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    display: none;
 }
 
 .article-toc .toc ul {
-    gap: 0;
+    display: grid;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .article-toc .toc-item {
-    border-left: 2px solid transparent;
+    border-left: 0;
 }
 
-.article-toc .toc-item.active {
-    border-color: var(--openai-ink);
+.article-toc .toc {
+    border-left: 2px solid var(--openai-line);
+    padding-left: 16px;
 }
 
 .article-toc .toc-item a {
     display: block;
-    padding: 7px 0 7px 12px;
+    padding: 0;
     color: var(--openai-muted);
-    font-size: 12px;
-    line-height: 1.4;
+    font-size: 13px;
+    line-height: 1.35;
 }
 
 .article-toc .toc-item.active a,
 .article-toc .toc-item a:hover {
     color: var(--openai-ink);
+}
+
+.article-copy-page {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 16px;
+    padding: 6px 10px;
+    border: 0;
+    border-radius: 6px;
+    background: var(--openai-ink);
+    color: var(--openai-page);
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.article-copy-page:hover {
+    opacity: 0.82;
+}
+
+.article-copy-page:focus-visible {
+    outline: 2px solid #1473e6;
+    outline-offset: 2px;
+}
+
+.article-copy-page svg {
+    width: 14px;
+    height: 14px;
+    flex: 0 0 auto;
+}
+
+:root[data-theme="dark"] .article-copy-page {
+    background: #f4f4f4;
+    color: #0d0d0d;
 }
 
 .article-toc .depth-3 {
@@ -1952,8 +1988,12 @@ body {
 
 /* Match the OpenAI Blog article grid: wide reading column with a right TOC. */
 .article-page {
-    width: 100%;
+    width: min(100%, 1120px);
     max-width: none;
+}
+
+.article-main {
+    min-width: 0;
 }
 
 .article-layout {
@@ -1962,6 +2002,10 @@ body {
 }
 
 @media (max-width: 1279px) {
+    .article-page {
+        width: 100%;
+    }
+
     .article-layout {
         grid-template-columns: 1fr;
         gap: 0;
