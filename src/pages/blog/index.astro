@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostListItem from "../../components/PostListItem.astro";
+
+const posts = (await getCollection("blog"))
+	.filter((post) => post.data.visible !== false)
+	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const allTags = [...new Set(posts.flatMap((post) => post.data.tags ?? []))].sort();
+---
+
+<BaseLayout title="All posts" wide={true}>
+	<section class="blog-archive">
+		<p class="page-kicker">BLOG / ALL POSTS</p>
+		<div class="archive-header">
+			<div>
+				<h1 class="page-title">All posts</h1>
+				<p class="page-lede">023 DEV에 공개된 모든 글입니다.</p>
+			</div>
+			<p class="archive-count">{posts.length} posts</p>
+		</div>
+
+		<nav class="archive-toolbar" aria-label="주제 필터">
+			<a href="/blog" class="topic-chip is-active" aria-current="page">All posts</a>
+			{allTags.map((tag) => (
+				<a href={`/tags/${tag.toLowerCase()}`} class="topic-chip">{tag}</a>
+			))}
+		</nav>
+
+		{posts.length > 0 ? (
+			<ul class="post-list">
+				{posts.map((post) => <PostListItem post={post} />)}
+			</ul>
+		) : (
+			<p class="empty-state">아직 공개된 글이 없습니다.</p>
+		)}
+	</section>
+</BaseLayout>

@@ -9,7 +9,7 @@ const pathname = Astro.url.pathname;
 const activeTag = pathname.startsWith("/tags/")
 	? decodeURIComponent(pathname.split("/")[2] ?? "").toLowerCase()
 	: "";
-const isBlogPage = pathname === "/" || pathname.startsWith("/blog/");
+const isBlogPage = pathname === "/" || pathname === "/blog" || pathname.startsWith("/blog/");
 const activePost = pathname.startsWith("/blog/")
 	? pathname.replace(/^\/blog\//, "").replace(/\/$/, "")
 	: "";
@@ -18,7 +18,7 @@ const activePost = pathname.startsWith("/blog/")
 <aside class="blog-sidebar" aria-label="블로그 탐색">
 	<div class="blog-sidebar__inner">
 		<nav class="sidebar-nav sidebar-nav--primary" aria-label="블로그 메뉴">
-			<a href="/" class={isBlogPage && !activePost && !activeTag ? "is-active" : undefined}>
+			<a href="/blog" class={isBlogPage && !activePost && !activeTag ? "is-active" : undefined}>
 				<span class="sidebar-link__label">All posts</span>
 			</a>
 		</nav>
