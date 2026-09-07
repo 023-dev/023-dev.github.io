@@ -991,7 +991,7 @@ body {
 .site-header__inner {
     width: 100%;
     max-width: none;
-    padding: 0 40px;
+    padding: 0 32px;
 }
 
 .site-brand {
@@ -1115,7 +1115,7 @@ body {
 }
 
 .site-body {
-    grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+    grid-template-columns: 240px minmax(0, 1fr);
     min-height: calc(100vh - 100px);
 }
 
@@ -1198,7 +1198,7 @@ body {
     width: 100%;
     max-width: none;
     margin: 0;
-    padding: 88px clamp(36px, 7vw, 120px) 120px;
+    padding: 88px 48px 120px;
 }
 
 .blog-home,
@@ -1302,7 +1302,7 @@ body {
 
 .post-grid .post-card__media {
     height: auto;
-    aspect-ratio: 1.86;
+    aspect-ratio: 800 / 295;
     border-radius: 14px;
 }
 
@@ -1725,5 +1725,139 @@ body {
         align-items: flex-start;
         flex-direction: column;
         padding: 24px 20px;
+    }
+}
+
+/* Match the OpenAI blog's lg/mobile layout boundary and card proportions. */
+@media (max-width: 1023px) {
+    .site-header {
+        height: 64px;
+    }
+
+    .site-header__inner {
+        width: 100%;
+        padding: 0 16px;
+    }
+
+    .header-dashboard,
+    .theme-toggle {
+        display: none;
+    }
+
+    .header-actions {
+        gap: 4px;
+    }
+
+    .header-search {
+        width: 44px;
+        height: 44px;
+        border: 0;
+    }
+
+    .site-body {
+        display: block;
+        min-height: 0;
+    }
+
+    .blog-sidebar {
+        display: none;
+    }
+
+    .site-main {
+        width: 100%;
+        padding: 80px 48px 96px;
+    }
+
+    .blog-home,
+    .blog-archive {
+        width: 100%;
+        max-width: 1152px;
+    }
+
+    .featured-post {
+        margin-top: 0;
+    }
+
+    .featured-post__media,
+    .post-grid .post-card__media,
+    .post-list .post-card__media {
+        min-height: 0;
+        height: auto;
+        aspect-ratio: 800 / 295;
+    }
+
+    .post-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .post-list .post-card__link {
+        display: block;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .site-header__inner {
+        padding-right: 32px;
+        padding-left: 32px;
+    }
+
+}
+
+@media (min-width: 768px) {
+    .featured-post,
+    .post-grid .post-card__link,
+    .post-list .post-card__link {
+        padding-right: 32px;
+        padding-left: 32px;
+    }
+}
+
+@media (max-width: 767px) {
+    .site-main {
+        padding: 64px 16px 72px;
+    }
+
+    .featured-post__media,
+    .post-grid .post-card__media,
+    .post-list .post-card__media {
+        border-radius: 0;
+    }
+
+    .featured-post__content,
+    .post-grid .post-card__body,
+    .post-list .post-card__body {
+        padding: 16px;
+    }
+
+    .post-list .post-card__excerpt {
+        display: block;
+    }
+
+    .post-list .post-card__meta {
+        padding-top: 16px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .site-main {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+}
+
+@media (max-width: 575px) {
+    .featured-post__media,
+    .post-grid .post-card__media,
+    .post-list .post-card__media {
+        width: calc(100% + 32px);
+        margin-left: -16px;
+    }
+
+    .featured-post__content,
+    .post-grid .post-card__body,
+    .post-list .post-card__body {
+        padding-right: 0;
+        padding-left: 0;
     }
 }
