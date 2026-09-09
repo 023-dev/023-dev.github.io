@@ -5,6 +5,8 @@ const formatDate = (value) => {
     return new Date(value).toLocaleDateString('ko-KR');
 };
 
+const suggestedSearches = ['Java', 'Backend', 'Database', 'JVM'];
+
 export default function Header() {
     const [isOpen, setIsOpen] = React.useState(false);
     const [searchTerm, setSearchTerm] = React.useState('');
@@ -52,7 +54,7 @@ export default function Header() {
             if (event.key === 'Escape') setIsOpen(false);
             if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
                 event.preventDefault();
-                setIsOpen(true);
+                openSearch();
             }
         };
 
@@ -65,6 +67,11 @@ export default function Header() {
         window.localStorage.setItem('023-theme', theme);
     }, [theme]);
 
+    const openSearch = () => {
+        setSearchTerm('');
+        setResults([]);
+        setIsOpen(true);
+    };
     const closeSearch = () => setIsOpen(false);
     const toggleTheme = () => setTheme((current) => current === 'dark' ? 'light' : 'dark');
     return (
@@ -103,7 +110,7 @@ export default function Header() {
                         <button
                             type="button"
                             className="header-search"
-                            onClick={() => setIsOpen(true)}
+                            onClick={openSearch}
                             aria-haspopup="dialog"
                             aria-expanded={isOpen}
                             aria-label="Search posts"
@@ -125,17 +132,14 @@ export default function Header() {
                         if (event.target === event.currentTarget) closeSearch();
                     }}
                 >
-                    <div className="search-dialog" role="dialog" aria-modal="true" aria-label="Search posts">
+                    <div className="search-dialog" role="dialog" aria-modal="true" aria-labelledby="search-dialog-title">
+                        <h2 id="search-dialog-title" className="sr-only">Search posts</h2>
                         <div className="search-dialog__input">
-                            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                                <circle cx="11" cy="11" r="7" />
-                                <path d="m20 20-4-4" />
-                            </svg>
                             <input
                                 autoFocus
                                 value={searchTerm}
                                 onChange={(event) => setSearchTerm(event.target.value)}
-                                placeholder="Search posts..."
+                                placeholder="Start searching"
                                 aria-label="Search posts"
                             />
                             <button type="button" className="search-dialog__close" onClick={closeSearch} aria-label="Close search">
@@ -146,9 +150,28 @@ export default function Header() {
                         </div>
 
                         <div className="search-dialog__results">
-                            <span className="search-dialog__label">
-                                {searchTerm ? 'Search results' : 'Type at least 2 characters'}
-                            </span>
+                            <h3 className="search-dialog__label">
+                                {searchTerm.length === 0
+                                    ? 'Suggested'
+                                    : searchTerm.length < 2
+                                        ? 'Type at least 2 characters'
+                                        : 'Search results'}
+                            </h3>
+
+                            {searchTerm.length === 0 && (
+                                <div className="search-suggestions" aria-label="Suggested searches">
+                                    {suggestedSearches.map((suggestion) => (
+                                        <button
+                                            key={suggestion}
+                                            type="button"
+                                            className="search-suggestion"
+                                            onClick={() => setSearchTerm(suggestion)}
+                                        >
+                                            {suggestion}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
 
                             {results.map((result) => (
                                 <a key={result.url} href={result.url} className="search-result" onClick={closeSearch}>
@@ -165,10 +188,6 @@ export default function Header() {
                             )}
                         </div>
 
-                        <div className="search-dialog__footer">
-                            <span>Search 023 DEV</span>
-                            <span><kbd>ESC</kbd> to close</span>
-                        </div>
                     </div>
                 </div>
             )}

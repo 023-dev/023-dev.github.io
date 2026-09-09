@@ -2023,3 +2023,119 @@ body {
         border-radius: 8px;
     }
 }
+
+/* Search dialog and media states from the Figma design-system reference. */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.search-backdrop {
+    padding: 12vh 16px 24px;
+    background: rgba(0, 0, 0, 0.58);
+}
+
+.search-dialog {
+    width: min(1100px, calc(100vw - 32px));
+    max-height: calc(100vh - 160px);
+    border: 0;
+    border-radius: 28px;
+    background: var(--openai-surface);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+}
+
+.search-dialog__input {
+    min-height: 68px;
+    gap: 0;
+    padding: 0 24px;
+    border-color: var(--openai-line);
+}
+
+.search-dialog__input input {
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.search-dialog__close {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.search-dialog__results {
+    padding: 20px 24px 24px;
+}
+
+.search-dialog__label {
+    margin: 0;
+    padding: 0;
+    color: var(--openai-muted);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.search-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.search-suggestion {
+    min-height: 40px;
+    padding: 0 14px;
+    border: 1px solid var(--openai-line);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--openai-ink);
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.search-suggestion:hover,
+.search-suggestion:focus-visible {
+    background: var(--openai-hover);
+}
+
+.search-result {
+    border-radius: 8px;
+}
+
+.search-dialog__footer {
+    display: none;
+}
+
+.featured-post__media img,
+.post-grid .post-card__media img,
+.post-list .post-card__media img {
+    object-fit: contain;
+    background: var(--openai-page);
+}
+
+@media (max-width: 767px) {
+    .search-backdrop {
+        padding: 80px 12px 12px;
+    }
+
+    .search-dialog {
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    .search-dialog__input {
+        min-height: 60px;
+        padding: 0 16px;
+    }
+
+    .search-dialog__results {
+        padding: 16px;
+    }
+}
