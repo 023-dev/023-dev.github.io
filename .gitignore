@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# local SEO audit artifacts
+.seo-cache/
+seo-output/
