@@ -1,6 +1,7 @@
 ---
 visible: true
 title: "통제광 성격을 가진 내가 팀원을 신뢰하기까지"
+heroImage: "./thumbnail.png"
 date: 2026-10-26 00:00:00
 tags:
   - etc
