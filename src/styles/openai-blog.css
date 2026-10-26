@@ -1485,6 +1485,10 @@ body {
     color: var(--openai-ink);
 }
 
+:root[data-theme="dark"] .prose {
+    --tw-prose-bold: var(--openai-ink);
+}
+
 :root[data-theme="dark"] .prose pre {
     background: #171717;
 }
