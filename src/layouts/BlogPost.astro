@@ -19,6 +19,7 @@ const { title, date, headings, previousPost, nextPost, readingTime, heroImage, t
 const hasTableOfContents = headings?.some((heading) => heading.depth <= 3) ?? false;
 const slug = Astro.url.pathname.replace(/^\/blog\/|\/$/g, "");
 const ogImage = `/og/${slug}.png`;
+const shouldShowHero = slug !== "etc/good-team";
 ---
 
 <BaseLayout title={title} wide={true} image={ogImage}>
@@ -51,13 +52,14 @@ const ogImage = `/og/${slug}.png`;
 		</header>
 
 		{
-			heroImage ? (
-				<Image src={heroImage} alt="" class="article-hero" />
-			) : (
-				<div class="article-hero article-hero--placeholder" aria-hidden="true">
-					<span>023 DEV / NOTE</span>
-				</div>
-			)
+			shouldShowHero &&
+				(heroImage ? (
+					<Image src={heroImage} alt="" class="article-hero" />
+				) : (
+					<div class="article-hero article-hero--placeholder" aria-hidden="true">
+						<span>023 DEV / NOTE</span>
+					</div>
+				))
 		}
 
 		{
