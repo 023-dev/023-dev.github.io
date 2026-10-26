@@ -1480,6 +1480,10 @@ body {
     color: var(--openai-ink);
 }
 
+.article-page--good-team .prose :where(p > img, p > a > img, figure > img, figure > a > img) {
+    width: 70%;
+}
+
 .prose :not(pre) > code {
     background: var(--openai-surface);
     color: var(--openai-ink);

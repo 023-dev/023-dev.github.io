@@ -22,7 +22,7 @@ const ogImage = `/og/${slug}.png`;
 ---
 
 <BaseLayout title={title} wide={true} image={ogImage}>
-	<article class="article-page">
+	<article class:list={["article-page", slug === "etc/good-team" && "article-page--good-team"]}>
 		<div class="article-layout">
 			<div class="article-main">
 		<header class="article-header">
